@@ -41,22 +41,23 @@ public class SquireSwordAnimations
 				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1f);
 		SQUIRE_SWORD_AUTO_1 = new BasicAttackAnimation(0f, 0f, 0.35f, 0.5f, 0.7f, null, biped.toolR, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto1"), biped);
 		SQUIRE_SWORD_AUTO_2 = new BasicAttackAnimation(0f, 0f, 0.45f, 0.55f, 0.8f, null, biped.toolR, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto2"), biped);
-		SQUIRE_SWORD_AUTO_3 = new BasicAttackAnimation(0f, 0f, 0.45f, 0.55f, 1.0f, null, biped.toolR, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto3"), biped);
+		SQUIRE_SWORD_AUTO_3 = new BasicAttackAnimation(0f, 0f, 0.45f, 0.55f, 2.0f, null, biped.toolR, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto3"), biped);
 		SQUIRE_SWORD_DASH_ATTACK = new DashAttackAnimation(0.2f, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "dash_attack"), biped,
 				new AttackAnimation.Phase(0.0f, 0.0f, 0.2f, 0.3f, 0.4f, 0.5f, biped.toolR, null)
 						.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.3f)),
-				new AttackAnimation.Phase(0.5f, 0.0f, 0.9f, 1.0f, 1.5f, 2.0f, biped.toolR, null)
+				new AttackAnimation.Phase(0.5f, 0.0f, 0.9f, 1.0f, 3f, 2.0f, biped.toolR, null)
 						.addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
 						.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.7f))
 						.addProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER, ValueModifier.multiplier(2f)));
 		SQUIRE_SWORD_HOP_ATTACK = new AirSlashAnimation(0f, 0f, 0.5f, 0.65f, 2f, false, null, biped.toolR, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "hop_attack"), biped)
 				.addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, false);
-		SQUIRE_SWORD_HEAVY_BLOW = new AttackAnimation(0f, 0f, 1.6f, 1.8f, 3f, ColliderPreset.DUAL_SWORD_AIR_SLASH, biped.rootJoint, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "heavy_blow"), biped)
+		SQUIRE_SWORD_HEAVY_BLOW = new AttackAnimation(0f, 0f, 1.6f, 1.8f, 5f, ColliderPreset.DUAL_SWORD_AIR_SLASH, biped.rootJoint, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "heavy_blow"), biped)
 				.addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.1f)
 				.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(2f))
 				.addProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER, ValueModifier.multiplier(4f))
 				.addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
-				.addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true);
+				.addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
+				.addState(EntityState.CAN_SKILL_EXECUTION, false);
 		SQUIRE_SWORD_GUARD = new StaticAnimation(0.1f, true, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "guard"), biped);
 		SQUIRE_SWORD_GUARD_HIT = new GuardAnimation(0.1f, SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "guard_hit"), biped)
 				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1.5f);

@@ -7,7 +7,7 @@ import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.squire.SquireMoveSet;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.RecruitProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.SquireProviders;
-import net.forixaim.efm_ex.api.events.ExCapWeaponRegistryEvent;
+import net.forixaim.efm_ex.api.events.ExCapMovesetRegistryEvent;
 import net.forixaim.efm_ex.capabilities.weapon_presets.ExCapWeapons;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +17,7 @@ public class WeaponTypeInjection
 {
 
 	@SubscribeEvent
-	public static void inject(ExCapWeaponRegistryEvent event)
+	public static void inject(ExCapMovesetRegistryEvent event)
 	{
 		event.addProvider(ExCapWeapons.LONGSWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);

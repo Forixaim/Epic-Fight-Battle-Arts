@@ -7,15 +7,19 @@ import yesman.epicfight.api.animation.LivingMotions;
 
 public class RecruitMoveSets
 {
-    public static final MoveSet RECRUIT_MOVESET = MoveSet.builder()
-            .addLivingMotionModifier(LivingMotions.IDLE, RecruitSpearAnimations.RECRUIT_SPEAR_IDLE)
-            .addLivingMotionModifier(LivingMotions.WALK, RecruitSpearAnimations.RECRUIT_SPEAR_WALK)
-            .addLivingMotionModifier(LivingMotions.RUN, RecruitSpearAnimations.RECRUIT_SPEAR_RUN)
-            .addLivingMotionModifier(LivingMotions.KNEEL, RecruitSpearAnimations.RECRUIT_SPEAR_CROUCH)
-            .addAutoAttacks(
-                    RecruitSpearAnimations.RECRUIT_SPEAR_STANDING_ATTACK, RecruitSpearAnimations.RECRUIT_SPEAR_STANDING_ATTACK_2,
-                    RecruitSpearAnimations.RECRUIT_SPEAR_DASH_ATTACK, RecruitSpearAnimations.RECRUIT_SPEAR_AERIAL_POKE
-            )
-            .addInnateSkill(itemStack -> Recruit.IRON_FORTRESS)
-            .build();
+    public static MoveSet.MoveSetBuilder RECRUIT_MOVESET;
+
+    public static void build()
+    {
+        RECRUIT_MOVESET = MoveSet.builder()
+                .addLivingMotionModifier(LivingMotions.IDLE, () ->RecruitSpearAnimations.RECRUIT_SPEAR_IDLE)
+                .addLivingMotionModifier(LivingMotions.WALK, () ->RecruitSpearAnimations.RECRUIT_SPEAR_WALK)
+                .addLivingMotionModifier(LivingMotions.RUN,() -> RecruitSpearAnimations.RECRUIT_SPEAR_RUN)
+                .addLivingMotionModifier(LivingMotions.KNEEL,() -> RecruitSpearAnimations.RECRUIT_SPEAR_CROUCH)
+                .addAutoAttacks(
+                        RecruitSpearAnimations.RECRUIT_SPEAR_STANDING_ATTACK, RecruitSpearAnimations.RECRUIT_SPEAR_STANDING_ATTACK_2,
+                        RecruitSpearAnimations.RECRUIT_SPEAR_DASH_ATTACK, RecruitSpearAnimations.RECRUIT_SPEAR_AERIAL_POKE
+                )
+                .addInnateSkill(itemStack -> Recruit.IRON_FORTRESS);
+    }
 }

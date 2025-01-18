@@ -3,6 +3,13 @@
 	"item.battle_arts.golden_sabre": "Golden Sabre",
 	"item.battle_arts.diamond_sabre": "Diamond Sabre",
 	"item.battle_arts.netherite_sabre": "Netherite Sabre",
+	"item.battle_arts.sabre.tooltip": "Long reaching and balanced, these swords have fast attacks with the range of a longsword. These swords take a bit more resources to craft.",
+
+	"item.battle_arts.iron_battleaxe": "Iron Battle Axe",
+	"item.battle_arts.golden_battleaxe": "Golden Battle Axe",
+	"item.battle_arts.diamond_battleaxe": "Diamond Battle Axe",
+	"item.battle_arts.netherite_battleaxe": "Netherite Battle Axe",
+	"item.battle_arts.battleaxe.tooltip": "Powerful and slow, these axes are meant for battle and can do insane burst damage in a short amount of time.",
 
 	"skill.battle_arts.squire": "Squire",
 	"skill.battle_arts.squire.tooltip": "A trainee of the swords, bows, daggers, and horseback riding. Quite a versatile class.",
