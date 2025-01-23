@@ -1,12 +1,11 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.defaults;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.recruit.RecruitMoveSets;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.squire.SquireMoveSet;
-import net.forixaim.efm_ex.EpicFightEXCapability;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.SquireMoveSets;
 import net.forixaim.efm_ex.api.events.MoveSetDefinitionRegistryEvent;
 import net.forixaim.efm_ex.api.moveset.MoveSet;
-import net.forixaim.efm_ex.capabilities.weapon_presets.CoreMovesets;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import yesman.epicfight.api.animation.LivingMotions;
@@ -31,7 +30,8 @@ public class DefaultMovesets
     public static void build()
     {
         RecruitMoveSets.build();
-        SquireMoveSet.build();
+        SquireMoveSets.build();
+        JManMoveSets.build();
 
         BattleAxeDefault = MoveSet.builder()
                 .addLivingMotionsRecursive(() -> Animations.BIPED_HOLD_LONGSWORD,

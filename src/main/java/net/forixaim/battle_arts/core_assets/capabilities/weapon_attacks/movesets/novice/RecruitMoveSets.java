@@ -1,4 +1,4 @@
-package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.recruit;
+package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Recruit;

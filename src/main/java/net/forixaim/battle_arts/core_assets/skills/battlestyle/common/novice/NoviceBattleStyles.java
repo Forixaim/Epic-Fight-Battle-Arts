@@ -7,6 +7,7 @@ public class NoviceBattleStyles
 {
 	public static Skill SQUIRE;
 	public static Skill RECRUIT;
+	public static Skill JOURNEYMAN;
 
 	public static void register(SkillBuildEvent.ModRegistryWorker worker)
 	{
@@ -15,5 +16,8 @@ public class NoviceBattleStyles
 
 		RECRUIT = worker.build("recruit", Recruit::new, Recruit.CreateBattleStyle());
 		Recruit.RegisterInnates(worker);
+
+		JOURNEYMAN = worker.build("journeyman", Journeyman::new, Journeyman.CreateBattleStyle());
+		Journeyman.buildSkills(worker);
 	}
 }

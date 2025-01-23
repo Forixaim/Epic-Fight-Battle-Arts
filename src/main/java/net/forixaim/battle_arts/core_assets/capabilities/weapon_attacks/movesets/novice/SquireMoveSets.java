@@ -1,4 +1,4 @@
-package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.squire;
+package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Squire;
@@ -8,7 +8,7 @@ import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;
 import yesman.epicfight.skill.guard.GuardSkill;
 
-public class SquireMoveSet
+public class SquireMoveSets
 {
     public static MoveSet.MoveSetBuilder SquireSwordMS;
 

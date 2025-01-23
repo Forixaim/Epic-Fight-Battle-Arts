@@ -16,6 +16,8 @@
 	"skill.battle_arts.squire_heavy_blow": "Leaping Whirlwind",
 	"skill.battle_arts.squire_heavy_blow.tooltip": "After a small wind up, leap forward with incredible speed, cleaving through anyone who gets caught.",
 
+	"skill.battle_arts.journeyman": "Journeyman",
+	"skill.battle_arts.journeyman.tooltip": "Energetic young warriors wielding axes and often handling weaponry heavier than themselves, has high health and it's family of battle styles can dish out incredible burst damage.",
 
 	"skill.battle_arts.recruit": "Recruit",
 	"skill.battle_arts.recruit.tooltip": "A upstart in spears, shields, armor, and crossbows. Focuses on withstanding damage and zoning enemies.",
@@ -31,5 +33,6 @@
 	"epicfight.style.squire_sword": "Squire's Sword Art",
 	"epicfight.style.squire_bow": "Squire's Bow Art",
 	"epicfight.style.squire_dagger": "Squire's Dagger Art",
-	"epicfight.style.recruit_spear": "Recruit's Spear Art"
+	"epicfight.style.recruit_spear": "Recruit's Spear Art",
+	"epicfight.style.jman_baxe": "Journeyman's Battle Axe Art"
 }

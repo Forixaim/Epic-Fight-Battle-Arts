@@ -1,5 +1,6 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style;
 
+import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireAnimations;
 
@@ -9,5 +10,6 @@ public class BattleStyleRegistry
 	{
 		SquireAnimations.Build();
 		RecruitAnimations.Build();
+		JourneymanAnimations.Build();
 	}
 }
