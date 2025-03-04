@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.initialization.registry;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
 
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.NoviceBattleStyles;
 import net.forixaim.battle_arts.core_assets.skills.passive.ArrogancePassive;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -22,6 +23,7 @@ public class SkillRegistry
 		ARROGANCE = registryWorker.build("arrogance", ArrogancePassive::new, PassiveSkill.createPassiveBuilder().setResource(Skill.Resource.NONE));
 
 		NoviceBattleStyles.register(registryWorker);
+		AdvancedBattleStyles.register(registryWorker);
 
 
 	}

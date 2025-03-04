@@ -1,6 +1,6 @@
 {
   "xp_requirement": 40,
-  "jump_boost_power": 0.2,
+  "jump_boost_power": 0.15,
   "attribute_modifiers": [
     {
       "attribute": "epicfight:staminar",

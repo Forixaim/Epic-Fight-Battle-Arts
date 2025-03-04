@@ -11,13 +11,13 @@ public class NoviceBattleStyles
 
 	public static void register(SkillBuildEvent.ModRegistryWorker worker)
 	{
-		SQUIRE = worker.build("squire", Squire::new, Squire.CreateBattleStyle());
 		Squire.RegisterInnates(worker);
+		SQUIRE = worker.build("squire", Squire::new, Squire.CreateBattleStyle());
 
-		RECRUIT = worker.build("recruit", Recruit::new, Recruit.CreateBattleStyle());
 		Recruit.RegisterInnates(worker);
+		RECRUIT = worker.build("recruit", Recruit::new, Recruit.CreateBattleStyle());
 
-		JOURNEYMAN = worker.build("journeyman", Journeyman::new, Journeyman.CreateBattleStyle());
 		Journeyman.buildSkills(worker);
+		JOURNEYMAN = worker.build("journeyman", Journeyman::new, Journeyman.CreateBattleStyle());
 	}
 }

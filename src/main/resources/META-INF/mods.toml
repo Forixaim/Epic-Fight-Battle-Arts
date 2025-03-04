@@ -31,7 +31,7 @@ description='''${mod_description}'''
 [[dependencies."${mod_id}"]]
 modId="epicfight"
 mandatory=true
-versionRange="[20.8.5,)"
+versionRange="[20.10.,20.11)"
 ordering="AFTER"
 side="BOTH"
 
@@ -46,14 +46,14 @@ side="BOTH"
 [[dependencies."${mod_id}"]]
 modId="efm_ex"
 mandatory=true
-versionRange="[20.9.6,)"
+versionRange="[20.10.7,20.11)"
 ordering="AFTER"
 side="BOTH"
 
 [[dependencies."${mod_id}"]]
 modId="battlearts_api"
 mandatory=true
-versionRange="[20.9.5,)"
+versionRange="[20.10.,20.11)"
 ordering="AFTER"
 side="BOTH"
 

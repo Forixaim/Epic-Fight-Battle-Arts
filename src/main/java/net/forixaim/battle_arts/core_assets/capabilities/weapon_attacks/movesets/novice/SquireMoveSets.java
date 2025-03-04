@@ -8,6 +8,7 @@ import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;
 import yesman.epicfight.skill.guard.GuardSkill;
 
+@SuppressWarnings("unchecked")
 public class SquireMoveSets
 {
     public static MoveSet.MoveSetBuilder SquireSwordMS;
@@ -15,12 +16,12 @@ public class SquireMoveSets
     public static void build()
     {
         SquireSwordMS = MoveSet.builder()
-                .addLivingMotionModifier(LivingMotions.IDLE, () ->SquireSwordAnimations.SQUIRE_SWORD_IDLE)
-                .addLivingMotionModifier(LivingMotions.WALK, () ->SquireSwordAnimations.SQUIRE_SWORD_WALK)
-                .addLivingMotionModifier(LivingMotions.RUN, () ->SquireSwordAnimations.SQUIRE_SWORD_RUN)
-                .addLivingMotionModifier(LivingMotions.KNEEL, () ->SquireSwordAnimations.SQUIRE_SWORD_CROUCH)
-                .addLivingMotionModifier(LivingMotions.SNEAK, () ->SquireSwordAnimations.SQUIRE_SWORD_CROUCH_WALK)
-                .addLivingMotionModifier(LivingMotions.BLOCK, () ->SquireSwordAnimations.SQUIRE_SWORD_GUARD)
+                .addLivingMotionModifier(LivingMotions.IDLE,SquireSwordAnimations.SQUIRE_SWORD_IDLE)
+                .addLivingMotionModifier(LivingMotions.WALK, SquireSwordAnimations.SQUIRE_SWORD_WALK)
+                .addLivingMotionModifier(LivingMotions.RUN, SquireSwordAnimations.SQUIRE_SWORD_RUN)
+                .addLivingMotionModifier(LivingMotions.KNEEL, SquireSwordAnimations.SQUIRE_SWORD_CROUCH)
+                .addLivingMotionModifier(LivingMotions.SNEAK, SquireSwordAnimations.SQUIRE_SWORD_CROUCH_WALK)
+                .addLivingMotionModifier(LivingMotions.BLOCK, SquireSwordAnimations.SQUIRE_SWORD_GUARD)
                 .addGuardAnimations(EpicFightSkills.GUARD,
                         GuardSkill.BlockType.GUARD, SquireSwordAnimations.SQUIRE_SWORD_GUARD_HIT)
                 .addGuardAnimations(EpicFightSkills.GUARD,

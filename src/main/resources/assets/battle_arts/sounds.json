@@ -1,0 +1,19 @@
+{
+  "entity.combat.jump": {
+    "category": "master",
+    "subtitle": "sounds.battle_arts.entity.combat.jump",
+    "sounds":[{"name":"battle_arts:entity/combat/jump", "stream":true}]
+  },
+
+  "entity.combat.unsheathe": {
+    "category": "player",
+    "subtitle": "sounds.battle_arts.entity.combat.unsheathe",
+    "sounds":[{"name":"battle_arts:entity/combat/unsheathe", "stream":true}]
+  },
+
+  "entity.combat.sheathe": {
+    "category": "player",
+    "subtitle": "sounds.battle_arts.entity.combat.sheathe",
+    "sounds":[{"name":"battle_arts:entity/combat/sheathe", "stream":true}]
+  }
+}

@@ -45,9 +45,9 @@ public class Recruit extends BattleStyle
 	{
 		super.onInitiate(container);
 
-		container.getExecuter().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, ID, (event) ->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, ID, (event) ->
 		{
-			if (container.getExecuter().getOriginal().isShiftKeyDown())
+			if (container.getExecutor().getOriginal().isShiftKeyDown())
 			{
 				if (event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch()) == RecruitWieldStyles.RECRUIT_SPEAR)
 					container.getDataManager().setDataSync(getSneakIsDisabledKey(), true, event.getPlayerPatch().getOriginal());
@@ -59,16 +59,16 @@ public class Recruit extends BattleStyle
 	public void onRemoved(SkillContainer container)
 	{
 		super.onRemoved(container);
-		container.getExecuter().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, ID);
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, ID);
 	}
 
 	@Override
 	public void updateContainer(SkillContainer container)
 	{
 		super.updateContainer(container);
-		if (!container.getExecuter().getOriginal().isShiftKeyDown() && container.getExecuter().isLogicalClient())
+		if (!container.getExecutor().getOriginal().isShiftKeyDown() && container.getExecutor().isLogicalClient())
 		{
-			container.getDataManager().setDataSync(getSneakIsDisabledKey(), false, (LocalPlayer) container.getExecuter().getOriginal());
+			container.getDataManager().setDataSync(getSneakIsDisabledKey(), false, (LocalPlayer) container.getExecutor().getOriginal());
 		}
 	}
 }

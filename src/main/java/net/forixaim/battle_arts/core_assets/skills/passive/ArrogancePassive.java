@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerPlayer;
 import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.skill.Skill;
+import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.passive.BerserkerSkill;
 import yesman.epicfight.skill.passive.PassiveSkill;
@@ -18,7 +19,7 @@ public class ArrogancePassive extends PassiveSkill
 {
 	private static final UUID EVENT_UUID = UUID.fromString("ab53525f-0b2f-447a-87d0-7d39c5a56086");
 
-	public ArrogancePassive(Builder<? extends Skill> builder)
+	public ArrogancePassive(SkillBuilder<? extends PassiveSkill> builder)
 	{
 		super(builder);
 	}
@@ -28,12 +29,12 @@ public class ArrogancePassive extends PassiveSkill
 	{
 		super.onInitiate(container);
 
-		container.getExecuter().getEventListener().addEventListener(PlayerEventListener.EventType.ANIMATION_BEGIN_EVENT, EVENT_UUID, event ->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.ANIMATION_BEGIN_EVENT, EVENT_UUID, event ->
 		{
 			if (!event.getPlayerPatch().isLogicalClient())
 				container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID.get(), false, (ServerPlayer) event.getPlayerPatch().getOriginal());
 		});
-		container.getExecuter().getEventListener().addEventListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
 		{
 			if (!container.getDataManager().getDataValue(BattleArtsDataKeys.ANIM_ID.get()))
 			{
@@ -42,14 +43,14 @@ public class ArrogancePassive extends PassiveSkill
 					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 1, event.getPlayerPatch().getOriginal());
 			}
 		});
-		container.getExecuter().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID, event ->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID, event ->
 		{
 			int stack = (int) (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 0.95f);
 			float attackSpdBonus = 0.05f * stack;
 			event.setAttackSpeed(event.getAttackSpeed() * (1 + attackSpdBonus));
 		});
 
-		container.getExecuter().getEventListener().addEventListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID, event->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID, event->
 		{
 			int stack = (int) (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 0.95f);
 			float attackSpdBonus = 0.01f * stack;
@@ -79,9 +80,9 @@ public class ArrogancePassive extends PassiveSkill
 	public void onRemoved(SkillContainer container)
 	{
 		super.onRemoved(container);
-		container.getExecuter().getEventListener().removeListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID);
-		container.getExecuter().getEventListener().removeListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID);
-		container.getExecuter().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID);
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID);
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID);
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID);
 	}
 
 	@Override
@@ -107,10 +108,10 @@ public class ArrogancePassive extends PassiveSkill
 	public void updateContainer(SkillContainer container)
 	{
 		super.updateContainer(container);
-		if (!container.getExecuter().isLogicalClient())
+		if (!container.getExecutor().isLogicalClient())
 		{
 			if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) > 0)
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 0.01f, (ServerPlayer) container.getExecuter().getOriginal());
+				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 0.01f, (ServerPlayer) container.getExecutor().getOriginal());
 
 		}
 	}

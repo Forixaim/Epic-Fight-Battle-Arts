@@ -29,7 +29,7 @@ public class Squire extends BattleStyle
 
 	public static void RegisterInnates(SkillBuildEvent.ModRegistryWorker worker)
 	{
-		HEAVY_BLOW = worker.build("squire_heavy_blow", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations( () -> (AttackAnimation) SquireSwordAnimations.SQUIRE_SWORD_HEAVY_BLOW))
+		HEAVY_BLOW = worker.build("squire_heavy_blow", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(SquireSwordAnimations.SQUIRE_SWORD_HEAVY_BLOW))
 				.newProperty();
 	}
 }

@@ -149,12 +149,15 @@ dependencies {
 
 
     //Epic Fight and its addons
-    implementation fg.deobf("curse.maven:epic-fight-mod-405076:5922122")
-    implementation fg.deobf("curse.maven:battle-arts-api-1091499:6081918")
-    implementation fg.deobf("libs:ExCap:20.9.7.1")
-    runtimeOnly fg.deobf("libs:epicacg:20.9.6.0")
-    runtimeOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5872088")
-    runtimeOnly fg.deobf("curse.maven:epicfight-resurrection-1151542:6090166")
+    implementation fg.deobf("libs:EpicFight:20.10.1")
+    implementation fg.deobf("libs:epic_interactive:0.1")
+    implementation fg.deobf("libs:EpicParcool:20.10.1")
+    implementation fg.deobf("curse.maven:parcool-482378:6189397")
+    implementation fg.deobf("libs:BattleArtsAPI:20.10.7.5")
+    implementation fg.deobf("libs:ExCap:20.10.7.7")
+    compileOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5889471")
+
+    runtimeOnly fg.deobf("curse.maven:skinrestorer-443823:6015917")
 
     //
     implementation fg.deobf("curse.maven:explosive-enhancement-reforged-1036246:5423875")

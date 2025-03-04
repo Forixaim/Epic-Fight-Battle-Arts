@@ -1,5 +1,7 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire;
 
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.types.StaticAnimation;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.capabilities.item.WeaponCategory;
@@ -12,8 +14,8 @@ public class SquireAnimations
 		return "battle_style/novice/squire/" + category.toString().toLowerCase() + "/" + entry;
 	}
 
-	public static void Build()
+	public static void Build(AnimationManager.AnimationBuilder animationBuilder)
 	{
-		SquireSwordAnimations.Build();
+		SquireSwordAnimations.Build(animationBuilder);
 	}
 }

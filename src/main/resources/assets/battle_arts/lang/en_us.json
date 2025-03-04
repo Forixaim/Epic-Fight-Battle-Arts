@@ -19,11 +19,23 @@
 	"skill.battle_arts.journeyman": "Journeyman",
 	"skill.battle_arts.journeyman.tooltip": "Energetic young warriors wielding axes and often handling weaponry heavier than themselves, has high health and it's family of battle styles can dish out incredible burst damage.",
 
+	"skill.battle_arts.suppressing_blow": "Suppressing Blow",
+	"skill.battle_arts.suppressing_blow.tooltip": "After a short wind up, land a paralyzing blow towards your opponent.",
+
+	"skill.battle_arts.seismic_impact": "Seismic Impact",
+	"skill.battle_arts.seismic_impact.tooltip": "Leap high into the air and slam your axe towards the opponent, dealing damage in a large area.",
+
+	"skill.battle_arts.tranquility": "Tranquility",
+	"skill.battle_arts.tranquility.tooltip": "Sheathe or unsheathe your weapon, changing stance and combos.",
+
 	"skill.battle_arts.recruit": "Recruit",
 	"skill.battle_arts.recruit.tooltip": "A upstart in spears, shields, armor, and crossbows. Focuses on withstanding damage and zoning enemies.",
 
 	"skill.battle_arts.iron_fortress": "Iron Fortress",
-	"skill.battle_arts.iron_fortress.tooltip": "A defensive art that activates automatically, negating the next 3 hits.",
+	"skill.battle_arts.iron_fortress.tooltip": "A defensive art that when activated, grants the user super armor.",
+
+	"skill.battle_arts.arrogance": "Arrogance",
+	"skill.battle_arts.arrogance.tooltip": "Gain +5% attack speed and +5% damage taken per stack, gain stacks by landing attacks (+1 stack per attack, must be per attacking move not per hit) [Max: 10]. Lose all stacks upon getting hit.",
 
 	"key.category.battle_arts.efbs_skills": "Battle Arts",
 	"skill.battle_arts.test_combat_art": "Test Combat Art",
@@ -34,5 +46,7 @@
 	"epicfight.style.squire_bow": "Squire's Bow Art",
 	"epicfight.style.squire_dagger": "Squire's Dagger Art",
 	"epicfight.style.recruit_spear": "Recruit's Spear Art",
-	"epicfight.style.jman_baxe": "Journeyman's Battle Axe Art"
+	"epicfight.style.jman_baxe": "Journeyman's Battle Axe Art",
+	"epicfight.style.ronin_uchigatana": "Ronin's Tranquil Stance",
+	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance"
 }

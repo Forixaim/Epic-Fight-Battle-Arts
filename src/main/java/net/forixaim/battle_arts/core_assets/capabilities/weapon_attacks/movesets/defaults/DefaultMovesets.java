@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.defaults;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.RoninMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.SquireMoveSets;
@@ -12,6 +13,7 @@ import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;
 
+@SuppressWarnings("unchecked")
 @Mod.EventBusSubscriber(modid = EpicFightBattleArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DefaultMovesets
 {
@@ -23,7 +25,6 @@ public class DefaultMovesets
     @SubscribeEvent
     public static void registerMovesets(MoveSetDefinitionRegistryEvent event)
     {
-        //event.getMoveSets().put(EpicFightBattleArts.MOD_ID, CoreMovesets::build); --Old
         event.getMoveSets().put(EpicFightBattleArts.MOD_ID, DefaultMovesets::build);
     }
 
@@ -32,15 +33,16 @@ public class DefaultMovesets
         RecruitMoveSets.build();
         SquireMoveSets.build();
         JManMoveSets.build();
+        RoninMoveSets.Build();
 
         BattleAxeDefault = MoveSet.builder()
-                .addLivingMotionsRecursive(() -> Animations.BIPED_HOLD_LONGSWORD,
+                .addLivingMotionsRecursive(Animations.BIPED_HOLD_LONGSWORD,
                         LivingMotions.IDLE, LivingMotions.SNEAK, LivingMotions.KNEEL,
                         LivingMotions.JUMP, LivingMotions.SWIM)
-                .addLivingMotionsRecursive(() -> Animations.BIPED_WALK_LONGSWORD,
+                .addLivingMotionsRecursive(Animations.BIPED_WALK_LONGSWORD,
                         LivingMotions.WALK, LivingMotions.CHASE)
-                .addLivingMotionModifier(LivingMotions.RUN, () -> Animations.BIPED_RUN_LONGSWORD)
-                .addLivingMotionModifier(LivingMotions.BLOCK, () -> Animations.LONGSWORD_GUARD)
+                .addLivingMotionModifier(LivingMotions.RUN, Animations.BIPED_RUN_LONGSWORD)
+                .addLivingMotionModifier(LivingMotions.BLOCK, Animations.LONGSWORD_GUARD)
                 .addAutoAttacks(
                         Animations.LONGSWORD_AUTO1,
                         Animations.LONGSWORD_AUTO2,
@@ -51,13 +53,13 @@ public class DefaultMovesets
                 .addInnateSkill(itemStack -> EpicFightSkills.SWEEPING_EDGE);
 
         Sabre2H = MoveSet.builder()
-                .addLivingMotionsRecursive(() ->Animations.BIPED_HOLD_LONGSWORD,
+                .addLivingMotionsRecursive(Animations.BIPED_HOLD_LONGSWORD,
                         LivingMotions.IDLE, LivingMotions.SNEAK, LivingMotions.KNEEL,
                         LivingMotions.JUMP, LivingMotions.SWIM)
-                .addLivingMotionsRecursive(() ->Animations.BIPED_WALK_LONGSWORD,
+                .addLivingMotionsRecursive(Animations.BIPED_WALK_LONGSWORD,
                         LivingMotions.WALK, LivingMotions.CHASE)
-                .addLivingMotionModifier(LivingMotions.RUN, () ->Animations.BIPED_RUN_LONGSWORD)
-                .addLivingMotionModifier(LivingMotions.BLOCK, () ->Animations.LONGSWORD_GUARD)
+                .addLivingMotionModifier(LivingMotions.RUN, Animations.BIPED_RUN_LONGSWORD)
+                .addLivingMotionModifier(LivingMotions.BLOCK, Animations.LONGSWORD_GUARD)
                 .addAutoAttacks(
                         Animations.LONGSWORD_AUTO1,
                         Animations.LONGSWORD_AUTO2,
