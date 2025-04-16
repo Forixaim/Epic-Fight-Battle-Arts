@@ -100,7 +100,7 @@ public class ArrogancePassive extends PassiveSkill
 		guiGraphics.blit(getSkillTexture(), (int)x-4, (int)y-4, 36, 36, 0, 0, 1, 1, 1, 1);
 		Float Heat = container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get());
 		String Heat_Level = String.format("%.0f", Heat);
-		guiGraphics.drawString(gui.font, Heat_Level, x + 4, y + 6, 16777215, true);
+		guiGraphics.drawString(gui.getFont(), Heat_Level, x + 4, y + 6, 16777215, true);
 		poseStack.popPose();
 	}
 
