@@ -1,15 +1,19 @@
 package net.forixaim.battle_arts.core_assets.skills.combat_art;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
 import net.forixaim.bs_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.bs_api.battle_arts_skills.active.combat_arts.CombatArt;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
+import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
+import yesman.epicfight.skill.passive.BerserkerSkill;
 import yesman.epicfight.world.capabilities.item.Style;
 
 public class TranquilityUnleash extends CombatArt
@@ -26,6 +30,28 @@ public class TranquilityUnleash extends CombatArt
         return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(AdvancedBattleStyles.RONIN) &&
                 (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA_SHEATHE ||
         container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA);
+    }
+
+    @Override
+    public boolean shouldDraw(SkillContainer container)
+    {
+        return this.canExecute(container);
+    }
+    @Override
+    public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y)
+    {
+        PoseStack poseStack = guiGraphics.pose();
+        poseStack.pushPose();
+        poseStack.translate(0, (float)gui.getSlidingProgression(), 0);
+        guiGraphics.blit(getSkillTexture(), (int)x, (int)y, 24, 24, 0, 0, 1, 1, 1, 1);
+        if (!container.isFull())
+        {
+            Float Heat = container.getNeededResource();
+            String Heat_Level = String.format("%.0f", Heat);
+            guiGraphics.drawString(gui.getFont(), Heat_Level, x + 4, y + 16, 16777215, true);
+        }
+        guiGraphics.drawString(gui.getFont(), Integer.toString(container.getStack()), x + 8, y+8, 16777215, true);
+        poseStack.popPose();
     }
 
     @Override

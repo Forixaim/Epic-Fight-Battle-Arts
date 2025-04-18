@@ -49,7 +49,7 @@ public class Ronin extends BattleStyle
 	{
 		TRANQUILITY_PASSIVE = worker.build("tranquility_passive", TranquilityPassive::new, Skill.createBuilder().setResource(Resource.NONE).setCategory(SkillCategories.WEAPON_PASSIVE));
 		TRANQUILITY = worker.build("tranquility", Tranquility::new, WeaponInnateSkill.createWeaponInnateBuilder().setResource(Resource.NONE));
-		TRANQUILITY_UNLEASH = worker.build("tranquility_unleash", TranquilityUnleash::new, CombatArt.createCombatArt());
+		TRANQUILITY_UNLEASH = worker.build("tranquility_unleash", TranquilityUnleash::new, CombatArt.createCombatArt().setResource(Resource.COOLDOWN));
 	}
 
 	@Override

@@ -6,6 +6,9 @@ import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.R
 import net.forixaim.efm_ex.api.moveset.MoveSet;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.Animations;
+import yesman.epicfight.gameasset.EpicFightSkills;
+import yesman.epicfight.gameasset.EpicFightSounds;
+import yesman.epicfight.skill.guard.GuardSkill;
 
 @SuppressWarnings("unchecked")
 public class RoninMoveSets
@@ -19,16 +22,20 @@ public class RoninMoveSets
         RoninUchigatana = MoveSet.builder()
                 .addLivingMotionsRecursive(RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_IDLE, LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.JUMP, LivingMotions.CHASE, LivingMotions.SWIM)
                 .addLivingMotionModifier(LivingMotions.RUN, RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_RUN)
+                .addLivingMotionModifier(LivingMotions.BLOCK, RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_GUARD)
                 .addAutoAttacks(RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_AUTO1,
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_AUTO2,
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_DASH,
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_AIRSLASH
                 )
+                .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_GUARD_HIT)
                 .shouldRenderSheath(livingEntityPatch -> true)
                 .addInnateSkill(itemStack -> Ronin.TRANQUILITY);
 
         RoninUchigatanaSheathed = MoveSet.builder()
                 .addLivingMotionModifier(LivingMotions.RUN, RoninUchigatanaAnimations.RONIN_UCHIGATANA_RUN)
+                .addLivingMotionModifier(LivingMotions.BLOCK, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD)
                 .addLivingMotionsRecursive(RoninUchigatanaAnimations.RONIN_UCHIGATANA_IDLE, LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.JUMP, LivingMotions.CHASE, LivingMotions.SWIM)
                 .addAutoAttacks(
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_AUTO1,
@@ -36,6 +43,8 @@ public class RoninMoveSets
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_AUTO3,
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_DASH,
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_AIRSLASH)
+                .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD_HIT)
                 .shouldRenderSheath(livingEntityPatch -> true)
                 .addInnateSkill(itemStack -> Ronin.TRANQUILITY);
 

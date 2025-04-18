@@ -20,15 +20,30 @@ public class LootTableModifiers
     {
         event.add(EntityType.ZOMBIE, LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                .when(LootItemRandomChanceCondition.randomChance(0.1f))
                 .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
                         SetSkillFunction.builder(1.0f, "battle_arts:squire")
                 )));
         event.add(EntityType.SKELETON, LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                .when(LootItemRandomChanceCondition.randomChance(0.1f))
                 .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
                         SetSkillFunction.builder(1.0f, "battle_arts:recruit")
+                )));
+        event.add(EntityType.CREEPER, LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .when(LootItemRandomChanceCondition.randomChance(0.1f))
+                .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
+                        SetSkillFunction.builder(1.0f, "battle_arts:journeyman")
+                )));
+        event.add(EntityType.SPIDER, LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
+                        SetSkillFunction.builder(1.0f, "battle_arts:ronin")
+                ))
+                .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
+                        SetSkillFunction.builder(1.0f, "battle_arts:tranquility_unleash")
                 )));
     }
 }

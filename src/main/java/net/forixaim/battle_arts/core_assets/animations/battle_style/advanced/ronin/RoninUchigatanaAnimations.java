@@ -25,6 +25,10 @@ public class RoninUchigatanaAnimations
 {
     public static AnimationManager.AnimationAccessor<ActionAnimation> RONIN_UCHIGATANA_UNSHEATHE;
     public static AnimationManager.AnimationAccessor<StaticAnimation> RONIN_UCHIGATANA_IDLE;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> RONIN_UCHIGATANA_GUARD;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> RONIN_UCHIGATANA_SHEATHE_GUARD;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> RONIN_UCHIGATANA_GUARD_HIT;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> RONIN_UCHIGATANA_SHEATHE_GUARD_HIT;
     public static AnimationManager.AnimationAccessor<MovementAnimation> RONIN_UCHIGATANA_RUN;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RONIN_UCHIGATANA_AUTO1;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RONIN_UCHIGATANA_AUTO2;
@@ -49,6 +53,20 @@ public class RoninUchigatanaAnimations
                 true, access, Armatures.BIPED
                 )
         );
+
+        RONIN_UCHIGATANA_GUARD = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "guard"), access ->
+                new StaticAnimation(true, access, Armatures.BIPED));
+
+        RONIN_UCHIGATANA_GUARD_HIT = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA,
+                "guard_hit"), access ->
+                new GuardAnimation(0.1f, 0.35f, access, Armatures.BIPED));
+
+        RONIN_UCHIGATANA_SHEATHE_GUARD = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "sheathe_guard"), access ->
+                new StaticAnimation(true, access, Armatures.BIPED));
+
+        RONIN_UCHIGATANA_SHEATHE_GUARD_HIT = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA,
+                "sheathe_guard_hit"), access ->
+                new GuardAnimation(0.1f, 0.35f, access, Armatures.BIPED));
 
         RONIN_UCHIGATANA_SHEATHE_IDLE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "sheathe_idle_fix1"), access -> new StaticAnimation(
                         true, access, Armatures.BIPED
@@ -76,6 +94,8 @@ public class RoninUchigatanaAnimations
         RONIN_UCHIGATANA_AIRSLASH = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "airslash"),
                 access -> new AirSlashAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1f, true, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
+
+
 
         RONIN_UCHIGATANA_AUTO1 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "auto1"),
                 accessor -> new BasicAttackAnimation(0.2f, 0.0f, 0.25f, 0.4f, 0.75f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
