@@ -4,26 +4,26 @@
   "base": {
     "parent": "battle_arts:item/sabre",
     "textures": {
-      "layer0": "battle_arts:item/iron_sabre"
+      "layer0": "battle_arts:item/stone_sabre"
     }
   },
   "perspectives": {
     "gui": {
       "parent": "battle_arts:item/sabre",
       "textures": {
-        "layer0": "battle_arts:item/iron_sabre_gui"
+        "layer0": "battle_arts:item/stone_sabre_gui"
       }
     },
     "fixed": {
       "parent": "battle_arts:item/sabre",
       "textures": {
-        "layer0": "battle_arts:item/iron_sabre_gui"
+        "layer0": "battle_arts:item/stone_sabre_gui"
       }
     },
     "ground": {
       "parent": "battle_arts:item/sabre",
       "textures": {
-        "layer0": "battle_arts:item/iron_sabre_gui"
+        "layer0": "battle_arts:item/stone_sabre_gui"
       }
     }
   }

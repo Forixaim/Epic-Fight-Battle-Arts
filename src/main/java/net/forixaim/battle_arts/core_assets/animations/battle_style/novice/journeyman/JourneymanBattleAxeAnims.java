@@ -23,6 +23,10 @@ import yesman.epicfight.world.damagesource.StunType;
 public class JourneymanBattleAxeAnims
 {
     public static AnimationManager.AnimationAccessor<StaticAnimation> JMAN_BAXE_IDLE;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> JMAN_BAXE_GUARD;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> JMAN_BAXE_GUARD_HIT;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> JMAN_BAXE_GUARD_PARRY1;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> JMAN_BAXE_GUARD_PARRY2;
     public static AnimationManager.AnimationAccessor<MovementAnimation> JMAN_BAXE_WALK;
     public static AnimationManager.AnimationAccessor<MovementAnimation> JMAN_BAXE_RUN;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> JMAN_BAXE_AUTO_1;
@@ -36,11 +40,20 @@ public class JourneymanBattleAxeAnims
         JMAN_BAXE_IDLE = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "idle"), accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
 
         JMAN_BAXE_WALK = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "walk"), accessor -> new MovementAnimation(0.1f, true, accessor, Armatures.BIPED));
+        JMAN_BAXE_GUARD = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "guard"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
+
+        JMAN_BAXE_GUARD_HIT = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "guard_hit"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
+        JMAN_BAXE_GUARD_PARRY1 = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "parry_1"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
+        JMAN_BAXE_GUARD_PARRY2 = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "parry_2"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
+
+
 
         JMAN_BAXE_RUN = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "run"), accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1.2f));
 
-        JMAN_BAXE_AUTO_1 = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "auto1"), accessor -> new BasicAttackAnimation(0.2f, 0.0f, 0.4f, 0.6f, 1.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+        JMAN_BAXE_AUTO_1 = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "auto1"), accessor ->
+                new BasicAttackAnimation(0.2f, 0.0f, 0.4f, 0.6f, 1.0f, null,
+                        Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(1.1f)));
 
         JMAN_BAXE_AUTO_2 = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "auto2"), accessor -> new BasicAttackAnimation(0.5f, 0.0f, 0.55f, 0.65f, 2.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)

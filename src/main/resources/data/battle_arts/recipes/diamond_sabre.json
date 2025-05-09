@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i ",
+    " i",
+    " I"
+  ],
+  "key": {
+    "i": "minecraft:diamond",
+    "I": "minecraft:diamond_sword"
+  },
+  "result": {
+    "id": "battle_arts:diamond_sabre",
+    "count": 1
+  }
+}

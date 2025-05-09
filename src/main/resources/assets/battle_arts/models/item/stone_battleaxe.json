@@ -4,26 +4,26 @@
   "base": {
     "parent": "battle_arts:item/battleaxe",
     "textures": {
-      "layer0": "battle_arts:item/golden_battleaxe"
+      "layer0": "battle_arts:item/stone_battleaxe"
     }
   },
   "perspectives": {
     "gui": {
       "parent": "battle_arts:item/battleaxe",
       "textures": {
-        "layer0": "battle_arts:item/golden_battleaxe_gui"
+        "layer0": "battle_arts:item/stone_battleaxe_gui"
       }
     },
     "fixed": {
       "parent": "battle_arts:item/battleaxe",
       "textures": {
-        "layer0": "battle_arts:item/golden_battleaxe_gui"
+        "layer0": "battle_arts:item/stone_battleaxe_gui"
       }
     },
     "ground": {
       "parent": "battle_arts:item/battleaxe",
       "textures": {
-        "layer0": "battle_arts:item/golden_battleaxe_gui"
+        "layer0": "battle_arts:item/stone_battleaxe_gui"
       }
     }
   }

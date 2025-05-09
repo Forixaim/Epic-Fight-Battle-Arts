@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#i#",
+    " / ",
+    " / "
+  ],
+  "key": {
+    "#": "minecraft:diamond_axe",
+    "i": "minecraft:diamond",
+    "/": "minecraft:stick"
+  },
+  "result": {
+    "id": "battle_arts:diamond_battleaxe",
+    "count": 1
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#i#",
+    " / ",
+    " / "
+  ],
+  "key": {
+    "#": "minecraft:iron_axe",
+    "i": "minecraft:iron_ingot",
+    "/": "minecraft:stick"
+  },
+  "result": {
+    "id": "battle_arts:iron_battleaxe",
+    "count": 1
+  }
+}

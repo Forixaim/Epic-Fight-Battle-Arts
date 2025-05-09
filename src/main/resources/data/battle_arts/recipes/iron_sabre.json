@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i ",
+    " i",
+    " I"
+  ],
+  "key": {
+    "i": "minecraft:iron_ingot",
+    "I": "minecraft:iron_sword"
+  },
+  "result": {
+    "id": "battle_arts:iron_sabre",
+    "count": 1
+  }
+}

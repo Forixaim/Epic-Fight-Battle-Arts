@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#i#",
+    " / ",
+    " / "
+  ],
+  "key": {
+    "#": "minecraft:stone_axe",
+    "i": { "tag" : "minecraft:planks" },
+    "/": "minecraft:stick"
+  },
+  "result": {
+    "id": "battle_arts:wooden_battleaxe",
+    "count": 1
+  }
+}

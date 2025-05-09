@@ -1,10 +1,14 @@
 {
+	"item.battle_arts.wooden_sabre": "Wooden Sabre",
+	"item.battle_arts.stone_sabre": "Stone Sabre",
 	"item.battle_arts.iron_sabre": "Iron Sabre",
 	"item.battle_arts.golden_sabre": "Golden Sabre",
 	"item.battle_arts.diamond_sabre": "Diamond Sabre",
 	"item.battle_arts.netherite_sabre": "Netherite Sabre",
 	"item.battle_arts.sabre.tooltip": "Long reaching and balanced, these swords have fast attacks with the range of a longsword. These swords take a bit more resources to craft.",
 
+	"item.battle_arts.wooden_battleaxe": "Wooden Battle Axe",
+	"item.battle_arts.stone_battleaxe": "Stone Battle Axe",
 	"item.battle_arts.iron_battleaxe": "Iron Battle Axe",
 	"item.battle_arts.golden_battleaxe": "Golden Battle Axe",
 	"item.battle_arts.diamond_battleaxe": "Diamond Battle Axe",
@@ -25,8 +29,14 @@
 	"skill.battle_arts.seismic_impact": "Seismic Impact",
 	"skill.battle_arts.seismic_impact.tooltip": "Leap high into the air and slam your axe towards the opponent, dealing damage in a large area.",
 
+	"skill.battle_arts.ronin": "Ronin",
+	"skill.battle_arts.ronin.tooltip": "Wandering swordsmen with no master, uses Uchigatana and Tachi.",
+
 	"skill.battle_arts.tranquility": "Tranquility",
 	"skill.battle_arts.tranquility.tooltip": "Sheathe or unsheathe your weapon, changing stance and combos.",
+
+	"skill.battle_arts.tranquility_unleash": "Tranquility Unleash",
+	"skill.battle_arts.tranquility_unleash.tooltip": "Use while sheathed to perform a dash, used while unsheathed to fire a projectile.",
 
 	"skill.battle_arts.recruit": "Recruit",
 	"skill.battle_arts.recruit.tooltip": "A upstart in spears, shields, armor, and crossbows. Focuses on withstanding damage and zoning enemies.",

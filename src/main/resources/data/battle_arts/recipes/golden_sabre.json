@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i ",
+    " i",
+    " I"
+  ],
+  "key": {
+    "i": "minecraft:gold_ingot",
+    "I": "minecraft:golden_sword"
+  },
+  "result": {
+    "id": "battle_arts:golden_sabre",
+    "count": 1
+  }
+}

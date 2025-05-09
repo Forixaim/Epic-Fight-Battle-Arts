@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#i#",
+    " / ",
+    " / "
+  ],
+  "key": {
+    "#": "minecraft:golden_axe",
+    "i": "minecraft:gold_ingot",
+    "/": "minecraft:stick"
+  },
+  "result": {
+    "id": "battle_arts:golden_battleaxe",
+    "count": 1
+  }
+}

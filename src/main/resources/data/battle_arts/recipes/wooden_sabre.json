@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i ",
+    " i",
+    " I"
+  ],
+  "key": {
+    "i": { "tag" : "minecraft:planks" },
+    "I": "minecraft:wooden_sword"
+  },
+  "result": {
+    "id": "battle_arts:wooden_sabre",
+    "count": 1
+  }
+}
