@@ -6,11 +6,15 @@
     " I"
   ],
   "key": {
-    "i": "minecraft:diamond",
-    "I": "minecraft:diamond_sword"
+    "i": {
+      "item": "minecraft:diamond"
+    },
+    "I": {
+      "item": "minecraft:diamond_sword"
+    }
   },
   "result": {
-    "id": "battle_arts:diamond_sabre",
+    "item": "battle_arts:diamond_sabre",
     "count": 1
   }
 }

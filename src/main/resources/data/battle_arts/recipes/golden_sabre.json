@@ -6,11 +6,15 @@
     " I"
   ],
   "key": {
-    "i": "minecraft:gold_ingot",
-    "I": "minecraft:golden_sword"
+    "i": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "minecraft:golden_sword"
+    }
   },
   "result": {
-    "id": "battle_arts:golden_sabre",
+    "item": "battle_arts:golden_sabre",
     "count": 1
   }
 }

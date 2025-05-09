@@ -6,11 +6,15 @@
     " I"
   ],
   "key": {
-    "i": "minecraft:iron_ingot",
-    "I": "minecraft:iron_sword"
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_sword"
+    }
   },
   "result": {
-    "id": "battle_arts:iron_sabre",
+    "item": "battle_arts:iron_sabre",
     "count": 1
   }
 }

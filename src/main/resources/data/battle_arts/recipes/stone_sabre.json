@@ -6,11 +6,15 @@
     " I"
   ],
   "key": {
-    "i": { "tag" : "minecraft:stone_tool_materials" },
-    "I": "minecraft:stone_sword"
+    "i": {
+      "tag" : "minecraft:stone_tool_materials"
+    },
+    "I": {
+      "item": "minecraft:stone_sword"
+    }
   },
   "result": {
-    "id": "battle_arts:stone_sabre",
+    "item": "battle_arts:stone_sabre",
     "count": 1
   }
 }

@@ -1,13 +1,13 @@
 {
   "type": "minecraft:smithing_transform",
   "base": {
-    "item": "epicfight:diamond_greatsword"
+    "item": "battle_arts:diamond_battleaxe"
   },
   "addition": {
     "item" : "minecraft:netherite_ingot"
   },
   "result": {
-    "item": "epicfight:netherite_battleaxe"
+    "item": "battle_arts:netherite_battleaxe"
   },
   "template": {
     "item": "minecraft:netherite_upgrade_smithing_template"

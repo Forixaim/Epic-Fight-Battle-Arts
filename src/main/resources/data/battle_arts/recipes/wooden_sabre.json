@@ -7,10 +7,12 @@
   ],
   "key": {
     "i": { "tag" : "minecraft:planks" },
-    "I": "minecraft:wooden_sword"
+    "I": {
+      "item": "minecraft:wooden_sword"
+    }
   },
   "result": {
-    "id": "battle_arts:wooden_sabre",
+    "item": "battle_arts:wooden_sabre",
     "count": 1
   }
 }

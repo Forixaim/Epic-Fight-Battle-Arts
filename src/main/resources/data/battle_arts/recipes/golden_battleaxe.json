@@ -6,12 +6,18 @@
     " / "
   ],
   "key": {
-    "#": "minecraft:golden_axe",
-    "i": "minecraft:gold_ingot",
-    "/": "minecraft:stick"
+    "#": {
+      "item": "minecraft:golden_axe"
+    },
+    "i": {
+      "item": "minecraft:gold_ingot"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
-    "id": "battle_arts:golden_battleaxe",
+    "item": "battle_arts:golden_battleaxe",
     "count": 1
   }
 }

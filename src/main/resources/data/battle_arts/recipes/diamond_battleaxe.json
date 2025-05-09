@@ -6,12 +6,18 @@
     " / "
   ],
   "key": {
-    "#": "minecraft:diamond_axe",
-    "i": "minecraft:diamond",
-    "/": "minecraft:stick"
+    "#": {
+      "item": "minecraft:diamond_axe"
+    },
+    "i": {
+      "item": "minecraft:diamond"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
-    "id": "battle_arts:diamond_battleaxe",
+    "item": "battle_arts:diamond_battleaxe",
     "count": 1
   }
 }

@@ -6,12 +6,18 @@
     " / "
   ],
   "key": {
-    "#": "minecraft:iron_axe",
-    "i": "minecraft:iron_ingot",
-    "/": "minecraft:stick"
+    "#": {
+      "item": "minecraft:iron_axe"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
-    "id": "battle_arts:iron_battleaxe",
+    "item": "battle_arts:iron_battleaxe",
     "count": 1
   }
 }

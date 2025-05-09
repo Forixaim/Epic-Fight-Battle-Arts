@@ -6,12 +6,16 @@
     " / "
   ],
   "key": {
-    "#": "minecraft:stone_axe",
+    "#": {
+      "item": "minecraft:stone_axe"
+    },
     "i": { "tag" : "minecraft:stone_tool_materials" },
-    "/": "minecraft:stick"
+    "/": {
+      "item": "minecraft:stick"
+    }
   },
   "result": {
-    "id": "battle_arts:stone_battleaxe",
+    "item": "battle_arts:stone_battleaxe",
     "count": 1
   }
 }
