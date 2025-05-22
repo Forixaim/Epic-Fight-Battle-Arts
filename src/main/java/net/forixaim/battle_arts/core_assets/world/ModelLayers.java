@@ -6,5 +6,5 @@ import net.minecraft.resources.ResourceLocation;
 
 public class ModelLayers
 {
-    public static final ModelLayerLocation FLYING_SHOCKWAVE = new ModelLayerLocation(new ResourceLocation(EpicFightBattleArts.MOD_ID, "flying_shockwave"), "main");
+    public static final ModelLayerLocation FLYING_SHOCKWAVE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "flying_shockwave"), "main");
 }

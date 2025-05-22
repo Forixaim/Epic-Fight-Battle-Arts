@@ -1,5 +1,6 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
+import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninTachiAnimations;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.TranquilityUnleash;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Tranquility;
@@ -15,6 +16,7 @@ import yesman.epicfight.skill.BattojutsuPassive;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillCategories;
 import yesman.epicfight.skill.SkillContainer;
+import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.capabilities.item.WeaponCapability;
@@ -27,6 +29,7 @@ public class Ronin extends BattleStyle
 	public static Skill TRANQUILITY;
 	public static Skill TRANQUILITY_PASSIVE;
 	public static Skill TRANQUILITY_UNLEASH;
+	public static Skill BLOSSOM_SLASH;
 	private static final UUID EVENT_UUID = UUID.fromString("55220562-9883-4a57-bd92-a6257127cb66");
 	public Ronin(Builder<? extends Skill> builder)
 	{
@@ -47,6 +50,7 @@ public class Ronin extends BattleStyle
 
 	public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker)
 	{
+		BLOSSOM_SLASH = worker.build("blossom_slash", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(RoninTachiAnimations.BLOSSOM_SLASH)).newProperty();
 		TRANQUILITY_PASSIVE = worker.build("tranquility_passive", TranquilityPassive::new, Skill.createBuilder().setResource(Resource.NONE).setCategory(SkillCategories.WEAPON_PASSIVE));
 		TRANQUILITY = worker.build("tranquility", Tranquility::new, WeaponInnateSkill.createWeaponInnateBuilder().setResource(Resource.NONE));
 		TRANQUILITY_UNLEASH = worker.build("tranquility_unleash", TranquilityUnleash::new, CombatArt.createCombatArt().setResource(Resource.COOLDOWN));

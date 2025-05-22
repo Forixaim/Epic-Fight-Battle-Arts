@@ -2,9 +2,7 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanBattleAxeAnims;
-import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
-import net.forixaim.bs_api.proficiencies.Proficiencies;
 import net.minecraft.world.InteractionHand;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
@@ -36,7 +34,6 @@ public class Journeyman extends BattleStyle
         unarmedLivingMotions.put(LivingMotions.BLOCK, JourneymanAnimations.JMAN_UNARMED_GUARD);
         unarmedInnateSkill = SUPPRESSING_BLOW;
         unarmedAttackAnimations.addAll(Arrays.asList(JourneymanAnimations.JMAN_UNARMED_AUTO1, JourneymanAnimations.JMAN_UNARMED_AUTO2, JourneymanAnimations.JMAN_UNARMED_DASH, JourneymanAnimations.JMAN_SLEDGEHAMMER));
-        proficiencySpecialization.add(Proficiencies.AXES);
     }
     public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker) {
 

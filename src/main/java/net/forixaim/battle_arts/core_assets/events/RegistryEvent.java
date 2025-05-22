@@ -3,9 +3,12 @@ package net.forixaim.battle_arts.core_assets.events;
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwavePatch;
+import net.forixaim.battle_arts.core_assets.world.tags.BattleArtsEntityTags;
 import net.forixaim.efm_ex.api.events.MoveSetDefinitionRegistryEvent;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,10 +24,9 @@ public class RegistryEvent
     @SubscribeEvent
     public static void registerMovesetDefinitions(EntityJoinLevelEvent event)
     {
-        if (event.getEntity() instanceof Player player && !event.getLevel().isClientSide())
+        if (event.getEntity() instanceof ThrownTrident)
         {
-            if (!(EpicFightCapabilities.getEntityPatch(player, PlayerPatch.class).getHoldingItemCapability(InteractionHand.MAIN_HAND) instanceof WeaponCapability))
-                EpicFightCapabilities.getEntityPatch(player, ServerPlayerPatch.class).modifyLivingMotionByCurrentItem();
+            event.getEntity().addTag(BattleArtsEntityTags.PUNCTURE_LEVEL_1.toString());
         }
     }
 

@@ -5,6 +5,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
@@ -22,9 +23,11 @@ import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 import yesman.epicfight.world.damagesource.EpicFightDamageType;
 import yesman.epicfight.world.damagesource.StunType;
 
+import java.util.Objects;
+
 public class FlyingShockwaveProjectile extends Projectile
 {
-    protected int lifetime = 80;
+    protected int lifetime = 40;
     protected Vec3 deceleration = null;
     protected double decelerationConstant = 0.2;
     protected float damage = 1;
@@ -113,8 +116,19 @@ public class FlyingShockwaveProjectile extends Projectile
             Entity entity = hitResult.getEntity();
             Entity entity1 = this.getOwner();
             PlayerPatch<?> playerpatch = EpicFightCapabilities.getEntityPatch(this.getOwner(), PlayerPatch.class);
-            if (entity1 instanceof LivingEntity && playerpatch != null)
+            if (entity1 instanceof LivingEntity livingEntity && playerpatch != null)
             {
+                if (entity instanceof TamableAnimal pet)
+                {
+                    if (Objects.requireNonNull(pet.getOwner()).is(entity1) || pet.getOwner().getTeam() == entity1.getTeam() || (pet.getOwner().getTeam() != null && pet.getOwner().getTeam().isAlliedTo(entity1.getTeam())))
+                    {
+                        return;
+                    }
+                }
+                if (livingEntity.getTeam() == entity1.getTeam() || (livingEntity.getTeam() != null && livingEntity.getTeam().isAlliedTo(entity1.getTeam())))
+                {
+                    return;
+                }
                 EpicFightDamageSource damage = playerpatch.getDamageSource(RoninUchigatanaAnimations.FLYING_SHOCKWAVE, InteractionHand.MAIN_HAND);
                 damage.setStunType(StunType.HOLD);
                 damage.setImpact(0.5F);
@@ -131,14 +145,6 @@ public class FlyingShockwaveProjectile extends Projectile
             }
         }
     }
-
-    @Override
-    protected void onHitBlock(BlockHitResult pResult)
-    {
-        super.onHitBlock(pResult);
-        this.discard();
-    }
-
     @Override
     protected void defineSynchedData()
     {

@@ -13,7 +13,7 @@ import yesman.epicfight.skill.SkillDataKey;
 
 public class BattleArtsDataKeys
 {
-    public static final DeferredRegister<SkillDataKey<?>> DATA_KEYS = DeferredRegister.create(new ResourceLocation("epicfight", "skill_data_keys"), EpicFightBattleArts.MOD_ID);
+    public static final DeferredRegister<SkillDataKey<?>> DATA_KEYS = DeferredRegister.create(ResourceLocation.fromNamespaceAndPath("epicfight", "skill_data_keys"), EpicFightBattleArts.MOD_ID);
     public static final RegistryObject<SkillDataKey<Boolean>> BATTO_SHEATH;
     public static final RegistryObject<SkillDataKey<Float>> ARROGANCE_STACK;
     public static final RegistryObject<SkillDataKey<Boolean>> ANIM_ID;

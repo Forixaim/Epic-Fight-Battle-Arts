@@ -2,8 +2,6 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
-import net.forixaim.bs_api.proficiencies.Proficiencies;
-import yesman.epicfight.api.animation.types.AttackAnimation;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
@@ -19,10 +17,6 @@ public class Squire extends BattleStyle
 		super(builder);
 		innateInactiveColor = new float[]{0.271f, 0.212f, 0.133f};
 		innateSkillColor = new float[]{1f, 0.561f, 0f};
-		proficiencySpecialization.add(Proficiencies.SWORDS);
-		proficiencySpecialization.add(Proficiencies.BOWS);
-		proficiencySpecialization.add(Proficiencies.DAGGERS);
-		proficiencySpecialization.add(Proficiencies.RIDING);
 	}
 
 

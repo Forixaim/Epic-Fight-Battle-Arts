@@ -6,7 +6,7 @@ public enum RoninStyles implements Style
 {
     RONIN_UCHIGATANA(false),
     RONIN_UCHIGATANA_SHEATHE(false),
-    ;
+    RONIN_TACHI(false);
 
     final boolean OffHandUse;
     final int id;

@@ -29,7 +29,7 @@ public class CapabilityRegistry
 
     private static ResourceLocation name(String name)
     {
-        return new ResourceLocation(EpicFightBattleArts.MOD_ID, name.toLowerCase(Locale.ROOT));
+        return ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, name.toLowerCase(Locale.ROOT));
     }
 
     @SubscribeEvent

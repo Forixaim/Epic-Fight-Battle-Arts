@@ -45,14 +45,22 @@ public class RoninMoveSets
                         RoninUchigatanaAnimations.RONIN_UCHIGATANA_AIRSLASH)
                 .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD_HIT)
                 .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD_PARRY_1, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD_PARRY_2)
+                .addGuardAnimations(EpicFightSkills.IMPACT_GUARD, GuardSkill.BlockType.GUARD, RoninUchigatanaAnimations.RONIN_UCHIGATANA_GUARD_HIT)
                 .shouldRenderSheath(livingEntityPatch -> true)
                 .addInnateSkill(itemStack -> Ronin.TRANQUILITY);
 
         RoninTachi = MoveSet.builder()
-                .addAutoAttacks(RoninTachiAnimations.AUTO1, RoninTachiAnimations.AUTO2, RoninTachiAnimations.AUTO3, Animations.TACHI_DASH, Animations.LONGSWORD_AIR_SLASH)
+                .addAutoAttacks(RoninTachiAnimations.AUTO1, RoninTachiAnimations.AUTO2, RoninTachiAnimations.AUTO3, RoninTachiAnimations.DASH_ATTACK, RoninTachiAnimations.AIRSLASH)
                 .addLivingMotionModifier(LivingMotions.IDLE, RoninTachiAnimations.TACHI_IDLE)
                 .addLivingMotionModifier(LivingMotions.WALK, RoninTachiAnimations.WALK)
                 .addLivingMotionModifier(LivingMotions.RUN, RoninTachiAnimations.RUN)
-                .shouldRenderSheath(livingEntityPatch -> true);
+                .addLivingMotionModifier(LivingMotions.BLOCK, RoninTachiAnimations.TACHI_GUARD)
+                .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, RoninTachiAnimations.TACHI_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.IMPACT_GUARD, GuardSkill.BlockType.GUARD, RoninTachiAnimations.TACHI_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, RoninTachiAnimations.TACHI_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, RoninTachiAnimations.TACHI_PARRY_1, RoninTachiAnimations.TACHI_PARRY_2)
+                .shouldRenderSheath(livingEntityPatch -> true)
+                .addInnateSkill(itemStack -> Ronin.BLOSSOM_SLASH);
     }
 }

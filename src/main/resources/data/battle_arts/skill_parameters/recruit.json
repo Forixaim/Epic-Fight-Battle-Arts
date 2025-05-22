@@ -14,7 +14,7 @@
       "name": "recruit",
       "uuid": "3421b224-d2a4-482b-ad36-8a19b4aa0d25",
       "operation": "multiply_total",
-      "amount": 0.6
+      "amount": 0.1
     },
     {
       "attribute": "minecraft:generic.armor",

@@ -5,7 +5,7 @@
   [
     {
       "livingmotion":"WALK",
-      "type":"arms"
+      "type":"root_upper_joints"
     },
     {
       "livingmotion":"IDLE",

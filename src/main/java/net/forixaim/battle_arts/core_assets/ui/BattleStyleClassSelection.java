@@ -20,7 +20,7 @@ import java.util.Map;
  */
 public class BattleStyleClassSelection extends Screen
 {
-    private static final ResourceLocation BATTLE_STYLE_CLASS_SELECTION = new ResourceLocation(EpicFightBattleArts.MOD_ID, "textures/gui/battle_style_class_selection.png");
+    private static final ResourceLocation BATTLE_STYLE_CLASS_SELECTION = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "textures/gui/battle_style_class_selection.png");
     private final Player player;
     private final CapabilitySkill skill;
     //

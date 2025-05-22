@@ -40,6 +40,6 @@ public class FlyingShockwaveRenderer extends EntityRenderer<FlyingShockwaveProje
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull FlyingShockwaveProjectile flyingShockwaveProjectile)
     {
-        return new ResourceLocation(EpicFightBattleArts.MOD_ID, "textures/projectiles/flying_shockwave.png");
+        return ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "textures/projectiles/flying_shockwave.png");
     }
 }

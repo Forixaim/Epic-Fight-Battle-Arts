@@ -36,9 +36,9 @@ public class EpicFightBattleArts
 
 	public static final String MOD_ID = "battle_arts";
 
-	public EpicFightBattleArts()
+	public EpicFightBattleArts(FMLJavaModLoadingContext context)
 	{
-		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus modEventBus = context.getModEventBus();
 		WeaponCategory.ENUM_MANAGER.registerEnumCls(MOD_ID, BattleStyleCategories.class);
 		Style.ENUM_MANAGER.registerEnumCls(MOD_ID, RoninStyles.class);
 		BLOCKS.register(modEventBus);
@@ -48,8 +48,8 @@ public class EpicFightBattleArts
 		CREATIVE_MODE_TABS.register(modEventBus);
 		BattleArtsDataKeys.DATA_KEYS.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(this);
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-		ModLoadingContext.get().registerExtensionPoint(EpicFightExtensions.class, () ->
+		context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		context.registerExtensionPoint(EpicFightExtensions.class, () ->
 				new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS.get()));
 
 	}

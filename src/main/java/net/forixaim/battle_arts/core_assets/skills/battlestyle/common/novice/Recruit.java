@@ -4,7 +4,6 @@ import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.nov
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.IronFortress;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
-import net.forixaim.bs_api.proficiencies.Proficiencies;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.InteractionHand;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
@@ -25,7 +24,6 @@ public class Recruit extends BattleStyle
 		super(builder);
 		innateInactiveColor = new float[]{0.271f, 0.212f, 0.133f};
 		innateSkillColor = new float[]{1f, 0.561f, 0f};
-		proficiencySpecialization.add(Proficiencies.POLEARMS);
 	}
 
 

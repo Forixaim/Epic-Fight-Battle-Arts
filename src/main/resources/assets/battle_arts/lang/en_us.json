@@ -41,6 +41,9 @@
 	"skill.battle_arts.recruit": "Recruit",
 	"skill.battle_arts.recruit.tooltip": "A upstart in spears, shields, armor, and crossbows. Focuses on withstanding damage and zoning enemies.",
 
+	"skill.battle_arts.blossom_slash": "Blossom Slash",
+	"skill.battle_arts.blossom_slash.tooltip": "A series of rapid slashes that deal damage in an area alongside destroying projectiles.",
+
 	"skill.battle_arts.iron_fortress": "Iron Fortress",
 	"skill.battle_arts.iron_fortress.tooltip": "A defensive art that when activated, grants the user super armor.",
 
@@ -58,5 +61,6 @@
 	"epicfight.style.recruit_spear": "Recruit's Spear Art",
 	"epicfight.style.jman_baxe": "Journeyman's Battle Axe Art",
 	"epicfight.style.ronin_uchigatana": "Ronin's Tranquil Stance",
+	"epicfight.style.ronin_tachi": "Ronin's Scatter Stance",
 	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance"
 }

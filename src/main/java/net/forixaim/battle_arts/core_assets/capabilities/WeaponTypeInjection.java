@@ -36,8 +36,7 @@ public class WeaponTypeInjection
 		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK_SHEATH);
 
-		event.addProvider(ExCapWeapons.TACHI, RoninProviders.RONIN_STYLE_CHECK_SHEATH);
-		event.addProvider(ExCapWeapons.TACHI, RoninProviders.RONIN_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.TACHI, RoninProviders.RONIN_STYLE_CHECK_TACHI);
 
 		event.addMoveset(ExCapWeapons.LONGSWORD, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
 		event.addMoveset(ExCapWeapons.SWORD, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
@@ -46,7 +45,7 @@ public class WeaponTypeInjection
 		event.addMoveset(BattleArtsWeapons.BATTLE_AXE, JManStyles.JMAN_BAXE, JManMoveSets.JManBaxeMS);
 		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA, RoninMoveSets.RoninUchigatana);
 		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE, RoninMoveSets.RoninUchigatanaSheathed);
-		event.addMoveset(ExCapWeapons.TACHI, RoninStyles.RONIN_UCHIGATANA, RoninMoveSets.RoninTachi);
+		event.addMoveset(ExCapWeapons.TACHI, RoninStyles.RONIN_TACHI, RoninMoveSets.RoninTachi);
 
 		event.addProvider(ExCapWeapons.SPEAR, RecruitProviders.RECRUIT_SPEAR_CHECK);
 		event.addMoveset(ExCapWeapons.SPEAR, RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);

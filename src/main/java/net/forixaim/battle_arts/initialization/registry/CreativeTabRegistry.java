@@ -16,7 +16,6 @@ import yesman.epicfight.world.item.EpicFightCreativeTabs;
 
 public class CreativeTabRegistry
 {
-	private static final IEventBus MainEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 	public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, EpicFightBattleArts.MOD_ID);
 
 	public static final RegistryObject<CreativeModeTab> MAIN_ITEMS = CREATIVE_MODE_TABS.register("items", () -> CreativeModeTab.builder()

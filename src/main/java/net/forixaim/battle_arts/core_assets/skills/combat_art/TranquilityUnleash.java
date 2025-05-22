@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.combat_art;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninTachiAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
@@ -29,7 +30,8 @@ public class TranquilityUnleash extends CombatArt
     {
         return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(AdvancedBattleStyles.RONIN) &&
                 (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA_SHEATHE ||
-        container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA);
+        container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA ||
+                        container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_TACHI);
     }
 
     @Override
@@ -70,6 +72,10 @@ public class TranquilityUnleash extends CombatArt
             container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
             container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), true, container.getServerExecutor().getOriginal());
             container.getServerExecutor().modifyLivingMotionByCurrentItem();
+        }
+        else if (weaponStyle == RoninStyles.RONIN_TACHI)
+        {
+            container.getExecutor().playAnimationSynchronized(RoninTachiAnimations.FLYING_SHOCKWAVE, 0);
         }
     }
 }

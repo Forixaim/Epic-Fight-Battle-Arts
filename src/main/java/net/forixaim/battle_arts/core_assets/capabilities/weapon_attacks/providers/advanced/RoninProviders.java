@@ -16,6 +16,12 @@ public class RoninProviders
             false
     );
 
+    public static ProviderConditional RONIN_STYLE_CHECK_TACHI = QuickFunctions.battleStyleCheck(
+            AdvancedBattleStyles.RONIN,
+            RoninStyles.RONIN_TACHI,
+            false
+    );
+
     public static ProviderConditional RONIN_STYLE_CHECK_SHEATH = ProviderConditional.builder()
             .setType(ProviderConditionalType.DATA_KEY)
             .setWieldStyle(RoninStyles.RONIN_UCHIGATANA_SHEATHE)

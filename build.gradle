@@ -152,8 +152,8 @@ dependencies {
     implementation fg.deobf("curse.maven:epic-fight-mod-405076:6504759")
     implementation fg.deobf("curse.maven:official-epic-fight-x-parcool-1259252:6504772")
     implementation fg.deobf("curse.maven:parcool-482378:6189397")
-    implementation fg.deobf("libs:BattleArtsAPI:20.10.7.7")
-    implementation fg.deobf("libs:ExCap:20.10.7.9")
+    implementation fg.deobf("libs:BattleArtsAPI:20.10.7.9")
+    implementation fg.deobf("libs:ExCap:20.10.7.11")
     implementation fg.deobf("curse.maven:jei-238222:6075247")
     compileOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5889471")
 

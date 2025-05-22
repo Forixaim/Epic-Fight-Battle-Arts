@@ -1,0 +1,11 @@
+{
+  "attributes":
+  {
+    "common":
+    {
+      "impact":3.7,
+      "max_strikes":4
+    }
+  },
+  "type":"battle_arts:battle_axe"
+}
