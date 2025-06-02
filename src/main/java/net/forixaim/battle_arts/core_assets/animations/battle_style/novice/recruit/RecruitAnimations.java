@@ -11,6 +11,19 @@ public class RecruitAnimations
 		return "battle_style/novice/recruit/" + category.toString().toLowerCase() + "/" + entry;
 	}
 
+	public static String recruitAnimationPath(String entry, WeaponCategory... categories)
+	{
+		StringBuilder hi = new StringBuilder("battle_style/novice/recruit/");
+
+		for (WeaponCategory category : categories)
+		{
+			hi.append(category.toString().toLowerCase());
+			hi.append("/");
+		}
+		hi.append(entry);
+		return hi.toString();
+	}
+
 	public static void Build(AnimationManager.AnimationBuilder event)
 	{
 		RecruitSpearAnimations.Build(event);

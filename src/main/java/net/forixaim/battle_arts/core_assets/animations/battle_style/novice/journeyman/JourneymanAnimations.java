@@ -37,7 +37,7 @@ public class JourneymanAnimations
         JourneymanBattleAxeAnims.Build(event);
 
         JMAN_UNARMED_IDLE = event.nextAccessor(
-                "battle_style/novice/journeyman/idle", access -> new StaticAnimation(true, access, Armatures.BIPED));
+                "battle_style/novice/journeyman/idle.json", access -> new StaticAnimation(true, access, Armatures.BIPED));
         JMAN_UNARMED_GUARD = event.nextAccessor("battle_style/novice/journeyman/guard", access -> new StaticAnimation(true, access, Armatures.BIPED));
         JMAN_UNARMED_AUTO1 = event.nextAccessor("battle_style/novice/journeyman/auto1", access -> new BasicAttackAnimation(0.2f, 0.0f, 0.05f, 0.15f, 0.5f, ColliderPreset.FIST, Armatures.BIPED.get().handR, access, Armatures.BIPED).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 2f));
         JMAN_UNARMED_AUTO2 = event.nextAccessor("battle_style/novice/journeyman/auto2", access -> new BasicAttackAnimation(0.3f, 0.0f, 0.05f, 0.15f, 0.5f, ColliderPreset.FIST, Armatures.BIPED.get().handL, access, Armatures.BIPED).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 2f));

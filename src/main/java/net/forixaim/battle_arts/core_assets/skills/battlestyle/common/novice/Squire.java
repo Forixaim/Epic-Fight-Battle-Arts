@@ -1,15 +1,18 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
+import net.forixaim.battle_arts.core_assets.skills.weaponinnate.HeavyDraw;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
+import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 
 public class Squire extends BattleStyle
 {
 	//Linked Skills
 	public static Skill HEAVY_BLOW;
+	public static Skill POWER_DRAW;
 
 
 	public Squire(Builder<?> builder)
@@ -25,5 +28,6 @@ public class Squire extends BattleStyle
 	{
 		HEAVY_BLOW = worker.build("squire_heavy_blow", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(SquireSwordAnimations.SQUIRE_SWORD_HEAVY_BLOW))
 				.newProperty();
+		POWER_DRAW = worker.build("power_draw", HeavyDraw::new, WeaponInnateSkill.createWeaponInnateBuilder().setActivateType(ActivateType.CHARGING)).newProperty();
 	}
 }

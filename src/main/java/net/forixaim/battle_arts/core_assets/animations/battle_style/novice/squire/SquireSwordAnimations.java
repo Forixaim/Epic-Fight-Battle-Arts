@@ -34,7 +34,7 @@ public class SquireSwordAnimations
 	public static void Build(AnimationManager.AnimationBuilder event)
 	{
 
-		SQUIRE_SWORD_IDLE = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "idle"),
+		SQUIRE_SWORD_IDLE = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "idle.json"),
 				accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
 
 		SQUIRE_SWORD_WALK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "walk"),
@@ -73,6 +73,8 @@ public class SquireSwordAnimations
 				.addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.1f)
 				.addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
 				.addState(EntityState.CAN_SKILL_EXECUTION, false));
+
+
 
 		SQUIRE_SWORD_GUARD = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "guard"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
 

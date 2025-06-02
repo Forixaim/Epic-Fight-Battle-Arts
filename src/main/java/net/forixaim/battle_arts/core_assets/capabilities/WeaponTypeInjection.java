@@ -46,9 +46,11 @@ public class WeaponTypeInjection
 		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA, RoninMoveSets.RoninUchigatana);
 		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE, RoninMoveSets.RoninUchigatanaSheathed);
 		event.addMoveset(ExCapWeapons.TACHI, RoninStyles.RONIN_TACHI, RoninMoveSets.RoninTachi);
-
-		event.addProvider(ExCapWeapons.SPEAR, RecruitProviders.RECRUIT_SPEAR_CHECK);
+		event.addProvider(ExCapWeapons.SPEAR, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD);
 		event.addMoveset(ExCapWeapons.SPEAR, RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
+		event.addMoveset(ExCapWeapons.SPEAR, RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
+		event.addProvider(ExCapWeapons.BOW, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addMoveset(ExCapWeapons.BOW, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireBowMS);
 	}
 
 }

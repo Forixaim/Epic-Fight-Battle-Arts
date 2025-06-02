@@ -3,6 +3,7 @@ package net.forixaim.battle_arts;
 
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
+import net.forixaim.battle_arts.core_assets.items.weapons.enchantment.EnchantmentCategories;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
@@ -11,6 +12,9 @@ import net.forixaim.battle_arts.core_assets.world.FlyingShockwaveRenderer;
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
 import net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.minecraft.world.item.enchantment.ArrowDamageEnchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,9 +53,7 @@ public class EpicFightBattleArts
 		BattleArtsDataKeys.DATA_KEYS.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(this);
 		context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-		context.registerExtensionPoint(EpicFightExtensions.class, () ->
-				new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS.get()));
-
+		context.registerExtensionPoint(EpicFightExtensions.class, () -> new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS.get()));
 	}
 
 	@SubscribeEvent

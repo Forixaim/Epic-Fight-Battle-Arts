@@ -11,6 +11,7 @@ import yesman.epicfight.skill.guard.GuardSkill;
 public class RecruitMoveSets
 {
     public static MoveSet.MoveSetBuilder RECRUIT_MOVESET;
+    public static MoveSet.MoveSetBuilder RECRUIT_MOVESET_SHIELDED;
 
     public static void build()
     {
@@ -29,5 +30,16 @@ public class RecruitMoveSets
                 .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, RecruitSpearAnimations.RECRUIT_SPEAR_GUARD_HIT)
                 .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, RecruitSpearAnimations.RECRUIT_SPEAR_GUARD_PARRY, RecruitSpearAnimations.RECRUIT_SPEAR_GUARD_PARRY_2)
                 .addInnateSkill(itemStack -> Recruit.IRON_FORTRESS);
+
+        RECRUIT_MOVESET_SHIELDED = MoveSet.builder()
+                .addLivingMotionModifier(LivingMotions.IDLE, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_IDLE)
+                .addLivingMotionModifier(LivingMotions.WALK, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_WALK)
+                .addLivingMotionModifier(LivingMotions.RUN, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_RUN)
+                .addLivingMotionModifier(LivingMotions.KNEEL, RecruitSpearAnimations.RECRUIT_SPEAR_CROUCH)
+                .addAutoAttacks(
+                        RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AUTO1, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AUTO2, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AUTO3,
+                        RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_DASH, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AIRSLASH
+                )
+                .addInnateSkill(itemStack -> Recruit.PUNCTURE_SWIPE);
     }
 }

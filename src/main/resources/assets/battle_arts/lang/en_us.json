@@ -7,6 +7,13 @@
 	"item.battle_arts.netherite_sabre": "Netherite Sabre",
 	"item.battle_arts.sabre.tooltip": "Long reaching and balanced, these swords have fast attacks with the range of a longsword. These swords take a bit more resources to craft.",
 
+	"item.battle_arts.wooden_longbow": "Wooden Longbow",
+	"item.battle_arts.stone_longbow": "Stone Longbow",
+	"item.battle_arts.iron_longbow": "Iron Longbow",
+	"item.battle_arts.golden_longbow": "Golden Longbow",
+	"item.battle_arts.diamond_longbow": "Diamond Longbow",
+	"item.battle_arts.netherite_longbow": "Netherite Longbow",
+
 	"item.battle_arts.wooden_battleaxe": "Wooden Battle Axe",
 	"item.battle_arts.stone_battleaxe": "Stone Battle Axe",
 	"item.battle_arts.iron_battleaxe": "Iron Battle Axe",

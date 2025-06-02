@@ -17,5 +17,6 @@ public class SquireAnimations
 	public static void Build(AnimationManager.AnimationBuilder animationBuilder)
 	{
 		SquireSwordAnimations.Build(animationBuilder);
+		SquireBowAnimations.Build(animationBuilder);
 	}
 }

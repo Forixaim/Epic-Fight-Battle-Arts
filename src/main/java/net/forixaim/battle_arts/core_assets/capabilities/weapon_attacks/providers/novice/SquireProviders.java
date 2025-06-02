@@ -12,4 +12,10 @@ public class SquireProviders
             SquireWieldStyles.SQUIRE_SWORD,
             false
     );
+
+    public static final ProviderConditional SQUIRE_BOW_CHECK = QuickFunctions.battleStyleCheck(
+            NoviceBattleStyles.SQUIRE,
+            SquireWieldStyles.SQUIRE_BOW,
+            false
+    );
 }

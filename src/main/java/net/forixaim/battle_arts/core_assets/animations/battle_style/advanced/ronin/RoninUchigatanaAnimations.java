@@ -51,7 +51,7 @@ public class RoninUchigatanaAnimations
 
     public static void onRegister(AnimationManager.AnimationBuilder event)
     {
-        RONIN_UCHIGATANA_IDLE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "idle"), access -> new StaticAnimation(
+        RONIN_UCHIGATANA_IDLE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "idle.json"), access -> new StaticAnimation(
                 true, access, Armatures.BIPED
                 )
         );

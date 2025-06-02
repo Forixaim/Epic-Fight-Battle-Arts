@@ -4,6 +4,7 @@ import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Ronin;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Recruit;
 import net.forixaim.battle_arts.core_assets.skills.passive.ArrogancePassive;
+import net.forixaim.battle_arts.core_assets.skills.weaponinnate.HeavyDraw;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.TranquilityPassive;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,6 +18,8 @@ public class BattleArtsDataKeys
     public static final RegistryObject<SkillDataKey<Boolean>> BATTO_SHEATH;
     public static final RegistryObject<SkillDataKey<Float>> ARROGANCE_STACK;
     public static final RegistryObject<SkillDataKey<Boolean>> ANIM_ID;
+    public static final RegistryObject<SkillDataKey<Boolean>> CHARGING = DATA_KEYS.register("charging", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, false, HeavyDraw.class));
+    public static final RegistryObject<SkillDataKey<Float>> CHARGE_POWER = DATA_KEYS.register("heavy_draw", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Boolean>> SNEAK_MOVE_LOCK
             = DATA_KEYS.register("sneak_move_lock", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, Recruit.class));
 

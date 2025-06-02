@@ -1,0 +1,25 @@
+package net.forixaim.battle_arts.core_assets.events;
+
+
+import com.mojang.logging.LogUtils;
+import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.core_assets.client.RenderLongbow;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import yesman.epicfight.api.client.forgeevent.PatchedRenderersEvent;
+
+@Mod.EventBusSubscriber(modid = EpicFightBattleArts.MOD_ID, value = {Dist.CLIENT}, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ModBusEvents
+{
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void registerItemRenderers(PatchedRenderersEvent.RegisterItemRenderer event)
+    {
+        LogUtils.getLogger().debug("Registering item renderers");
+
+        event.addItemRenderer(ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "wooden_longbow"), RenderLongbow::new);
+        event.addItemRenderer(ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "stone_longbow"), RenderLongbow::new);
+    }
+}
