@@ -38,7 +38,7 @@ public class SquireBowAnimations
     public static void Build(AnimationManager.AnimationBuilder event)
     {
         IDLE = event.nextAccessor("battle_style/novice/squire/bow/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-        AUTO1 = event.nextAccessor("battle_style/novice/squire/bow/auto1", access -> new BasicAttackAnimation(0.1f, 0f, 0.5f, 0.5f, 0.7f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+        AUTO1 = event.nextAccessor("battle_style/novice/squire/bow/auto1", access -> new BasicAttackAnimation(0.1f, 0.5f, 0.5f, 0.5f, 0.7f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
@@ -47,7 +47,7 @@ public class SquireBowAnimations
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.5f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0d)));
 
-        AUTO2 = event.nextAccessor("battle_style/novice/squire/bow/auto2", access -> new BasicAttackAnimation(0.2f, 0f, 0.25f, 0.3f, 1f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+        AUTO2 = event.nextAccessor("battle_style/novice/squire/bow/auto2", access -> new BasicAttackAnimation(0.2f, 0.25f, 0.25f, 0.3f, 1f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
@@ -56,7 +56,7 @@ public class SquireBowAnimations
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.25f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0d)));
 
-        DASH = event.nextAccessor("battle_style/novice/squire/bow/dash", access -> new DashAttackAnimation(0.2f, 0f, 0.05f, 0.35f, 1.5f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+        DASH = event.nextAccessor("battle_style/novice/squire/bow/dash", access -> new DashAttackAnimation(0.1f, 0f, 0.05f, 0.35f, 1.5f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.NO_SOUND.get())
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
@@ -65,7 +65,7 @@ public class SquireBowAnimations
                     return 1;
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.65f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0.2), AnimationEvent.InTimeEvent.create(0.65f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
-        AIRSLASH = event.nextAccessor("battle_style/novice/squire/bow/airslash", access -> new AirSlashAnimation(0f, 0f, 0.05f, 0.35f, 1.5f, false, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+        AIRSLASH = event.nextAccessor("battle_style/novice/squire/bow/airslash", access -> new AirSlashAnimation(0.1f, 0.05f, 0.05f, 0.35f, 1.5f, true, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.NO_SOUND.get())
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
@@ -78,7 +78,7 @@ public class SquireBowAnimations
                 new PowerDrawStartAnimation(0.1f, access, Armatures.BIPED));
 
         POWER_DRAW_HOLD = event.nextAccessor("battle_style/novice/squire/bow/power_draw_hold", access ->
-                new StaticAnimation(true, access, Armatures.BIPED));
+                new StaticAnimation(1f, true, access, Armatures.BIPED));
 
         POWER_DRAW_FIRE = event.nextAccessor("battle_style/novice/squire/bow/power_draw_release", access -> new AttackAnimation(0f, 0f, 0.05f, 0.35f, 1.5f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
@@ -88,7 +88,7 @@ public class SquireBowAnimations
                     //Eventual Battle Bow Setup for dedicated damage.
                     return 1;
                 })
-                .addEvents(AnimationEvent.InTimeEvent.create(0.0f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0.0), AnimationEvent.InTimeEvent.create(0.0f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
+                .addEvents(AnimationEvent.InTimeEvent.create(0.0f, ReusableSources.FIRE_POWER_ARROW, AnimationEvent.Side.SERVER).params(0.0), AnimationEvent.InTimeEvent.create(0.0f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
     }
 
     public static class ReusableSources
@@ -123,10 +123,12 @@ public class SquireBowAnimations
             Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z).add(0, 2, 0);
 
             float velocity = 6.4f;
+            byte pierceLevel = 1;
 
             if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.CHARGE_POWER.get()))
             {
-                velocity = playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.CHARGE_POWER.get());
+                velocity += playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.CHARGE_POWER.get());
+                pierceLevel = playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.CHARGE_POWER.get()).byteValue();
             }
 
             if (livingEntityPatch.getOriginal().getProjectile(livingEntityPatch.getOriginal().getItemInHand(InteractionHand.MAIN_HAND)).isEmpty())
@@ -143,7 +145,8 @@ public class SquireBowAnimations
                 projectile.pickup = AbstractArrow.Pickup.DISALLOWED;
                 projectile.setCritArrow(true);
                 projectile.setBaseDamage(1.0);
-                projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), 6.4f, 0);
+                projectile.setPierceLevel(pierceLevel);
+                projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), velocity, 0);
                 livingEntityPatch.getOriginal().level().addFreshEntity(projectile);
             }
         };

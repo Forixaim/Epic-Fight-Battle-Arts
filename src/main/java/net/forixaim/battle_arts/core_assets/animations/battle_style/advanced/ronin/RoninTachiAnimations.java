@@ -39,7 +39,7 @@ public class RoninTachiAnimations
 
     public static void onRegister(AnimationManager.AnimationBuilder event)
     {
-        TACHI_IDLE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.TACHI, "idle.json"), access ->
+        TACHI_IDLE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.TACHI, "idle"), access ->
                 new StaticAnimation(true, access, Armatures.BIPED));
         WALK = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.TACHI, "walk"), access -> new MovementAnimation(
                 true, access, Armatures.BIPED

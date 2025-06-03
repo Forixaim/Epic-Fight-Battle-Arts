@@ -44,7 +44,7 @@ public class RecruitSpearAnimations
 
 	public static void Build(AnimationManager.AnimationBuilder event)
 	{
-		RECRUIT_SPEAR_IDLE = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "idle.json"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
+		RECRUIT_SPEAR_IDLE = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "idle"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_GUARD = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "guard"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_WALK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "walk"), accessor -> new MovementAnimation(0.1f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_RUN = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "run"), accessor -> new MovementAnimation(0.1f, true, accessor, Armatures.BIPED));
@@ -56,7 +56,7 @@ public class RecruitSpearAnimations
 		RECRUIT_SPEAR_GUARD_HIT = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "guard_hit"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_GUARD_PARRY = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "guard_parry"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_GUARD_PARRY_2 = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "guard_parry_2"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
-		RECRUIT_SPEAR_SHIELD_IDLE = event.nextAccessor("battle_style/novice/recruit/spear_shield/idle.json", accessor -> new StaticAnimation(0.2f, true, accessor, Armatures.BIPED));
+		RECRUIT_SPEAR_SHIELD_IDLE = event.nextAccessor("battle_style/novice/recruit/spear_shield/idle", accessor -> new StaticAnimation(0.2f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_SHIELD_WALK = event.nextAccessor("battle_style/novice/recruit/spear_shield/walk", accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_SHIELD_RUN = event.nextAccessor("battle_style/novice/recruit/spear_shield/run", accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED));
 

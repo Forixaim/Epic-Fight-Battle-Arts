@@ -34,7 +34,7 @@ public class SquireSwordAnimations
 	public static void Build(AnimationManager.AnimationBuilder event)
 	{
 
-		SQUIRE_SWORD_IDLE = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "idle.json"),
+		SQUIRE_SWORD_IDLE = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "idle"),
 				accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
 
 		SQUIRE_SWORD_WALK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "walk"),
@@ -49,11 +49,11 @@ public class SquireSwordAnimations
 		SQUIRE_SWORD_CROUCH_WALK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "crouch_walk"), accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED)
 				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1f));
 
-		SQUIRE_SWORD_AUTO_1 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto1"), accessor -> new BasicAttackAnimation(0f, 0f, 0.35f, 0.5f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
+		SQUIRE_SWORD_AUTO_1 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto1"), accessor -> new BasicAttackAnimation(0.1f, 0f, 0.35f, 0.5f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
 
-		SQUIRE_SWORD_AUTO_2 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto2"), accessor -> new BasicAttackAnimation(0f, 0f, 0.45f, 0.55f, 0.8f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
+		SQUIRE_SWORD_AUTO_2 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto2"), accessor -> new BasicAttackAnimation(0.1f, 0f, 0.45f, 0.55f, 0.8f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
 
-		SQUIRE_SWORD_AUTO_3 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto3"), accessor -> new BasicAttackAnimation(0f, 0f, 0.45f, 0.55f, 2.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
+		SQUIRE_SWORD_AUTO_3 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto3"), accessor -> new BasicAttackAnimation(0.1f, 0f, 0.45f, 0.55f, 2.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
 
 		SQUIRE_SWORD_DASH_ATTACK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "dash_attack"), accessor -> new DashAttackAnimation(0.2f, accessor, Armatures.BIPED,
 				new AttackAnimation.Phase(0.0f, 0.0f, 0.2f, 0.3f, 0.4f, 0.5f, Armatures.BIPED.get().toolR, null)

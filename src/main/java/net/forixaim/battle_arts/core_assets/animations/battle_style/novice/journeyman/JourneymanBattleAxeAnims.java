@@ -37,7 +37,7 @@ public class JourneymanBattleAxeAnims
 
     public static void Build(AnimationManager.AnimationBuilder event)
     {
-        JMAN_BAXE_IDLE = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "idle.json"), accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
+        JMAN_BAXE_IDLE = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "idle"), accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
 
         JMAN_BAXE_WALK = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "walk"), accessor -> new MovementAnimation(0.1f, true, accessor, Armatures.BIPED));
         JMAN_BAXE_GUARD = event.nextAccessor(JourneymanAnimations.jmanAnimationPath(BattleStyleCategories.BATTLE_AXE, "guard"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
