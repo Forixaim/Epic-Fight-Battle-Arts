@@ -1,13 +1,13 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire;
 
 import net.forixaim.battle_arts.core_assets.animations.types.PowerDrawStartAnimation;
+import net.forixaim.battle_arts.core_assets.items.weapons.ranged.BattleBowItem;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
-import net.forixaim.battle_arts.core_assets.world.FlyingShockwaveProjectile;
-import net.minecraft.sounds.SoundEvent;
+import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.phys.Vec3;
@@ -21,7 +21,6 @@ import yesman.epicfight.gameasset.ColliderPreset;
 import yesman.epicfight.gameasset.EpicFightSounds;
 import yesman.epicfight.skill.SkillSlots;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
-import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
 
 public class SquireBowAnimations
@@ -43,6 +42,8 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     //Eventual Battle Bow Setup for dedicated damage.
+                    if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
+                        return v;
                     return 2f;
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.5f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0d)));
@@ -52,6 +53,8 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     //Eventual Battle Bow Setup for dedicated damage.
+                    if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
+                        return v;
                     return 1.2f;
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.25f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0d)));
@@ -71,6 +74,8 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     //Eventual Battle Bow Setup for dedicated damage.
+                    if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
+                        return v;
                     return 1;
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.25f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(-0.5), AnimationEvent.InTimeEvent.create(0.25f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
@@ -86,6 +91,8 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     //Eventual Battle Bow Setup for dedicated damage.
+                    if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
+                        return v;
                     return 1;
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.0f, ReusableSources.FIRE_POWER_ARROW, AnimationEvent.Side.SERVER).params(0.0), AnimationEvent.InTimeEvent.create(0.0f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
@@ -97,21 +104,17 @@ public class SquireBowAnimations
         {
             float ang = (float) ((livingEntityPatch.getYRot()+90)/180 * Math.PI);
             Vec3 shootVec = new Vec3(Math.cos(ang), animationParameters.first() , Math.sin(ang));
-            Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z).add(0, 2, 0);
+            Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z).add(0, 1.5, 0);
 
-            if (livingEntityPatch.getOriginal().getProjectile(livingEntityPatch.getOriginal().getItemInHand(InteractionHand.MAIN_HAND)).isEmpty())
-            {
-                return;
-            }
-
-            Arrow projectile = EntityType.ARROW.create(livingEntityPatch.getOriginal().level());
+            FixedArrow projectile = BattleArtsProjectiles.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());
 
             if (projectile != null)
             {
                 projectile.setPos(shootPos);
+                projectile.setFixedDamage((float) livingEntityPatch.getOriginal().getAttributeValue(Attributes.ATTACK_DAMAGE));
                 projectile.setOwner(livingEntityPatch.getOriginal());
                 projectile.pickup = AbstractArrow.Pickup.DISALLOWED;
-                projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), 4.2f, 0);
+                projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), 5f, 0);
                 livingEntityPatch.getOriginal().level().addFreshEntity(projectile);
             }
         };
@@ -120,20 +123,13 @@ public class SquireBowAnimations
         {
             float ang = (float) ((livingEntityPatch.getYRot()+90)/180 * Math.PI);
             Vec3 shootVec = new Vec3(Math.cos(ang), animationParameters.first() , Math.sin(ang));
-            Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z).add(0, 2, 0);
+            Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z).add(0, 1.5, 0);
 
-            float velocity = 6.4f;
             byte pierceLevel = 1;
 
             if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.CHARGE_POWER.get()))
             {
-                velocity += playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.CHARGE_POWER.get());
                 pierceLevel = playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.CHARGE_POWER.get()).byteValue();
-            }
-
-            if (livingEntityPatch.getOriginal().getProjectile(livingEntityPatch.getOriginal().getItemInHand(InteractionHand.MAIN_HAND)).isEmpty())
-            {
-                return;
             }
 
             Arrow projectile = EntityType.ARROW.create(livingEntityPatch.getOriginal().level());
@@ -146,7 +142,7 @@ public class SquireBowAnimations
                 projectile.setCritArrow(true);
                 projectile.setBaseDamage(1.0);
                 projectile.setPierceLevel(pierceLevel);
-                projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), velocity, 0);
+                projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), 5.5f, 0);
                 livingEntityPatch.getOriginal().level().addFreshEntity(projectile);
             }
         };

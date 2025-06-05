@@ -1,14 +1,10 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
-import net.forixaim.battle_arts.core_assets.world.FlyingShockwaveProjectile;
+import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.projectile.Arrow;
-import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
@@ -159,7 +155,7 @@ public class RoninUchigatanaAnimations
 
                             if (projectile != null)
                             {
-                                projectile.setDamage(13.5f);
+                                projectile.setDamage((float) livingEntityPatch.getOriginal().getAttributeValue(Attributes.ATTACK_DAMAGE));
                                 projectile.setPos(shootPos);
                                 projectile.setMaxStrikes(3);
                                 projectile.setOwner(livingEntityPatch.getOriginal());

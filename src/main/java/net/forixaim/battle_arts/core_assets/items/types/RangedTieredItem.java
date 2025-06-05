@@ -26,6 +26,8 @@ public abstract class RangedTieredItem extends TieredItem
         }
     }
 
+
+
     public abstract int getDefaultProjectileRange();
     public RangedTieredItem(Tier pTier, Properties pProperties)
     {

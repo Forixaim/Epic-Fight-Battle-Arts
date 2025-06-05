@@ -1,6 +1,6 @@
-package net.forixaim.battle_arts.core_assets.world.projectiles;
+package net.forixaim.battle_arts.core_assets.world.entity_patch;
 
-import net.forixaim.battle_arts.core_assets.world.FlyingShockwaveProjectile;
+import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
 import yesman.epicfight.world.capabilities.projectile.ProjectilePatch;
 
 public class FlyingShockwavePatch extends ProjectilePatch<FlyingShockwaveProjectile>

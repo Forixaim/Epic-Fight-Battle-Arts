@@ -26,5 +26,27 @@
         "layer0": "battle_arts:item/golden_longbow_gui"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "battle_arts:pulling": 1
+      },
+      "model": "battle_arts:item/golden_longbow_pulling_1"
+    },
+    {
+      "predicate": {
+        "battle_arts:pulling": 1,
+        "battle_arts:pull": 0.65
+      },
+      "model": "battle_arts:item/golden_longbow_pulling_2"
+    },
+    {
+      "predicate": {
+        "battle_arts:pulling": 1,
+        "battle_arts:pull": 0.9
+      },
+      "model": "battle_arts:item/golden_longbow_pulling_3"
+    }
+  ]
 }

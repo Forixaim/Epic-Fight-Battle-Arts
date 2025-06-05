@@ -3,7 +3,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ro
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.hitboxes.RoninHitboxes;
 import net.forixaim.battle_arts.core_assets.animations.types.RoninInnateAnimation;
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
-import net.forixaim.battle_arts.core_assets.world.FlyingShockwaveProjectile;
+import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -15,8 +15,6 @@ import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.EpicFightSounds;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
-
-import java.util.Objects;
 
 public class RoninTachiAnimations
 {
@@ -157,10 +155,12 @@ public class RoninTachiAnimations
 
                             FlyingShockwaveProjectile projectile = BattleArtsProjectiles.FLYING_SHOCKWAVE.get().create(livingEntityPatch.getOriginal().level());
 
+                            float multiplier = 1.5f;
 
                             if (projectile != null)
                             {
-                                projectile.setDamage((float) Objects.requireNonNull(livingEntityPatch.getOriginal().getAttribute(Attributes.ATTACK_DAMAGE)).getValue());
+                                projectile.setDamage((float) livingEntityPatch.getOriginal().getAttributeValue(Attributes.ATTACK_DAMAGE) * multiplier);
+
                                 projectile.setPos(shootPos);
                                 projectile.setMaxStrikes(3);
                                 projectile.setOwner(livingEntityPatch.getOriginal());

@@ -1,19 +1,23 @@
-package net.forixaim.battle_arts.core_assets.world;
+package net.forixaim.battle_arts.core_assets.world.projectiles;
 
+import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
+import net.mehvahdjukaar.dummmmmmy.Dummmmmmy;
+import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
+import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 import yesman.epicfight.gameasset.EpicFightSounds;
 import yesman.epicfight.particle.EpicFightParticles;
@@ -33,7 +37,7 @@ public class FlyingShockwaveProjectile extends Projectile
     protected float damage = 1;
     protected int maxStrikes = 1;
 
-    protected FlyingShockwaveProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel)
+    public FlyingShockwaveProjectile(EntityType<? extends Projectile> pEntityType, Level pLevel)
     {
         super(pEntityType, pLevel);
     }
@@ -112,31 +116,32 @@ public class FlyingShockwaveProjectile extends Projectile
     @Override
     protected void onHitEntity(@NotNull EntityHitResult hitResult) {
         super.onHitEntity(hitResult);
+        LogUtils.getLogger().debug("Smack!");
         if (!this.level().isClientSide()) {
             Entity entity = hitResult.getEntity();
             Entity entity1 = this.getOwner();
             PlayerPatch<?> playerpatch = EpicFightCapabilities.getEntityPatch(this.getOwner(), PlayerPatch.class);
             if (entity1 instanceof LivingEntity livingEntity && playerpatch != null)
             {
-                if (entity instanceof TamableAnimal pet)
-                {
-                    if (Objects.requireNonNull(pet.getOwner()).is(entity1) || pet.getOwner().getTeam() == entity1.getTeam() || (pet.getOwner().getTeam() != null && pet.getOwner().getTeam().isAlliedTo(entity1.getTeam())))
-                    {
+                LogUtils.getLogger().debug("Check passed");
+                if (!(entity instanceof Enemy || (ModList.get().isLoaded(Dummmmmmy.MOD_ID) && (entity instanceof TargetDummyEntity)))) {
+                    if (entity instanceof TamableAnimal pet) {
+                        if (Objects.requireNonNull(pet.getOwner()).is(entity1) || pet.getOwner().getTeam() == entity1.getTeam() || (pet.getOwner().getTeam() != null && pet.getOwner().getTeam().isAlliedTo(entity1.getTeam()))) {
+                            LogUtils.getLogger().debug("Pet");
+                            return;
+                        }
+                    }
+                    if (livingEntity.getTeam() == entity1.getTeam() || (livingEntity.getTeam() != null && livingEntity.getTeam().isAlliedTo(entity1.getTeam()))) {
+                        LogUtils.getLogger().debug("Teammate");
                         return;
                     }
-                }
-                if (livingEntity.getTeam() == entity1.getTeam() || (livingEntity.getTeam() != null && livingEntity.getTeam().isAlliedTo(entity1.getTeam())))
-                {
-                    return;
                 }
                 EpicFightDamageSource damage = playerpatch.getDamageSource(RoninUchigatanaAnimations.FLYING_SHOCKWAVE, InteractionHand.MAIN_HAND);
                 damage.setStunType(StunType.HOLD);
                 damage.setImpact(0.5F);
                 damage.addRuntimeTag(EpicFightDamageType.WEAPON_INNATE);
-                int prevInvulTime = entity.invulnerableTime;
                 entity.invulnerableTime = 0;
-                entity.hurt(damage, this.damage);
-                entity.invulnerableTime = prevInvulTime;
+                playerpatch.attack(damage, entity, InteractionHand.MAIN_HAND);
                 entity.playSound(EpicFightSounds.BLADE_HIT.get(), 1.0f, 1.0f);
                 entity.level().addParticle(EpicFightParticles.HIT_BLADE.get(), entity.getX(), entity.getY(), entity.getZ(), 0.0D, 0.0D, 0.0D);
                 this.discard();
@@ -149,6 +154,15 @@ public class FlyingShockwaveProjectile extends Projectile
     protected void defineSynchedData()
     {
 
+    }
+
+    @Override
+    protected boolean canHitEntity(Entity pTarget) {
+        if (pTarget instanceof LivingEntity livingEntity)
+        {
+            return true;
+        }
+        return super.canHitEntity(pTarget);
     }
 
     public boolean isFoil()

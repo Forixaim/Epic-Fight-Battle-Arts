@@ -3,25 +3,22 @@ package net.forixaim.battle_arts;
 
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
-import net.forixaim.battle_arts.core_assets.items.weapons.enchantment.EnchantmentCategories;
+import net.forixaim.battle_arts.core_assets.client.renderer.FixedArrowRenderer;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
-import net.forixaim.battle_arts.core_assets.world.FlyingShockwaveModel;
-import net.forixaim.battle_arts.core_assets.world.FlyingShockwaveRenderer;
+import net.forixaim.battle_arts.core_assets.client.model.FlyingShockwaveModel;
+import net.forixaim.battle_arts.core_assets.client.renderer.FlyingShockwaveRenderer;
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
 import net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
-import net.minecraft.world.item.enchantment.ArrowDamageEnchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -74,6 +71,7 @@ public class EpicFightBattleArts
 		@SubscribeEvent
 		public static void registerRenderersEvent(EntityRenderersEvent.RegisterRenderers event)
 		{
+			event.registerEntityRenderer(BattleArtsProjectiles.FIXED_ARROW.get(), FixedArrowRenderer::new);
 			event.registerEntityRenderer(BattleArtsProjectiles.FLYING_SHOCKWAVE.get(), FlyingShockwaveRenderer::new);
 		}
 	}

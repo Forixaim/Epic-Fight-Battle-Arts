@@ -1,12 +1,18 @@
 package net.forixaim.battle_arts.core_assets.items.weapons.ranged;
 
+import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class LongbowItem extends BattleBowItem
 {
     public LongbowItem(Tier pTier, Properties pProperties)
     {
         super(pTier, 1, -3f, pProperties.defaultDurability(LongbowItem.bowDurabilityCalculation(pTier)).durability(LongbowItem.bowDurabilityCalculation(pTier)));
+        if(FMLEnvironment.dist.isClient())
+            OverrideHelper.registerLongbowPropertyOverrides(this);
     }
 
     @Override
@@ -20,6 +26,11 @@ public class LongbowItem extends BattleBowItem
         }
 
         return f;
+    }
+
+    public float getNockProgress(ItemStack stack, LivingEntity shooter)
+    {
+        return shooter.getTicksUsingItem() / (40f);
     }
 
     public static int bowDurabilityCalculation(Tier pTier)

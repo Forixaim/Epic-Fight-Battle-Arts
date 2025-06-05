@@ -3,6 +3,7 @@ package net.forixaim.battle_arts.core_assets.items.weapons.ranged;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.forixaim.battle_arts.core_assets.items.types.RangedTieredItem;
+import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -41,6 +42,10 @@ public class BattleBowItem extends RangedTieredItem implements Vanishable
         this.defaultModifiers = builder.build();
     }
 
+    public boolean canAttackBlock(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer) {
+        return !pPlayer.isCreative();
+    }
+
     public float getDamage() {
         return this.attackDamage;
     }
@@ -49,10 +54,14 @@ public class BattleBowItem extends RangedTieredItem implements Vanishable
         return false;
     }
 
-
     @Override
     public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot pEquipmentSlot) {
         return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
+    }
+
+    public float getNockProgress(ItemStack stack, LivingEntity shooter)
+    {
+        return shooter.getTicksUsingItem() / (20.0F * 1);
     }
 
     public void releaseUsing(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull LivingEntity pEntityLiving, int pTimeLeft)

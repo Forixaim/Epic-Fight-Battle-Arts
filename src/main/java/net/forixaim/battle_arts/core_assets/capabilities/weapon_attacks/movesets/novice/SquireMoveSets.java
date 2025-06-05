@@ -5,6 +5,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squir
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Squire;
 import net.forixaim.efm_ex.api.moveset.MoveSet;
+import net.forixaim.efm_ex.api.moveset.RangedMoveSet;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;
@@ -43,7 +44,10 @@ public class SquireMoveSets
                         SquireSwordAnimations.SQUIRE_SWORD_DASH_ATTACK,
                         SquireSwordAnimations.SQUIRE_SWORD_HOP_ATTACK);
 
-        SquireBowMS = MoveSet.builder()
+        SquireBowMS = RangedMoveSet.builder()
+                .addRangedAttackModifier(LivingMotions.AIM, Animations.BIPED_BOW_AIM)
+                .addRangedAttackModifier(LivingMotions.SHOT, Animations.BIPED_BOW_SHOT)
+                .addLivingMotionModifier(LivingMotions.AIM, Animations.BIPED_BOW_AIM)
                 .addLivingMotionsRecursive(SquireBowAnimations.IDLE, LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.RUN, LivingMotions.KNEEL)
                 .addAutoAttacks(SquireBowAnimations.AUTO1, SquireBowAnimations.AUTO2, SquireBowAnimations.DASH, SquireBowAnimations.AIRSLASH)
                 .addInnateSkill(itemStack -> Squire.POWER_DRAW);

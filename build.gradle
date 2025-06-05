@@ -150,7 +150,7 @@ dependencies {
 
     //Epic Fight and its addons
     implementation fg.deobf("curse.maven:epic-fight-mod-405076:6602479")
-    implementation fg.deobf("libs:BattleArtsAPI:20.11.7.10")
+    implementation fg.deobf("curse.maven:battle-arts-api-1091499:6609941")
     implementation fg.deobf("libs:ExCap:20.11.7.14")
     implementation fg.deobf("curse.maven:jei-238222:6075247")
     compileOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5889471")
@@ -172,7 +172,7 @@ dependencies {
 
     //Runtime Dummy
     runtimeOnly fg.deobf("curse.maven:selene-499980:5546852")
-    runtimeOnly fg.deobf("curse.maven:mmmmmmmmmmmm-225738:5319203")
+    implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:5319203")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

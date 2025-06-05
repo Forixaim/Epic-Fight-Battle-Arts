@@ -35,6 +35,13 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     @Override
     public void onInitiate(SkillContainer container)
     {
+        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.SERVER_ITEM_USE_EVENT, EVENT_UUID, event ->
+        {
+            if (container.getDataManager().getDataValue(BattleArtsDataKeys.CHARGING.get()))
+            {
+                event.setCanceled(true);
+            }
+        });
         container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, event ->
         {
             if (container.getDataManager().getDataValue(BattleArtsDataKeys.CHARGING.get()))
@@ -50,6 +57,7 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     @Override
     public void onRemoved(SkillContainer container)
     {
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.SERVER_ITEM_USE_EVENT, EVENT_UUID);
         container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID);
         super.onRemoved(container);
     }
