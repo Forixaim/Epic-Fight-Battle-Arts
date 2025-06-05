@@ -31,6 +31,8 @@ public class RecruitSpearAnimations
 	public static AnimationManager.AnimationAccessor<GuardAnimation> RECRUIT_SPEAR_GUARD_PARRY;
 	public static AnimationManager.AnimationAccessor<GuardAnimation> RECRUIT_SPEAR_GUARD_PARRY_2;
 	public static AnimationManager.AnimationAccessor<StaticAnimation> RECRUIT_SPEAR_SHIELD_IDLE;
+	public static AnimationManager.AnimationAccessor<StaticAnimation> RECRUIT_SPEAR_SHIELD_CROUCH;
+
 	public static AnimationManager.AnimationAccessor<MovementAnimation> RECRUIT_SPEAR_SHIELD_WALK;
 	public static AnimationManager.AnimationAccessor<MovementAnimation> RECRUIT_SPEAR_SHIELD_RUN;
 	public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RECRUIT_SPEAR_SHIELD_AUTO1;
@@ -57,6 +59,8 @@ public class RecruitSpearAnimations
 		RECRUIT_SPEAR_GUARD_PARRY = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "guard_parry"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_GUARD_PARRY_2 = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "guard_parry_2"), accessor -> new GuardAnimation(0.1f, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_SHIELD_IDLE = event.nextAccessor("battle_style/novice/recruit/spear_shield/idle", accessor -> new StaticAnimation(0.2f, true, accessor, Armatures.BIPED));
+		RECRUIT_SPEAR_SHIELD_CROUCH = event.nextAccessor("battle_style/novice/recruit/spear_shield/crouch", accessor -> new StaticAnimation(0.2f, true, accessor, Armatures.BIPED));
+
 		RECRUIT_SPEAR_SHIELD_WALK = event.nextAccessor("battle_style/novice/recruit/spear_shield/walk", accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_SHIELD_RUN = event.nextAccessor("battle_style/novice/recruit/spear_shield/run", accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED));
 

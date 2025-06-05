@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i/",
+    "# /",
+    " i/"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bow"
+    },
+    "i": { "tag" : "minecraft:stone_tool_materials" },
+    "/": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "battle_arts:stone_longbow",
+    "count": 1
+  }
+}

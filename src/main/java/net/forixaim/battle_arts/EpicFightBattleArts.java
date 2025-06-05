@@ -3,6 +3,7 @@ package net.forixaim.battle_arts;
 
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
+import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
 import net.forixaim.battle_arts.core_assets.client.renderer.FixedArrowRenderer;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 
@@ -21,6 +22,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import yesman.epicfight.main.EpicFightExtensions;
 import yesman.epicfight.world.capabilities.item.Style;
@@ -66,6 +68,12 @@ public class EpicFightBattleArts
 		public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event)
 		{
 			event.registerLayerDefinition(ModelLayers.FLYING_SHOCKWAVE, FlyingShockwaveModel::createBodyLayer);
+		}
+
+		@SubscribeEvent
+		public static void onClientSetup(FMLClientSetupEvent event)
+		{
+			event.enqueueWork(OverrideHelper::registerUchigatanaOverrides);
 		}
 
 		@SubscribeEvent

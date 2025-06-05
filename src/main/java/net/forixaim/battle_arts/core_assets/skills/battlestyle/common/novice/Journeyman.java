@@ -50,10 +50,6 @@ public class Journeyman extends BattleStyle
     public void onInitiate(SkillContainer container) {
         super.onInitiate(container);
 
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EUUID, event -> {
-
-        });
-
         container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_DAMAGE_EVENT, EUUID, event -> {
             if (!(event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND) instanceof WeaponCapability))
             {
@@ -64,6 +60,7 @@ public class Journeyman extends BattleStyle
 
     @Override
     public void onRemoved(SkillContainer container) {
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MODIFY_DAMAGE_EVENT, EUUID);
         super.onRemoved(container);
     }
 }

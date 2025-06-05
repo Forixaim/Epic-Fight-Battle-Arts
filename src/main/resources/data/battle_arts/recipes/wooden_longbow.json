@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i/",
+    "# /",
+    " i/"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bow"
+    },
+    "i": { "tag" : "minecraft:planks" },
+    "/": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "battle_arts:wooden_longbow",
+    "count": 1
+  }
+}

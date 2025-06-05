@@ -4,7 +4,19 @@
 	"masks":
 	[
 		{
-			"livingmotion":"ALL",
+			"livingmotion":"IDLE",
+			"type":"none"
+		},
+		{
+			"livingmotion":"WALK",
+			"type":"ARMS"
+		},
+		{
+			"livingmotion":"KNEEL",
+			"type":"arms"
+		},
+		{
+			"livingmotion":"SNEAK",
 			"type":"arms"
 		}
 	]

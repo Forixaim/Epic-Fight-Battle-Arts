@@ -33,6 +33,9 @@
 	"skill.battle_arts.disembowelment": "Disembowelment",
 	"skill.battle_arts.disembowelment.tooltip": "Thrust the dagger inside the opponent before cleanly tearing it out. Faster than eviscerate and second hit will always hit.",
 
+	"skill.battle_arts.puncture_swipe": "Puncture Swipe",
+	"skill.battle_arts.puncture_swipe.tooltip": "Quickly thrust the spear before a quick swipe from the left to right, doing serious damage.",
+
 	"skill.battle_arts.journeyman": "Journeyman",
 	"skill.battle_arts.journeyman.tooltip": "Energetic young warriors wielding axes and often handling weaponry heavier than themselves, has high health and it's family of battle styles can dish out incredible burst damage.",
 

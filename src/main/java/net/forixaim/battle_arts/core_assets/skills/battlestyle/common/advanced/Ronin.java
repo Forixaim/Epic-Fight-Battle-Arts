@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninTachiAnimations;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.UsesUchigatana;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.TranquilityUnleash;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Tranquility;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.TranquilityPassive;
@@ -24,7 +25,7 @@ import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.UUID;
 
-public class Ronin extends BattleStyle
+public class Ronin extends BattleStyle implements UsesUchigatana
 {
 	public static Skill TRANQUILITY;
 	public static Skill TRANQUILITY_PASSIVE;
@@ -39,6 +40,8 @@ public class Ronin extends BattleStyle
 	@Override
 	public void onInitiate(SkillContainer container) {
 		super.onInitiate(container);
+		innateInactiveColor = new float[]{0.671f, 0.71f, 0.71f};
+		innateSkillColor = new float[]{0.929f, 0.996f, 1};
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID, event ->
 		{
 			if (event.getItemCapability().getWeaponCategory() == CapabilityItem.WeaponCategories.TACHI)

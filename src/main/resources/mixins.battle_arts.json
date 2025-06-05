@@ -6,5 +6,8 @@
   "refmap": "bs_api.refmap.json",
   "client": [
     "MixinRenderEngine"
+  ],
+  "mixins": [
+    "MixinUchigatanaItem"
   ]
 }

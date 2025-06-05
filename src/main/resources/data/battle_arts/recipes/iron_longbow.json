@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " i/",
+    "# /",
+    " i/"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bow"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "/": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "battle_arts:iron_longbow",
+    "count": 1
+  }
+}

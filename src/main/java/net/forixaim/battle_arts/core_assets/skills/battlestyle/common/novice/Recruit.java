@@ -6,32 +6,29 @@ import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.IronFortress;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.chat.ChatType;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.Vec3;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
 import yesman.epicfight.api.utils.AttackResult;
-import yesman.epicfight.gameasset.EpicFightSounds;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.SkillDataKey;
+import yesman.epicfight.skill.guard.GuardSkill;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
+import yesman.epicfight.world.capabilities.item.Style;
+import yesman.epicfight.world.damagesource.EpicFightDamageType;
 import yesman.epicfight.world.entity.eventlistener.HurtEvent;
 import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
-import java.awt.*;
 import java.util.UUID;
 
 public class Recruit extends BattleStyle
@@ -70,7 +67,8 @@ public class Recruit extends BattleStyle
 		{
 			if (container.getExecutor().getOriginal().isShiftKeyDown())
 			{
-				if (event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch()) == RecruitWieldStyles.RECRUIT_SPEAR)
+				Style wieldStyle = event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch());
+				if (wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR || wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR_SHIELD)
 				{
 					event.getMovementInput().forwardImpulse = 0;
 					event.getMovementInput().leftImpulse = 0;
@@ -111,6 +109,10 @@ public class Recruit extends BattleStyle
 	protected boolean isBlockableSource(DamageSource damageSource, boolean advanced) {
 		return damageSource.is(DamageTypes.ARROW);
 	}
+	protected boolean isBlockableSourceCrouching(DamageSource damageSource, boolean advanced) {
+		return !damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !damageSource.is(EpicFightDamageType.PARTIAL_DAMAGE) && !damageSource.is(DamageTypeTags.BYPASSES_ARMOR) && !damageSource.is(DamageTypeTags.IS_PROJECTILE) && !damageSource.is(DamageTypeTags.IS_EXPLOSION) && !damageSource.is(DamageTypes.MAGIC) && !damageSource.is(DamageTypeTags.IS_FIRE);
+
+	}
 
 	public void guard(HurtEvent.Pre event,boolean advanced)
 	{
@@ -118,11 +120,13 @@ public class Recruit extends BattleStyle
 		if (this.isBlockableSource(damageSource, advanced))
 		{
 			event.getPlayerPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
-			event.getPlayerPatch().getOriginal().getOffhandItem().hurt(1, event.getPlayerPatch().getOriginal().getRandom(), event.getPlayerPatch().getOriginal());
-			if (event.getPlayerPatch().getOriginal().getOffhandItem().getDamageValue() >= event.getPlayerPatch().getOriginal().getOffhandItem().getMaxDamage())
-			{
-				event.getPlayerPatch().getOriginal().getOffhandItem().hurtAndBreak(1, event.getPlayerPatch().getOriginal(), entity -> {});
-			}
+			event.getPlayerPatch().getOriginal().getOffhandItem().hurtAndBreak(1, event.getPlayerPatch().getOriginal(), serverPlayer -> serverPlayer.broadcastBreakEvent(InteractionHand.OFF_HAND));
+			this.dealEvent(event.getPlayerPatch(), event);
+		}
+		else if (event.getPlayerPatch().getOriginal().isShiftKeyDown() && event.getPlayerPatch().getOriginal().onGround() && this.isBlockableSourceCrouching(damageSource, advanced))
+		{
+			event.getPlayerPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
+			event.getPlayerPatch().getOriginal().getOffhandItem().hurtAndBreak(3, event.getPlayerPatch().getOriginal(), serverPlayer -> serverPlayer.broadcastBreakEvent(InteractionHand.OFF_HAND));
 			this.dealEvent(event.getPlayerPatch(), event);
 		}
 
