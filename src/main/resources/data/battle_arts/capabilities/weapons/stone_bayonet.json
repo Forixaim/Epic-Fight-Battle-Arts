@@ -1,0 +1,11 @@
+{
+  "attributes":
+  {
+    "common":
+    {
+      "max_strikes":0,
+      "impact":0.6
+    }
+  },
+  "type":"efm_ex:dagger"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "battle_arts:item/bayonet",
+  "textures": {
+    "layer0": "battle_arts:item/iron_bayonet"
+  }
+}

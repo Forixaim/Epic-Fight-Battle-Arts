@@ -3,9 +3,9 @@
   {
     "common":
     {
-      "impact":3.6,
-      "max_strikes":4
+      "impact":1.4,
+      "max_strikes":2
     }
   },
-  "type":"efm_ex:longsword"
+  "type":"efm_ex:tachi"
 }

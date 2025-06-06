@@ -17,6 +17,9 @@ public class BattleArtsDataKeys
     public static final DeferredRegister<SkillDataKey<?>> DATA_KEYS = DeferredRegister.create(ResourceLocation.fromNamespaceAndPath("epicfight", "skill_data_keys"), EpicFightBattleArts.MOD_ID);
     public static final RegistryObject<SkillDataKey<Boolean>> BATTO_SHEATH;
     public static final RegistryObject<SkillDataKey<Float>> ARROGANCE_STACK;
+    public static final RegistryObject<SkillDataKey<Boolean>> PULLING = DATA_KEYS.register("pulling", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, HeavyDraw.class));
+    public static final RegistryObject<SkillDataKey<Float>> PULL_LEVEL = DATA_KEYS.register("pull_level", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, HeavyDraw.class));
+
     public static final RegistryObject<SkillDataKey<Boolean>> ANIM_ID;
     public static final RegistryObject<SkillDataKey<Boolean>> CHARGING = DATA_KEYS.register("charging", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, false, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Float>> CHARGE_POWER = DATA_KEYS.register("heavy_draw", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, HeavyDraw.class));

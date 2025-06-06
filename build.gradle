@@ -135,6 +135,11 @@ dependencies {
     // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    runtimeOnly fg.deobf("curse.maven:model-gap-fix-676136:5200949")
+    runtimeOnly fg.deobf("curse.maven:epic-knights-armor-and-weapons-509041:6373737")
+    runtimeOnly fg.deobf("curse.maven:cloth-config-348521:5729105")
+    implementation fg.deobf("curse.maven:epicfight-resurrection-1151542:6610295")
+    //implementation fg.deobf("libs:epicacg:test")
 
     //Iron's Spells and Spellbooks and It's Dependencies
     runtimeOnly fg.deobf("curse.maven:caelus-308989:4581481")

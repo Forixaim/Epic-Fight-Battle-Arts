@@ -1,0 +1,30 @@
+{
+  "loader": "forge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "battle_arts:item/naginata",
+    "textures": {
+      "layer0": "battle_arts:item/netherite_naginata"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "battle_arts:item/naginata",
+      "textures": {
+        "layer0": "battle_arts:item/netherite_naginata_gui"
+      }
+    },
+    "fixed": {
+      "parent": "battle_arts:item/naginata",
+      "textures": {
+        "layer0": "battle_arts:item/netherite_naginata_gui"
+      }
+    },
+    "ground": {
+      "parent": "battle_arts:item/naginata",
+      "textures": {
+        "layer0": "battle_arts:item/netherite_naginata_gui"
+      }
+    }
+  }
+}

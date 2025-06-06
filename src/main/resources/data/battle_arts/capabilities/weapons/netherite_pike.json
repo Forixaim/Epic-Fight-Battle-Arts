@@ -1,0 +1,25 @@
+{
+  "attributes":
+  {
+    "common":
+    {
+      "armor_negation":12.0,
+      "impact":2.6,
+      "max_strikes":4
+    }
+  },
+  "collider": {
+    "number": 3,
+    "size": [
+      0.6,
+      0.6,
+      1.0
+    ],
+    "center": [
+      0.0,
+      0.0,
+      -2.5
+    ]
+  },
+  "type":"efm_ex:spear"
+}

@@ -1,0 +1,11 @@
+{
+  "attributes":
+  {
+    "common":
+    {
+      "impact":1.0,
+      "max_strikes":0
+    }
+  },
+  "type":"efm_ex:spear"
+}

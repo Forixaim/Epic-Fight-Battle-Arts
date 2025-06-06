@@ -42,6 +42,16 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
                 event.setCanceled(true);
             }
         });
+
+        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID, event ->
+        {
+            if (event.getPlayerPatch().isStunned()) {
+                container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false, event.getPlayerPatch().getOriginal());
+                container.getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), false, event.getPlayerPatch().getOriginal());
+                container.getDataManager().setDataSync(BattleArtsDataKeys.PULL_LEVEL.get(), 0.0f, event.getPlayerPatch().getOriginal());
+            }
+        });
+
         container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, event ->
         {
             if (container.getDataManager().getDataValue(BattleArtsDataKeys.CHARGING.get()))
@@ -57,6 +67,7 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     @Override
     public void onRemoved(SkillContainer container)
     {
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID);
         container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.SERVER_ITEM_USE_EVENT, EVENT_UUID);
         container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID);
         super.onRemoved(container);

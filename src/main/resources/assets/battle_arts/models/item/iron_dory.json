@@ -1,0 +1,30 @@
+{
+  "loader": "forge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "battle_arts:item/dory",
+    "textures": {
+      "layer0": "battle_arts:item/iron_dory"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "battle_arts:item/dory",
+      "textures": {
+        "layer0": "battle_arts:item/iron_dory_gui"
+      }
+    },
+    "fixed": {
+      "parent": "battle_arts:item/dory",
+      "textures": {
+        "layer0": "battle_arts:item/iron_dory_gui"
+      }
+    },
+    "ground": {
+      "parent": "battle_arts:item/dory",
+      "textures": {
+        "layer0": "battle_arts:item/iron_dory_gui"
+      }
+    }
+  }
+}
