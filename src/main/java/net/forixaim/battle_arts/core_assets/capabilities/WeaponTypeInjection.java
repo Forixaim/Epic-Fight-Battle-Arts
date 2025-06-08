@@ -31,12 +31,14 @@ public class WeaponTypeInjection
 		event.addProvider(ExCapWeapons.LONGSWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.TACHI, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.AXE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addProvider(BattleArtsWeapons.BATTLE_AXE, MainConditionals.default2HWieldStyle);
 		event.addProvider(BattleArtsWeapons.BATTLE_AXE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK_SHEATH);
 		event.addProvider(ExCapWeapons.DAGGER, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addMoveset(ExCapWeapons.DAGGER, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireDaggerMS);
+		event.addMoveset(ExCapWeapons.AXE, JManStyles.JMAN_BAXE, JManMoveSets.JourneymanAxeMS);
 		event.addProvider(ExCapWeapons.GLOVE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addMoveset(ExCapWeapons.GLOVE, JManStyles.JMAN_BAXE, JManMoveSets.JManUnarmedMS);
 

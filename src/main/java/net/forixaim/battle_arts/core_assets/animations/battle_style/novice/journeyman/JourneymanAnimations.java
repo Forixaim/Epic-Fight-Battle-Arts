@@ -35,6 +35,7 @@ public class JourneymanAnimations
     public static void listenAnims(AnimationManager.AnimationBuilder event)
     {
         JourneymanBattleAxeAnims.Build(event);
+        JourneymanAxeAnims.Build(event);
 
         JMAN_UNARMED_IDLE = event.nextAccessor(
                 "battle_style/novice/journeyman/idle", access -> new StaticAnimation(true, access, Armatures.BIPED));

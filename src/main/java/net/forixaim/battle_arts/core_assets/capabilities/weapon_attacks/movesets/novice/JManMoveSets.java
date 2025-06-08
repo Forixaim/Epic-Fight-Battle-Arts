@@ -26,7 +26,7 @@ public class JManMoveSets
                 .addGuardAnimations(EpicFightSkills.IMPACT_GUARD, GuardSkill.BlockType.GUARD, Animations.SWORD_GUARD_HIT)
                 .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, Animations.SWORD_GUARD_HIT)
                 .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, Animations.SWORD_GUARD_ACTIVE_HIT1, Animations.SWORD_GUARD_ACTIVE_HIT2, Animations.SWORD_GUARD_ACTIVE_HIT3)
-                .addAutoAttacks(JourneymanAxeAnims.AUTO1, JourneymanAxeAnims.AUTO2, JourneymanAxeAnims.DASH, JourneymanAxeAnims.AIRSLASH)
+                .addAutoAttacks(JourneymanAxeAnims.AUTO1, JourneymanAxeAnims.AUTO2, JourneymanAxeAnims.AUTO3, JourneymanAxeAnims.DASH, JourneymanAxeAnims.AIRSLASH)
                 .addInnateSkill(itemStack -> Journeyman.RECURVE_AXE);
 
         JManBaxeMS = MoveSet.builder()
