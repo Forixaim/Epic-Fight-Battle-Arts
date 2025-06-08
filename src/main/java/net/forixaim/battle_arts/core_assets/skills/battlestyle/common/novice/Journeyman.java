@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAxeAnims;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanBattleAxeAnims;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.world.InteractionHand;
@@ -19,6 +20,8 @@ public class Journeyman extends BattleStyle
 {
     public static Skill SEISMIC_IMPACT;
     public static Skill SUPPRESSING_BLOW;
+    public static Skill RECURVE_AXE;
+
     private static final UUID EUUID = UUID.fromString("c627ff1f-08f7-4000-b57f-5929767de922");
 
     public Journeyman(Builder<?> builder) {
@@ -36,7 +39,7 @@ public class Journeyman extends BattleStyle
         unarmedAttackAnimations.addAll(Arrays.asList(JourneymanAnimations.JMAN_UNARMED_AUTO1, JourneymanAnimations.JMAN_UNARMED_AUTO2, JourneymanAnimations.JMAN_UNARMED_DASH, JourneymanAnimations.JMAN_SLEDGEHAMMER));
     }
     public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker) {
-
+        RECURVE_AXE = worker.build("recurve_axe", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(JourneymanAxeAnims.INNATE)).newProperty();
         SUPPRESSING_BLOW = worker.build("suppressing_blow", SimpleWeaponInnateSkill::new, ((SimpleWeaponInnateSkill.Builder)SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setResource(Resource.COOLDOWN)).setAnimations(JourneymanAnimations.JMAN_SUPPRESSING_BLOW)).newProperty();
         SEISMIC_IMPACT = worker.build("seismic_impact", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(JourneymanBattleAxeAnims.SEISMIC_IMPACT)).newProperty();
     }

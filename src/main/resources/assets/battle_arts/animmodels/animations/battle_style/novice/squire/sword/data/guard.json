@@ -9,7 +9,7 @@
 		},
 		{
 			"livingmotion":"WALK",
-			"type":"ARMS"
+			"type":"arms"
 		},
 		{
 			"livingmotion":"KNEEL",

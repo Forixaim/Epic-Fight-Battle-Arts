@@ -69,27 +69,6 @@ public class OverrideHelper
 
     public static void registerUchigatanaOverrides()
     {
-        ItemProperties.register(Items.BOW, ResourceLocation.fromNamespaceAndPath("minecraft", "pull"), ((pStack, pLevel, pEntity, pSeed) ->
-        {
-            LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(pEntity, LivingEntityPatch.class);
-            if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == ExCapCategories.BOW && playerPatch.isChargingSkill() && !pEntity.isUsingItem())
-            {
-                if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get()) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()))
-                {
-                    return playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULL_LEVEL.get());
-                }
-                int maxCharge = playerPatch.getChargingSkill().getMaxChargingTicks();
-                return  playerPatch.isChargingSkill() ? ((float)playerPatch.getSkillChargingTicks() /  maxCharge): 0;
-            }
-            if (pEntity == null)
-            {
-                return 0.0f;
-            }
-            return pEntity.getUseItem() != pStack ? 0.0F : (float)(pStack.getUseDuration() - pEntity.getUseItemRemainingTicks()) / 20.0F;
-        }));
-
-        ItemProperties.register(Items.BOW, ResourceLocation.fromNamespaceAndPath("minecraft", "pulling"), ((pStack, pLevel, pEntity, pSeed) ->
-                pEntity != null && pEntity.isUsingItem() && pEntity.getUseItem() == pStack ? 1.0F : 0.0F));
 
     }
 }

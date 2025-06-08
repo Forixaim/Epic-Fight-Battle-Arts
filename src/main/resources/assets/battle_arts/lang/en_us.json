@@ -79,6 +79,9 @@
 	"skill.battle_arts.power_draw": "Power Draw",
 	"skill.battle_arts.power_draw.tooltip": "Pull back the bow to great lengths before releasing a powerful arrow that can pierce multiple foes.",
 
+	"skill.battle_arts.recurve_axe": "Recurve Axe",
+	"skill.battle_arts.recurve_axe.tooltip": "Throw the axe a fair distance in front of you before curving it back.",
+
 	"skill.battle_arts.disembowelment": "Disembowelment",
 	"skill.battle_arts.disembowelment.tooltip": "Thrust the dagger inside the opponent before cleanly tearing it out. Faster than eviscerate and second hit will always hit.",
 

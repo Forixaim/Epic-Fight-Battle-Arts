@@ -35,7 +35,7 @@ public class RecruitMoveSets
                 .addLivingMotionModifier(LivingMotions.IDLE, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_IDLE)
                 .addLivingMotionModifier(LivingMotions.WALK, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_WALK)
                 .addLivingMotionModifier(LivingMotions.RUN, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_RUN)
-                .addLivingMotionModifier(LivingMotions.KNEEL, RecruitSpearAnimations.RECRUIT_SPEAR_CROUCH)
+                .addLivingMotionModifier(LivingMotions.KNEEL, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_CROUCH)
                 .addAutoAttacks(
                         RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AUTO1, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AUTO2, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AUTO3,
                         RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_DASH, RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_AIRSLASH

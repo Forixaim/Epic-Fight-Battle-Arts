@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAxeAnims;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanBattleAxeAnims;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Journeyman;
 import net.forixaim.efm_ex.api.moveset.MoveSet;
@@ -13,10 +14,21 @@ import yesman.epicfight.skill.guard.GuardSkill;
 public class JManMoveSets
 {
     public static MoveSet.MoveSetBuilder JManBaxeMS;
+    public static MoveSet.MoveSetBuilder JourneymanAxeMS;
     public static MoveSet.MoveSetBuilder JManUnarmedMS;
 
     public static void build()
     {
+        JourneymanAxeMS = MoveSet.builder()
+                .addLivingMotionsRecursive(JourneymanAxeAnims.IDLE, LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.RUN)
+                .addLivingMotionModifier(LivingMotions.BLOCK, Animations.SWORD_GUARD)
+                .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, Animations.SWORD_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.IMPACT_GUARD, GuardSkill.BlockType.GUARD, Animations.SWORD_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, Animations.SWORD_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, Animations.SWORD_GUARD_ACTIVE_HIT1, Animations.SWORD_GUARD_ACTIVE_HIT2, Animations.SWORD_GUARD_ACTIVE_HIT3)
+                .addAutoAttacks(JourneymanAxeAnims.AUTO1, JourneymanAxeAnims.AUTO2, JourneymanAxeAnims.DASH, JourneymanAxeAnims.AIRSLASH)
+                .addInnateSkill(itemStack -> Journeyman.RECURVE_AXE);
+
         JManBaxeMS = MoveSet.builder()
                 .addLivingMotionModifier(LivingMotions.IDLE, JourneymanBattleAxeAnims.JMAN_BAXE_IDLE)
                 .addLivingMotionModifier(LivingMotions.WALK, JourneymanBattleAxeAnims.JMAN_BAXE_WALK)

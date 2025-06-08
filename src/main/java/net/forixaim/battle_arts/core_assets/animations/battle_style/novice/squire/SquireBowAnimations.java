@@ -44,7 +44,9 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
-                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.5)
+                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.5 &&
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get()))
                     {
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true, playerPatch.getOriginal());
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.25f, playerPatch.getOriginal());
@@ -60,7 +62,9 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
-                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.25)
+                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.25 &&
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get()))
                     {
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true, playerPatch.getOriginal());
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.7f, playerPatch.getOriginal());
@@ -77,7 +81,10 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.NO_SOUND.get())
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
-                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.65 && v2 > 0.3)
+                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.65 && v2 > 0.3 &&
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get())
+                    )
                     {
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true, playerPatch.getOriginal());
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.7f, playerPatch.getOriginal());
@@ -93,7 +100,9 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.NO_SOUND.get())
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
-                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.25)
+                    if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.25 &&
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get()))
                     {
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true, playerPatch.getOriginal());
                         playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.7f, playerPatch.getOriginal());

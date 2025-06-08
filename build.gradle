@@ -155,8 +155,10 @@ dependencies {
 
     //Epic Fight and its addons
     implementation fg.deobf("curse.maven:epic-fight-mod-405076:6602479")
+
     implementation fg.deobf("curse.maven:battle-arts-api-1091499:6609941")
-    implementation fg.deobf("libs:ExCap:20.11.7.14")
+    implementation fg.deobf("libs:ExCap:20.11.7.18")
+    runtimeOnly fg.deobf("libs:Omneria:20.11.7.12")
     implementation fg.deobf("curse.maven:jei-238222:6075247")
     compileOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5889471")
 

@@ -62,6 +62,7 @@ public class Ronin extends BattleStyle implements UsesUchigatana
 	@Override
 	public void onRemoved(SkillContainer container)
 	{
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID);
 	}
 
 

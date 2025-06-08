@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.moveset
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireBowAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireDaggerAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireMountAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Squire;
 import net.forixaim.efm_ex.api.moveset.MoveSet;
@@ -21,6 +22,7 @@ public class SquireMoveSets
     public static void build()
     {
         SquireSwordMS = MoveSet.builder()
+                .addLivingMotionModifier(LivingMotions.MOUNT, SquireMountAnimations.IDLE)
                 .addLivingMotionModifier(LivingMotions.IDLE,SquireSwordAnimations.SQUIRE_SWORD_IDLE)
                 .addLivingMotionModifier(LivingMotions.WALK, SquireSwordAnimations.SQUIRE_SWORD_WALK)
                 .addLivingMotionModifier(LivingMotions.RUN, SquireSwordAnimations.SQUIRE_SWORD_RUN)
@@ -42,7 +44,8 @@ public class SquireMoveSets
                         SquireSwordAnimations.SQUIRE_SWORD_AUTO_2,
                         SquireSwordAnimations.SQUIRE_SWORD_AUTO_3,
                         SquireSwordAnimations.SQUIRE_SWORD_DASH_ATTACK,
-                        SquireSwordAnimations.SQUIRE_SWORD_HOP_ATTACK);
+                        SquireSwordAnimations.SQUIRE_SWORD_HOP_ATTACK)
+                .addMountAttacks(SquireMountAnimations.AUTO1, SquireMountAnimations.AUTO2);
 
         SquireBowMS = RangedMoveSet.builder()
                 .addRangedAttackModifier(LivingMotions.AIM, Animations.BIPED_BOW_AIM)

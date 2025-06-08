@@ -5,7 +5,8 @@ import yesman.epicfight.world.capabilities.item.Style;
 public enum SquireWieldStyles implements Style
 {
 	SQUIRE_SWORD(false),
-	SQUIRE_BOW(false);
+	SQUIRE_BOW(false),
+	SQUIRE_MOUNTED(false);
 
 	final boolean OffHandUse;
 	final int id;
