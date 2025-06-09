@@ -124,10 +124,8 @@
 	"itemGroup.battle_arts.items": "Battle Arts: Items",
 
 	"epicfight.style.squire_sword": "Squire's Weapon Art",
-	"epicfight.style.squire_bow": "Squire's Bow Art",
-	"epicfight.style.squire_dagger": "Squire's Dagger Art",
-	"epicfight.style.recruit_spear": "Recruit's Spear Art",
-	"epicfight.style.jman_baxe": "Journeyman's Battle Axe Art",
+	"epicfight.style.recruit_spear": "Recruit's Shielded Weapon Art",
+	"epicfight.style.jman_baxe": "Journeyman's Weapon Art",
 	"epicfight.style.ronin_uchigatana": "Ronin's Tranquil Stance",
 	"epicfight.style.ronin_tachi": "Ronin's Scatter Stance",
 	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance"

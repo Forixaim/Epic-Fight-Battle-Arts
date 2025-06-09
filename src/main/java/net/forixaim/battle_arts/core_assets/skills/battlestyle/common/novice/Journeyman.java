@@ -28,15 +28,6 @@ public class Journeyman extends BattleStyle
         super(builder);
         innateInactiveColor = new float[]{0.271f, 0.212f, 0.133f};
         innateSkillColor = new float[]{1f, 0.561f, 0f};
-        unarmedLivingMotions.put(
-                LivingMotions.IDLE, JourneymanAnimations.JMAN_UNARMED_IDLE
-        );
-        unarmedLivingMotions.put(LivingMotions.WALK, JourneymanAnimations.JMAN_UNARMED_IDLE);
-        unarmedLivingMotions.put(LivingMotions.SNEAK, JourneymanAnimations.JMAN_UNARMED_IDLE);
-        unarmedLivingMotions.put(LivingMotions.JUMP, JourneymanAnimations.JMAN_UNARMED_IDLE);
-        unarmedLivingMotions.put(LivingMotions.BLOCK, JourneymanAnimations.JMAN_UNARMED_GUARD);
-        unarmedInnateSkill = SUPPRESSING_BLOW;
-        unarmedAttackAnimations.addAll(Arrays.asList(JourneymanAnimations.JMAN_UNARMED_AUTO1, JourneymanAnimations.JMAN_UNARMED_AUTO2, JourneymanAnimations.JMAN_UNARMED_DASH, JourneymanAnimations.JMAN_SLEDGEHAMMER));
     }
     public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker) {
         RECURVE_AXE = worker.build("recurve_axe", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(JourneymanAxeAnims.INNATE)).newProperty();
@@ -46,7 +37,7 @@ public class Journeyman extends BattleStyle
 
     @Override
     public boolean unarmedMoveset() {
-        return true;
+        return false;
     }
 
     @Override

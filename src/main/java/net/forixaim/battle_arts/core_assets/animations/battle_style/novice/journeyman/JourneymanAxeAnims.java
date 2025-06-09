@@ -23,9 +23,10 @@ public class JourneymanAxeAnims
         AUTO3 = event.nextAccessor("battle_style/novice/journeyman/axe/auto3", access -> new BasicAttackAnimation(0.2f, 0.0f, 0.35f, 0.55f, 1.5f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
         DASH = event.nextAccessor("battle_style/novice/journeyman/axe/dash", access -> new DashAttackAnimation(0.2f, 0.0f, 0.35f, 0.45f, 1.5f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED));
-        AIRSLASH = event.nextAccessor("battle_style/novice/journeyman/axe/airslash", access -> new AirSlashAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1.5f, false, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED));
-        INNATE = event.nextAccessor("battle_style/novice/journeyman/axe/innate", access -> new AttackAnimation(0.2f, 0.0f, 0.8f, 1.2f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
-                .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
+        AIRSLASH = event.nextAccessor("battle_style/novice/journeyman/axe/airslash", access -> new AirSlashAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1.5f, false, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                .addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, false));
+        INNATE = event.nextAccessor("battle_style/novice/journeyman/axe/innate", access -> new AttackAnimation(0.2f, 0.0f, 0.9f, 1.5f, 3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.25f));
 
     }
 }

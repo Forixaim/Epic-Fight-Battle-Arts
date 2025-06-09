@@ -16,29 +16,4 @@ public class SquireProviders
             SquireWieldStyles.SQUIRE_SWORD,
             false
     );
-
-    public static final ProviderConditional SQUIRE_MOUNT_CHECK = ProviderConditional.builder()
-            .setType(ProviderConditionalType.COMPOSITE)
-            .setWieldStyle(SquireWieldStyles.SQUIRE_MOUNTED)
-            .isVisibleOffHand(false)
-            .setProviderConditionals(QuickFunctions.battleStyleCheck(
-                    NoviceBattleStyles.SQUIRE,
-                    SquireWieldStyles.SQUIRE_SWORD,
-                    false
-            ), ProviderConditional.builder()
-                    .setType(ProviderConditionalType.CUSTOM)
-                    .setCustomFunction(
-                            livingEntityPatch -> {
-                                CapabilityItem weaponCap = livingEntityPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND);
-                                return livingEntityPatch.getOriginal().isPassenger() && livingEntityPatch.getOriginal().getVehicle() instanceof PlayerRideableJumping ride && ride.canJump() && weaponCap.availableOnHorse();
-                            }
-                    )
-                    .build())
-            .build();
-
-    public static final ProviderConditional SQUIRE_BOW_CHECK = QuickFunctions.battleStyleCheck(
-            NoviceBattleStyles.SQUIRE,
-            SquireWieldStyles.SQUIRE_BOW,
-            false
-    );
 }

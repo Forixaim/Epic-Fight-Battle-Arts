@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I",
+    "s "
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "minecraft:wooden_sword"
+    }
+  },
+  "result": {
+    "item": "battle_arts:wooden_dory",
+    "count": 1
+  }
+}

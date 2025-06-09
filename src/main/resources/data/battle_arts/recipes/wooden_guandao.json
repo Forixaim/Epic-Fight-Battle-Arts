@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  I",
+    " s ",
+    "s  "
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "epicfight:wooden_longsword"
+    }
+  },
+  "result": {
+    "item": "battle_arts:wooden_guandao",
+    "count": 1
+  }
+}

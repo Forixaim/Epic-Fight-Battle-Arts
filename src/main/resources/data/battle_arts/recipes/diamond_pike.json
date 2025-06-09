@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " I",
+    "s "
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "epicfight:diamond_spear"
+    }
+  },
+  "result": {
+    "item": "battle_arts:diamond_pike",
+    "count": 1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " AI",
+    " s ",
+    "s  "
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "minecraft:diamond_sword"
+    },
+    "A": {
+      "item": "minecraft:diamond_axe"
+    }
+  },
+  "result": {
+    "item": "battle_arts:diamond_halberd",
+    "count": 1
+  }
+}
