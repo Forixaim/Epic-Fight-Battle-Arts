@@ -35,13 +35,14 @@ public class Ronin extends BattleStyle implements UsesUchigatana
 	public Ronin(Builder<? extends Skill> builder)
 	{
 		super(builder);
+		innateInactiveColor = new float[]{0.671f, 0.71f, 0.71f};
+		innateSkillColor = new float[]{0.929f, 0.996f, 1};
 	}
 
 	@Override
 	public void onInitiate(SkillContainer container) {
 		super.onInitiate(container);
-		innateInactiveColor = new float[]{0.671f, 0.71f, 0.71f};
-		innateSkillColor = new float[]{0.929f, 0.996f, 1};
+
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID, event ->
 		{
 			if (event.getItemCapability().getWeaponCategory() == CapabilityItem.WeaponCategories.TACHI)

@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireAnimations;
@@ -18,5 +19,6 @@ public class BattleStyleRegistry
 		RecruitAnimations.Build(event);
 		SquireAnimations.Build(event);
 		RoninAnimations.Listen(event);
+		ThiefAnimations.listen(event);
 	}
 }

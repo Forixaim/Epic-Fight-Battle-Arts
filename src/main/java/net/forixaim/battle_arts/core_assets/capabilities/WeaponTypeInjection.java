@@ -2,14 +2,17 @@ package net.forixaim.battle_arts.core_assets.capabilities;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.ThiefStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.JManStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.SquireWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.RoninMoveSets;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.ThiefMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.SquireMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.RoninProviders;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.ThiefProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.JManProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.RecruitProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.SquireProviders;
@@ -36,8 +39,9 @@ public class WeaponTypeInjection
 		event.addProvider(BattleArtsWeapons.BATTLE_AXE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK_SHEATH);
-		event.addProvider(ExCapWeapons.DAGGER, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.DAGGER, SquireProviders.SQUIRE_SWORD_STYLE_CHECK, ThiefProviders.THIEF_STYLE_CHECK);
 		event.addMoveset(ExCapWeapons.DAGGER, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireDaggerMS);
+		event.addMoveset(ExCapWeapons.DAGGER, ThiefStyles.THIEF_WEAPON, ThiefMoveSets.ThiefDagger);
 		event.addMoveset(ExCapWeapons.AXE, JManStyles.JMAN_BAXE, JManMoveSets.JourneymanAxeMS);
 		event.addProvider(ExCapWeapons.GLOVE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addMoveset(ExCapWeapons.GLOVE, JManStyles.JMAN_BAXE, JManMoveSets.JManUnarmedMS);

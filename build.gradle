@@ -158,8 +158,10 @@ dependencies {
 
     implementation fg.deobf("curse.maven:battle-arts-api-1091499:6609941")
     implementation fg.deobf("libs:ExCap:20.11.7.18")
-    runtimeOnly fg.deobf("libs:Omneria:20.11.7.12")
     implementation fg.deobf("curse.maven:jei-238222:6075247")
+    runtimeOnly fg.deobf("curse.maven:worldedit-225608:4586218")
+    runtimeOnly fg.deobf("curse.maven:azurelib-817423:6636995")
+    runtimeOnly  fg.deobf("curse.maven:samurai-dynasty-848381:5672395")
     compileOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5889471")
 
 

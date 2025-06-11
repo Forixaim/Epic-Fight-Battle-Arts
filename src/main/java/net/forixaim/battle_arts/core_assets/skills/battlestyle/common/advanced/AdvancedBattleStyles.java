@@ -7,9 +7,12 @@ import yesman.epicfight.skill.Skill;
 public class AdvancedBattleStyles
 {
     public static Skill RONIN;
+    public static Skill THIEF;
     public static void register(SkillBuildEvent.ModRegistryWorker worker)
     {
         Ronin.buildSkills(worker);
+        Thief.buildSkills(worker);
+        THIEF = worker.build("thief", Thief::new, BattleStyle.CreateBattleStyle());
         RONIN = worker.build("ronin", Ronin::new, BattleStyle.CreateBattleStyle());
 
     }
