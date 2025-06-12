@@ -1,4 +1,5 @@
 buildscript {
+    ext.kotlin_version = '2.1.20'
     repositories {
        maven { url = 'https://maven.minecraftforge.net' }
         maven { url = "https://repo.spongepowered.org/maven" }
@@ -7,6 +8,7 @@ buildscript {
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.0.+', changing: true
         classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -19,6 +21,7 @@ plugins {
 }
 
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'kotlin'
 apply plugin: 'org.spongepowered.mixin'
 
 
@@ -124,6 +127,7 @@ repositories {
 
     maven { url 'https://maven.theillusivec4.top/' }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    mavenCentral()
 
 }
 
@@ -182,6 +186,7 @@ dependencies {
     //Runtime Dummy
     runtimeOnly fg.deobf("curse.maven:selene-499980:5546852")
     implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:5319203")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
@@ -232,4 +237,7 @@ tasks.named('jar', Jar).configure {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+kotlin {
+    jvmToolchain(17)
 }

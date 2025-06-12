@@ -37,7 +37,15 @@ public class ItemRegistry
 	public static final RegistryObject<Item> GOLDEN_GUANDAO = ITEMS.register("golden_guandao", () -> new GuandaoItem(Tiers.GOLD, new Item.Properties()));
 	public static final RegistryObject<Item> DIAMOND_GUANDAO = ITEMS.register("diamond_guandao", () -> new GuandaoItem(Tiers.DIAMOND, new Item.Properties()));
 	public static final RegistryObject<Item> NETHERITE_GUANDAO = ITEMS.register("netherite_guandao", () -> new GuandaoItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
-	public static final RegistryObject<Item> LIU_GUANDO = ITEMS.register("liu_guandao", LiuGuandaoItem::new);
+	public static final RegistryObject<Item> LIU_GUANDAO = ITEMS.register("liu_guandao", LiuGuandaoItem::new);
+
+	public static final RegistryObject<Item> WOODEN_TAIJIAN = ITEMS.register("wooden_taijian", () -> new TaijianItem(Tiers.WOOD, new Item.Properties()));
+	public static final RegistryObject<Item> STONE_TAIJIAN = ITEMS.register("stone_taijian", () -> new TaijianItem(Tiers.STONE, new Item.Properties()));
+	public static final RegistryObject<Item> IRON_TAIJIAN = ITEMS.register("iron_taijian", () -> new TaijianItem(Tiers.IRON, new Item.Properties()));
+	public static final RegistryObject<Item> GOLDEN_TAIJIAN = ITEMS.register("golden_taijian", () -> new TaijianItem(Tiers.GOLD, new Item.Properties()));
+	public static final RegistryObject<Item> DIAMOND_TAIJIAN = ITEMS.register("diamond_taijian", () -> new TaijianItem(Tiers.DIAMOND, new Item.Properties()));
+	public static final RegistryObject<Item> NETHERITE_TAIJIAN = ITEMS.register("netherite_taijian", () -> new TaijianItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
+	public static final RegistryObject<Item> LIU_TAIJIAN = ITEMS.register("liu_taijian", LiuTaijianItem::new);
 
 	//Bayonets
 	public static final RegistryObject<Item> WOODEN_BAYONET = ITEMS.register("wooden_bayonet", () -> new BayonetItem(Tiers.WOOD, new Item.Properties()));
@@ -47,6 +55,7 @@ public class ItemRegistry
 	public static final RegistryObject<Item> DIAMOND_BAYONET = ITEMS.register("diamond_bayonet", () -> new BayonetItem(Tiers.DIAMOND, new Item.Properties()));
 	public static final RegistryObject<Item> NETHERITE_BAYONET = ITEMS.register("netherite_bayonet", () -> new BayonetItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
 
+	//Dories
 	public static final RegistryObject<Item> WOODEN_DORY = ITEMS.register("wooden_dory", () -> new DoryItem(Tiers.WOOD, new Item.Properties()));
 	public static final RegistryObject<Item> STONE_DORY = ITEMS.register("stone_dory", () -> new DoryItem(Tiers.STONE, new Item.Properties()));
 	public static final RegistryObject<Item> IRON_DORY = ITEMS.register("iron_dory", () -> new DoryItem(Tiers.IRON, new Item.Properties()));

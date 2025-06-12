@@ -9,7 +9,11 @@
     },
     {
       "livingmotion":"KNEEL",
-      "type":"root_upper_joints"
+      "type":"arms"
+    },
+    {
+      "livingmotion":"SNEAK",
+      "type":"arms"
     },
     {
       "livingmotion":"RUN",

@@ -14,6 +14,14 @@
 	"item.battle_arts.diamond_longbow": "Diamond Longbow",
 	"item.battle_arts.netherite_longbow": "Netherite Longbow",
 
+	"item.battle_arts.wooden_taijian": "Wooden Taijian",
+	"item.battle_arts.stone_taijian": "Stone Taijian",
+	"item.battle_arts.iron_taijian": "Iron Taijian",
+	"item.battle_arts.golden_taijian": "Golden Taijian",
+	"item.battle_arts.diamond_taijian": "Diamond Taijian",
+	"item.battle_arts.netherite_taijian": "Netherite Taijian",
+	"item.battle_arts.liu_taijian": "Liu Association Ceremonial Taijian",
+
 	"item.battle_arts.wooden_bayonet": "Wooden Bayonet",
 	"item.battle_arts.stone_bayonet": "Stone Bayonet",
 	"item.battle_arts.iron_bayonet": "Iron Bayonet",
@@ -78,6 +86,9 @@
 
 	"skill.battle_arts.power_draw": "Power Draw",
 	"skill.battle_arts.power_draw.tooltip": "Pull back the bow to great lengths before releasing a powerful arrow that can pierce multiple foes.",
+
+	"skill.battle_arts.steal": "Steal",
+	"skill.battle_arts.steal.tooltip": "Quickly jab an enemy, if struck from behind the enemy drops an emerald. Once per enemy.",
 
 	"skill.battle_arts.recurve_axe": "Recurve Axe",
 	"skill.battle_arts.recurve_axe.tooltip": "Throw the axe a fair distance in front of you before curving it back.",
