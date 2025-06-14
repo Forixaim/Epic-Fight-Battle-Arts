@@ -23,16 +23,14 @@ public class CreativeTabRegistry
 			.icon(() -> new ItemStack(ItemRegistry.IRON_SABRE.get()))
 			.withTabsBefore(EpicFightCreativeTabs.ITEMS.getId()).hideTitle()
 			.withBackgroundLocation(ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "textures/gui/battle_arts.png"))
-			.displayItems((params, output) -> {
-				ItemRegistry.ITEMS.getEntries().forEach(item ->
-						{
-							if (item == ItemRegistry.TACHI_SHEATH)
-							{
-								return;
-							}
-							output.accept(item.get());
-						});
-			})
+			.displayItems((params, output) -> ItemRegistry.ITEMS.getEntries().forEach(item ->
+                    {
+                        if (item == ItemRegistry.TACHI_SHEATH)
+                        {
+                            return;
+                        }
+                        output.accept(item.get());
+                    }))
 			.build());
 
 }

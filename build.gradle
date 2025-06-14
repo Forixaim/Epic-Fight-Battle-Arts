@@ -171,7 +171,6 @@ dependencies {
 
     //
     implementation fg.deobf("curse.maven:explosive-enhancement-reforged-1036246:5423875")
-    implementation fg.deobf("curse.maven:aaa-particles-979809:6035904")
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
 
     //Origins compatibility
