@@ -36,6 +36,15 @@ public class LootTableModifiers
                 .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
                         SetSkillFunction.builder(1.0f, "battle_arts:journeyman")
                 )));
+        event.add(EntityType.HUSK, LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
+                        SetSkillFunction.builder(1.0f, "battle_arts:thief")
+                ))
+                .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
+                        SetSkillFunction.builder(1.0f, "battle_arts:mug")
+                )));
         event.add(EntityType.SPIDER, LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
                 .when(LootItemRandomChanceCondition.randomChance(0.05f))
@@ -44,6 +53,13 @@ public class LootTableModifiers
                 ))
                 .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
                         SetSkillFunction.builder(1.0f, "battle_arts:tranquility_unleash")
+                )));
+
+        event.add(EntityType.SLIME, LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .when(LootItemRandomChanceCondition.randomChance(0.05f))
+                .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
+                        SetSkillFunction.builder(1.0f, "battle_arts:duelist")
                 )));
     }
 }

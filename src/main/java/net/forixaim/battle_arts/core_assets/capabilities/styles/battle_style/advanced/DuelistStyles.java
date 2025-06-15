@@ -1,12 +1,11 @@
-package net.forixaim.battle_arts.core_assets.capabilities.styles;
+package net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced;
 
 import yesman.epicfight.world.capabilities.item.Style;
 
 public enum DuelistStyles implements Style
 {
 	DUELIST_SWORD(true),
-	DUELIST_DUAL_SWORD(true),
-	DUELIST_RAPIER(false);
+	DUELIST_DUAL_SWORD(true);
 
 	final boolean OffHandUse;
 	final int id;

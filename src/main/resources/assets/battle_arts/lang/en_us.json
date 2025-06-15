@@ -89,6 +89,14 @@
 
 	"skill.battle_arts.steal": "Steal",
 	"skill.battle_arts.steal.tooltip": "Quickly jab an enemy, if struck from behind the enemy drops an emerald. Once per enemy.",
+	"skill.battle_arts.mug": "Mug",
+	"skill.battle_arts.mug.tooltip": "Dash through an opponent, which will guarantee dropping an emerald. Once per enemy.",
+
+	"skill.battle_arts.thief": "Thief",
+	"skill.battle_arts.thief.tooltip": "A vigilante who is born and experienced in the art of the steal. Fast and fragile.",
+
+	"skill.battle_arts.duelist": "Duelist",
+	"skill.battle_arts.duelist.tooltip": "A dedicated swordfighter with flashy attacks and excels at duels. Like your typical swordfighter but slightly geared towards offense.",
 
 	"skill.battle_arts.recurve_axe": "Recurve Axe",
 	"skill.battle_arts.recurve_axe.tooltip": "Throw the axe a fair distance in front of you before curving it back.",
@@ -138,6 +146,8 @@
 	"epicfight.style.recruit_spear": "Recruit's Shielded Weapon Art",
 	"epicfight.style.jman_baxe": "Journeyman's Weapon Art",
 	"epicfight.style.ronin_uchigatana": "Ronin's Tranquil Stance",
+	"epicfight.style.thief_weapon": "Thief's Weapon Art",
+	"epicfight.style.duelist_sword": "Duelist's Weapon Art",
 	"epicfight.style.ronin_tachi": "Ronin's Scatter Stance",
 	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance"
 }

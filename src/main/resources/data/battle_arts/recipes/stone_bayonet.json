@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "I"
+  ],
+  "key": {
+    "i": {
+      "tag" : "minecraft:stone_tool_materials"
+    },
+    "I": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "battle_arts:stone_bayonet",
+    "count": 1
+  }
+}

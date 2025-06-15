@@ -5,6 +5,7 @@ import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.gameasset.Armatures;
+import yesman.epicfight.gameasset.ColliderPreset;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 
 public class ThiefDaggerAnimations
@@ -16,6 +17,8 @@ public class ThiefDaggerAnimations
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIRSLASH;
     public static AnimationManager.AnimationAccessor<AttackAnimation> STEAL;
+    public static AnimationManager.AnimationAccessor<AttackAnimation> MUG;
+
 
     public static void build(AnimationManager.AnimationBuilder builder)
     {
@@ -50,5 +53,12 @@ public class ThiefDaggerAnimations
                 accessor -> new AttackAnimation(0.2f, 0f, 0.65f, 0.75f, 1.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.5f));
+
+        MUG = builder.nextAccessor("battle_style/advanced/thief/dagger/mug",
+                accessor -> new AttackAnimation(0.2f, 0f, 1f, 1.15f, 1.7f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, accessor, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                v * 0.5f)
+                        .addState(EntityState.CAN_SKILL_EXECUTION, false));
     }
 }

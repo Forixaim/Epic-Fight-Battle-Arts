@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i",
+    "I"
+  ],
+  "key": {
+    "i": {
+      "tag" : "minecraft:stone_tool_materials"
+    },
+    "I": {
+      "item": "minecraft:stone_sword"
+    }
+  },
+  "result": {
+    "item": "battle_arts:stone_taijian",
+    "count": 1
+  }
+}

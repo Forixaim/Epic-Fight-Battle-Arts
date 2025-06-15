@@ -1,16 +1,19 @@
 package net.forixaim.battle_arts.core_assets.capabilities;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.ThiefStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.JManStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.SquireWieldStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.DuelistMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.RoninMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.ThiefMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.SquireMoveSets;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.DuelistProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.RoninProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.ThiefProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.JManProviders;
@@ -33,6 +36,9 @@ public class WeaponTypeInjection
 	{
 		event.addProvider(ExCapWeapons.LONGSWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.SWORD, DuelistProviders.DUELIST_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.LONGSWORD, DuelistProviders.DUELIST_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.TACHI, DuelistProviders.DUELIST_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.TACHI, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.AXE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addProvider(BattleArtsWeapons.BATTLE_AXE, MainConditionals.default2HWieldStyle);
@@ -45,6 +51,9 @@ public class WeaponTypeInjection
 		event.addMoveset(ExCapWeapons.AXE, JManStyles.JMAN_BAXE, JManMoveSets.JourneymanAxeMS);
 		event.addProvider(ExCapWeapons.GLOVE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addMoveset(ExCapWeapons.GLOVE, JManStyles.JMAN_BAXE, JManMoveSets.JManUnarmedMS);
+		event.addMoveset(ExCapWeapons.SWORD, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
+		event.addMoveset(ExCapWeapons.LONGSWORD, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
+		event.addMoveset(ExCapWeapons.TACHI, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
 
 		event.addProvider(ExCapWeapons.TACHI, RoninProviders.RONIN_STYLE_CHECK_TACHI);
 

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "item": "battle_arts:diamond_taijian"
+  },
+  "addition": {
+    "item" : "minecraft:netherite_ingot"
+  },
+  "result": {
+    "item": "battle_arts:netherite_taijian"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}

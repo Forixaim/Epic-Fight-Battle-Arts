@@ -9,6 +9,8 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import yesman.epicfight.skill.SkillContainer;
@@ -46,7 +48,8 @@ public class Steal extends SimpleWeaponInnateSkill
                     LogUtils.getLogger().debug("oof");
                     if (item != null)
                     {
-                        item.setItem(new ItemStack(Items.EMERALD));
+                        int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.MOB_LOOTING, container.getExecutor().getOriginal());
+                        item.setItem(new ItemStack(Items.EMERALD, 1 + i));
                         item.setPos(event.getTarget().position());
                         event.getTarget().level().addFreshEntity(item);
                     }

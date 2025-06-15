@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "item": "battle_arts:netherite_taijian"
+  },
+  "addition": {
+    "item" : "minecraft:blaze_powder"
+  },
+  "result": {
+    "item": "battle_arts:liu_taijian"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
+  }
+}
