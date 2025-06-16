@@ -137,6 +137,9 @@
 	"skill.battle_arts.iron_fortress": "Iron Fortress",
 	"skill.battle_arts.iron_fortress.tooltip": "A defensive art that when activated, grants the user super armor.",
 
+	"skill.battle_arts.sky_striker": "Sky Striker",
+	"skill.battle_arts.sky_striker.tooltip": "On the ground, after a short wind up, performs a rising thrust. On the air, performs a falling thrust at a steep angle.",
+
 	"skill.battle_arts.arrogance": "Arrogance",
 	"skill.battle_arts.arrogance.tooltip": "Gain +5% attack speed and +5% damage taken per stack, gain stacks by landing attacks (+1 stack per attack, must be per attacking move not per hit) [Max: 10]. Lose all stacks upon getting hit.",
 
@@ -152,5 +155,6 @@
 	"epicfight.style.thief_weapon": "Thief's Weapon Art",
 	"epicfight.style.duelist_sword": "Duelist's Weapon Art",
 	"epicfight.style.ronin_tachi": "Ronin's Scatter Stance",
-	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance"
+	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance",
+	"pack.battle_arts.emissive_trails.title": "Battle Arts Emissive Trails"
 }

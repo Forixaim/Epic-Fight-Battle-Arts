@@ -167,6 +167,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:azurelib-817423:6636995")
     runtimeOnly  fg.deobf("curse.maven:samurai-dynasty-848381:5672395")
     compileOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5889471")
+    implementation fg.deobf("curse.maven:epicfight-light-trail-1283295:6646966")
 
 
     //

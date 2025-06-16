@@ -1,11 +1,24 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
+import yesman.epicfight.api.utils.TimePairList;
+import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.ValueModifier;
+import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.world.damagesource.StunType;
+
+import java.util.List;
 
 public class DuelistSwordAnimations
 {
@@ -18,6 +31,8 @@ public class DuelistSwordAnimations
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIR_ATTACK;
     public static AnimationManager.AnimationAccessor<AttackAnimation> QUAD_STING;
+    public static AnimationManager.AnimationAccessor<AttackAnimation> PIERCING_FALCON;
+    public static AnimationManager.AnimationAccessor<AttackAnimation> SHOOTING_STAR;
 
     public static void build(AnimationManager.AnimationBuilder builder)
     {
@@ -72,5 +87,48 @@ public class DuelistSwordAnimations
                 ).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.9f)).addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG))
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.4f));
+
+        PIERCING_FALCON = builder.nextAccessor("battle_style/advanced/duelist/sword/piercing_falcon", access ->
+                new AttackAnimation(0.2f, 1.0f, 1.0f, 1.2f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
+                        .addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, true)
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                v * 0.5f));
+
+        SHOOTING_STAR = builder.nextAccessor("battle_style/advanced/duelist/sword/shooting_star", access ->
+                new AttackAnimation(0.2f, 0.6f, 0.5f, 0.6f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
+                        .addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, true)
+                        .addProperty(AnimationProperty.ActionAnimationProperty.NO_GRAVITY_TIME, TimePairList.create(0.0f, 0.5f))
+                        .addState(EntityState.CAN_SKILL_EXECUTION, false)
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, speed, prevElapsedTime, elapsedTime) ->
+                                {
+                                    if (elapsedTime >= 0.5F && elapsedTime < 0.6F) {
+                                        float dpx = (float) livingEntityPatch.getOriginal().getX();
+                                        float dpy = (float) livingEntityPatch.getOriginal().getY();
+                                        float dpz = (float) livingEntityPatch.getOriginal().getZ();
+
+                                        for(BlockState block = livingEntityPatch.getOriginal().level().getBlockState(new BlockPos.MutableBlockPos(dpx, dpy, dpz)); (block.getBlock() instanceof BushBlock || block.isAir()) && !block.is(Blocks.VOID_AIR); block = livingEntityPatch.getOriginal().level().getBlockState(new BlockPos.MutableBlockPos(dpx, dpy, dpz))) {
+                                            --dpy;
+                                        }
+
+                                        float distanceToGround = (float)Math.max(Math.abs(livingEntityPatch.getOriginal().getY() - (double)dpy) - (double)1.0F, 0.0F);
+                                        LivingEntity livingentity = livingEntityPatch.getOriginal();
+                                        Vec3f direction = new Vec3f(2.5F, -1F, 0.0F);
+                                        OpenMatrix4f rotation = (new OpenMatrix4f()).rotate(-((float)Math.toRadians(livingEntityPatch.getOriginal().yBodyRotO + 90.0F)), new Vec3f(0.0F, 1.0F, 0.0F));
+                                        OpenMatrix4f.transform3v(rotation, direction, direction);
+                                        if (distanceToGround > 0.5F) {
+                                            livingentity.move(MoverType.SELF, direction.toDoubleVector());
+                                            return 0.05F;
+                                        } else {
+                                            return speed * 0.7f;
+                                        }
+                                    } else {
+                                        return speed * 0.7f;
+                                    }
+                                }));
+
+
+
     }
 }

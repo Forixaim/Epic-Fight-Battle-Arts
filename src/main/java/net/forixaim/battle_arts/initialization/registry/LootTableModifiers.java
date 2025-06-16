@@ -60,6 +60,9 @@ public class LootTableModifiers
                 .when(LootItemRandomChanceCondition.randomChance(0.05f))
                 .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
                         SetSkillFunction.builder(1.0f, "battle_arts:duelist")
+                ))
+                .add(LootItem.lootTableItem(EpicFightItems.SKILLBOOK.get()).apply(
+                        SetSkillFunction.builder(1.0f, "battle_arts:sky_striker")
                 )));
     }
 }

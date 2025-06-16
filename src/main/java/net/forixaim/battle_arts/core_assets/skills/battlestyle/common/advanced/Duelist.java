@@ -5,6 +5,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thi
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.Mug;
+import net.forixaim.battle_arts.core_assets.skills.combat_art.SkyStriker;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Steal;
 import net.forixaim.bs_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
@@ -26,6 +27,7 @@ import java.util.UUID;
 public class Duelist extends BattleStyle
 {
 	public static Skill QUAD_STING;
+	public static Skill SKY_STRIKER;
 
 	private static final UUID EVENT_UUID = UUID.fromString("af0bfde5-2535-4ef6-b709-9277b17d2a1a");
 	private static final CapabilityItem.WeaponCategories[] AVAILABLE_WEAPON_TYPES = {
@@ -68,6 +70,7 @@ public class Duelist extends BattleStyle
 	public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker)
 	{
 		QUAD_STING = worker.build("quad_sting", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistSwordAnimations.QUAD_STING)).newProperty();
+		SKY_STRIKER = worker.build("sky_striker", SkyStriker::new, SkyStriker.createCombatArt().setResource(Resource.COOLDOWN));
 	}
 
 	public Duelist(Builder<? extends Skill> builder) {
