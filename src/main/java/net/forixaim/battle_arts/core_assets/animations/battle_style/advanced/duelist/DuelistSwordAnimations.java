@@ -3,6 +3,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.du
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
+import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.world.damagesource.StunType;
 
@@ -16,6 +17,7 @@ public class DuelistSwordAnimations
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIR_ATTACK;
+    public static AnimationManager.AnimationAccessor<AttackAnimation> QUAD_STING;
 
     public static void build(AnimationManager.AnimationBuilder builder)
     {
@@ -57,5 +59,18 @@ public class DuelistSwordAnimations
 
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 1.3f));
+
+        QUAD_STING = builder.nextAccessor("battle_style/advanced/duelist/sword/quadsting", access ->
+                new AttackAnimation(0.2f, access, Armatures.BIPED, new AttackAnimation.Phase(
+                        0.0f, 0.0f, 0.5f, 0.6f, 0.65f, 0.65f, Armatures.BIPED.get().toolR, null
+                ).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f)).addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD), new AttackAnimation.Phase(
+                        0.65f, 0.0f, 0.65f, 0.75f, 0.8f, 0.8f, Armatures.BIPED.get().toolR, null
+                ).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.6f)).addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD), new AttackAnimation.Phase(
+                        0.8f, 0.0f, 0.8f, 0.9f, 1.1f, 1.1f, Armatures.BIPED.get().toolR, null
+                ).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.7f)).addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD), new AttackAnimation.Phase(
+                        1.1f, 0.0f, 1.1f, 1.2f, 2f, 2f, Armatures.BIPED.get().toolR, null
+                ).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.9f)).addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG))
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                v * 0.4f));
     }
 }
