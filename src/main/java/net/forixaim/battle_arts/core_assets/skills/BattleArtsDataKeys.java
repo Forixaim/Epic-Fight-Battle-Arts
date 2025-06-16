@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.skills;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.skills.base_attack.MountedBasicAttack;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Duelist;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Ronin;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Recruit;
 import net.forixaim.battle_arts.core_assets.skills.passive.ArrogancePassive;
@@ -23,12 +24,17 @@ public class BattleArtsDataKeys
     public static final RegistryObject<SkillDataKey<Float>> ARROGANCE_STACK;
     public static final RegistryObject<SkillDataKey<Boolean>> PULLING = DATA_KEYS.register("pulling", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Float>> PULL_LEVEL = DATA_KEYS.register("pull_level", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, HeavyDraw.class));
+    public static final RegistryObject<SkillDataKey<Float>> COUNTER_WINDOW = DATA_KEYS.register("counter_window", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, Duelist.class));
+
+
 
     public static final RegistryObject<SkillDataKey<Boolean>> ANIM_ID;
     public static final RegistryObject<SkillDataKey<Boolean>> CHARGING = DATA_KEYS.register("charging", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, false, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Float>> CHARGE_POWER = DATA_KEYS.register("heavy_draw", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Boolean>> SNEAK_MOVE_LOCK
             = DATA_KEYS.register("sneak_move_lock", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, Recruit.class));
+
+
 
     static
     {

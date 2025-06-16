@@ -96,7 +96,10 @@
 	"skill.battle_arts.thief.tooltip": "A vigilante who is born and experienced in the art of the steal. Fast and fragile.",
 
 	"skill.battle_arts.duelist": "Duelist",
-	"skill.battle_arts.duelist.tooltip": "A dedicated swordfighter with flashy attacks and excels at duels. Like your typical swordfighter but slightly geared towards offense.",
+	"skill.battle_arts.duelist.tooltip": "A dedicated swordfighter with flashy attacks and excels at duels. Like your typical swordfighter but slightly geared towards offense. \n Special Skill: Backpedal Counter, when successfully dodging, use your normal attack to perform a counter dash.",
+
+	"skill.battle_arts.quad_sting": "Quadruple Stinger",
+	"skill.battle_arts.quad_sting.tooltip": "Thrust your sword in 4 rapid strikes with incredible speed that can leave an opponent barely breathing.",
 
 	"skill.battle_arts.recurve_axe": "Recurve Axe",
 	"skill.battle_arts.recurve_axe.tooltip": "Throw the axe a fair distance in front of you before curving it back.",
