@@ -28,7 +28,7 @@ public class BattleArtsWeapons
                 builder -> builder.category(BattleStyleCategories.BATTLE_AXE)
                         .collider(ColliderPreset.LONGSWORD)
                         .hitSound(EpicFightSounds.BLADE_HIT.get())
-                        .swingSound(EpicFightSounds.WHOOSH_BIG.get())
+                        .swingSound(EpicFightSounds.WHOOSH_BIG.get()), 1, 1, 1
         );
 
         CoreCapability.addSheath(EpicFightItems.IRON_TACHI.get(), ItemRegistry.TACHI_SHEATH.get());

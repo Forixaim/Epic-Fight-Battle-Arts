@@ -5,6 +5,8 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journ
 import net.forixaim.battle_arts.core_assets.capabilities.BattleArtsWeapons;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
@@ -80,7 +82,7 @@ public class JourneymanBattleAxeAnims
                         new AttackAnimation.Phase(1.6f, 0.0f, 1.6f, 1.7f, 3.0f, 4.0f, Armatures.BIPED.get().rootJoint, JourneymanHitboxes.SEISMIC_IMPACT)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.MAX_STRIKES_MODIFIER, ValueModifier.setter(10))
-                                .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, EpicFightSounds.NO_SOUND.get())
+                                .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, SoundEvents.GENERIC_EXPLODE)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.KNOCKDOWN))
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER,
                                 (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1.2f)

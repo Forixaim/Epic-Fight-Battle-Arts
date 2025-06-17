@@ -5,6 +5,7 @@ import net.forixaim.battle_arts.core_assets.items.weapons.ranged.BattleBowItem;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -78,7 +79,7 @@ public class SquireBowAnimations
 
         DASH = event.nextAccessor("battle_style/novice/squire/bow/dash", access -> new DashAttackAnimation(0.1f, 0f, 0.05f, 0.35f, 1.5f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
-                .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.NO_SOUND.get())
+                .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.65 && v2 > 0.3 &&
@@ -94,10 +95,10 @@ public class SquireBowAnimations
                         return v;
                     return 2;
                 })
-                .addEvents(AnimationEvent.InTimeEvent.create(0.65f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0.2, 1.5f), AnimationEvent.InTimeEvent.create(0.65f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
+                .addEvents(AnimationEvent.InTimeEvent.create(0.65f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0.2, 1.5f)));
         AIRSLASH = event.nextAccessor("battle_style/novice/squire/bow/airslash", access -> new AirSlashAnimation(0.1f, 0.05f, 0.05f, 0.35f, 1.5f, true, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
-                .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.NO_SOUND.get())
+                .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.25 &&
@@ -112,7 +113,7 @@ public class SquireBowAnimations
                         return v;
                     return 2;
                 })
-                .addEvents(AnimationEvent.InTimeEvent.create(0.25f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(-0.5, 2f), AnimationEvent.InTimeEvent.create(0.25f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
+                .addEvents(AnimationEvent.InTimeEvent.create(0.25f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(-0.5, 2f)));
         POWER_DRAW_START = event.nextAccessor("battle_style/novice/squire/bow/power_draw_start", access ->
                 new PowerDrawStartAnimation(0.1f, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.FIXED_HEAD_ROTATION, true));
@@ -122,7 +123,7 @@ public class SquireBowAnimations
                         .addProperty(AnimationProperty.StaticAnimationProperty.FIXED_HEAD_ROTATION, true));
         POWER_DRAW_FIRE = event.nextAccessor("battle_style/novice/squire/bow/power_draw_release", access -> new AttackAnimation(0f, 0f, 0.05f, 0.35f, 1.5f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
-                .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.NO_SOUND.get())
+                .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.FIXED_HEAD_ROTATION, true)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
@@ -131,7 +132,7 @@ public class SquireBowAnimations
                         return v;
                     return 1;
                 })
-                .addEvents(AnimationEvent.InTimeEvent.create(0.0f, ReusableSources.FIRE_POWER_ARROW, AnimationEvent.Side.SERVER).params(0.0), AnimationEvent.InTimeEvent.create(0.0f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundEvents.ARROW_SHOOT)));
+                .addEvents(AnimationEvent.InTimeEvent.create(0.0f, ReusableSources.FIRE_POWER_ARROW, AnimationEvent.Side.SERVER).params(0.0)));
     }
 
     public static class ReusableSources

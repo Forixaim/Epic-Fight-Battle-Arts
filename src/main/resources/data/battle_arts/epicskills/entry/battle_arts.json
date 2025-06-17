@@ -1,0 +1,50 @@
+{
+  "nodes": [
+    {
+      "skill": "battle_arts:squire",
+      "position_in_screen": [-96, 0],
+      "ability_points": 1
+    },
+    {
+      "skill": "battle_arts:recruit",
+      "position_in_screen": [0, 134],
+      "ability_points": 1
+    },
+    {
+      "skill": "battle_arts:journeyman",
+      "position_in_screen": [96, 0],
+      "ability_points": 1
+    },
+    {
+      "skill": "battle_arts:duelist",
+      "position_in_screen": [-192, 0],
+      "ability_points": 1,
+      "parents": [
+        {
+          "skill": "battle_arts:squire"
+        }
+      ]
+    },
+    {
+      "skill": "battle_arts:thief",
+      "position_in_screen": [-192, 96],
+      "ability_points": 1,
+      "parents": [
+        {
+          "skill": "battle_arts:squire"
+        }
+      ]
+    },
+    {
+      "skill": "battle_arts:ronin",
+      "position_in_screen": [-192, -96],
+      "ability_points": 1,
+      "parents": [
+        {
+          "skill": "battle_arts:squire"
+        }
+      ]
+    }
+  ],
+  "priority": 0
+}

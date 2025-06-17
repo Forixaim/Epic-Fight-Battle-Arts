@@ -1,5 +1,6 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
+import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
@@ -7,11 +8,19 @@ import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.Mug;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.SkyStriker;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Steal;
+import net.forixaim.bs_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.bs_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
+import yesman.epicfight.network.EpicFightNetworkManager;
+import yesman.epicfight.network.server.SPChangeSkill;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillCategories;
 import yesman.epicfight.skill.SkillContainer;
@@ -19,7 +28,10 @@ import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.EntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
+import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
+import yesman.epicfight.world.damagesource.EpicFightDamageSource;
+import yesman.epicfight.world.damagesource.StunType;
 import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.UUID;
@@ -39,6 +51,17 @@ public class Duelist extends BattleStyle
 	public void onInitiate(SkillContainer container)
 	{
 		super.onInitiate(container);
+		if (!container.getExecutor().isLogicalClient()) {
+			container.getExecutor().getSkill(BattleArtsSkillSlots.COMBAT_ART).setSkill(SKY_STRIKER);
+			try
+			{
+				EpicFightNetworkManager.sendToPlayer(new SPChangeSkill(BattleArtsSkillSlots.COMBAT_ART, SKY_STRIKER.toString(), SPChangeSkill.State.ENABLE), container.getServerExecutor().getOriginal());
+			}
+			catch (Exception e)
+			{
+				LogUtils.getLogger().warn(e.getMessage());
+			}
+		}
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.SKILL_EXECUTE_EVENT, EVENT_UUID, event ->
 		{
 			if (event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch()) == DuelistStyles.DUELIST_SWORD && event.getSkillContainer().getSkill().getCategory() == SkillCategories.BASIC_ATTACK && container.getDataManager().getDataValue(BattleArtsDataKeys.COUNTER_WINDOW.get()) > 0f)
@@ -61,6 +84,10 @@ public class Duelist extends BattleStyle
 	@Override
 	public void onRemoved(SkillContainer container) {
 		super.onRemoved(container);
+		if (!container.getExecutor().isLogicalClient()) {
+			container.getExecutor().getSkill(BattleArtsSkillSlots.COMBAT_ART).setSkill(null);
+			EpicFightNetworkManager.sendToPlayer(new SPChangeSkill(BattleArtsSkillSlots.COMBAT_ART, "empty", SPChangeSkill.State.DISABLE), container.getServerExecutor().getOriginal());
+		}
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.SKILL_EXECUTE_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DODGE_SUCCESS_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID);
