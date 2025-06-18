@@ -43,6 +43,7 @@ import java.nio.file.Path;
 import static net.forixaim.battle_arts.initialization.registry.BlockRegistry.BLOCKS;
 import static net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry.CREATIVE_MODE_TABS;
 import static net.forixaim.battle_arts.initialization.registry.ItemRegistry.ITEMS;
+import static net.forixaim.battle_arts.initialization.registry.ParticleRegistry.PARTICLES;
 
 @Mod(EpicFightBattleArts.MOD_ID)
 public class EpicFightBattleArts
@@ -57,6 +58,7 @@ public class EpicFightBattleArts
 		Style.ENUM_MANAGER.registerEnumCls(MOD_ID, RoninStyles.class);
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
+		PARTICLES.register(modEventBus);
 		BattleArtsProjectiles.ENTITIES.register(modEventBus);
 		SoundRegistry.SOUNDS.register(modEventBus);
 		CREATIVE_MODE_TABS.register(modEventBus);

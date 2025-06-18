@@ -36,9 +36,9 @@ public class WeaponTypeInjection
 	{
 		event.addProvider(ExCapWeapons.LONGSWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.SWORD, DuelistProviders.DUELIST_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.LONGSWORD, DuelistProviders.DUELIST_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.TACHI, DuelistProviders.DUELIST_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.SWORD, DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
+		event.addProvider(ExCapWeapons.LONGSWORD, DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
+		event.addProvider(ExCapWeapons.TACHI, DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
 		event.addProvider(ExCapWeapons.TACHI, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.AXE, JManProviders.JMAN_BAXE_STYLE_CHECK);
 		event.addProvider(BattleArtsWeapons.BATTLE_AXE, MainConditionals.default2HWieldStyle);
@@ -54,6 +54,10 @@ public class WeaponTypeInjection
 		event.addMoveset(ExCapWeapons.SWORD, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
 		event.addMoveset(ExCapWeapons.LONGSWORD, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
 		event.addMoveset(ExCapWeapons.TACHI, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
+
+		event.addMoveset(ExCapWeapons.SWORD, DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
+		event.addMoveset(ExCapWeapons.LONGSWORD, DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
+		event.addMoveset(ExCapWeapons.TACHI, DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
 
 		event.addProvider(ExCapWeapons.TACHI, RoninProviders.RONIN_STYLE_CHECK_TACHI);
 

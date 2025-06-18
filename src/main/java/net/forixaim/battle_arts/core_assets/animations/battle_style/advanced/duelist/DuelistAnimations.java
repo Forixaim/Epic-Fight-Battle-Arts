@@ -9,6 +9,7 @@ public class DuelistAnimations
     public static void listen(AnimationManager.AnimationBuilder builder)
     {
         DuelistSwordAnimations.build(builder);
+        DuelistDualbladesAnimations.build(builder);
     }
 
 }

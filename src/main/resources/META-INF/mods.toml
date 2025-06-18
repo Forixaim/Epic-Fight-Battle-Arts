@@ -36,6 +36,13 @@ ordering="AFTER"
 side="BOTH"
 
 [[dependencies."${mod_id}"]]
+modId="epicacg"
+mandatory=false
+versionRange="[20.1.8,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies."${mod_id}"]]
 modId="wom"
 mandatory=false
 versionRange="[20.1.8,)"

@@ -32,6 +32,10 @@ public class DuelistSwordAnimations
     public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
     public static AnimationManager.AnimationAccessor<MovementAnimation> WALK;
     public static AnimationManager.AnimationAccessor<MovementAnimation> RUN;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> GUARD;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_HIT;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_1;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_2;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
@@ -44,6 +48,13 @@ public class DuelistSwordAnimations
     public static void build(AnimationManager.AnimationBuilder builder)
     {
         IDLE = builder.nextAccessor("battle_style/advanced/duelist/sword/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+
+        GUARD = builder.nextAccessor("battle_style/advanced/duelist/sword/guard", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+
+        GUARD_HIT = builder.nextAccessor("battle_style/advanced/duelist/sword/guard_hit", access -> new GuardAnimation(0.2f, access, Armatures.BIPED));
+        GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry1", access -> new GuardAnimation(0.2f, access, Armatures.BIPED));
+        GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry2", access -> new GuardAnimation(0.2f, access, Armatures.BIPED));
+
 
         WALK = builder.nextAccessor("battle_style/advanced/duelist/sword/walk", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
