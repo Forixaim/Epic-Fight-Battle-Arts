@@ -8,6 +8,7 @@
     "MixinRenderEngine"
   ],
   "mixins": [
+    "MixinGuardSkill",
     "MixinPlayer",
     "MixinUchigatanaItem"
   ]

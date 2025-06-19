@@ -51,6 +51,7 @@ public class EpicFightBattleArts
 
 	public static final String MOD_ID = "battle_arts";
 
+
 	public EpicFightBattleArts(FMLJavaModLoadingContext context)
 	{
 		IEventBus modEventBus = context.getModEventBus();
