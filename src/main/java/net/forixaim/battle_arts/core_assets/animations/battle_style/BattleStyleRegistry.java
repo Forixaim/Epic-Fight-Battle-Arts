@@ -8,6 +8,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journ
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
+import net.forixaim.battle_arts.core_assets.animations.other.DraconicInstinctAnimations;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -16,6 +17,7 @@ public class BattleStyleRegistry
 {
 	public static void Listen(AnimationManager.AnimationBuilder event)
 	{
+		DraconicInstinctAnimations.build(event);
 		JourneymanAnimations.listenAnims(event);
 		RecruitAnimations.Build(event);
 		SquireAnimations.Build(event);

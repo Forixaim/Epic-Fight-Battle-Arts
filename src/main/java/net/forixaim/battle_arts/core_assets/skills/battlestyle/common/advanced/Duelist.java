@@ -5,6 +5,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.due
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonInputLocks;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.Mug;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.SkyStriker;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Steal;
@@ -69,6 +70,8 @@ public class Duelist extends BattleStyle
 				event.getPlayerPatch().playAnimationSynchronized(DuelistSwordAnimations.DASH_ATTACK, 0);
 			}
 		});
+
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, CommonInputLocks.LOCK_MOVEMENT_USING_ITEM);
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DODGE_SUCCESS_EVENT, EVENT_UUID, event ->
                 container.getDataManager().setDataSync(BattleArtsDataKeys.COUNTER_WINDOW.get(), 15f, event.getPlayerPatch().getOriginal()));
 
@@ -88,6 +91,7 @@ public class Duelist extends BattleStyle
 			container.getExecutor().getSkill(BattleArtsSkillSlots.COMBAT_ART).setSkill(null);
 			EpicFightNetworkManager.sendToPlayer(new SPChangeSkill(BattleArtsSkillSlots.COMBAT_ART, "empty", SPChangeSkill.State.DISABLE), container.getServerExecutor().getOriginal());
 		}
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.SKILL_EXECUTE_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DODGE_SUCCESS_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID);

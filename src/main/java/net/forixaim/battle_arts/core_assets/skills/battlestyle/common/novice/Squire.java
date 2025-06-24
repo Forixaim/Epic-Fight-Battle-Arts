@@ -4,11 +4,9 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squir
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.MountedMoveset;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.HeavyDraw;
-import net.forixaim.battle_arts.core_assets.skills.weaponpassive.SquireMountedWeaponPassive;
 import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
 import yesman.epicfight.skill.Skill;
-import yesman.epicfight.skill.SkillCategories;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 
@@ -19,7 +17,6 @@ public class Squire extends BattleStyle implements MountedMoveset
 	public static Skill POWER_DRAW;
 	public static Skill DISEMBOWELMENT;
 
-	public static Skill SQUIRE_MOUNTED_WP;
 
 
 	public Squire(Builder<?> builder)

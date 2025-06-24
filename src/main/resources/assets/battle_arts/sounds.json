@@ -15,5 +15,11 @@
     "category": "player",
     "subtitle": "sounds.battle_arts.entity.combat.sheathe",
     "sounds":[{"name":"battle_arts:entity/combat/sheathe", "stream":true}]
+  },
+
+  "entity.combat.spike": {
+    "category": "player",
+    "subtitle": "sounds.battle_arts.entity.combat.spike",
+    "sounds":[{"name":"battle_arts:entity/combat/spike", "stream":true}]
   }
 }

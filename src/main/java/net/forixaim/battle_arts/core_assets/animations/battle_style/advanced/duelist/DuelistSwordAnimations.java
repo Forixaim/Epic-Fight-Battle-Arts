@@ -1,20 +1,14 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist;
 
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.PiercingFalconAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.ShootingStarAnimation;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import yesman.epicfight.api.animation.AnimationManager;
-import yesman.epicfight.api.animation.Keyframe;
-import yesman.epicfight.api.animation.TransformSheet;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
@@ -24,8 +18,6 @@ import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.gameasset.*;
 import yesman.epicfight.world.damagesource.StunType;
-
-import java.util.List;
 
 public class DuelistSwordAnimations
 {
@@ -42,8 +34,8 @@ public class DuelistSwordAnimations
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIR_ATTACK;
     public static AnimationManager.AnimationAccessor<AttackAnimation> QUAD_STING;
-    public static AnimationManager.AnimationAccessor<PiercingFalconAnimation> PIERCING_FALCON;
-    public static AnimationManager.AnimationAccessor<ShootingStarAnimation> SHOOTING_STAR;
+    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> PIERCING_FALCON;
+    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> SHOOTING_STAR;
 
     public static void build(AnimationManager.AnimationBuilder builder)
     {
@@ -107,17 +99,21 @@ public class DuelistSwordAnimations
                                 v * 0.4f));
 
         PIERCING_FALCON = builder.nextAccessor("battle_style/advanced/duelist/sword/piercing_falcon", access ->
-                new PiercingFalconAnimation(0.2f, 0.2f, 0.2f, 0.3f, 0.4f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
-                        .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.FALL)
+                new KnockbackAttackAnimation(0.2f, 0.2f, 0.2f, 0.3f, 0.4f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 40d)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1d)
                         .addProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER, ValueModifier.setter(4))
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
                         .addProperty(AnimationProperty.ActionAnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, true)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v)
-                        .addEvents(AnimationEvent.InTimeEvent.create(0.2f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(EpicFightSounds.ROCKET_JUMP.get())));
+                        .addEvents(
+                                AnimationEvent.InTimeEvent.create(0.2f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(EpicFightSounds.ROCKET_JUMP.get())));
 
         SHOOTING_STAR = builder.nextAccessor("battle_style/advanced/duelist/sword/shooting_star", access ->
-                new ShootingStarAnimation(0.2f, 0.6f, 0.5f, 0.6f, 1.9f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+                new KnockbackAttackAnimation(0.2f, 0.6f, 0.5f, 0.6f, 1.9f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, -40d)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1d)
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
                         .addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, true)
                         .addProperty(AnimationProperty.ActionAnimationProperty.NO_GRAVITY_TIME, TimePairList.create(0.0f, 0.5f))
@@ -148,7 +144,8 @@ public class DuelistSwordAnimations
                                         return speed * 0.7f;
                                     }
                                 })
-                        .addEvents(AnimationEvent.InTimeEvent.create(0.5f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(EpicFightSounds.ROCKET_JUMP.get())));
+                        .addEvents(AnimationEvent.InTimeEvent.create(0.5f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(EpicFightSounds.ROCKET_JUMP.get())
+                                ,AnimationEvent.InTimeEvent.create(0.6f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.SERVER).params(new Vec3f(0.0F, -0.24F, -2.0F), Armatures.BIPED.get().rootJoint, 1.2, 1F)));
 
 
 

@@ -14,6 +14,7 @@ import yesman.epicfight.world.damagesource.StunType;
 public class DuelistDualbladesAnimations
 {
     public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> GUARD;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
@@ -27,6 +28,9 @@ public class DuelistDualbladesAnimations
 
 
         IDLE = builder.nextAccessor("battle_style/advanced/duelist/dualblades/idle", access ->
+                new StaticAnimation(0.2f, true, access, biped));
+
+        GUARD = builder.nextAccessor("battle_style/advanced/duelist/dualblades/guard", access ->
                 new StaticAnimation(0.2f, true, access, biped));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/duelist/dualblades/auto1", access ->

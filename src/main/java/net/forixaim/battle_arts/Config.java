@@ -9,11 +9,6 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class Config
 {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static final ForgeConfigSpec.BooleanValue ULTRA_INSTINCT = BUILDER.define("ultra_instinct", false);
     static final ForgeConfigSpec SPEC = BUILDER.build();
-
-
-    @SubscribeEvent
-    static void onLoad(final ModConfigEvent event)
-    {
-    }
 }

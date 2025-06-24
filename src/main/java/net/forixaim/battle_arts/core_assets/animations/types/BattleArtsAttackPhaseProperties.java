@@ -9,4 +9,6 @@ public class BattleArtsAttackPhaseProperties
             new AnimationProperty.AttackPhaseProperty<>("knockback_power", Codec.DOUBLE);
     public static final AnimationProperty.AttackPhaseProperty<Double> KNOCKBACK_ANGLE =
             new AnimationProperty.AttackPhaseProperty<>("knockback_angle", Codec.DOUBLE);
+    public static final AnimationProperty.AttackPhaseProperty<Double> KNOCKBACK_LATERAL_ANGLE =
+            new AnimationProperty.AttackPhaseProperty<>("knockback_lateral_angle", Codec.DOUBLE);
 }
