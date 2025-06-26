@@ -28,11 +28,11 @@ public class DuelistMoveSets
     public static MoveSet.MoveSetBuilder DuelistDualblade = MoveSet.builder()
             .addLivingMotionsRecursive(DuelistDualbladesAnimations.IDLE, LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.RUN, LivingMotions.SNEAK, LivingMotions.KNEEL)
             .addLivingMotionModifier(LivingMotions.BLOCK, DuelistDualbladesAnimations.GUARD)
-            .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, DuelistSwordAnimations.GUARD_HIT)
-            .addGuardAnimations(EpicFightSkills.IMPACT_GUARD, GuardSkill.BlockType.GUARD, DuelistSwordAnimations.GUARD_HIT)
-            .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, DuelistSwordAnimations.GUARD_HIT)
-            .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, DuelistSwordAnimations.GUARD_PARRY_1)
-            .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, DuelistSwordAnimations.GUARD_PARRY_2)
+            .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, DuelistDualbladesAnimations.GUARD_HIT)
+            .addGuardAnimations(EpicFightSkills.IMPACT_GUARD, GuardSkill.BlockType.GUARD, DuelistDualbladesAnimations.GUARD_HIT)
+            .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, DuelistDualbladesAnimations.GUARD_HIT)
+            .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, DuelistDualbladesAnimations.PARRY1)
+            .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, DuelistDualbladesAnimations.PARRY2)
             .addAutoAttacks(DuelistDualbladesAnimations.AUTO1, DuelistDualbladesAnimations.AUTO2, DuelistDualbladesAnimations.AUTO3, DuelistSwordAnimations.DASH_ATTACK, Animations.SWORD_DUAL_AIR_SLASH)
-            .addInnateSkill(itemStack -> EpicFightSkills.DANCING_EDGE);
+            .addInnateSkill(itemStack -> Duelist.WHIRLEDGE);
 }

@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
 import com.mojang.logging.LogUtils;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistDualbladesAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
@@ -40,6 +41,7 @@ import java.util.UUID;
 public class Duelist extends BattleStyle
 {
 	public static Skill QUAD_STING;
+	public static Skill WHIRLEDGE;
 	public static Skill SKY_STRIKER;
 
 	private static final UUID EVENT_UUID = UUID.fromString("af0bfde5-2535-4ef6-b709-9277b17d2a1a");
@@ -101,6 +103,7 @@ public class Duelist extends BattleStyle
 	public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker)
 	{
 		QUAD_STING = worker.build("quad_sting", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistSwordAnimations.QUAD_STING)).newProperty();
+		WHIRLEDGE = worker.build("whirledge", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistDualbladesAnimations.WHIRLEDGE)).newProperty();
 		SKY_STRIKER = worker.build("sky_striker", SkyStriker::new, SkyStriker.createCombatArt().setResource(Resource.COOLDOWN));
 	}
 

@@ -132,7 +132,7 @@ public class DuelistSwordAnimations
                                         float distanceToGround = (float)Math.max(Math.abs(livingEntityPatch.getOriginal().getY() - (double)dpy) - (double)1.0F, 0.0F);
                                         LivingEntity livingentity = livingEntityPatch.getOriginal();
                                         Vec3f direction = new Vec3f(2.5F, -1.5F, 0.0F);
-                                        OpenMatrix4f rotation = (new OpenMatrix4f()).rotate(-((float)Math.toRadians(livingEntityPatch.getOriginal().yBodyRotO + 90.0F)), new Vec3f(0.0F, 1.0F, 0.0F));
+                                        OpenMatrix4f rotation = new OpenMatrix4f().rotate(-(float)Math.toRadians(livingEntityPatch.getOriginal().yBodyRotO + 90.0F), new Vec3f(0.0F, 1.0F, 0.0F));
                                         OpenMatrix4f.transform3v(rotation, direction, direction);
                                         if (distanceToGround > 0.5F) {
                                             livingentity.move(MoverType.SELF, direction.toDoubleVector());
