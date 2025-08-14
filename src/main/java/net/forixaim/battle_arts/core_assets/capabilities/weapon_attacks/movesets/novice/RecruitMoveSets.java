@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.moveset
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Recruit;
-import net.forixaim.efm_ex.api.moveset.MoveSet;
+import net.forixaim.ex_cap.api.moveset.MoveSet;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.EpicFightSkills;
 import yesman.epicfight.skill.guard.GuardSkill;

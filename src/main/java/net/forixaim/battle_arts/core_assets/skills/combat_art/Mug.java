@@ -5,7 +5,7 @@ import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.ThiefStyles;
 import net.forixaim.battle_arts.initialization.registry.TagRegistry;
-import net.forixaim.bs_api.battle_arts_skills.active.combat_arts.CombatArt;
+import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
@@ -39,7 +39,7 @@ public class Mug extends CombatArt
     {
         super.onInitiate(container);
 
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
+        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
         {
             if (event.getDamageSource().getAnimation() == ThiefDaggerAnimations.MUG)
                 if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(TagRegistry.STOLEN.toString())) {
@@ -61,7 +61,7 @@ public class Mug extends CombatArt
     public void onRemoved(SkillContainer container)
     {
         super.onRemoved(container);
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID);
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Mug extends CombatArt
         return this.canExecute(container);
     }
     @Override
-    public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y)
+    public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y, float pt)
     {
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();

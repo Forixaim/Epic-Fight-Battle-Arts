@@ -5,7 +5,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.Config;
 import net.forixaim.battle_arts.core_assets.animations.other.DraconicInstinctAnimations;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.battle_arts.core_assets.world.tags.DamageTags;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
@@ -21,7 +20,7 @@ import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.dodge.DodgeSkill;
-import yesman.epicfight.world.damagesource.EpicFightDamageType;
+import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.List;
@@ -39,8 +38,7 @@ public class DraconicInstinct extends DodgeSkill
 
     private static final List<TagKey<DamageType>> BYPASSES = Lists.newArrayList(
             DamageTypeTags.BYPASSES_INVULNERABILITY,
-            EpicFightDamageType.PARTIAL_DAMAGE,
-            EpicFightDamageType.BYPASS_DODGE
+            EpicFightDamageTypeTags.BYPASS_DODGE
     );
 
     private static final List<ResourceKey<DamageType>> V_BYPASSES = Lists.newArrayList(
@@ -61,7 +59,7 @@ public class DraconicInstinct extends DodgeSkill
     }
 
     @Override
-    public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y) {
+    public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y, float pt) {
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
         poseStack.translate(0, (float)gui.getSlidingProgression(), 0);
@@ -82,9 +80,9 @@ public class DraconicInstinct extends DodgeSkill
     @Override
     public void onInitiate(SkillContainer container) {
         super.onInitiate(container);
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID, event ->
+        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID, event ->
         {
-            if (!contains(event.getDamageSource()) && !event.getPlayerPatch().getOriginal().isUsingItem())
+            if (!contains(event.getDamageSource()) && !event.getPlayerPatch().getOriginal().isUsingItem() && !event.getPlayerPatch().isHoldingAny())
             {
                 if (container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE.get()) > 80 && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW.get()) <= 0)
                 {
@@ -94,16 +92,16 @@ public class DraconicInstinct extends DodgeSkill
                             return value;
                         else
                             return value - 80;
-                    }, event.getPlayerPatch().getOriginal());
-                    container.getDataManager().setDataSync(BattleArtsDataKeys.INSTINCT_WINDOW.get(), 20, event.getPlayerPatch().getOriginal());
+                    });
+                    container.getDataManager().setDataSync(BattleArtsDataKeys.INSTINCT_WINDOW.get(), 20);
                 }
                 if (container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW.get()) > 0 && !event.getDamageSource().is(DamageTypes.FELL_OUT_OF_WORLD))
                 {
                     RandomSource rng = container.getExecutor().getOriginal().getRandom();
                     event.getPlayerPatch().playAnimationSynchronized(DODGES.get(rng.nextInt(0, 4)), 0);
-                    event.setResult(AttackResult.ResultType.MISSED);
-                    event.getPlayerPatch().onDodgeSuccess(event.getDamageSource());
+                    event.getPlayerPatch().onDodgeSuccess(event.getDamageSource(), event.getPlayerPatch().getOriginal().position());
                     event.setCanceled(true);
+                    event.setResult(AttackResult.ResultType.MISSED);
                 }
             }
 
@@ -129,7 +127,7 @@ public class DraconicInstinct extends DodgeSkill
 
     @Override
     public void onRemoved(SkillContainer container) {
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID);
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID);
         super.onRemoved(container);
     }
 
@@ -138,11 +136,11 @@ public class DraconicInstinct extends DodgeSkill
         super.updateContainer(container);
         if (!container.getExecutor().isLogicalClient() && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE.get()) < 640)
         {
-            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_GAUGE.get(), value -> value + 1, container.getServerExecutor().getOriginal());
+            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_GAUGE.get(), value -> value + 1);
         }
         if (!container.getExecutor().isLogicalClient() && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW.get()) > 0)
         {
-            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_WINDOW.get(), value -> value - 1, container.getServerExecutor().getOriginal());
+            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_WINDOW.get(), value -> value - 1);
         }
     }
 

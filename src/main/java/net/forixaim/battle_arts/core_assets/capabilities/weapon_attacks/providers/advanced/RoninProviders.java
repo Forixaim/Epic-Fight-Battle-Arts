@@ -4,9 +4,9 @@ import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.adv
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.QuickFunctions;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
-import net.forixaim.bs_api.battle_arts_skills.BattleArtsSkillSlots;
-import net.forixaim.efm_ex.api.providers.ProviderConditional;
-import net.forixaim.efm_ex.api.providers.ProviderConditionalType;
+import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
+import net.forixaim.ex_cap.api.providers.ProviderConditional;
+import net.forixaim.ex_cap.api.providers.ProviderConditionalType;
 
 public class RoninProviders
 {

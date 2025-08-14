@@ -1,4 +1,7 @@
 {
+	"item.battle_arts.liu_glove": "Liu Association Section 3 Glove",
+
+
 	"item.battle_arts.wooden_sabre": "Wooden Sabre",
 	"item.battle_arts.stone_sabre": "Stone Sabre",
 	"item.battle_arts.iron_sabre": "Iron Sabre",
@@ -63,6 +66,13 @@
 	"item.battle_arts.diamond_pike": "Diamond Pike",
 	"item.battle_arts.netherite_pike": "Netherite Pike",
 
+	"item.battle_arts.wooden_rapier": "Wooden Rapier",
+	"item.battle_arts.stone_rapier": "Stone Rapier",
+	"item.battle_arts.iron_rapier": "Iron Rapier",
+	"item.battle_arts.golden_rapier": "Golden Rapier",
+	"item.battle_arts.diamond_rapier": "Diamond Rapier",
+	"item.battle_arts.netherite_rapier": "Netherite Rapier",
+
 	"item.battle_arts.wooden_guandao": "Wooden Guandao",
 	"item.battle_arts.stone_guandao": "Stone Guandao",
 	"item.battle_arts.iron_guandao": "Iron Guandao",
@@ -86,6 +96,9 @@
 
 	"skill.battle_arts.power_draw": "Power Draw",
 	"skill.battle_arts.power_draw.tooltip": "Pull back the bow to great lengths before releasing a powerful arrow that can pierce multiple foes.",
+
+	"skill.battle_arts.voice_of_distortion": "The Voice of Distortion",
+	"skill.battle_arts.voice_of_distortion.tooltip": "The voice calls to you when near death, revives you and increases your offensive stats while sacrificing defensive stats and draining your health until you die. Only available once per life.",
 
 	"skill.battle_arts.steal": "Steal",
 	"skill.battle_arts.steal.tooltip": "Quickly jab an enemy, if struck from behind the enemy drops an emerald. Once per enemy.",
@@ -125,6 +138,10 @@
 	"skill.battle_arts.tranquility": "Tranquility",
 	"skill.battle_arts.tranquility.tooltip": "Sheathe or unsheathe your weapon, changing stance and combos.",
 
+	"skill.battle_arts.whirledge": "Flurry Sting",
+	"skill.battle_arts.whirledge.tooltip": "Use both swords to rapidly thrust in quick succession before a dual thrust to finish it off.",
+
+
 	"skill.battle_arts.tranquility_unleash": "Tranquility Unleash",
 	"skill.battle_arts.tranquility_unleash.tooltip": "Use while sheathed to perform a dash, used while unsheathed to fire a projectile.",
 
@@ -156,5 +173,7 @@
 	"epicfight.style.duelist_sword": "Duelist's Weapon Art",
 	"epicfight.style.ronin_tachi": "Ronin's Scatter Stance",
 	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance",
-	"pack.battle_arts.emissive_trails.title": "Battle Arts Emissive Trails"
+	"pack.battle_arts.emissive_trails.title": "Battle Arts Emissive Trails",
+	"text.battle_arts.distort": "You should distort NOW!",
+	"death.player.battle_arts.distortion": "%1$s lost themselves to the distortion phenomenon."
 }

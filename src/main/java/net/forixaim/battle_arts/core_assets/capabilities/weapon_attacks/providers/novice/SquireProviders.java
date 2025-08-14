@@ -3,11 +3,7 @@ package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.provide
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.SquireWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.QuickFunctions;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.NoviceBattleStyles;
-import net.forixaim.efm_ex.api.providers.ProviderConditional;
-import net.forixaim.efm_ex.api.providers.ProviderConditionalType;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.PlayerRideableJumping;
-import yesman.epicfight.world.capabilities.item.CapabilityItem;
+import net.forixaim.ex_cap.api.providers.ProviderConditional;
 
 public class SquireProviders
 {

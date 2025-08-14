@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
-import net.forixaim.bs_api.battle_arts_skills.BattleArtsSkillSlots;
+import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -37,14 +37,14 @@ public class Tranquility extends WeaponInnateSkill
         {
             if (container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().getDataValue(BattleArtsDataKeys.BATTO_SHEATH.get()))
             {
-                container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).requestExecute(container.getServerExecutor(), args);
+                container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).requestCasting(container.getServerExecutor(), args);
                 container.getServerExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE, 0.0F);
                 LogUtils.getLogger().debug("Current Style {}",container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()).toString());
 
             }
             else
             {
-                container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).requestExecute(container.getServerExecutor(), args);
+                container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).requestCasting(container.getServerExecutor(), args);
                 container.getServerExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.RONIN_UCHIGATANA_UNSHEATHE, 0.0F);
 
                 LogUtils.getLogger().debug("Current Style {}, Sheathed: {}",container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()).toString(), container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().getDataValue(BattleArtsDataKeys.BATTO_SHEATH.get()));

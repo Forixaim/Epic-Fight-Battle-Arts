@@ -32,15 +32,15 @@ public class ArrogancePassive extends PassiveSkill
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.ANIMATION_BEGIN_EVENT, EVENT_UUID, event ->
 		{
 			if (!event.getPlayerPatch().isLogicalClient())
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID.get(), false, (ServerPlayer) event.getPlayerPatch().getOriginal());
+				container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID.get(), false);
 		});
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
 		{
 			if (!container.getDataManager().getDataValue(BattleArtsDataKeys.ANIM_ID.get()))
 			{
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID.get(), true, event.getPlayerPatch().getOriginal());
+				container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID.get(), true);
 				if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) < 10)
-					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 1, event.getPlayerPatch().getOriginal());
+					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 1);
 			}
 		});
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID, event ->
@@ -50,7 +50,7 @@ public class ArrogancePassive extends PassiveSkill
 			event.setAttackSpeed(event.getAttackSpeed() * (1 + attackSpdBonus));
 		});
 
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID, event->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID, event->
 		{
 			int stack = (int) (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 0.95f);
 			float attackSpdBonus = 0.01f * stack;
@@ -58,21 +58,20 @@ public class ArrogancePassive extends PassiveSkill
 			{
 				if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) < 10)
 				{
-					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 1, event.getPlayerPatch().getOriginal());
+					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 1);
 				}
 			}
 			else if (event.getResult() == AttackResult.ResultType.BLOCKED)
 			{
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 2, event.getPlayerPatch().getOriginal());
+				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 2);
 				if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) < 0)
-					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), 0f, event.getPlayerPatch().getOriginal());
+					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), 0f);
 
 			}
 			else if (event.getResult() == AttackResult.ResultType.SUCCESS)
 			{
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), 0f, event.getPlayerPatch().getOriginal());
+				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), 0f);
 			}
-			event.setAmount(event.getAmount() * (1 + attackSpdBonus));
 		});
 	}
 
@@ -80,9 +79,9 @@ public class ArrogancePassive extends PassiveSkill
 	public void onRemoved(SkillContainer container)
 	{
 		super.onRemoved(container);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID);
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, EVENT_UUID);
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID);
 	}
 
 	@Override
@@ -92,7 +91,7 @@ public class ArrogancePassive extends PassiveSkill
 	}
 
 	@Override
-	public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y)
+	public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y, float pt)
 	{
 		PoseStack poseStack = guiGraphics.pose();
 		poseStack.pushPose();
@@ -111,7 +110,7 @@ public class ArrogancePassive extends PassiveSkill
 		if (!container.getExecutor().isLogicalClient())
 		{
 			if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) > 0)
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 0.01f, (ServerPlayer) container.getExecutor().getOriginal());
+				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 0.01f);
 
 		}
 	}

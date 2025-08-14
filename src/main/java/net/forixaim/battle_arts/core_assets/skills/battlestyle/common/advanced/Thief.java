@@ -4,9 +4,10 @@ import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.Mug;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Steal;
-import net.forixaim.bs_api.battle_arts_skills.BattleArtsSkillSlots;
-import net.forixaim.bs_api.battle_arts_skills.active.combat_arts.CombatArt;
-import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
+import net.forixaim.battle_arts.core_assets.util.NetworkUtils;
+import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
+import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
+import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
 import yesman.epicfight.network.EpicFightNetworkManager;
 import yesman.epicfight.network.server.SPChangeSkill;
@@ -34,24 +35,12 @@ public class Thief extends BattleStyle
     @Override
     public void onInitiate(SkillContainer container) {
         super.onInitiate(container);
-        if (!container.getExecutor().isLogicalClient()) {
-            container.getExecutor().getSkill(BattleArtsSkillSlots.COMBAT_ART).setSkill(MUG);
-            try
-            {
-                EpicFightNetworkManager.sendToPlayer(new SPChangeSkill(BattleArtsSkillSlots.COMBAT_ART, MUG.toString(), SPChangeSkill.State.ENABLE), container.getServerExecutor().getOriginal());
-            }
-            catch (Exception e)
-            {
-                LogUtils.getLogger().warn(e.getMessage());
-            }        }
+        NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, MUG);
     }
 
     @Override
     public void onRemoved(SkillContainer container) {
-        if (!container.getExecutor().isLogicalClient()) {
-            container.getExecutor().getSkill(BattleArtsSkillSlots.COMBAT_ART).setSkill(null);
-            EpicFightNetworkManager.sendToPlayer(new SPChangeSkill(BattleArtsSkillSlots.COMBAT_ART, "empty", SPChangeSkill.State.DISABLE), container.getServerExecutor().getOriginal());
-        }
+        NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, null);
         super.onRemoved(container);
     }
 }

@@ -41,7 +41,7 @@ public class Steal extends SimpleWeaponInnateSkill
     @Override
     public void onInitiate(SkillContainer container) {
         super.onInitiate(container);
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID, event -> {
+        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID, event -> {
             if (event.getDamageSource().getAnimation() == this.attackAnimation)
                 if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(TagRegistry.STOLEN.toString()) && !isFront(event.getTarget(), event.getPlayerPatch().getOriginal().position())) {
                     ItemEntity item = EntityType.ITEM.create(event.getTarget().level());
@@ -61,6 +61,6 @@ public class Steal extends SimpleWeaponInnateSkill
     @Override
     public void onRemoved(SkillContainer container) {
         super.onRemoved(container);
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEALT_DAMAGE_EVENT_HURT, EVENT_UUID);
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID);
     }
 }

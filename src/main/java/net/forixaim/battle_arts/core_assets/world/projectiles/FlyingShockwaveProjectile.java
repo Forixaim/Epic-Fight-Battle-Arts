@@ -24,7 +24,7 @@ import yesman.epicfight.particle.EpicFightParticles;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
-import yesman.epicfight.world.damagesource.EpicFightDamageType;
+import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 import yesman.epicfight.world.damagesource.StunType;
 
 import java.util.Objects;
@@ -138,8 +138,8 @@ public class FlyingShockwaveProjectile extends Projectile
                 }
                 EpicFightDamageSource damage = playerpatch.getDamageSource(RoninUchigatanaAnimations.FLYING_SHOCKWAVE, InteractionHand.MAIN_HAND);
                 damage.setStunType(StunType.HOLD);
-                damage.setImpact(0.5F);
-                damage.addRuntimeTag(EpicFightDamageType.WEAPON_INNATE);
+                damage.setBaseImpact(0.5F);
+                damage.addRuntimeTag(EpicFightDamageTypeTags.WEAPON_INNATE);
                 entity.invulnerableTime = 0;
                 playerpatch.attack(damage, entity, InteractionHand.MAIN_HAND);
                 entity.playSound(EpicFightSounds.BLADE_HIT.get(), 1.0f, 1.0f);

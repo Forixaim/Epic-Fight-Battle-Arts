@@ -4,7 +4,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journ
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAxeAnims;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanBattleAxeAnims;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Journeyman;
-import net.forixaim.efm_ex.api.moveset.MoveSet;
+import net.forixaim.ex_cap.api.moveset.MoveSet;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;
@@ -42,8 +42,11 @@ public class JManMoveSets
                 .addInnateSkill(itemstack -> Journeyman.SEISMIC_IMPACT);
 
         JManUnarmedMS = MoveSet.builder()
-                .addLivingMotionsRecursive(JourneymanAnimations.JMAN_UNARMED_IDLE, LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.RUN, LivingMotions.KNEEL)
+                .addLivingMotionsRecursive(JourneymanAnimations.JMAN_UNARMED_IDLE, LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.KNEEL)
                 .addLivingMotionModifier(LivingMotions.BLOCK, JourneymanAnimations.JMAN_UNARMED_GUARD)
+                .addGuardAnimations(EpicFightSkills.GUARD, GuardSkill.BlockType.GUARD, JourneymanAnimations.JMAN_UNARMED_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.IMPACT_GUARD, GuardSkill.BlockType.GUARD, JourneymanAnimations.JMAN_UNARMED_GUARD_HIT)
+                .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, JourneymanAnimations.JMAN_UNARMED_GUARD_HIT)
                 .addAutoAttacks(JourneymanAnimations.JMAN_UNARMED_AUTO1,  JourneymanAnimations.JMAN_UNARMED_AUTO2, JourneymanAnimations.JMAN_UNARMED_DASH, JourneymanAnimations.JMAN_SLEDGEHAMMER)
                 .addInnateSkill(itemstack -> Journeyman.SUPPRESSING_BLOW);
     }

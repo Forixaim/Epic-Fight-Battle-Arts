@@ -5,7 +5,9 @@ import net.forixaim.battle_arts.core_assets.skills.base_attack.MountedBasicAttac
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Duelist;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Ronin;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Recruit;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.unique.IronLotus;
 import net.forixaim.battle_arts.core_assets.skills.dodge.DraconicInstinct;
+import net.forixaim.battle_arts.core_assets.skills.identity.VoiceOfDistortion;
 import net.forixaim.battle_arts.core_assets.skills.passive.ArrogancePassive;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.HeavyDraw;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.TranquilityPassive;
@@ -23,12 +25,15 @@ public class BattleArtsDataKeys
     public static final RegistryObject<SkillDataKey<Boolean>> BATTO_SHEATH;
     public static final RegistryObject<SkillDataKey<Integer>> COMBO_COUNTER = DATA_KEYS.register("combo_counter", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.INTEGER, 0, true, MountedBasicAttack.class));
     public static final RegistryObject<SkillDataKey<Float>> ARROGANCE_STACK;
+    public static final RegistryObject<SkillDataKey<Boolean>> DASHED = DATA_KEYS.register("dashed", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, IronLotus.class));
+
     public static final RegistryObject<SkillDataKey<Boolean>> PULLING = DATA_KEYS.register("pulling", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Float>> PULL_LEVEL = DATA_KEYS.register("pull_level", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Float>> COUNTER_WINDOW = DATA_KEYS.register("counter_window", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, Duelist.class));
     public static final RegistryObject<SkillDataKey<Integer>> INSTINCT_GAUGE = DATA_KEYS.register("instinct_gauge", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.INTEGER, 0, true, DraconicInstinct.class));
     public static final RegistryObject<SkillDataKey<Integer>> INSTINCT_WINDOW = DATA_KEYS.register("instinct_window", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.INTEGER, 0, true, DraconicInstinct.class));
 
+    public static final RegistryObject<SkillDataKey<Boolean>> DISTORTED = DATA_KEYS.register("distorted", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, VoiceOfDistortion.class));
     public static final RegistryObject<SkillDataKey<Boolean>> ANIM_ID;
     public static final RegistryObject<SkillDataKey<Boolean>> CHARGING = DATA_KEYS.register("charging", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, false, HeavyDraw.class));
     public static final RegistryObject<SkillDataKey<Float>> CHARGE_POWER = DATA_KEYS.register("heavy_draw", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, HeavyDraw.class));

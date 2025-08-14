@@ -55,6 +55,14 @@ public class ItemRegistry
 	public static final RegistryObject<Item> DIAMOND_BAYONET = ITEMS.register("diamond_bayonet", () -> new BayonetItem(Tiers.DIAMOND, new Item.Properties()));
 	public static final RegistryObject<Item> NETHERITE_BAYONET = ITEMS.register("netherite_bayonet", () -> new BayonetItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
 
+	//Rapiers
+	public static final RegistryObject<Item> WOODEN_RAPIER = ITEMS.register("wooden_rapier", () -> new RapierItem(Tiers.WOOD, new Item.Properties()));
+	public static final RegistryObject<Item> STONE_RAPIER = ITEMS.register("stone_rapier", () -> new RapierItem(Tiers.STONE, new Item.Properties()));
+	public static final RegistryObject<Item> IRON_RAPIER = ITEMS.register("iron_rapier", () -> new RapierItem(Tiers.IRON, new Item.Properties()));
+	public static final RegistryObject<Item> GOLDEN_RAPIER = ITEMS.register("golden_rapier", () -> new RapierItem(Tiers.GOLD, new Item.Properties()));
+	public static final RegistryObject<Item> DIAMOND_RAPIER = ITEMS.register("diamond_rapier", () -> new RapierItem(Tiers.DIAMOND, new Item.Properties()));
+	public static final RegistryObject<Item> NETHERITE_RAPIER = ITEMS.register("netherite_rapier", () -> new RapierItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
+
 	//Dories
 	public static final RegistryObject<Item> WOODEN_DORY = ITEMS.register("wooden_dory", () -> new DoryItem(Tiers.WOOD, new Item.Properties()));
 	public static final RegistryObject<Item> STONE_DORY = ITEMS.register("stone_dory", () -> new DoryItem(Tiers.STONE, new Item.Properties()));
@@ -101,6 +109,10 @@ public class ItemRegistry
 	public static final RegistryObject<Item> GOLDEN_LONGBOW = ITEMS.register("golden_longbow", () -> new LongbowItem(Tiers.GOLD, new Item.Properties()));
 	public static final RegistryObject<Item> DIAMOND_LONGBOW = ITEMS.register("diamond_longbow", () -> new LongbowItem(Tiers.DIAMOND, new Item.Properties()));
 	public static final RegistryObject<Item> NETHERITE_LONGBOW = ITEMS.register("netherite_longbow", () -> new LongbowItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
+
+	//Gloves and Gauntlets
+	public static final RegistryObject<Item> LIU_GLOVE = ITEMS.register("liu_glove", LiuGloveItem::new);
+
 
 	//Misc
 	public static final RegistryObject<Item> TACHI_SHEATH = ITEMS.register("tachi_sheath", () -> new Item(new Item.Properties()));

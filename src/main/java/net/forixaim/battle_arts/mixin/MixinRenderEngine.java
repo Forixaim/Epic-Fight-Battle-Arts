@@ -1,7 +1,10 @@
 package net.forixaim.battle_arts.mixin;
 
 import com.google.gson.JsonElement;
+import net.forixaim.battle_arts.core_assets.client.renderer.patched.GloveRenderer;
+import net.forixaim.battle_arts.core_assets.items.weapons.melee.AdaptiveGloveItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.BattleBowItem;
+import net.forixaim.battle_arts.initialization.registry.ItemRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;

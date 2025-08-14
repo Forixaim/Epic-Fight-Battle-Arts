@@ -14,8 +14,6 @@ import net.forixaim.battle_arts.core_assets.client.renderer.FlyingShockwaveRende
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
 import net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
-import net.forixaim.efm_ex.EpicFightEXCapability;
-import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.PathPackResources;
@@ -65,7 +63,7 @@ public class EpicFightBattleArts
 		CREATIVE_MODE_TABS.register(modEventBus);
 		BattleArtsDataKeys.DATA_KEYS.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(this);
-		context.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+		context.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
 		context.registerExtensionPoint(EpicFightExtensions.class, () -> new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS.get()));
 	}
 

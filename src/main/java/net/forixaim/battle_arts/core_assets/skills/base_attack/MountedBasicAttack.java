@@ -60,14 +60,14 @@ public class MountedBasicAttack extends BasicAttack
         int prevValue = container.getDataManager().getDataValue(BattleArtsDataKeys.COMBO_COUNTER.get());
         ComboCounterHandleEvent comboResetEvent = new ComboCounterHandleEvent(reason, playerpatch, causalAnimation, prevValue, value);
         container.getExecutor().getEventListener().triggerEvents(PlayerEventListener.EventType.COMBO_COUNTER_HANDLE_EVENT, comboResetEvent);
-        container.getDataManager().setDataSync(BattleArtsDataKeys.COMBO_COUNTER.get(), comboResetEvent.getNextValue(), playerpatch.getOriginal());
+        container.getDataManager().setDataSync(BattleArtsDataKeys.COMBO_COUNTER.get(), comboResetEvent.getNextValue());
     }
 
     @Override
     public void executeOnServer(SkillContainer skillContainer, FriendlyByteBuf args)
     {
         ServerPlayerPatch executor = skillContainer.getServerExecutor();
-        SkillConsumeEvent event = new SkillConsumeEvent(executor, this, this.resource);
+        SkillConsumeEvent event = new SkillConsumeEvent(executor, this, this.resource, args);
         executor.getEventListener().triggerEvents(PlayerEventListener.EventType.SKILL_CONSUME_EVENT, event);
         if (!event.isCanceled()) {
             event.getResourceType().consumer.consume(skillContainer, executor, event.getAmount());

@@ -9,7 +9,7 @@ import yesman.epicfight.world.item.WeaponItem;
 public class LiuGuandaoItem extends WeaponItem
 {
     public LiuGuandaoItem() {
-        super(Tiers.NETHERITE, 4, -2.9f, new Properties().fireResistant().defaultDurability(0).durability(0));
+        super(SpecialTiers.LIU_ITEMS, 4, -2.9f, new Properties().fireResistant().defaultDurability(0).durability(0));
     }
 
     @Override

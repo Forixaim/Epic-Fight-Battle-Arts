@@ -1,5 +1,6 @@
 package net.forixaim.battle_arts.core_assets.animations.types;
 
+import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -151,12 +152,12 @@ public class KnockbackBasicAttackAnimation extends BasicAttackAnimation
         if (!list.isEmpty()) {
             HitEntityList hitEntities = new HitEntityList(entitypatch, list, phase.getProperty(AnimationProperty.AttackPhaseProperty.HIT_PRIORITY).orElse(HitEntityList.Priority.DISTANCE));
             int maxStrikes = this.getMaxStrikes(entitypatch, phase);
-            while (entitypatch.getCurrenltyHurtEntities().size() < maxStrikes && hitEntities.next())
+            while (entitypatch.getCurrentlyActuallyHitEntities().size() < maxStrikes && hitEntities.next())
             {
                 Entity target = hitEntities.getEntity();
                 LivingEntity trueEntity = this.getTrueEntity(target);
                 HurtableEntityPatch<?> hitHurtableEntityPatch = EpicFightCapabilities.getEntityPatch(target, HurtableEntityPatch.class);
-                if (trueEntity != null && trueEntity.isAlive() && !entitypatch.getCurrenltyAttackedEntities().contains(trueEntity) && !entitypatch.isTargetInvulnerable(target) && (target instanceof LivingEntity || target instanceof PartEntity) && attacker.hasLineOfSight(target)) {
+                if (trueEntity != null && trueEntity.isAlive() && !entitypatch.getCurrentlyAttackTriedEntities().contains(trueEntity) && !entitypatch.isTargetInvulnerable(target) && (target instanceof LivingEntity || target instanceof PartEntity) && attacker.hasLineOfSight(target)) {
                     EpicFightDamageSource source = this.getEpicFightDamageSource(entitypatch, target, phase);
                     int prevInvulTime = target.invulnerableTime;
                     target.invulnerableTime = 0;
@@ -170,10 +171,10 @@ public class KnockbackBasicAttackAnimation extends BasicAttackAnimation
                         if (hitHurtableEntityPatch != null && phase.getProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE).isPresent() && !hitHurtableEntityPatch.getOriginal().hasEffect(EpicFightMobEffects.STUN_IMMUNITY.get())) {
                             float stunTime;
                             if (phase.getProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE).get() == StunType.FALL) {
-                                stunTime = (float) ((double) (source.getImpact() * 0.4F) * (1.0 - trueEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)));
+                                stunTime = (float) ((double) (source.getBaseImpact() * 0.4F) * (1.0 - trueEntity.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE)));
                                 if (hitHurtableEntityPatch.getOriginal().isAlive()) {
                                     hitHurtableEntityPatch.applyStun(StunType.SHORT, stunTime);
-                                    AtomicReference<Double> power = new AtomicReference<>((double) source.getImpact() * 0.3F);
+                                    AtomicReference<Double> power = new AtomicReference<>((double) source.getBaseImpact() * 0.3F);
 
                                     phase.getProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER).ifPresent(power::set);
 
@@ -199,6 +200,11 @@ public class KnockbackBasicAttackAnimation extends BasicAttackAnimation
                                     if (power.get() > 0.0) {
                                         target.hasImpulse = true;
                                         Vec3 attackerDeltaMovement = attacker.getDeltaMovement();
+                                        phase.getProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE).ifPresent(angle -> {
+                                            if (angle <= -40d) {
+                                                hitHurtableEntityPatch.playSound(SoundRegistry.SPIKE.get(), 1, 1);
+                                            }
+                                        });
                                         Vec3 launchVector = (new Vec3(finalVector.x(), finalVector.y(), finalVector.z())).normalize().scale(power.get());
                                         if (!(trueEntity instanceof Player) || !(entitypatch instanceof PlayerPatch)) {
                                             target.setDeltaMovement(attackerDeltaMovement.x / 2.0 - launchVector.x, attackerDeltaMovement.y / 2.0 - launchVector.y, attackerDeltaMovement.z / 2.0 - launchVector.z);
@@ -208,16 +214,25 @@ public class KnockbackBasicAttackAnimation extends BasicAttackAnimation
                                     if (trueEntity instanceof Player && entitypatch instanceof PlayerPatch) {
                                         trueEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 5, (int) (power.get() * 4.0 * 6.0), true, false, false));
                                     }
-
-                                    trueEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, (int) (power.get() * 8.0 * 6.0), 20, true, false, false));
+                                    phase.getProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE).ifPresent(angle -> {
+                                        if (angle > 0)
+                                            trueEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, (int) (power.get() * 8.0 * 6.0), 20, true, false, false));
+                                        if (angle < 0)
+                                        {
+                                            if (trueEntity.hasEffect(MobEffects.SLOW_FALLING))
+                                            {
+                                                trueEntity.removeEffect(MobEffects.SLOW_FALLING);
+                                            }
+                                        }
+                                    });
                                 }
                             }
                         }
                     }
 
-                    entitypatch.getCurrenltyAttackedEntities().add(trueEntity);
+                    entitypatch.getCurrentlyAttackTriedEntities().add(trueEntity);
                     if (attackResult.resultType.shouldCount()) {
-                        entitypatch.getCurrenltyHurtEntities().add(trueEntity);
+                        entitypatch.getCurrentlyActuallyHitEntities().add(trueEntity);
                     }
                 }
             }

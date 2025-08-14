@@ -9,19 +9,19 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "battle_arts:item/pike",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/netherite_pike_gui"
       }
     },
     "fixed": {
-      "parent": "battle_arts:item/pike",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/netherite_pike_gui"
       }
     },
     "ground": {
-      "parent": "battle_arts:item/pike",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/netherite_pike_gui"
       }

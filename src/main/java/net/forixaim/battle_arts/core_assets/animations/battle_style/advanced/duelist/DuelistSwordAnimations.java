@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.du
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
+import net.forixaim.battle_arts_api.animations.ReusableEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
@@ -43,9 +44,9 @@ public class DuelistSwordAnimations
 
         GUARD = builder.nextAccessor("battle_style/advanced/duelist/sword/guard", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
 
-        GUARD_HIT = builder.nextAccessor("battle_style/advanced/duelist/sword/guard_hit", access -> new GuardAnimation(0.2f, access, Armatures.BIPED));
-        GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry1", access -> new GuardAnimation(0.2f, access, Armatures.BIPED));
-        GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry2", access -> new GuardAnimation(0.2f, access, Armatures.BIPED));
+        GUARD_HIT = builder.nextAccessor("battle_style/advanced/duelist/sword/guard_hit", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
+        GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry1", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
+        GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
 
 
         WALK = builder.nextAccessor("battle_style/advanced/duelist/sword/walk", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
@@ -54,7 +55,11 @@ public class DuelistSwordAnimations
 
         RUN = builder.nextAccessor("battle_style/advanced/duelist/sword/run", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                        v * 1.3f));
+                        v * 1.3f)
+                .addEvents(
+                        AnimationEvent.InTimeEvent.create(0.0f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT),
+                        AnimationEvent.InTimeEvent.create(0.3f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT)
+                ));
 
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto1", access ->

@@ -3,7 +3,7 @@ package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.moveset
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistDualbladesAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Duelist;
-import net.forixaim.efm_ex.api.moveset.MoveSet;
+import net.forixaim.ex_cap.api.moveset.MoveSet;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;
@@ -33,6 +33,6 @@ public class DuelistMoveSets
             .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.GUARD, DuelistDualbladesAnimations.GUARD_HIT)
             .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, DuelistDualbladesAnimations.PARRY1)
             .addGuardAnimations(EpicFightSkills.PARRYING, GuardSkill.BlockType.ADVANCED_GUARD, DuelistDualbladesAnimations.PARRY2)
-            .addAutoAttacks(DuelistDualbladesAnimations.AUTO1, DuelistDualbladesAnimations.AUTO2, DuelistDualbladesAnimations.AUTO3, DuelistSwordAnimations.DASH_ATTACK, Animations.SWORD_DUAL_AIR_SLASH)
+            .addAutoAttacks(DuelistDualbladesAnimations.AUTO1, DuelistDualbladesAnimations.AUTO2, DuelistDualbladesAnimations.AUTO3, DuelistSwordAnimations.DASH_ATTACK, DuelistDualbladesAnimations.AIRSLAM)
             .addInnateSkill(itemStack -> Duelist.WHIRLEDGE);
 }

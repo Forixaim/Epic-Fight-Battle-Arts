@@ -3,17 +3,16 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAxeAnims;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanBattleAxeAnims;
-import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
+import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.world.InteractionHand;
-import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
+import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.world.capabilities.item.WeaponCapability;
 import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
-import java.util.Arrays;
 import java.util.UUID;
 
 public class Journeyman extends BattleStyle
@@ -47,7 +46,7 @@ public class Journeyman extends BattleStyle
         container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_DAMAGE_EVENT, EUUID, event -> {
             if (!(event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND) instanceof WeaponCapability))
             {
-                event.setDamage(event.getDamage() + 2);
+                event.attachValueModifier(ValueModifier.adder(2));
             }
         });
     }

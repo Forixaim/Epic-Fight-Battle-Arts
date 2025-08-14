@@ -5,8 +5,8 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squir
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireMountAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Squire;
-import net.forixaim.efm_ex.api.moveset.MoveSet;
-import net.forixaim.efm_ex.api.moveset.RangedMoveSet;
+import net.forixaim.ex_cap.api.moveset.MoveSet;
+import net.forixaim.ex_cap.api.moveset.RangedMoveSet;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;

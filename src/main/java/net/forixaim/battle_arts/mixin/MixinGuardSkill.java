@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import yesman.epicfight.skill.guard.GuardSkill;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
-import yesman.epicfight.world.entity.eventlistener.HurtEvent;
+import yesman.epicfight.world.entity.eventlistener.TakeDamageEvent;
 
 /**
  * This is an demo mixin on stats
@@ -18,7 +18,7 @@ import yesman.epicfight.world.entity.eventlistener.HurtEvent;
 public class MixinGuardSkill
 {
     @Inject(method = "dealEvent", at = @At("TAIL"), remap = false)
-    public void dealEvent(PlayerPatch<?> playerpatch, HurtEvent.Pre event, boolean advanced, CallbackInfo ci)
+    public void dealEvent(PlayerPatch<?> playerpatch, TakeDamageEvent.Attack event, boolean advanced, CallbackInfo ci)
     {
         if (advanced && !playerpatch.isLogicalClient())
         {

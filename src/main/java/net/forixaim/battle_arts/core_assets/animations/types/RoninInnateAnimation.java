@@ -73,7 +73,7 @@ public class RoninInnateAnimation extends AttackAnimation
             HitEntityList hitEntities = new HitEntityList(entitypatch, list, phase.getProperty(AnimationProperty.AttackPhaseProperty.HIT_PRIORITY).orElse(HitEntityList.Priority.DISTANCE));
             int maxStrikes = this.getMaxStrikes(entitypatch, phase);
 
-            while(entitypatch.getCurrenltyHurtEntities().size() < maxStrikes && hitEntities.next()) {
+            while(entitypatch.getCurrentlyActuallyHitEntities().size() < maxStrikes && hitEntities.next()) {
                 Entity target = hitEntities.getEntity();
                 if (target instanceof Projectile projectile && projectile.getOwner() != entitypatch.getOriginal())
                 {
@@ -87,7 +87,7 @@ public class RoninInnateAnimation extends AttackAnimation
                 else if (!teammateCheck(target, entity))
                 {
                     LivingEntity trueEntity = this.getTrueEntity(target);
-                    if (trueEntity != null && trueEntity.isAlive() && !entitypatch.getCurrenltyAttackedEntities().contains(trueEntity) && !entitypatch.isTargetInvulnerable(target) && (target instanceof LivingEntity || target instanceof PartEntity) && entity.hasLineOfSight(target)) {
+                    if (trueEntity != null && trueEntity.isAlive() && !entitypatch.getCurrentlyAttackTriedEntities().contains(trueEntity) && !entitypatch.isTargetInvulnerable(target) && (target instanceof LivingEntity || target instanceof PartEntity) && entity.hasLineOfSight(target)) {
                         EpicFightDamageSource damagesource = this.getEpicFightDamageSource(entitypatch, target, phase);
                         int prevInvulTime = target.invulnerableTime;
                         target.invulnerableTime = 0;
@@ -98,9 +98,9 @@ public class RoninInnateAnimation extends AttackAnimation
                             this.spawnHitParticle((ServerLevel)target.level(), entitypatch, target, phase);
                         }
 
-                        entitypatch.getCurrenltyAttackedEntities().add(trueEntity);
+                        entitypatch.getCurrentlyAttackTriedEntities().add(trueEntity);
                         if (attackResult.resultType.shouldCount()) {
-                            entitypatch.getCurrenltyHurtEntities().add(trueEntity);
+                            entitypatch.getCurrentlyActuallyHitEntities().add(trueEntity);
                         }
                     }
                 }

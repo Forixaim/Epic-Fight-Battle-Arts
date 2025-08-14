@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.moveset
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Thief;
-import net.forixaim.efm_ex.api.moveset.MoveSet;
+import net.forixaim.ex_cap.api.moveset.MoveSet;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;

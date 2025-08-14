@@ -4,8 +4,8 @@ import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.adv
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.QuickFunctions;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
-import net.forixaim.efm_ex.api.providers.ProviderConditional;
-import net.forixaim.efm_ex.api.providers.ProviderConditionalType;
+import net.forixaim.ex_cap.api.providers.ProviderConditional;
+import net.forixaim.ex_cap.api.providers.ProviderConditionalType;
 import net.minecraft.world.InteractionHand;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 

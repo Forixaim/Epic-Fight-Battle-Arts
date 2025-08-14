@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
-import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
+import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import yesman.epicfight.api.forgeevent.SkillBuildEvent;
 import yesman.epicfight.skill.Skill;
 

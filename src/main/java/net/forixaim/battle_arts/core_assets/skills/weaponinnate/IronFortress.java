@@ -37,7 +37,7 @@ public class IronFortress extends WeaponInnateSkill
 	public void onInitiate(SkillContainer container)
 	{
 		super.onInitiate(container);
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.HURT_EVENT_PRE, ID, (event) ->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, ID, (event) ->
 		{
 			if (container.getRemainDuration() > 0)
 			{
@@ -50,6 +50,6 @@ public class IronFortress extends WeaponInnateSkill
 	public void onRemoved(SkillContainer container) {
 		super.onRemoved(container);
 
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.HURT_EVENT_PRE, ID);
+		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, ID);
 	}
 }

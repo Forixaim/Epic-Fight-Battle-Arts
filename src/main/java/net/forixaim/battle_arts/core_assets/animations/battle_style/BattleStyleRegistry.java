@@ -8,6 +8,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journ
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.unique.iron_lotus.IronLotusAnimations;
 import net.forixaim.battle_arts.core_assets.animations.other.DraconicInstinctAnimations;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -24,5 +25,6 @@ public class BattleStyleRegistry
 		RoninAnimations.Listen(event);
 		ThiefAnimations.listen(event);
 		DuelistAnimations.listen(event);
+		IronLotusAnimations.Build(event);
 	}
 }

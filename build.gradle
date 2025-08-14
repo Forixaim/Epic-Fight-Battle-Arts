@@ -48,11 +48,18 @@ minecraft {
                 }
             }
         }
+
+        clientCD {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            args '-mixin.config=mixins.battle_arts.json', '--username', 'Corrupt_Dog'
+        }
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            args '-mixin.config=mixins.battle_arts.json'
+            args '-mixin.config=mixins.battle_arts.json', '--username', 'Forixaim'
         }
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
@@ -90,7 +97,11 @@ repositories {
     }
     maven { url 'https://maven.theillusivec4.top/' }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven { url 'https://maven.covers1624.net/' }
+
     mavenCentral()
+
+
 
 }
 
@@ -98,26 +109,39 @@ dependencies {
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
+    implementation fg.deobf("libs:overworldify:1.1.6")
+    implementation fg.deobf("curse.maven:cmdcam-251244:6099081")
+    implementation fg.deobf("curse.maven:creativecore-257814:6383884")
+    implementation fg.deobf("curse.maven:epic-terrain-compatible-1137535:6161240")
+    runtimeOnly fg.deobf("curse.maven:oculus-581495:6020952")
+    runtimeOnly fg.deobf("curse.maven:skinrestorer-443823:6015917")
+    runtimeOnly fg.deobf("curse.maven:distant-horizons-508933:6387680")
+
+    runtimeOnly fg.deobf("curse.maven:sodium-options-api-1103431:6100812")
+    runtimeOnly fg.deobf("curse.maven:magnesium-extras-558905:6041697")
     runtimeOnly fg.deobf("curse.maven:model-gap-fix-676136:5200949")
     runtimeOnly fg.deobf("curse.maven:epic-knights-armor-and-weapons-509041:6373737")
     runtimeOnly fg.deobf("curse.maven:cloth-config-348521:5729105")
-    implementation fg.deobf("curse.maven:epicfight-resurrection-1151542:6610295")
     runtimeOnly fg.deobf("curse.maven:caelus-308989:4581481")
     runtimeOnly fg.deobf("curse.maven:playeranimator-658587:4587214")
     implementation fg.deobf("io.redspace.ironsspellbooks:irons_spellbooks:${irons_spells_version}")
     runtimeOnly fg.deobf("curse.maven:curios-309927:5266541")
     runtimeOnly fg.deobf("curse.maven:geckolib-388172:5188427")
-    implementation fg.deobf("libs:epicfight:20.12.1")
-    implementation fg.deobf("libs:epicskills:20.12.1")
-    implementation fg.deobf("libs:BattleArtsAPI:20.11.7.12")
-    runtimeOnly fg.deobf("libs:sampleboss:test")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:6866182")
+    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
     runtimeOnly fg.deobf("curse.maven:project-red-core-228702:6332076")
     runtimeOnly fg.deobf("curse.maven:codechicken-lib-1-8-242818:5753868")
     runtimeOnly fg.deobf("curse.maven:project-red-transmission-478939:6332088")
     runtimeOnly fg.deobf("curse.maven:cb-multipart-258426:5311521")
     runtimeOnly fg.deobf("curse.maven:project-red-integration-229045:6332086")
-    implementation fg.deobf("libs:ExCap:20.11.7.18")
+    implementation fg.deobf("curse.maven:ex-cap-1074178:6881164")
+    implementation fg.deobf("libs:BattleArtsAPI:test")
+    runtimeOnly fg.deobf("libs:AnalogCore:20.1.0")
+    runtimeOnly fg.deobf("curse.maven:presence-footsteps-forge-433068:5015286")
+
     implementation fg.deobf("curse.maven:jei-238222:6075247")
+    implementation fg.deobf("curse.maven:epic-fight-mod-rapier-moveset-addon-1036425:6854856")
     runtimeOnly fg.deobf("curse.maven:worldedit-225608:4586218")
     runtimeOnly fg.deobf("curse.maven:azurelib-817423:6636995")
     runtimeOnly  fg.deobf("curse.maven:samurai-dynasty-848381:5672395")

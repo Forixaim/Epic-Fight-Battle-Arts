@@ -1,0 +1,12 @@
+{
+	"attributes":
+	{
+		"common":
+		{
+			"armor_negation": 12.0,
+			"impact":2.1,
+			"max_strikes":1
+		}
+	},
+	"type": "efm_ex:longsword"
+}

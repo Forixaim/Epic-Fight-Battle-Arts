@@ -126,16 +126,10 @@ public class FixedArrow extends Arrow
         }
         if (EpicFightCapabilities.getEntityPatch(entity1, LivingEntityPatch.class) instanceof PlayerPatch<?> playerPatch)
         {
-            double aN = playerPatch.getOriginal().getAttributeValue(EpicFightAttributes.ARMOR_NEGATION.get());
-            double impact = playerPatch.getOriginal().getAttributeValue(EpicFightAttributes.IMPACT.get());
-
             EpicFightDamageSource damageSource = playerPatch.getDamageSource(attack, InteractionHand.MAIN_HAND);
-            if (phase != null)
+            if (phase != null && damageSource.getAnimation() instanceof AttackAnimation atk)
             {
-                phase.getProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER).ifPresent(damageSource::setDamageModifier);
-                phase.getProperty(AnimationProperty.AttackPhaseProperty.ARMOR_NEGATION_MODIFIER).ifPresent(c -> damageSource.setArmorNegation(c.getTotalValue((float) aN)));
-                phase.getProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER).ifPresent(c -> damageSource.setImpact(c.getTotalValue((float) impact)));
-                phase.getProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE).ifPresent(damageSource::setStunType);
+                phase = atk.phases[0];
             }
             if (playerPatch.attack(damageSource, entity, InteractionHand.MAIN_HAND).resultType == AttackResult.ResultType.SUCCESS) {
                 entity.invulnerableTime = 0;
@@ -143,8 +137,7 @@ public class FixedArrow extends Arrow
                     return;
                 }
 
-                if (entity instanceof LivingEntity) {
-                    LivingEntity livingentity = (LivingEntity)entity;
+                if (entity instanceof LivingEntity livingentity) {
                     if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
                         livingentity.setArrowCount(livingentity.getArrowCount() + 1);
                     }
@@ -155,7 +148,7 @@ public class FixedArrow extends Arrow
                     }
 
                     this.doPostHurtEffects(livingentity);
-                    if (entity1 != null && livingentity != entity1 && livingentity instanceof Player && entity1 instanceof ServerPlayer && !this.isSilent()) {
+                    if (livingentity != entity1 && livingentity instanceof Player && entity1 instanceof ServerPlayer && !this.isSilent()) {
                         ((ServerPlayer)entity1).connection.send(new ClientboundGameEventPacket(ClientboundGameEventPacket.ARROW_HIT_PLAYER, 0.0F));
                     }
 

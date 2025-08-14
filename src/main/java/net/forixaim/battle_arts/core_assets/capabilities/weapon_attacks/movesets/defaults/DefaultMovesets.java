@@ -5,8 +5,8 @@ import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.SquireMoveSets;
-import net.forixaim.efm_ex.api.events.MoveSetDefinitionRegistryEvent;
-import net.forixaim.efm_ex.api.moveset.MoveSet;
+import net.forixaim.ex_cap.api.events.MoveSetDefinitionRegistryEvent;
+import net.forixaim.ex_cap.api.moveset.MoveSet;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import yesman.epicfight.api.animation.LivingMotions;

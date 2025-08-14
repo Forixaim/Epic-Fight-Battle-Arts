@@ -2,8 +2,8 @@ package net.forixaim.battle_arts.core_assets.capabilities;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.initialization.registry.ItemRegistry;
-import net.forixaim.efm_ex.api.events.ExCapWeaponRegistryEvent;
-import net.forixaim.efm_ex.capabilities.CoreCapability;
+import net.forixaim.ex_cap.api.events.ExCapWeaponRegistryEvent;
+import net.forixaim.ex_cap.capabilities.CoreCapability;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

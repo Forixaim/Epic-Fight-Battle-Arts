@@ -6,8 +6,8 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ron
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
-import net.forixaim.bs_api.battle_arts_skills.BattleArtsSkillSlots;
-import net.forixaim.bs_api.battle_arts_skills.active.combat_arts.CombatArt;
+import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
+import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
@@ -40,7 +40,7 @@ public class TranquilityUnleash extends CombatArt
         return this.canExecute(container);
     }
     @Override
-    public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y)
+    public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y, float pt)
     {
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
@@ -70,7 +70,7 @@ public class TranquilityUnleash extends CombatArt
         else if (weaponStyle == RoninStyles.RONIN_UCHIGATANA)
         {
             container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
-            container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), true, container.getServerExecutor().getOriginal());
+            container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), true);
             container.getServerExecutor().modifyLivingMotionByCurrentItem();
         }
         else if (weaponStyle == RoninStyles.RONIN_TACHI)

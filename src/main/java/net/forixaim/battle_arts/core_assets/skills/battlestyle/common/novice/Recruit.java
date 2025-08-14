@@ -4,7 +4,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recru
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.IronFortress;
-import net.forixaim.bs_api.battle_arts_skills.battle_style.BattleStyle;
+import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -25,9 +25,10 @@ import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.capabilities.item.Style;
-import yesman.epicfight.world.damagesource.EpicFightDamageType;
-import yesman.epicfight.world.entity.eventlistener.HurtEvent;
+
+import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
+import yesman.epicfight.world.entity.eventlistener.TakeDamageEvent;
 
 import java.util.UUID;
 
@@ -77,7 +78,7 @@ public class Recruit extends BattleStyle
 			}
 		});
 
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.HURT_EVENT_PRE, ID, event ->
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, ID, event ->
 		{
 			DamageSource damageSource = event.getDamageSource();
 			boolean isFront = false;
@@ -110,11 +111,11 @@ public class Recruit extends BattleStyle
 		return damageSource.is(DamageTypes.ARROW);
 	}
 	protected boolean isBlockableSourceCrouching(DamageSource damageSource, boolean advanced) {
-		return !damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !damageSource.is(EpicFightDamageType.PARTIAL_DAMAGE) && !damageSource.is(DamageTypeTags.BYPASSES_ARMOR) && !damageSource.is(DamageTypeTags.IS_PROJECTILE) && !damageSource.is(DamageTypeTags.IS_EXPLOSION) && !damageSource.is(DamageTypes.MAGIC) && !damageSource.is(DamageTypeTags.IS_FIRE);
+		return !damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY) && !damageSource.is(EpicFightDamageTypeTags.GUARD_PUNCTURE) && !damageSource.is(DamageTypeTags.BYPASSES_ARMOR) && !damageSource.is(DamageTypeTags.IS_PROJECTILE) && !damageSource.is(DamageTypeTags.IS_EXPLOSION) && !damageSource.is(DamageTypes.MAGIC) && !damageSource.is(DamageTypeTags.IS_FIRE);
 
 	}
 
-	public void guard(HurtEvent.Pre event,boolean advanced)
+	public void guard(TakeDamageEvent.Attack event, boolean advanced)
 	{
 		DamageSource damageSource = event.getDamageSource();
 		if (this.isBlockableSource(damageSource, advanced))
@@ -132,7 +133,7 @@ public class Recruit extends BattleStyle
 
 	}
 
-	public void dealEvent(PlayerPatch<?> playerpatch, HurtEvent.Pre event) {
+	public void dealEvent(PlayerPatch<?> playerpatch, TakeDamageEvent.Attack event) {
 		event.setCanceled(true);
 		event.setResult(AttackResult.ResultType.BLOCKED);
 		EpicFightCapabilities.getUnparameterizedEntityPatch(event.getDamageSource().getEntity(), LivingEntityPatch.class).ifPresent((attackerPatch) -> attackerPatch.setLastAttackEntity(playerpatch.getOriginal()));
@@ -151,7 +152,7 @@ public class Recruit extends BattleStyle
 		super.updateContainer(container);
 		if (!container.getExecutor().getOriginal().isShiftKeyDown() && container.getExecutor().isLogicalClient())
 		{
-			container.getDataManager().setDataSync(getSneakIsDisabledKey(), false, (LocalPlayer) container.getExecutor().getOriginal());
+			container.getDataManager().setDataSync(getSneakIsDisabledKey(), false);
 		}
 	}
 }
