@@ -51,7 +51,11 @@ public class DuelistSwordAnimations
 
         WALK = builder.nextAccessor("battle_style/advanced/duelist/sword/walk", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                        v * 1.3f));
+                        v * 1.3f)
+                .addEvents(
+                        AnimationEvent.InTimeEvent.create(0.0f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT),
+                        AnimationEvent.InTimeEvent.create(0.5f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT)
+                ));
 
         RUN = builder.nextAccessor("battle_style/advanced/duelist/sword/run", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->

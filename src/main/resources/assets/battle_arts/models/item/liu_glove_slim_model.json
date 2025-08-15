@@ -1,0 +1,30 @@
+{
+	"credit": "Hey it's Forixaim",
+	"textures": {
+		"0": "battle_arts:item/liu_glove_slim",
+		"particle": "battle_arts:item/liu_glove_slim"
+	},
+	"elements": [
+		{
+			"from": [7.5, 0, 6],
+			"to": [11, 4.5, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 0, 5]},
+			"faces": {
+				"north": {"uv": [1, 0, 4, 5], "texture": "#0"},
+				"east": {"uv": [5, 0, 8, 5], "texture": "#0"},
+				"south": {"uv": [1, 5, 4, 10], "texture": "#0"},
+				"west": {"uv": [4, 5, 7, 10], "texture": "#0"},
+				"up": {"uv": [11, 3, 8, 0], "texture": "#0"},
+				"down": {"uv": [11, 4, 8, 7], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [-1.7, 4, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0.95, 4, 0.5]
+		}
+	}
+}

@@ -9,19 +9,19 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "battle_arts:item/sabre",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/stone_sabre_gui"
       }
     },
     "fixed": {
-      "parent": "battle_arts:item/sabre",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/stone_sabre_gui"
       }
     },
     "ground": {
-      "parent": "battle_arts:item/sabre",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/stone_sabre_gui"
       }

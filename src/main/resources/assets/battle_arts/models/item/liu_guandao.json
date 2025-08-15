@@ -9,19 +9,19 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "battle_arts:item/guandao",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/liu_guandao_gui"
       }
     },
     "fixed": {
-      "parent": "battle_arts:item/guandao",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/liu_guandao_gui"
       }
     },
     "ground": {
-      "parent": "battle_arts:item/guandao",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/liu_guandao_gui"
       }

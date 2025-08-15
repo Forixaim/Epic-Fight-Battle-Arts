@@ -9,19 +9,19 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "battle_arts:item/dory",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/iron_dory_gui"
       }
     },
     "fixed": {
-      "parent": "battle_arts:item/dory",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/iron_dory_gui"
       }
     },
     "ground": {
-      "parent": "battle_arts:item/dory",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/iron_dory_gui"
       }

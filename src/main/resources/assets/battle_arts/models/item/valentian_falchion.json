@@ -9,19 +9,19 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "battle_arts:item/falchion",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/valentian_falchion_gui"
       }
     },
     "fixed": {
-      "parent": "battle_arts:item/falchion",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/valentian_falchion_gui"
       }
     },
     "ground": {
-      "parent": "battle_arts:item/falchion",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/valentian_falchion_gui"
       }

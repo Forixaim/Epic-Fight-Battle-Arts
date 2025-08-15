@@ -138,7 +138,7 @@ dependencies {
     implementation fg.deobf("curse.maven:ex-cap-1074178:6881164")
     implementation fg.deobf("libs:BattleArtsAPI:test")
     runtimeOnly fg.deobf("libs:AnalogCore:20.1.0")
-    runtimeOnly fg.deobf("curse.maven:presence-footsteps-forge-433068:5015286")
+    runtimeOnly fg.deobf("curse.maven:sound-physics-remastered-535489:5991549")
 
     implementation fg.deobf("curse.maven:jei-238222:6075247")
     implementation fg.deobf("curse.maven:epic-fight-mod-rapier-moveset-addon-1036425:6854856")

@@ -9,19 +9,19 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "battle_arts:item/halberd",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/wooden_halberd_gui"
       }
     },
     "fixed": {
-      "parent": "battle_arts:item/halberd",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/wooden_halberd_gui"
       }
     },
     "ground": {
-      "parent": "battle_arts:item/halberd",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/wooden_halberd_gui"
       }

@@ -9,19 +9,19 @@
   },
   "perspectives": {
     "gui": {
-      "parent": "battle_arts:item/longbow",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/golden_longbow_gui"
       }
     },
     "fixed": {
-      "parent": "battle_arts:item/longbow",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/golden_longbow_gui"
       }
     },
     "ground": {
-      "parent": "battle_arts:item/longbow",
+      "parent": "item/generated",
       "textures": {
         "layer0": "battle_arts:item/golden_longbow_gui"
       }
