@@ -19,7 +19,7 @@ public class MercenaryMoveSets
                     LivingMotions.CHASE)
             .addLivingMotionModifier(LivingMotions.RUN, MercenaryGreatswordAnimations.IDLE)
             .addLivingMotionModifier(LivingMotions.BLOCK, Animations.GREATSWORD_GUARD)
-            .addAutoAttacks(MercenaryGreatswordAnimations.AUTO1, MercenaryGreatswordAnimations.AUTO2, MercenaryGreatswordAnimations.AUTO3, MercenaryGreatswordAnimations.AUTO4, Animations.GREATSWORD_DASH, Animations.GREATSWORD_AIR_SLASH)
+            .addAutoAttacks(MercenaryGreatswordAnimations.AUTO1, MercenaryGreatswordAnimations.AUTO2, MercenaryGreatswordAnimations.AUTO3, MercenaryGreatswordAnimations.AUTO4, MercenaryGreatswordAnimations.DASH_ATTACK, MercenaryGreatswordAnimations.AIRSLAM)
             .addInnateSkill(itemstack -> EpicFightSkills.STEEL_WHIRLWIND);
     ;
 }
