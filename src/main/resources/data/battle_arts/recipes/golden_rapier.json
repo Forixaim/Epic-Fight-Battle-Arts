@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "I"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "battle_arts:golden_bayonet"
+    }
+  },
+  "result": {
+    "item": "battle_arts:golden_rapier",
+    "count": 1
+  }
+}

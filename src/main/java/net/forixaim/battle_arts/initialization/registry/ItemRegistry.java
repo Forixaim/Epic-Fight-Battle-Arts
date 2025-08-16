@@ -30,6 +30,14 @@ public class ItemRegistry
 	public static final RegistryObject<Item> DIAMOND_BATTLEAXE = ITEMS.register("diamond_battleaxe", () -> new BattleaxeItem(Tiers.DIAMOND, new Item.Properties()));
 	public static final RegistryObject<Item> NETHERITE_BATTLEAXE = ITEMS.register("netherite_battleaxe", () -> new BattleaxeItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
 
+	//Claymores
+	public static final RegistryObject<Item> WOODEN_CLAYMORE = ITEMS.register("wooden_claymore", () -> new ClaymoreItem(Tiers.WOOD, new Item.Properties()));
+	public static final RegistryObject<Item> STONE_CLAYMORE = ITEMS.register("stone_claymore", () -> new ClaymoreItem(Tiers.STONE, new Item.Properties()));
+	public static final RegistryObject<Item> IRON_CLAYMORE = ITEMS.register("iron_claymore", () -> new ClaymoreItem(Tiers.IRON, new Item.Properties()));
+	public static final RegistryObject<Item> GOLDEN_CLAYMORE = ITEMS.register("golden_claymore", () -> new ClaymoreItem(Tiers.GOLD, new Item.Properties()));
+	public static final RegistryObject<Item> DIAMOND_CLAYMORE = ITEMS.register("diamond_claymore", () -> new ClaymoreItem(Tiers.DIAMOND, new Item.Properties()));
+	public static final RegistryObject<Item> NETHERITE_CLAYMORE = ITEMS.register("netherite_claymore", () -> new ClaymoreItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
+
 	//Guandaos
 	public static final RegistryObject<Item> WOODEN_GUANDAO = ITEMS.register("wooden_guandao", () -> new GuandaoItem(Tiers.WOOD, new Item.Properties()));
 	public static final RegistryObject<Item> STONE_GUANDAO = ITEMS.register("stone_guandao", () -> new GuandaoItem(Tiers.STONE, new Item.Properties()));

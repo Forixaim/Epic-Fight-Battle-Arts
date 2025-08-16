@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  i",
+    " i ",
+    "I  "
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:diamond"
+    },
+    "I": {
+      "item": "epicfight:diamond_longsword"
+    }
+  },
+  "result": {
+    "item": "battle_arts:diamond_claymore",
+    "count": 1
+  }
+}

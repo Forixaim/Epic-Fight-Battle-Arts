@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  i",
+    " i ",
+    "I  "
+  ],
+  "key": {
+    "i": {
+      "tag" : "minecraft:planks"
+    },
+    "I": {
+      "item": "epicfight:wooden_longsword"
+    }
+  },
+  "result": {
+    "item": "battle_arts:wooden_claymore",
+    "count": 1
+  }
+}

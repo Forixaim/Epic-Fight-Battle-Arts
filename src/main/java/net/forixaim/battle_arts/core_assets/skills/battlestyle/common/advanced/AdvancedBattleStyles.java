@@ -9,6 +9,7 @@ public class AdvancedBattleStyles
     public static Skill RONIN;
     public static Skill THIEF;
     public static Skill DUELIST;
+    public static Skill MERCENARY;
 
     public static void register(SkillBuildEvent.ModRegistryWorker worker)
     {
@@ -18,6 +19,7 @@ public class AdvancedBattleStyles
         THIEF = worker.build("thief", Thief::new, BattleStyle.CreateBattleStyle());
         RONIN = worker.build("ronin", Ronin::new, BattleStyle.CreateBattleStyle());
         DUELIST = worker.build("duelist", Duelist::new, BattleStyle.CreateBattleStyle());
+        MERCENARY = worker.build("mercenary", Mercenary::new, BattleStyle.CreateBattleStyle());
 
     }
 }

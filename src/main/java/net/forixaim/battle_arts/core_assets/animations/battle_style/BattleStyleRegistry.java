@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary.MercenaryAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
@@ -26,5 +27,6 @@ public class BattleStyleRegistry
 		ThiefAnimations.listen(event);
 		DuelistAnimations.listen(event);
 		IronLotusAnimations.Build(event);
+		MercenaryAnimations.listen(event);
 	}
 }

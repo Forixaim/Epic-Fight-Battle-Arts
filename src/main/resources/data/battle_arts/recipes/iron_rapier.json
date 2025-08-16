@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "I"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "I": {
+      "item": "battle_arts:iron_bayonet"
+    }
+  },
+  "result": {
+    "item": "battle_arts:iron_rapier",
+    "count": 1
+  }
+}

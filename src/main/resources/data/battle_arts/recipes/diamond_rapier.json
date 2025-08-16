@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "I"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:diamond"
+    },
+    "I": {
+      "item": "battle_arts:diamond_bayonet"
+    }
+  },
+  "result": {
+    "item": "battle_arts:diamond_rapier",
+    "count": 1
+  }
+}

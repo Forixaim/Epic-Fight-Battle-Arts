@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "I"
+  ],
+  "key": {
+    "i": { "tag" : "minecraft:stone_tool_materials" },
+    "I": {
+      "item": "battle_arts:stone_bayonet"
+    }
+  },
+  "result": {
+    "item": "battle_arts:stone_rapier",
+    "count": 1
+  }
+}

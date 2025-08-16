@@ -1,0 +1,27 @@
+{
+  "layer":"COMPOSITE_LAYER",
+  "priority":"MIDDLE",
+  "masks":
+  [
+    {
+      "livingmotion":"WALK",
+      "type":"right_arm"
+    },
+    {
+      "livingmotion":"KNEEL",
+      "type":"right_arm"
+    },
+    {
+      "livingmotion":"SNEAK",
+      "type":"right_arm"
+    },
+    {
+      "livingmotion":"RUN",
+      "type":"right_arm"
+    },
+    {
+      "livingmotion":"IDLE",
+      "type":"none"
+    }
+  ]
+}
