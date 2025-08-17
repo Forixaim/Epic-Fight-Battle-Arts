@@ -1,16 +1,18 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief;
 
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireAnimations;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
-import yesman.epicfight.world.capabilities.item.CapabilityItem;
 
 public class ThiefDaggerAnimations
 {
     public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> GUARD;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_HIT;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_1;
+    public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_2;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
@@ -24,6 +26,13 @@ public class ThiefDaggerAnimations
     {
         IDLE = builder.nextAccessor("battle_style/advanced/thief/dagger/idle", access ->
                 new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+
+        GUARD = builder.nextAccessor("battle_style/advanced/thief/dagger/guard", access ->
+                new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+
+        GUARD_HIT = builder.nextAccessor("battle_style/advanced/thief/dagger/guard_hit", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
+        GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/thief/dagger/guard_parry1", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
+        GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/thief/dagger/guard_parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/thief/dagger/auto1",
                 accessor -> new BasicAttackAnimation(0.2f, 0f, 0.2f, 0.35f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)

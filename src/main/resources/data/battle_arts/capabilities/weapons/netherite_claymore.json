@@ -4,7 +4,7 @@
     "common":
     {
       "armor_negation": 15.0,
-      "impact":8.5,
+      "impact":5.5,
       "max_strikes":2
     }
   },

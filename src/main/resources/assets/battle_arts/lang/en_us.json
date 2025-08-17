@@ -104,6 +104,14 @@
 	"skill.battle_arts.power_draw": "Power Draw",
 	"skill.battle_arts.power_draw.tooltip": "Pull back the bow to great lengths before releasing a powerful arrow that can pierce multiple foes.",
 
+	"skill.battle_arts.mercenary": "Mercenary",
+	"skill.battle_arts.mercenary.tooltip": "Sellswords that utilize extremely heavy blades for fierce power and speed.",
+
+	"skill.battle_arts.fierce_upper": "Fierce Upper",
+	"skill.battle_arts.fierce_upper.tooltip": "Perform one extremely heavy uppercut attack that sends opponents flying at a very high angle.",
+
+	"skill_tree.battle_arts.battle_arts": "Battle Arts",
+
 	"skill.battle_arts.voice_of_distortion": "The Voice of Distortion",
 	"skill.battle_arts.voice_of_distortion.tooltip": "The voice calls to you when near death, revives you and increases your offensive stats while sacrificing defensive stats and draining your health until you die. Only available once per life.",
 
@@ -173,6 +181,8 @@
 	"itemGroup.battle_arts.items": "Battle Arts: Items",
 
 	"epicfight.style.squire_sword": "Squire's Weapon Art",
+	"epicfight.style.mercenary_weapon_art": "Mercenary's Weapon Art",
+
 	"epicfight.style.recruit_spear": "Recruit's Shielded Weapon Art",
 	"epicfight.style.jman_baxe": "Journeyman's Weapon Art",
 	"epicfight.style.ronin_uchigatana": "Ronin's Tranquil Stance",

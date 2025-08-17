@@ -22,7 +22,7 @@ public class ClaymoreItem extends WeaponItem
 {
 	public ClaymoreItem(Tier tier, Properties builder)
 	{
-		super(tier, 7, -2.7f, builder.durability((int) (tier.getUses() * 1.1)).defaultDurability((int) (tier.getUses() * 1.1)));
+		super(tier, 6, -2.85f, builder.durability((int) (tier.getUses() * 1.1)).defaultDurability((int) (tier.getUses() * 1.1)));
 	}
 
 	@Override
