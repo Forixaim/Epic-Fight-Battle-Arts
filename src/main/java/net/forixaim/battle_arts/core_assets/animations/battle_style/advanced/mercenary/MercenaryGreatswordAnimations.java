@@ -72,7 +72,7 @@ public class MercenaryGreatswordAnimations
 
         FIERCE_UPPER = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/fierce_upper", access ->
                 new KnockbackAttackAnimation(0.2f, 0.0f, 0.5f, 0.7f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
-                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 2.0)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.0)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 75d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
