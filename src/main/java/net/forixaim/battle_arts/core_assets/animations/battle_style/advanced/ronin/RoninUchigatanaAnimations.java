@@ -102,17 +102,20 @@ public class RoninUchigatanaAnimations
 
 
         RONIN_UCHIGATANA_AUTO1 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "auto1"),
-                accessor -> new BasicAttackAnimation(0.2f, 0.0f, 0.25f, 0.4f, 0.75f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
+                accessor -> new BasicAttackAnimation(0.1f, 0.0f, 0.1f, 0.2f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1)
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> v * 0.44f));
         RONIN_UCHIGATANA_AUTO2 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "auto2"),
-                accessor -> new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.7f, 1.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
+                accessor -> new BasicAttackAnimation(0.1f, 0.0f, 0.3f, 0.4f, 0.6f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                v * 0.44f));
         RONIN_UCHIGATANA_AUTO3 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "auto3"),
                 accessor -> new BasicAttackAnimation(0.2f, accessor, Armatures.BIPED,
-                        new AttackAnimation.Phase(0.0f, 0.0f, 0.5f, 0.7f, 1.6f, 1.6f,  Armatures.BIPED.get().toolR, null),
-                        new AttackAnimation.Phase(1.6f, 0.0f, 1.7f, 1.8f, 3f, 3f,  Armatures.BIPED.get().toolR, null).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.setter(1)).addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.WHOOSH_ROD.get())
+                        new AttackAnimation.Phase(0.0f, 0.0f, 0.2f, 0.35f, 0.8f, 0.8f,  Armatures.BIPED.get().toolR, null).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f)),
+                        new AttackAnimation.Phase(0.8f, 0.0f, 0.9f, 1.0f, 3f, 3f,  Armatures.BIPED.get().toolR, null).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.6f)).addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.WHOOSH_ROD.get())
                 )
-                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 2).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.2f));
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 2).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                v * 0.34f));
         RONIN_UCHIGATANA_DASH = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "dash_attack"),
             accessor -> new DashAttackAnimation(0.2f, 0.0f, 0.7f, 0.8f, 2.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                     .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.WHOOSH_SHARP.get()).addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 2).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.2f).addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)

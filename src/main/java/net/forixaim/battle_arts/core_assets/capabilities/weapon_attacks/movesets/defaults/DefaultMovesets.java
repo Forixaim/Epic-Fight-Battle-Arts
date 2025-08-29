@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.defaults;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.LancerMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.RoninMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;
@@ -34,6 +35,7 @@ public class DefaultMovesets
         SquireMoveSets.build();
         JManMoveSets.build();
         RoninMoveSets.Build();
+        LancerMoveSets.registerCompatibility();
 
         BattleAxeDefault = MoveSet.builder()
                 .addLivingMotionsRecursive(Animations.BIPED_HOLD_LONGSWORD,

@@ -1,28 +1,19 @@
 package net.forixaim.battle_arts.core_assets.capabilities;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.MercenaryStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.ThiefStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.*;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.JManStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.SquireWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.unique.FencerStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.unique.IronLotusStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.DuelistMoveSets;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.MercenaryMoveSets;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.RoninMoveSets;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.ThiefMoveSets;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.*;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.SquireMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.unique.FencerMoveset;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.unique.IronLotusMovesets;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.DuelistProviders;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.MercenaryProviders;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.RoninProviders;
-import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.ThiefProviders;
+import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced.*;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.JManProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.RecruitProviders;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice.SquireProviders;
@@ -48,6 +39,14 @@ public class WeaponTypeInjection
 			event.addProvider(ExCapWeapons.LONGSWORD, UniqueProviders.FENCER_CHECK);
 			event.addMoveset(ExCapWeapons.LONGSWORD, FencerStyles.FENCER_WEAPON_ART, FencerMoveset.FENCER_MOVESET);
 		}
+		event.addProvider(BattleArtsWeapons.HEAVY_SPEAR, MainConditionals.default2HWieldStyle, MainConditionals.SwordShieldLS, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD, LancerProviders.LANCER_DEFAULT);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, CapabilityItem.Styles.TWO_HAND, CoreMovesets.spear2HMS);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, CapabilityItem.Styles.ONE_HAND, CoreMovesets.spear1HMS);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, CapabilityItem.Styles.MOUNT, CoreMovesets.mountedSpearMS);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerHeavySpear);
+
 		event.addProvider(ExCapWeapons.LONGSWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD, DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
@@ -87,8 +86,9 @@ public class WeaponTypeInjection
 		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA, RoninMoveSets.RoninUchigatana);
 		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE, RoninMoveSets.RoninUchigatanaSheathed);
 		event.addMoveset(ExCapWeapons.TACHI, RoninStyles.RONIN_TACHI, RoninMoveSets.RoninTachi);
-		event.addProvider(ExCapWeapons.SPEAR, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD);
+		event.addProvider(ExCapWeapons.SPEAR, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD, LancerProviders.LANCER_DEFAULT);
 		event.addMoveset(ExCapWeapons.SPEAR, RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
+		event.addMoveset(ExCapWeapons.SPEAR, LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerSpear);
 		event.addMoveset(ExCapWeapons.SPEAR, RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
 		event.addProvider(ExCapWeapons.BOW, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addMoveset(ExCapWeapons.BOW, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireBowMS);

@@ -8,7 +8,7 @@
     }
   },
   "collider": {
-    "number": 3,
+    "number": 9,
     "size": [
       0.6,
       0.6,
@@ -20,5 +20,5 @@
       -2.5
     ]
   },
-  "type":"efm_ex:spear"
+  "type":"battle_arts:heavy_spear"
 }

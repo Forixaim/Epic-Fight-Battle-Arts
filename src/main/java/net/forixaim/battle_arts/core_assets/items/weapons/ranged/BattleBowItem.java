@@ -156,7 +156,7 @@ public class BattleBowItem extends RangedTieredItem implements Vanishable
         return 72000;
     }
 
-    public UseAnim getUseAnimation(ItemStack pStack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack pStack) {
         return UseAnim.BOW;
     }
 

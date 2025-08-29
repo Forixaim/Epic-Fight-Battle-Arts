@@ -1,13 +1,22 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary;
 
+import com.lowdragmc.photon.client.fx.BlockEffect;
+import com.lowdragmc.photon.client.fx.EntityEffect;
+import com.lowdragmc.photon.client.fx.FX;
+import com.lowdragmc.photon.client.fx.FXHelper;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fml.ModList;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.api.utils.TimePairList;
+import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.gameasset.Animations;
@@ -30,6 +39,8 @@ public class MercenaryGreatswordAnimations
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AIRSLAM;
     public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> FIERCE_UPPER;
+    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> POWER_GEYSER;
+
 
 
     public static void build(AnimationManager.AnimationBuilder builder)
@@ -77,6 +88,14 @@ public class MercenaryGreatswordAnimations
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
+        POWER_GEYSER = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/power_geyser", access ->
+                new KnockbackAttackAnimation(0.2f, 0.0f, 0.8f, 0.9f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(2.1f))
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 3.0)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 75d)
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                v * 0.3f)
+                        .addEvents(AnimationEvent.InTimeEvent.create(0.9f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.SERVER).params(new Vec3f(0.0F, -0.3F, -5.0F), Armatures.BIPED.get().toolR, 1.1, 1.55F)));
 
         AIRSLAM = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/airslam", access ->
                 new KnockbackBasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)

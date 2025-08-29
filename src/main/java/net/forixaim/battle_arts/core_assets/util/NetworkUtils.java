@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import yesman.epicfight.network.EpicFightNetworkManager;
@@ -16,7 +17,12 @@ public class NetworkUtils
 {
     public static void syncPlayer(Player player, EpicFightNetworkManager.PayloadBundleBuilder localBundle, EpicFightNetworkManager.PayloadBundleBuilder serverBundle)
     {
-        if (Minecraft.getInstance().getConnection() != null && !player.level().isClientSide())
+
+        if (player.level().isClientSide() && Minecraft.getInstance().getConnection() == null)
+        {
+            return;
+        }
+        if (player instanceof ServerPlayer sp && sp.connection != null)
         {
             localBundle.send((first, others) -> EpicFightNetworkManager.sendToPlayer(first, (ServerPlayer) player, others));
             serverBundle.send((first, others) -> EpicFightNetworkManager.sendToAllPlayerTrackingThisEntity(first, player, others));
