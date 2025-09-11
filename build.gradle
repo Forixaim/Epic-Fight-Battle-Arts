@@ -129,7 +129,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:6833927")
     runtimeOnly fg.deobf("curse.maven:curios-309927:5266541")
     runtimeOnly fg.deobf("curse.maven:geckolib-388172:5188427")
-    implementation fg.deobf("curse.maven:epic-fight-mod-405076:6866182")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:6921772")
     implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
     runtimeOnly fg.deobf("curse.maven:project-red-core-228702:6332076")
     runtimeOnly fg.deobf("curse.maven:codechicken-lib-1-8-242818:5753868")

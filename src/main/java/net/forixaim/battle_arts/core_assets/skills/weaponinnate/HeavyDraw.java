@@ -10,7 +10,9 @@ import yesman.epicfight.client.input.EpicFightKeyMappings;
 import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
 import yesman.epicfight.network.server.SPSkillExecutionFeedback;
 import yesman.epicfight.skill.SkillBuilder;
+import yesman.epicfight.skill.SkillCategories;
 import yesman.epicfight.skill.SkillContainer;
+import yesman.epicfight.skill.guard.GuardSkill;
 import yesman.epicfight.skill.modules.ChargeableSkill;
 import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
@@ -69,26 +71,19 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     }
 
     @Override
-    public void chargingTick(PlayerPatch<?> caster)
+    public void startHolding(SkillContainer container)
     {
-        ChargeableSkill.super.chargingTick(caster);
-
-    }
-
-    @Override
-    public void startCharging(PlayerPatch<?> playerPatch)
-    {
-        if (!playerPatch.isLogicalClient())
+        if (!container.getExecutor().isLogicalClient())
         {
-            playerPatch.getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), true);
+            container.getExecutor().getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), true);
         }
-        playerPatch.playAnimationSynchronized(SquireBowAnimations.POWER_DRAW_START, 0);
-
+        container.getExecutor().playAnimationSynchronized(SquireBowAnimations.POWER_DRAW_START, 0);
     }
 
     @Override
-    public void resetCharging(PlayerPatch<?> playerPatch)
+    public void resetHolding(SkillContainer container)
     {
+        PlayerPatch playerPatch = container.getExecutor();
         if (!playerPatch.isLogicalClient())
         {
             playerPatch.getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
@@ -122,20 +117,19 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     }
 
     @Override
-    public void castSkill(ServerPlayerPatch serverPlayerPatch, SkillContainer skillContainer, int i, SPSkillExecutionFeedback spSkillExecutionFeedback, boolean b)
+    public void onStopHolding(SkillContainer container, SPSkillExecutionFeedback feedbackPacket)
     {
-        skillContainer.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
-        skillContainer.getDataManager().setDataSync(BattleArtsDataKeys.CHARGE_POWER.get(), ((float)serverPlayerPatch.getChargingAmount() / 20f));
-        serverPlayerPatch.getAnimator().stopPlaying(SquireBowAnimations.POWER_DRAW_HOLD);
-        serverPlayerPatch.getAnimator().stopPlaying(SquireBowAnimations.POWER_DRAW_START);
-        serverPlayerPatch.playAnimationSynchronized(SquireBowAnimations.POWER_DRAW_FIRE, 0);
-        this.cancelOnServer(skillContainer, null);
-    }
+        if (container.getExecutor().getHoldingSkill() instanceof GuardSkill)
+        {
 
-    @Override
-    public void gatherChargingArguments(LocalPlayerPatch localPlayerPatch, ControlEngine controllEngine, FriendlyByteBuf friendlyByteBuf)
-    {
+        }
 
+        container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
+        container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGE_POWER.get(), ((float)container.getServerExecutor().getChargingAmount() / 20f));
+        container.getServerExecutor().getAnimator().stopPlaying(SquireBowAnimations.POWER_DRAW_HOLD);
+        container.getServerExecutor().getAnimator().stopPlaying(SquireBowAnimations.POWER_DRAW_START);
+        container.getServerExecutor().playAnimationSynchronized(SquireBowAnimations.POWER_DRAW_FIRE, 0);
+        this.cancelOnServer(container, null);
     }
 
     @Override

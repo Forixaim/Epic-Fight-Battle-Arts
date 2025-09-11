@@ -30,7 +30,7 @@ public class Squire extends BattleStyle implements MountedMoveset
 	public static void RegisterInnates(SkillBuildEvent.ModRegistryWorker worker)
 	{
 		HEAVY_BLOW = worker.build("squire_heavy_blow", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(SquireSwordAnimations.SQUIRE_SWORD_HEAVY_BLOW)).newProperty();
-		POWER_DRAW = worker.build("power_draw", HeavyDraw::new, WeaponInnateSkill.createWeaponInnateBuilder().setActivateType(ActivateType.CHARGING)).newProperty();
+		POWER_DRAW = worker.build("power_draw", HeavyDraw::new, WeaponInnateSkill.createWeaponInnateBuilder().setActivateType(ActivateType.HELD)).newProperty();
 		DISEMBOWELMENT = worker.build("disembowelment", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(SquireDaggerAnimations.DISEMBOWELMENT)).newProperty();
 	}
 }

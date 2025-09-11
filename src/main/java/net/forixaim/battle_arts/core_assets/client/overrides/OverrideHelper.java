@@ -15,6 +15,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import yesman.epicfight.skill.SkillSlots;
+import yesman.epicfight.skill.modules.ChargeableSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
@@ -50,7 +51,7 @@ public class OverrideHelper
                         {
                             return playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()) ? 1.0f : 0.0f;
                         }
-                        return playerPatch.isChargingAny() ? 1.0f : 0.0f;
+                        return playerPatch.isHoldingAny() ? 1.0f : 0.0f;
                     }
                     return living != null && living.isUsingItem() && living.getUseItem() == stack ? 1.0f : 0.0f;
                 });
@@ -58,14 +59,17 @@ public class OverrideHelper
         ItemProperties.register(longbow, PULL, (stack, world, shooter, value) ->
                 {
                     LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(shooter, LivingEntityPatch.class);
-                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == ExCapCategories.BOW && playerPatch.isChargingAny() && !shooter.isUsingItem())
+                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == ExCapCategories.BOW && playerPatch.isHoldingAny() && !shooter.isUsingItem())
                     {
                         if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get()) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()))
                         {
                             return playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULL_LEVEL.get());
                         }
-                        int maxCharge = playerPatch.getChargingSkill().getMaxChargingTicks();
-                        return  playerPatch.isChargingAny() ? ((float)playerPatch.getSkillChargingTicks() /  maxCharge): 0;
+                        if (playerPatch.getHoldingSkill() instanceof ChargeableSkill cs)
+                        {
+                            int maxCharge = cs.getMaxChargingTicks();
+                            return  playerPatch.isHoldingAny() ? ((float)playerPatch.getSkillChargingTicks() /  maxCharge): 0;
+                        }
                     }
                     return shooter != null && shooter.getUseItem() == stack ? longbow.getNockProgress(stack, shooter) : 0.0f;
                 });

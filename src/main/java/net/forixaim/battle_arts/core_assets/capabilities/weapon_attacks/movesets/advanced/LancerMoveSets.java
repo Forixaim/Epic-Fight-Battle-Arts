@@ -18,7 +18,7 @@ public class LancerMoveSets
             .addLivingMotionModifier(LivingMotions.RUN, LancerSpearAnimations.RUN)
             .addAutoAttacks(LancerSpearAnimations.AUTO1, LancerSpearAnimations.AUTO2,
                     LancerSpearAnimations.AUTO3,
-                    LancerSpearAnimations.DASH, Animations.SPEAR_TWOHAND_AIR_SLASH);
+                    LancerSpearAnimations.DASH, LancerSpearAnimations.AIRSLASH);
 
     public static final MoveSet.MoveSetBuilder lancerHeavySpear = MoveSet.builder()
             .addLivingMotionModifier(LivingMotions.IDLE, LancerHeavySpearAnimations.IDLE)
@@ -26,7 +26,7 @@ public class LancerMoveSets
             .addLivingMotionModifier(LivingMotions.RUN, LancerHeavySpearAnimations.RUN)
             .addAutoAttacks(LancerHeavySpearAnimations.AUTO1, LancerHeavySpearAnimations.AUTO2,
                     LancerHeavySpearAnimations.AUTO3,
-                    LancerHeavySpearAnimations.DASH, Animations.SPEAR_TWOHAND_AIR_SLASH);
+                    LancerHeavySpearAnimations.DASH, LancerSpearAnimations.AIRSLASH);
 
     public static void registerCompatibility()
     {

@@ -76,7 +76,7 @@ public class LancerHeavySpearAnimations
         DASH = builder.nextAccessor("battle_style/advanced/lancer/heavy_spear/dash", access ->
                 new KnockbackBasicAttackAnimation(0.2f, 0.0f, 0.2f, 0.3f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 15d)
-                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.2d)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.5d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.65f));
     }

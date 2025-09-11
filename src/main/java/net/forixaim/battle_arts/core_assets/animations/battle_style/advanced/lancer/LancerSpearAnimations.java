@@ -27,6 +27,8 @@ public class LancerSpearAnimations
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
     public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> DASH;
+    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AIRSLASH;
+
 
 
 
@@ -74,8 +76,15 @@ public class LancerSpearAnimations
         DASH = builder.nextAccessor("battle_style/advanced/lancer/spear/dash", access ->
                 new KnockbackBasicAttackAnimation(0.2f, 0.0f, 0.2f, 0.3f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 15d)
-                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1d)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.3d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
+
+        AIRSLASH = builder.nextAccessor("battle_style/advanced/lancer/spear/airslash", access ->
+                new KnockbackBasicAttackAnimation(0.1f, 0.0f, 0.1f, 0.4f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 70d)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.2d)
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                v * 1.2f));
     }
 }

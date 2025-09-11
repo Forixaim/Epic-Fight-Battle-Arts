@@ -64,7 +64,7 @@ public class EpicFightBattleArts
 		BattleArtsDataKeys.DATA_KEYS.register(modEventBus);
 		MinecraftForge.EVENT_BUS.register(this);
 		context.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
-		context.registerExtensionPoint(EpicFightExtensions.class, () -> new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS.get()));
+		context.registerExtensionPoint(EpicFightExtensions.class, () -> new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS));
 	}
 
 	public void onPackFind(AddPackFindersEvent event)
