@@ -36,62 +36,62 @@ public class WeaponTypeInjection
 	{
 		if (ModList.get().isLoaded("refm"))
 		{
-			event.addProvider(ExCapWeapons.LONGSWORD, UniqueProviders.FENCER_CHECK);
-			event.addMoveset(ExCapWeapons.LONGSWORD, FencerStyles.FENCER_WEAPON_ART, FencerMoveset.FENCER_MOVESET);
+			event.addProvider(ExCapWeapons.LONGSWORD.get(), UniqueProviders.FENCER_CHECK);
+			event.addMoveset(ExCapWeapons.LONGSWORD.get(), FencerStyles.FENCER_WEAPON_ART, FencerMoveset.FENCER_MOVESET);
 		}
-		event.addProvider(BattleArtsWeapons.HEAVY_SPEAR, MainConditionals.default2HWieldStyle, MainConditionals.SwordShieldLS, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD, LancerProviders.LANCER_DEFAULT);
-		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, CapabilityItem.Styles.TWO_HAND, CoreMovesets.spear2HMS);
-		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, CapabilityItem.Styles.ONE_HAND, CoreMovesets.spear1HMS);
-		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, CapabilityItem.Styles.MOUNT, CoreMovesets.mountedSpearMS);
-		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
-		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
-		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR, LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerHeavySpear);
+		event.addProvider(BattleArtsWeapons.HEAVY_SPEAR.get(), MainConditionals.default2HWieldStyle, MainConditionals.SwordShieldLS, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD, LancerProviders.LANCER_DEFAULT);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), CapabilityItem.Styles.TWO_HAND, CoreMovesets.spear2HMS);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), CapabilityItem.Styles.ONE_HAND, CoreMovesets.spear1HMS);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), CapabilityItem.Styles.MOUNT, CoreMovesets.mountedSpearMS);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
+		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerHeavySpear);
 
-		event.addProvider(ExCapWeapons.LONGSWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.SWORD, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.SWORD, DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
-		event.addProvider(ExCapWeapons.LONGSWORD, DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
-		event.addProvider(ExCapWeapons.TACHI, DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
-		event.addProvider(ExCapWeapons.TACHI, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.AXE, JManProviders.JMAN_BAXE_STYLE_CHECK);
-		event.addProvider(BattleArtsWeapons.BATTLE_AXE, MainConditionals.default2HWieldStyle);
-		event.addProvider(BattleArtsWeapons.BATTLE_AXE, JManProviders.JMAN_BAXE_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK);
-		event.addProvider(ExCapWeapons.UCHIGATANA, RoninProviders.RONIN_STYLE_CHECK_SHEATH);
-		event.addProvider(ExCapWeapons.DAGGER, SquireProviders.SQUIRE_SWORD_STYLE_CHECK, ThiefProviders.THIEF_STYLE_CHECK);
-		event.addMoveset(ExCapWeapons.DAGGER, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireDaggerMS);
-		event.addMoveset(ExCapWeapons.DAGGER, ThiefStyles.THIEF_WEAPON, ThiefMoveSets.ThiefDagger);
-		event.addMoveset(ExCapWeapons.AXE, JManStyles.JMAN_BAXE, JManMoveSets.JourneymanAxeMS);
-		event.addProvider(ExCapWeapons.GLOVE, JManProviders.JMAN_BAXE_STYLE_CHECK, UniqueProviders.IRON_LOTUS_CHECK);
-		event.addMoveset(ExCapWeapons.GLOVE, JManStyles.JMAN_BAXE, JManMoveSets.JManUnarmedMS);
-		event.addMoveset(ExCapWeapons.GLOVE, IronLotusStyles.IRON_LOTUS_PRIMARY, IronLotusMovesets.IRON_LOTUS_FIST);
-		event.addProvider(ExCapWeapons.GREATSWORD, MercenaryProviders.MERCENARY_DEFAULT);
-		event.addMoveset(ExCapWeapons.GREATSWORD, MercenaryStyles.MERCENARY_WEAPON_ART, MercenaryMoveSets.mercenaryGreatsword);
+		event.addProvider(ExCapWeapons.LONGSWORD.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.SWORD.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.SWORD.get(), DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
+		event.addProvider(ExCapWeapons.LONGSWORD.get(), DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
+		event.addProvider(ExCapWeapons.TACHI.get(), DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
+		event.addProvider(ExCapWeapons.TACHI.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.AXE.get(), JManProviders.JMAN_BAXE_STYLE_CHECK);
+		event.addProvider(BattleArtsWeapons.BATTLE_AXE.get(), MainConditionals.default2HWieldStyle);
+		event.addProvider(BattleArtsWeapons.BATTLE_AXE.get(), JManProviders.JMAN_BAXE_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.UCHIGATANA.get(), RoninProviders.RONIN_STYLE_CHECK);
+		event.addProvider(ExCapWeapons.UCHIGATANA.get(), RoninProviders.RONIN_STYLE_CHECK_SHEATH);
+		event.addProvider(ExCapWeapons.DAGGER.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK, ThiefProviders.THIEF_STYLE_CHECK);
+		event.addMoveset(ExCapWeapons.DAGGER.get(), SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireDaggerMS);
+		event.addMoveset(ExCapWeapons.DAGGER.get(), ThiefStyles.THIEF_WEAPON, ThiefMoveSets.ThiefDagger);
+		event.addMoveset(ExCapWeapons.AXE.get(), JManStyles.JMAN_BAXE, JManMoveSets.JourneymanAxeMS);
+		event.addProvider(ExCapWeapons.GLOVE.get(), JManProviders.JMAN_BAXE_STYLE_CHECK, UniqueProviders.IRON_LOTUS_CHECK);
+		event.addMoveset(ExCapWeapons.GLOVE.get(), JManStyles.JMAN_BAXE, JManMoveSets.JManUnarmedMS);
+		event.addMoveset(ExCapWeapons.GLOVE.get(), IronLotusStyles.IRON_LOTUS_PRIMARY, IronLotusMovesets.IRON_LOTUS_FIST);
+		event.addProvider(ExCapWeapons.GREATSWORD.get(), MercenaryProviders.MERCENARY_DEFAULT);
+		event.addMoveset(ExCapWeapons.GREATSWORD.get(), MercenaryStyles.MERCENARY_WEAPON_ART, MercenaryMoveSets.mercenaryGreatsword);
 
-		event.addMoveset(ExCapWeapons.SWORD, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
-		event.addMoveset(ExCapWeapons.LONGSWORD, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
-		event.addMoveset(ExCapWeapons.TACHI, DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
+		event.addMoveset(ExCapWeapons.SWORD.get(), DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
+		event.addMoveset(ExCapWeapons.LONGSWORD.get(), DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
+		event.addMoveset(ExCapWeapons.TACHI.get(), DuelistStyles.DUELIST_SWORD, DuelistMoveSets.DuelistSingleSword);
 
-		event.addMoveset(ExCapWeapons.SWORD, DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
-		event.addMoveset(ExCapWeapons.LONGSWORD, DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
-		event.addMoveset(ExCapWeapons.TACHI, DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
+		event.addMoveset(ExCapWeapons.SWORD.get(), DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
+		event.addMoveset(ExCapWeapons.LONGSWORD.get(), DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
+		event.addMoveset(ExCapWeapons.TACHI.get(), DuelistStyles.DUELIST_DUAL_SWORD, DuelistMoveSets.DuelistDualblade);
 
-		event.addProvider(ExCapWeapons.TACHI, RoninProviders.RONIN_STYLE_CHECK_TACHI);
+		event.addProvider(ExCapWeapons.TACHI.get(), RoninProviders.RONIN_STYLE_CHECK_TACHI);
 
-		event.addMoveset(ExCapWeapons.LONGSWORD, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
-		event.addMoveset(ExCapWeapons.SWORD, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
-		event.addMoveset(ExCapWeapons.TACHI, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
-		event.addMoveset(BattleArtsWeapons.BATTLE_AXE, CapabilityItem.Styles.TWO_HAND, CoreMovesets.greatsword2HMS);
-		event.addMoveset(BattleArtsWeapons.BATTLE_AXE, JManStyles.JMAN_BAXE, JManMoveSets.JManBaxeMS);
-		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA, RoninMoveSets.RoninUchigatana);
-		event.addMoveset(ExCapWeapons.UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE, RoninMoveSets.RoninUchigatanaSheathed);
-		event.addMoveset(ExCapWeapons.TACHI, RoninStyles.RONIN_TACHI, RoninMoveSets.RoninTachi);
-		event.addProvider(ExCapWeapons.SPEAR, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD, LancerProviders.LANCER_DEFAULT);
-		event.addMoveset(ExCapWeapons.SPEAR, RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
-		event.addMoveset(ExCapWeapons.SPEAR, LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerSpear);
-		event.addMoveset(ExCapWeapons.SPEAR, RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
-		event.addProvider(ExCapWeapons.BOW, SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
-		event.addMoveset(ExCapWeapons.BOW, SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireBowMS);
+		event.addMoveset(ExCapWeapons.LONGSWORD.get(), SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
+		event.addMoveset(ExCapWeapons.SWORD.get(), SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
+		event.addMoveset(ExCapWeapons.TACHI.get(), SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireSwordMS);
+		event.addMoveset(BattleArtsWeapons.BATTLE_AXE.get(), CapabilityItem.Styles.TWO_HAND, CoreMovesets.greatsword2HMS);
+		event.addMoveset(BattleArtsWeapons.BATTLE_AXE.get(), JManStyles.JMAN_BAXE, JManMoveSets.JManBaxeMS);
+		event.addMoveset(ExCapWeapons.UCHIGATANA.get(), RoninStyles.RONIN_UCHIGATANA, RoninMoveSets.RoninUchigatana);
+		event.addMoveset(ExCapWeapons.UCHIGATANA.get(), RoninStyles.RONIN_UCHIGATANA_SHEATHE, RoninMoveSets.RoninUchigatanaSheathed);
+		event.addMoveset(ExCapWeapons.TACHI.get(), RoninStyles.RONIN_TACHI, RoninMoveSets.RoninTachi);
+		event.addProvider(ExCapWeapons.SPEAR.get(), RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD, LancerProviders.LANCER_DEFAULT);
+		event.addMoveset(ExCapWeapons.SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
+		event.addMoveset(ExCapWeapons.SPEAR.get(), LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerSpear);
+		event.addMoveset(ExCapWeapons.SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
+		event.addProvider(ExCapWeapons.BOW.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
+		event.addMoveset(ExCapWeapons.BOW.get(), SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireBowMS);
 	}
 
 }

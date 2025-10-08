@@ -2,6 +2,7 @@ package net.forixaim.battle_arts;
 
 
 import com.mojang.logging.LogUtils;
+import net.forixaim.battle_arts.core_assets.capabilities.BattleArtsWeapons;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
 import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
@@ -58,6 +59,7 @@ public class EpicFightBattleArts
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
 		PARTICLES.register(modEventBus);
+        BattleArtsWeapons.EX_CAP_WEAPONS.register(modEventBus);
 		BattleArtsProjectiles.ENTITIES.register(modEventBus);
 		SoundRegistry.SOUNDS.register(modEventBus);
 		CREATIVE_MODE_TABS.register(modEventBus);

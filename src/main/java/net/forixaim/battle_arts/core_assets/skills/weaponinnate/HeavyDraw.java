@@ -21,6 +21,7 @@ import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.UUID;
 
+@SuppressWarnings("unchecked")
 public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
 {
     private static final UUID EVENT_UUID = UUID.fromString("8e362474-0233-4827-930b-63c0920c1878");
@@ -83,7 +84,7 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     @Override
     public void resetHolding(SkillContainer container)
     {
-        PlayerPatch playerPatch = container.getExecutor();
+        PlayerPatch<?> playerPatch = container.getExecutor();
         if (!playerPatch.isLogicalClient())
         {
             playerPatch.getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
@@ -119,11 +120,6 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     @Override
     public void onStopHolding(SkillContainer container, SPSkillExecutionFeedback feedbackPacket)
     {
-        if (container.getExecutor().getHoldingSkill() instanceof GuardSkill)
-        {
-
-        }
-
         container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
         container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGE_POWER.get(), ((float)container.getServerExecutor().getChargingAmount() / 20f));
         container.getServerExecutor().getAnimator().stopPlaying(SquireBowAnimations.POWER_DRAW_HOLD);

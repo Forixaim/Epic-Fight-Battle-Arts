@@ -53,7 +53,7 @@ side="BOTH"
 [[dependencies."${mod_id}"]]
 modId="efm_ex"
 mandatory=true
-versionRange="[20.12.8, 20.13)"
+versionRange="[20.12.8.1, 20.13)"
 ordering="AFTER"
 side="BOTH"
 
