@@ -47,6 +47,14 @@ public class WeaponTypeInjection
 		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
 		event.addMoveset(BattleArtsWeapons.HEAVY_SPEAR.get(), LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerHeavySpear);
 
+        event.addProvider(BattleArtsWeapons.SHORT_SPEAR.get(), MainConditionals.default2HWieldStyle, MainConditionals.SwordShieldLS, RecruitProviders.RECRUIT_SPEAR_CHECK, RecruitProviders.RECRUIT_SPEAR_SHIELD, LancerProviders.LANCER_DEFAULT);
+        event.addMoveset(BattleArtsWeapons.SHORT_SPEAR.get(), CapabilityItem.Styles.TWO_HAND, CoreMovesets.spear2HMS);
+        event.addMoveset(BattleArtsWeapons.SHORT_SPEAR.get(), CapabilityItem.Styles.ONE_HAND, CoreMovesets.spear1HMS);
+        event.addMoveset(BattleArtsWeapons.SHORT_SPEAR.get(), CapabilityItem.Styles.MOUNT, CoreMovesets.mountedSpearMS);
+        event.addMoveset(BattleArtsWeapons.SHORT_SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
+        event.addMoveset(BattleArtsWeapons.SHORT_SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR, RecruitMoveSets.RECRUIT_MOVESET);
+        event.addMoveset(BattleArtsWeapons.SHORT_SPEAR.get(), LancerStyles.LANCER_WEAPON_ART, LancerMoveSets.lancerSpear);
+
 		event.addProvider(ExCapWeapons.LONGSWORD.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addProvider(ExCapWeapons.SWORD.get(), DuelistProviders.DUELIST_STYLE_CHECK, DuelistProviders.DUELIST_DUAL_SWORDS, DuelistProviders.DUELIST_DUAL_LONGSWORDS, DuelistProviders.DUELIST_DUAL_TACHI, DuelistProviders.DUELIST_DUAL_UCHIGATANA);
@@ -92,6 +100,7 @@ public class WeaponTypeInjection
 		event.addMoveset(ExCapWeapons.SPEAR.get(), RecruitWieldStyles.RECRUIT_SPEAR_SHIELD, RecruitMoveSets.RECRUIT_MOVESET_SHIELDED);
 		event.addProvider(ExCapWeapons.BOW.get(), SquireProviders.SQUIRE_SWORD_STYLE_CHECK);
 		event.addMoveset(ExCapWeapons.BOW.get(), SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SquireBowMS);
+
 	}
 
 }

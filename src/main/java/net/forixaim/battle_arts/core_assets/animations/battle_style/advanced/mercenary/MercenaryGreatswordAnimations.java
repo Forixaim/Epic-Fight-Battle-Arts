@@ -1,27 +1,17 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary;
 
-import com.lowdragmc.photon.client.fx.BlockEffect;
-import com.lowdragmc.photon.client.fx.EntityEffect;
-import com.lowdragmc.photon.client.fx.FX;
-import com.lowdragmc.photon.client.fx.FXHelper;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fml.ModList;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.api.utils.TimePairList;
-import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.Armatures;
-import yesman.epicfight.model.armature.HumanoidArmature;
 
 public class MercenaryGreatswordAnimations
 {

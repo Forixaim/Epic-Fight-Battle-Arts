@@ -29,4 +29,11 @@ public class BattleArtsWeapons
                     .hitSound(EpicFightSounds.BLADE_HIT.get())
                     .swingSound(EpicFightSounds.WHOOSH_ROD.get()), 1, 1, 1
     ));
+
+    public static RegistryObject<ExCapWeapon> SHORT_SPEAR = EX_CAP_WEAPONS.register("short_spear", () -> ExCapWeapon.quickStart(
+            builder -> builder.category(CapabilityItem.WeaponCategories.SPEAR)
+                    .collider(ColliderPreset.SPEAR)
+                    .hitSound(EpicFightSounds.BLADE_HIT.get())
+                    .swingSound(EpicFightSounds.WHOOSH_ROD.get()), 1, 1, 1
+    ));
 }

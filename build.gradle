@@ -117,6 +117,7 @@ dependencies {
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
     //runtimeOnly fg.deobf("curse.maven:oculus-581495:6020952")
     runtimeOnly fg.deobf("curse.maven:skinrestorer-443823:6015917")
+    compileOnly fg.deobf("curse.maven:jingames-family-c-remastered-949739:4956361")
 
     //runtimeOnly fg.deobf("curse.maven:sodium-options-api-1103431:6100812")
    //runtimeOnly fg.deobf("curse.maven:magnesium-extras-558905:6041697")
@@ -134,7 +135,6 @@ dependencies {
     compileOnly fg.deobf("curse.maven:epicfight-light-trail-1283295:6646966")
     implementation fg.deobf("curse.maven:explosive-enhancement-reforged-1036246:5423875")
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
-    implementation fg.deobf("curse.maven:origins-forge-474438:5314209")
     compileOnly fg.deobf("curse.maven:mekanism-268560:5395221")
     compileOnly fg.deobf("curse.maven:draconic-evolution-223565:5524457")
     compileOnly fg.deobf("curse.maven:projecte-226410:4901949")

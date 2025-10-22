@@ -18,6 +18,7 @@ public class AdvancedBattleStyles
         Thief.buildSkills(worker);
         Duelist.buildSkills(worker);
         Mercenary.buildSkills(worker);
+        Lancer.buildSkill(worker);
         THIEF = worker.build("thief", Thief::new, BattleStyle.CreateBattleStyle());
         LANCER = worker.build("lancer", Lancer::new, BattleStyle.CreateBattleStyle());
         RONIN = worker.build("ronin", Ronin::new, BattleStyle.CreateBattleStyle());

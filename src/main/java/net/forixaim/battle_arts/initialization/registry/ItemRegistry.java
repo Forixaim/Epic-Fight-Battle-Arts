@@ -71,6 +71,14 @@ public class ItemRegistry
 	public static final RegistryObject<Item> DIAMOND_RAPIER = ITEMS.register("diamond_rapier", () -> new RapierItem(Tiers.DIAMOND, new Item.Properties()));
 	public static final RegistryObject<Item> NETHERITE_RAPIER = ITEMS.register("netherite_rapier", () -> new RapierItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
 
+    //Viking Axes
+    public static final RegistryObject<Item> WOODEN_VIKING_AXE = ITEMS.register("wooden_viking_axe", () -> new VikingAxeItem(Tiers.WOOD, new Item.Properties()));
+    public static final RegistryObject<Item> STONE_VIKING_AXE = ITEMS.register("stone_viking_axe", () -> new VikingAxeItem(Tiers.STONE, new Item.Properties()));
+    public static final RegistryObject<Item> IRON_VIKING_AXE = ITEMS.register("iron_viking_axe", () -> new VikingAxeItem(Tiers.IRON, new Item.Properties()));
+    public static final RegistryObject<Item> GOLDEN_VIKING_AXE = ITEMS.register("golden_viking_axe", () -> new VikingAxeItem(Tiers.GOLD, new Item.Properties()));
+    public static final RegistryObject<Item> DIAMOND_VIKING_AXE = ITEMS.register("diamond_viking_axe", () -> new VikingAxeItem(Tiers.DIAMOND, new Item.Properties()));
+    public static final RegistryObject<Item> NETHERITE_VIKING_AXE = ITEMS.register("netherite_viking_axe", () -> new VikingAxeItem(Tiers.NETHERITE, new Item.Properties().fireResistant()));
+
 	//Dories
 	public static final RegistryObject<Item> WOODEN_DORY = ITEMS.register("wooden_dory", () -> new DoryItem(Tiers.WOOD, new Item.Properties()));
 	public static final RegistryObject<Item> STONE_DORY = ITEMS.register("stone_dory", () -> new DoryItem(Tiers.STONE, new Item.Properties()));

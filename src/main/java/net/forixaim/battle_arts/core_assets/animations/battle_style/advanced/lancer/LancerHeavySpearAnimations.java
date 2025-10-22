@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.lancer;
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
+import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
@@ -28,6 +29,8 @@ public class LancerHeavySpearAnimations
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
     public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> DASH;
+    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> DASHING_IMPALE;
+
 
 
 
@@ -60,7 +63,7 @@ public class LancerHeavySpearAnimations
         AUTO1 = builder.nextAccessor("battle_style/advanced/lancer/heavy_spear/auto1", access ->
                 new BasicAttackAnimation(0.2f, 0.0f, 0.2f, 0.3f, 0.5f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v));
+                                v * 0.9f));
         AUTO2 = builder.nextAccessor("battle_style/advanced/lancer/heavy_spear/auto2", access ->
                 new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 0.8f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->

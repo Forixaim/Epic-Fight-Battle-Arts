@@ -17,6 +17,13 @@
 	"item.battle_arts.diamond_longbow": "Diamond Longbow",
 	"item.battle_arts.netherite_longbow": "Netherite Longbow",
 
+  "item.battle_arts.wooden_viking_axe": "Wooden Viking Axe",
+  "item.battle_arts.stone_viking_axe": "Stone Viking Axe",
+  "item.battle_arts.iron_viking_axe": "Iron Viking Axe",
+  "item.battle_arts.golden_viking_axe": "Golden Viking Axe",
+  "item.battle_arts.diamond_viking_axe": "Diamond Viking Axe",
+  "item.battle_arts.netherite_viking_axe": "Netherite Viking Axe",
+
 	"item.battle_arts.wooden_claymore": "Wooden Claymore",
 	"item.battle_arts.stone_claymore": "Stone Claymore",
 	"item.battle_arts.iron_claymore": "Iron Claymore",
@@ -192,5 +199,6 @@
 	"epicfight.style.ronin_uchigatana_sheathe": "Ronin's Battle Stance",
 	"pack.battle_arts.emissive_trails.title": "Battle Arts Emissive Trails",
 	"text.battle_arts.distort": "You should distort NOW!",
-	"death.player.battle_arts.distortion": "%1$s lost themselves to the distortion phenomenon."
+	"death.player.battle_arts.distortion": "%1$s lost themselves to the distortion phenomenon.",
+	"item.battle_arts.viking_axe.tooltip": "FOR VALHALLA!!!"
 }

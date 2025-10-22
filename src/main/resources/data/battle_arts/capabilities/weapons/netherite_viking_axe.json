@@ -3,9 +3,10 @@
   {
     "common":
     {
-      "impact":1.4,
+      "armor_negation": 15.0,
+      "impact":7.0,
       "max_strikes":2
     }
   },
-  "type":"battle_arts:short_spear"
+  "type":"efm_ex:axe"
 }

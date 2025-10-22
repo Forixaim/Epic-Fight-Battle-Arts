@@ -8,8 +8,6 @@
     "MixinRenderEngine"
   ],
   "mixins": [
-    "MixinChiseledBookshelf",
-    "MixinGuardSkill",
     "MixinPlayer",
     "MixinUchigatanaItem"
   ]
