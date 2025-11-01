@@ -17,6 +17,9 @@
 	"item.battle_arts.diamond_longbow": "Diamond Longbow",
 	"item.battle_arts.netherite_longbow": "Netherite Longbow",
 
+  "item.battle_arts.dogey": "Statue of a Great Friend",
+  "block.battle_arts.dogey": "Statue of a Great Friend",
+
   "item.battle_arts.wooden_viking_axe": "Wooden Viking Axe",
   "item.battle_arts.stone_viking_axe": "Stone Viking Axe",
   "item.battle_arts.iron_viking_axe": "Iron Viking Axe",
@@ -200,5 +203,6 @@
 	"pack.battle_arts.emissive_trails.title": "Battle Arts Emissive Trails",
 	"text.battle_arts.distort": "You should distort NOW!",
 	"death.player.battle_arts.distortion": "%1$s lost themselves to the distortion phenomenon.",
-	"item.battle_arts.viking_axe.tooltip": "FOR VALHALLA!!!"
+	"item.battle_arts.viking_axe.tooltip": "FOR VALHALLA!!!",
+	"item.dogey.tooltip": "Rest in peace, dear friend."
 }

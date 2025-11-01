@@ -4,7 +4,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.due
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonInputLocks;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.SkyStriker;
 import net.forixaim.battle_arts.core_assets.util.NetworkUtils;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
@@ -40,6 +40,7 @@ public class Duelist extends BattleStyle
 	{
 		super.onInitiate(container);
 		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, SKY_STRIKER);
+        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID, CommonEvents::BUILD_METER);
 
 
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.SKILL_CAST_EVENT, EVENT_UUID, event ->
@@ -50,7 +51,7 @@ public class Duelist extends BattleStyle
 			}
 		});
 
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, CommonInputLocks.LOCK_MOVEMENT_GUARDING);
+		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, CommonEvents.LOCK_MOVEMENT_GUARDING);
 		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DODGE_SUCCESS_EVENT, EVENT_UUID, event ->
                 container.getDataManager().setDataSync(BattleArtsDataKeys.COUNTER_WINDOW.get(), 15f));
 
@@ -61,13 +62,16 @@ public class Duelist extends BattleStyle
 				livingEntityPatch.knockBackEntity(livingEntityPatch.getOriginal().position(), 2f);
 				event.getPlayerPatch().knockBackEntity(event.getPlayerPatch().getOriginal().position(), 2f);
 			}
+
 		});
 	}
 	@Override
 	public void onRemoved(SkillContainer container) {
 		super.onRemoved(container);
 		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, null);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID);
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID);
+
+        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.SKILL_CAST_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DODGE_SUCCESS_EVENT, EVENT_UUID);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID);
@@ -78,7 +82,7 @@ public class Duelist extends BattleStyle
 	{
 		QUAD_STING = worker.build("quad_sting", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistSwordAnimations.QUAD_STING)).newProperty();
 		WHIRLEDGE = worker.build("whirledge", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistDualbladesAnimations.WHIRLEDGE)).newProperty();
-		SKY_STRIKER = worker.build("sky_striker", SkyStriker::new, SkyStriker.createCombatArt().setResource(Resource.COOLDOWN));
+		SKY_STRIKER = worker.build("sky_striker", SkyStriker::new, SkyStriker.createCombatArt().setResource(Resource.NONE));
 	}
 
 	public Duelist(Builder<? extends Skill> builder) {

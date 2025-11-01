@@ -15,6 +15,8 @@ public class SoundRegistry
     public static final RegistryObject<SoundEvent> UNSHEATHE = registerSound("entity.combat.unsheathe");
     public static final RegistryObject<SoundEvent> SHEATHE = registerSound("entity.combat.sheathe");
     public static final RegistryObject<SoundEvent> SPIKE = registerSound("entity.combat.spike");
+    public static final RegistryObject<SoundEvent> SPECIAL_MOVE = registerSound("entity.combat.special_move");
+
 
 
     private static RegistryObject<SoundEvent> registerSound(String name) {

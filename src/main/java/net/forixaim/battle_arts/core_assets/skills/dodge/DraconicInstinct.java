@@ -88,7 +88,7 @@ public class DraconicInstinct extends DodgeSkill
                 {
                     container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_GAUGE.get(), value ->
                     {
-                        if (Config.ULTRA_INSTINCT.get())
+                        if (Config.ultraInstinct)
                             return value;
                         else
                             return value - 80;

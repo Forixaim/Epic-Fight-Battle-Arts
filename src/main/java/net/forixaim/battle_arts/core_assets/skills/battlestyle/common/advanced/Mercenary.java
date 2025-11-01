@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary.MercenaryGreatswordAnimations;
-import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonInputLocks;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.PowerGeyser;
 import net.forixaim.battle_arts.core_assets.util.NetworkUtils;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
@@ -41,7 +41,7 @@ public class Mercenary extends BattleStyle
         super.onInitiate(container);
         NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, POWER_GEYSER);
 
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, CommonInputLocks.LOCK_MOVEMENT_GUARDING);
+        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, CommonEvents.LOCK_MOVEMENT_GUARDING);
     }
 
     @Override

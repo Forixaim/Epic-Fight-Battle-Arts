@@ -9,6 +9,14 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 public class Config
 {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec.BooleanValue ULTRA_INSTINCT = BUILDER.define("ultra_instinct", false);
+    public static final ForgeConfigSpec.BooleanValue ULTRA_INSTINCT = BUILDER.comment("Whether Draconic Instinct will ").define("ultra_instinct", false);
     static final ForgeConfigSpec SPEC = BUILDER.build();
+
+    public static boolean ultraInstinct;
+
+    @SubscribeEvent
+    public static void onLoad(final ModConfigEvent event)
+    {
+        ultraInstinct = ULTRA_INSTINCT.get();
+    }
 }

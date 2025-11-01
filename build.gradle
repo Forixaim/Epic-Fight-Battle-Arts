@@ -115,18 +115,14 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
-    //runtimeOnly fg.deobf("curse.maven:oculus-581495:6020952")
     runtimeOnly fg.deobf("curse.maven:skinrestorer-443823:6015917")
     compileOnly fg.deobf("curse.maven:jingames-family-c-remastered-949739:4956361")
-
-    //runtimeOnly fg.deobf("curse.maven:sodium-options-api-1103431:6100812")
-   //runtimeOnly fg.deobf("curse.maven:magnesium-extras-558905:6041697")
     implementation fg.deobf("curse.maven:official-epic-fight-x-parcool-1259252:6870242")
     implementation fg.deobf("curse.maven:parcool-482378:6652972")
-    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7046104")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7129220")
     implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
-    implementation fg.deobf("curse.maven:ex-cap-1074178:7075696")
-    implementation fg.deobf("curse.maven:battle-arts-api-1091499:6910441")
+    implementation fg.deobf("libs:excap:20.13.8.2")
+    implementation fg.deobf("libs:battleartsapi:20.13.8.1")
     runtimeOnly fg.deobf("curse.maven:sound-physics-remastered-535489:5991549")
     implementation fg.deobf("curse.maven:epicfight-resurrection-1151542:6931390")
     implementation fg.deobf("curse.maven:jei-238222:6075247")

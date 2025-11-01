@@ -4,7 +4,10 @@ package net.forixaim.battle_arts.core_assets.events;
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
+import net.forixaim.battle_arts.core_assets.client.particle.SpecialMoveParticle;
+import net.forixaim.battle_arts.initialization.registry.ParticleRegistry;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,5 +23,10 @@ public class ModBusEvents
         LogUtils.getLogger().debug("Registering item renderers");
     }
 
+    @SubscribeEvent
+    public static void registerParticle(RegisterParticleProvidersEvent event)
+    {
+        event.registerSpriteSet(ParticleRegistry.SPECIAL_RING.get(), SpecialMoveParticle.Provider::new);
+    }
 
 }

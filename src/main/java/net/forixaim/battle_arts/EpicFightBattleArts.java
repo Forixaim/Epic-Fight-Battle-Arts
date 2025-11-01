@@ -1,7 +1,6 @@
 package net.forixaim.battle_arts;
 
 
-import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleArtsWeapons;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
@@ -15,19 +14,12 @@ import net.forixaim.battle_arts.core_assets.client.renderer.FlyingShockwaveRende
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
 import net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.packs.PackType;
-import net.minecraft.server.packs.PathPackResources;
-import net.minecraft.server.packs.repository.Pack;
-import net.minecraft.server.packs.repository.PackSource;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -36,8 +28,6 @@ import yesman.epicfight.main.EpicFightExtensions;
 import yesman.epicfight.world.capabilities.item.Style;
 import yesman.epicfight.world.capabilities.item.WeaponCategory;
 
-
-import java.nio.file.Path;
 
 import static net.forixaim.battle_arts.initialization.registry.BlockRegistry.BLOCKS;
 import static net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry.CREATIVE_MODE_TABS;
@@ -69,26 +59,7 @@ public class EpicFightBattleArts
 		context.registerExtensionPoint(EpicFightExtensions.class, () -> new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS));
 	}
 
-	public void onPackFind(AddPackFindersEvent event)
-	{
-		if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-			Path resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/battle_arts_emissive_trails");
-			PathPackResources pack = new PathPackResources(ModList.get().getModFileById(MOD_ID).getFile().getFileName() + ":" + resourcePath, resourcePath, false);
-			Pack.ResourcesSupplier resourcesSupplier = (string) -> pack;
-			Pack.Info info = Pack.readPackInfo("battle_arts_emissive_trails", resourcesSupplier);
-
-			if (info != null) {
-				event.addRepositorySource((source) ->
-						source.accept(Pack.create("battle_arts_emissive_trails", Component.translatable("pack.battle_arts.emissive_trails.title"), false, resourcesSupplier, info, PackType.CLIENT_RESOURCES, Pack.Position.TOP, false, PackSource.BUILT_IN)));
-			}
-			else
-			{
-				LogUtils.getLogger().error("Unable to find pack. {}", Component.translatable("pack.battle_arts.emissive_trails.title"));
-			}
-		}
-	}
-
-	@SubscribeEvent
+    @SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event)
 	{
 

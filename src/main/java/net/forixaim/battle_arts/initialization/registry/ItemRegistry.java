@@ -1,9 +1,11 @@
 package net.forixaim.battle_arts.initialization.registry;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.core_assets.items.DogeyItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.*;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.special.*;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
@@ -132,4 +134,5 @@ public class ItemRegistry
 
 	//Misc
 	public static final RegistryObject<Item> TACHI_SHEATH = ITEMS.register("tachi_sheath", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> DOGEY = ITEMS.register("dogey", () -> new DogeyItem(BlockRegistry.DOGEY.get(),  new Item.Properties().fireResistant()));
 }

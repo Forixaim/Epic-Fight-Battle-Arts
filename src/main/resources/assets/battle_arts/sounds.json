@@ -2,24 +2,28 @@
   "entity.combat.jump": {
     "category": "master",
     "subtitle": "sounds.battle_arts.entity.combat.jump",
-    "sounds":[{"name":"battle_arts:entity/combat/jump", "stream":true}]
+    "sounds":[{"name":"battle_arts:entity/combat/jump", "stream":false}]
   },
 
   "entity.combat.unsheathe": {
     "category": "player",
     "subtitle": "sounds.battle_arts.entity.combat.unsheathe",
-    "sounds":[{"name":"battle_arts:entity/combat/unsheathe", "stream":true}]
+    "sounds":[{"name":"battle_arts:entity/combat/unsheathe", "stream":false}]
   },
 
   "entity.combat.sheathe": {
     "category": "player",
     "subtitle": "sounds.battle_arts.entity.combat.sheathe",
-    "sounds":[{"name":"battle_arts:entity/combat/sheathe", "stream":true}]
+    "sounds":[{"name":"battle_arts:entity/combat/sheathe", "stream":false}]
   },
-
+  "entity.combat.special_move": {
+    "category": "player",
+    "subtitle": "sounds.battle_arts.entity.combat.special_move",
+    "sounds":[{"name":"battle_arts:entity/combat/special_move", "stream":false}]
+  },
   "entity.combat.spike": {
     "category": "player",
     "subtitle": "sounds.battle_arts.entity.combat.spike",
-    "sounds":[{"name":"battle_arts:entity/combat/spike", "stream":true}]
+    "sounds":[{"name":"battle_arts:entity/combat/spike", "stream":false}]
   }
 }
