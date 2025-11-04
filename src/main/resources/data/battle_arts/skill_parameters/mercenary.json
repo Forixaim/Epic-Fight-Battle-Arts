@@ -1,6 +1,6 @@
 {
   "xp_requirement": 80,
-  "jump_boost_power": 0.07,
+  "jump_boost_power": 0.08,
   "max_meter": 3,
   "attribute_modifiers": [
     {
@@ -15,14 +15,14 @@
       "name": "recruit",
       "uuid": "3421b224-d2a4-482b-ad36-8a19b4aa0d25",
       "operation": "multiply_total",
-      "amount": 0.02
+      "amount": 0.06
     },
     {
       "attribute": "minecraft:generic.movement_speed",
       "name": "recruit",
       "uuid": "3421b224-d2a4-482b-ad36-8a19b4aa0d25",
       "operation": "multiply_total",
-      "amount": 0.06
+      "amount": 0.01
     }
   ]
 }
