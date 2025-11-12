@@ -4,6 +4,7 @@ package net.forixaim.battle_arts.core_assets.events;
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
+import net.forixaim.battle_arts.core_assets.client.particle.BattleArtsProjectileTrailParticle;
 import net.forixaim.battle_arts.core_assets.client.particle.SpecialMoveParticle;
 import net.forixaim.battle_arts.initialization.registry.ParticleRegistry;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,6 +28,7 @@ public class ModBusEvents
     public static void registerParticle(RegisterParticleProvidersEvent event)
     {
         event.registerSpriteSet(ParticleRegistry.SPECIAL_RING.get(), SpecialMoveParticle.Provider::new);
+        event.registerSpecial(ParticleRegistry.PROJECTILE_TRAIL.get(), BattleArtsProjectileTrailParticle.createRecord());
     }
 
 }

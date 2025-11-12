@@ -165,7 +165,7 @@ public class RoninUchigatanaAnimations
                                 projectile.shoot(shootVec.x(), 0, shootVec.z(), 4.2f, 0);
                                 livingEntityPatch.getOriginal().level().addFreshEntity(projectile);
                             }
-                        }, AnimationEvent.Side.BOTH)));
+                        }, AnimationEvent.Side.SERVER)));
 
         RONIN_UCHIGATANA_SHEATHE_DASH = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "sheathe_dash_attack"),
                 accessor -> new DashAttackAnimation(0.2f, 0.0f, 0.2f, 0.35f, 2.0f, ColliderPreset.FIST, Armatures.BIPED.get().handR, accessor, Armatures.BIPED)

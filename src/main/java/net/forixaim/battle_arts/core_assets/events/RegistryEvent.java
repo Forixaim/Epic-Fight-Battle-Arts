@@ -23,10 +23,5 @@ public class RegistryEvent
         }
     }
 
-    @SubscribeEvent
-    public static void registerEntityPatch(EntityPatchRegistryEvent event)
-    {
-        event.getTypeEntry().put(BattleArtsProjectiles.FLYING_SHOCKWAVE.get(), entity -> FlyingShockwavePatch::new);
-        event.getTypeEntry().put(BattleArtsProjectiles.FIXED_ARROW.get(), entity -> ArrowPatch::new);
-    }
+
 }

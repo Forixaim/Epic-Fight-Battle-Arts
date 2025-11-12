@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.initialization.registry;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.core_assets.client.particle.TrailParticleType;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;
@@ -14,4 +15,5 @@ public class ParticleRegistry
 {
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(Registries.PARTICLE_TYPE, EpicFightBattleArts.MOD_ID);
     public static final RegistryObject<SimpleParticleType> SPECIAL_RING = PARTICLES.register("special_ring", () -> new SimpleParticleType(true));
+    public static final RegistryObject<TrailParticleType> PROJECTILE_TRAIL = PARTICLES.register("projectile_trail", () -> new TrailParticleType(true));
 }

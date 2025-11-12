@@ -167,6 +167,6 @@ public class RoninTachiAnimations
                                 projectile.shoot(shootVec.x(), 0, shootVec.z(), 4.2f, 0);
                                 livingEntityPatch.getOriginal().level().addFreshEntity(projectile);
                             }
-                        }, AnimationEvent.Side.BOTH)));
+                        }, AnimationEvent.Side.SERVER)));
     }
 }
