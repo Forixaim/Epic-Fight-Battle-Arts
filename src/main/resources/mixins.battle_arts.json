@@ -8,7 +8,6 @@
     "MixinRenderEngine"
   ],
   "mixins": [
-    "MixinPlayer",
-    "MixinUchigatanaItem"
+    "MixinPlayer"
   ]
 }
