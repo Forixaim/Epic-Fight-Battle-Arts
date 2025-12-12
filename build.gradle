@@ -88,9 +88,10 @@ repositories {
         }
     }
 
-    maven {
-        name = "Modrinth"
-        url = "https://api.modrinth.com/maven"
+    exclusiveContent {
+        forRepository { maven { name = "Modrinth"; url = "https://api.modrinth.com/maven" } }
+        forRepositories(fg.repository)
+        filter { includeGroup "maven.modrinth" }
     }
 
     maven {
@@ -127,7 +128,6 @@ dependencies {
     implementation fg.deobf("curse.maven:epicfight-resurrection-1151542:6931390")
     implementation fg.deobf("curse.maven:jei-238222:6075247")
     implementation fg.deobf("curse.maven:epic-fight-mod-rapier-moveset-addon-1036425:6854856")
-    compileOnly fg.deobf("curse.maven:weapons-of-miracles-epicfight-918614:5889471")
     compileOnly fg.deobf("curse.maven:epicfight-light-trail-1283295:6646966")
     implementation fg.deobf("curse.maven:explosive-enhancement-reforged-1036246:5423875")
     implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
@@ -136,7 +136,6 @@ dependencies {
     compileOnly fg.deobf("curse.maven:projecte-226410:4901949")
     runtimeOnly fg.deobf("curse.maven:selene-499980:5546852")
     implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:5319203")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 mixin {
