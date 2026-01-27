@@ -1,12 +1,7 @@
 package net.forixaim.battle_arts.core_assets.capabilities;
 
 import net.forixaim.battle_arts.EpicFightBattleArts;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.*;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.JManStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.SquireWieldStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.unique.FencerStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.unique.IronLotusStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.*;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.*;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.RecruitMoveSets;

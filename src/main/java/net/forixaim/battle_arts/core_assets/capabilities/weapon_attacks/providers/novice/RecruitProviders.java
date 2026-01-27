@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.novice;
 
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.QuickFunctions;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.NoviceBattleStyles;
 import net.forixaim.ex_cap.api.providers.ProviderConditional;

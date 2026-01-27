@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistDualbladesAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.DuelistStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.SkyStriker;

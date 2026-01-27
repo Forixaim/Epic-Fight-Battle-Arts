@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.advanced;
 
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.QuickFunctions;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;

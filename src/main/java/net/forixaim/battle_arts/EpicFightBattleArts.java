@@ -1,13 +1,13 @@
 package net.forixaim.battle_arts;
 
 
+import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleArtsWeapons;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.*;
 import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
 import net.forixaim.battle_arts.core_assets.client.renderer.FixedArrowRenderer;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.client.model.FlyingShockwaveModel;
 import net.forixaim.battle_arts.core_assets.client.renderer.FlyingShockwaveRenderer;
@@ -24,6 +24,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.slf4j.Logger;
+import yesman.epicfight.api.utils.ExtendableEnum;
 import yesman.epicfight.main.EpicFightExtensions;
 import yesman.epicfight.world.capabilities.item.Style;
 import yesman.epicfight.world.capabilities.item.WeaponCategory;
@@ -39,13 +41,14 @@ public class EpicFightBattleArts
 {
 
 	public static final String MOD_ID = "battle_arts";
+    public static final Logger LOGGER = LogUtils.getLogger();
 
 
 	public EpicFightBattleArts(FMLJavaModLoadingContext context)
 	{
 		IEventBus modEventBus = context.getModEventBus();
 		WeaponCategory.ENUM_MANAGER.registerEnumCls(MOD_ID, BattleStyleCategories.class);
-		Style.ENUM_MANAGER.registerEnumCls(MOD_ID, RoninStyles.class);
+        registerStyles();
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
 		PARTICLES.register(modEventBus);
@@ -58,6 +61,26 @@ public class EpicFightBattleArts
 		context.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
 		context.registerExtensionPoint(EpicFightExtensions.class, () -> new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS));
 	}
+
+    private void registerStyles()
+    {
+        registerStyle(DuelistStyles.class);
+        registerStyle(FencerStyles.class);
+        registerStyle(IronLotusStyles.class);
+        registerStyle(JManStyles.class);
+        registerStyle(LancerStyles.class);
+        registerStyle(MercenaryStyles.class);
+        registerStyle(RecruitWieldStyles.class);
+        registerStyle(RoninStyles.class);
+        registerStyle(SquireWieldStyles.class);
+        registerStyle(ThiefStyles.class);
+    }
+
+    private void registerStyle(Class<? extends ExtendableEnum> enumClass)
+    {
+        Style.ENUM_MANAGER.registerEnumCls(MOD_ID, enumClass);
+    }
+
 
     @SubscribeEvent
 	public void onServerStarting(ServerStartingEvent event)

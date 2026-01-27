@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.unique;
 
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.unique.FencerStyles;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.unique.IronLotusStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.FencerStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.IronLotusStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.providers.QuickFunctions;
 import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import net.forixaim.ex_cap.api.providers.ProviderConditional;

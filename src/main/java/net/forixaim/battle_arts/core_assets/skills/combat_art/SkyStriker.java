@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.skills.combat_art;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.DuelistStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.DuelistStyles;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
 import net.forixaim.battle_arts.initialization.registry.ParticleRegistry;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;

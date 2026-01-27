@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.client.overrides;
 
 import com.google.common.collect.Lists;
 import net.forixaim.battle_arts.EpicFightBattleArts;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.AdaptiveGloveItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;

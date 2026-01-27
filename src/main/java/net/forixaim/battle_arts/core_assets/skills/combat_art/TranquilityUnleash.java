@@ -3,7 +3,7 @@ package net.forixaim.battle_arts.core_assets.skills.combat_art;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninTachiAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.RoninStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
@@ -14,7 +14,6 @@ import net.minecraft.world.InteractionHand;
 import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.skill.passive.BerserkerSkill;
 import yesman.epicfight.world.capabilities.item.Style;
 
 public class TranquilityUnleash extends CombatArt

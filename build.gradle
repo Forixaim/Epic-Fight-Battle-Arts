@@ -31,6 +31,12 @@ base {
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
+jarJar.enable()
+
+tasks.named('jarJar') {
+
+}
+
 
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
@@ -49,11 +55,11 @@ minecraft {
             }
         }
 
-        clientCD {
+        clientJarJar {
             property 'forge.enabledGameTestNamespaces', mod_id
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            args '-mixin.config=mixins.battle_arts.json', '--username', 'Corrupt_Dog'
+            args '-mixin.config=mixins.battle_arts.json', '--username', 'Forixaim'
         }
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
@@ -111,6 +117,7 @@ repositories {
 
 }
 
+
 dependencies {
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
@@ -120,10 +127,10 @@ dependencies {
     compileOnly fg.deobf("curse.maven:jingames-family-c-remastered-949739:4956361")
     implementation fg.deobf("curse.maven:official-epic-fight-x-parcool-1259252:6870242")
     implementation fg.deobf("curse.maven:parcool-482378:6652972")
-    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7316952")
-    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:6854381")
-    implementation fg.deobf("curse.maven:ex-cap-1074178:7173079")
-    implementation fg.deobf("curse.maven:battle-arts-api-1091499:7173082")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7476040")
+    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:7345465")
+    implementation fg.deobf("curse.maven:ex-cap-1074178:7325889")
+    implementation fg.deobf("curse.maven:battle-arts-api-1091499:7325885")
     runtimeOnly fg.deobf("curse.maven:sound-physics-remastered-535489:5991549")
     implementation fg.deobf("curse.maven:epicfight-resurrection-1151542:6931390")
     implementation fg.deobf("curse.maven:jei-238222:6075247")
@@ -171,6 +178,8 @@ tasks.named('jar', Jar).configure {
     }
     finalizedBy 'reobfJar'
 }
+
+
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'

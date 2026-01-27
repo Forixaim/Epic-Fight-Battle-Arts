@@ -1,11 +1,10 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.novice.RecruitWieldStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.IronFortress;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
@@ -18,7 +17,6 @@ import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.SkillDataKey;
-import yesman.epicfight.skill.guard.GuardSkill;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
@@ -53,11 +51,6 @@ public class Recruit extends BattleStyle
 		IRON_FORTRESS = worker.build("iron_fortress", IronFortress::new, IronFortress.createWeaponInnateBuilder().setActivateType(ActivateType.DURATION)).newProperty();
 	}
 
-	@Override
-	public SkillDataKey<Boolean> getSneakIsDisabledKey()
-	{
-		return BattleArtsDataKeys.SNEAK_MOVE_LOCK.get();
-	}
 
 	@Override
 	public void onInitiate(SkillContainer container)
@@ -144,15 +137,5 @@ public class Recruit extends BattleStyle
 	{
 		super.onRemoved(container);
 		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, ID);
-	}
-
-	@Override
-	public void updateContainer(SkillContainer container)
-	{
-		super.updateContainer(container);
-		if (!container.getExecutor().getOriginal().isShiftKeyDown() && container.getExecutor().isLogicalClient())
-		{
-			container.getDataManager().setDataSync(getSneakIsDisabledKey(), false);
-		}
 	}
 }

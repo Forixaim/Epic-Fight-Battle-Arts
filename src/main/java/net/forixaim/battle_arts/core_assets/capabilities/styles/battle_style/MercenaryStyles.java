@@ -1,13 +1,13 @@
-package net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced;
+package net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style;
 
 import yesman.epicfight.world.capabilities.item.Style;
 
-public enum LancerStyles implements Style
+public enum MercenaryStyles implements Style
 {
-    LANCER_WEAPON_ART(false);
+    MERCENARY_WEAPON_ART(false);
     final boolean visibleOffHand;
     final int id;
-    LancerStyles(boolean visibleOffHand)
+    MercenaryStyles(boolean visibleOffHand)
     {
         this.visibleOffHand = visibleOffHand;
         this.id = ENUM_MANAGER.assign(this);

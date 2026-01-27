@@ -1,4 +1,4 @@
-package net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced;
+package net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style;
 
 import yesman.epicfight.world.capabilities.item.Style;
 

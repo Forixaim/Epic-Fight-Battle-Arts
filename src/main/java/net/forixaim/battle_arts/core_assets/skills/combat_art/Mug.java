@@ -3,7 +3,7 @@ package net.forixaim.battle_arts.core_assets.skills.combat_art;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
-import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.advanced.ThiefStyles;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.ThiefStyles;
 import net.forixaim.battle_arts.initialization.registry.TagRegistry;
 import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
