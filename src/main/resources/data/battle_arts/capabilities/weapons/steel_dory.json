@@ -1,0 +1,11 @@
+{
+  "attributes":
+  {
+    "common":
+    {
+      "impact":1.4,
+      "max_strikes":2
+    }
+  },
+  "type":"battle_arts:short_spear"
+}
