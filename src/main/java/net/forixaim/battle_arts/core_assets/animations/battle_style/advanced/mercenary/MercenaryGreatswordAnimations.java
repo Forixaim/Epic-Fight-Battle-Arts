@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.me
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.KnockbackComboAttackAnimation;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
@@ -22,12 +22,12 @@ public class MercenaryGreatswordAnimations
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_HIT;
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_1;
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO4;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO4;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AIRSLAM;
+    public static AnimationManager.AnimationAccessor<KnockbackComboAttackAnimation> AIRSLAM;
     public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> FIERCE_UPPER;
     public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> POWER_GEYSER;
 
@@ -46,22 +46,22 @@ public class MercenaryGreatswordAnimations
         GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard_parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/auto1", access ->
-                new BasicAttackAnimation(0.4f, 0.0f, 0.3f, 0.5f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.4f, 0.0f, 0.3f, 0.5f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
         AUTO2 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/auto2", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
         AUTO3 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/auto3", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
         AUTO4 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/auto4", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1.2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1.2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
@@ -88,7 +88,7 @@ public class MercenaryGreatswordAnimations
                         .addEvents(AnimationEvent.InTimeEvent.create(0.9f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.SERVER).params(new Vec3f(0.0F, -0.3F, -5.0F), Armatures.BIPED.get().toolR, 1.1, 1.55F)));
 
         AIRSLAM = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/airslam", access ->
-                new KnockbackBasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new KnockbackComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 30d)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.0)
                         .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(1.3f))

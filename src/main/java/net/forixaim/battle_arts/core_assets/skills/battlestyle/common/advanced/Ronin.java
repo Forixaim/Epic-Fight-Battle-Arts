@@ -1,83 +1,68 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
-import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninTachiAnimations;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.UsesUchigatana;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.TranquilityUnleash;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Tranquility;
-import net.forixaim.battle_arts.core_assets.skills.weaponinnate.TranquilityPassive;
 import net.forixaim.battle_arts.core_assets.util.NetworkUtils;
+import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
-import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 
-import net.minecraft.network.FriendlyByteBuf;
-import yesman.epicfight.api.forgeevent.SkillBuildEvent;
+import net.minecraft.nbt.CompoundTag;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import yesman.epicfight.api.event.EntityEventListener;
+import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.skill.Skill;
-import yesman.epicfight.skill.SkillCategories;
+import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
-import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.UUID;
 
 public class Ronin extends BattleStyle implements UsesUchigatana
 {
-	public static Skill TRANQUILITY;
-	public static Skill TRANQUILITY_PASSIVE;
-	public static Skill TRANQUILITY_UNLEASH;
-	public static Skill BLOSSOM_SLASH;
-	private static final UUID EVENT_UUID = UUID.fromString("55220562-9883-4a57-bd92-a6257127cb66");
-	public Ronin(Builder<? extends Skill> builder)
+
+	public Ronin(SkillBuilder<?> builder)
 	{
 		super(builder);
-		innateInactiveColor = new float[]{0.671f, 0.71f, 0.71f};
-		innateSkillColor = new float[]{0.929f, 0.996f, 1};
 	}
 
 	@Override
-	public void onInitiate(SkillContainer container) {
-		super.onInitiate(container);
-		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, TRANQUILITY_UNLEASH);
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID, event ->
-		{
-			if (event.getItemCapability().getWeaponCategory() == CapabilityItem.WeaponCategories.TACHI)
-			{
-				event.setAttackSpeed(event.getAttackSpeed() * 2f);
-			}
-		});
-	}
+	public void onInitiate(SkillContainer container, EntityEventListener listener) {
+		super.onInitiate(container, listener);
+		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, SkillRegistry.TRANQUILITY_UNLEASH);
 
-	public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker)
-	{
-		BLOSSOM_SLASH = worker.build("blossom_slash", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(RoninTachiAnimations.BLOSSOM_SLASH)).newProperty();
-		TRANQUILITY_PASSIVE = worker.build("tranquility_passive", TranquilityPassive::new, Skill.createBuilder().setResource(Resource.NONE).setCategory(SkillCategories.WEAPON_PASSIVE));
-		TRANQUILITY = worker.build("tranquility", Tranquility::new, WeaponInnateSkill.createWeaponInnateBuilder().setResource(Resource.NONE));
-		TRANQUILITY_UNLEASH = worker.build("tranquility_unleash", TranquilityUnleash::new, CombatArt.createCombatArt().setResource(Resource.COOLDOWN));
+        listener.registerEvent(EpicFightEventHooks.Entity.MODIFY_ATTACK_SPEED, event -> {
+            if (event.getItemCapability().getWeaponCategory() == CapabilityItem.WeaponCategories.TACHI)
+            {
+                event.setAttackSpeed(event.getAttackSpeed() * 2f);
+            }
+        }, this);
 	}
 
 	@Override
 	public void onRemoved(SkillContainer container)
 	{
+        super.onRemoved(container);
 		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, null);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID);
 	}
 
 
 	@Override
-	public void executeOnServer(SkillContainer container, FriendlyByteBuf args)
+	public void executeOnServer(SkillContainer container, CompoundTag args)
 	{
 		super.executeOnServer(container, args);
-		if (container.getDataManager().getDataValue(BattleArtsDataKeys.BATTO_SHEATH.get()))
+		if (container.getDataManager().getDataValue(BattleArtsDataKeys.TRANQUILITY_SHEATH))
 		{
-			container.getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), false);
+			container.getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH, false);
 			container.getServerExecutor().modifyLivingMotionByCurrentItem(true);
 		}
 		else
 		{
-			container.getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), true);
+			container.getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH, true);
 			container.getServerExecutor().modifyLivingMotionByCurrentItem(true);
 		}
 	}

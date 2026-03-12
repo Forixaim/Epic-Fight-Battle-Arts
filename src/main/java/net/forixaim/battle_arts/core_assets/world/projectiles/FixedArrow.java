@@ -2,17 +2,14 @@ package net.forixaim.battle_arts.core_assets.world.projectiles;
 
 import com.google.common.collect.Lists;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireBowAnimations;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
@@ -20,10 +17,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import yesman.epicfight.api.animation.AnimationManager;
-import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.AttackAnimation;
 import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.gameasset.Animations;
@@ -31,7 +26,6 @@ import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
-import yesman.epicfight.world.entity.ai.attribute.EpicFightAttributes;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -50,14 +44,6 @@ public class FixedArrow extends Arrow
     double fixedDamage = 0.0;
     public FixedArrow(EntityType<? extends Arrow> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-    }
-
-    public FixedArrow(Level pLevel, double pX, double pY, double pZ) {
-        super(pLevel, pX, pY, pZ);
-    }
-
-    public FixedArrow(Level pLevel, LivingEntity pShooter) {
-        super(pLevel, pShooter);
     }
 
     public void setFixedDamage(double fixedDamage)
@@ -122,7 +108,7 @@ public class FixedArrow extends Arrow
         boolean flag = entity.getType() == EntityType.ENDERMAN;
         int k = entity.getRemainingFireTicks();
         if (this.isOnFire() && !flag) {
-            entity.setSecondsOnFire(5);
+            entity.igniteForSeconds(5);
         }
         if (EpicFightCapabilities.getEntityPatch(entity1, LivingEntityPatch.class) instanceof PlayerPatch<?> playerPatch)
         {
@@ -140,11 +126,6 @@ public class FixedArrow extends Arrow
                 if (entity instanceof LivingEntity livingentity) {
                     if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
                         livingentity.setArrowCount(livingentity.getArrowCount() + 1);
-                    }
-
-                    if (!this.level().isClientSide && entity1 instanceof LivingEntity) {
-                        EnchantmentHelper.doPostHurtEffects(livingentity, entity1);
-                        EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity);
                     }
 
                     this.doPostHurtEffects(livingentity);
@@ -196,11 +177,6 @@ public class FixedArrow extends Arrow
                     LivingEntity livingentity = (LivingEntity)entity;
                     if (!this.level().isClientSide && this.getPierceLevel() <= 0) {
                         livingentity.setArrowCount(livingentity.getArrowCount() + 1);
-                    }
-
-                    if (!this.level().isClientSide && entity1 instanceof LivingEntity) {
-                        EnchantmentHelper.doPostHurtEffects(livingentity, entity1);
-                        EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity);
                     }
 
                     this.doPostHurtEffects(livingentity);

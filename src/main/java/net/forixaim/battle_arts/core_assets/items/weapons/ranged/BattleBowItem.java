@@ -1,7 +1,5 @@
 package net.forixaim.battle_arts.core_assets.items.weapons.ranged;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import net.forixaim.battle_arts.core_assets.items.types.RangedTieredItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -11,8 +9,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -21,43 +17,25 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.ForgeEventFactory;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.EventHooks;
+import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Predicate;
 
-public class BattleBowItem extends RangedTieredItem implements Vanishable
+public class BattleBowItem extends RangedTieredItem
 {
-    private final float attackDamage;
-
-    private final Multimap<Attribute, AttributeModifier> defaultModifiers;
-
-    public BattleBowItem(Tier pTier, int damageModifier, float pAttackSpeedModifier, Properties pProperties)
+    public BattleBowItem(Tier pTier, Properties pProperties)
     {
         super(pTier, pProperties);
-        this.attackDamage = damageModifier + pTier.getAttackDamageBonus();
-        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", pAttackSpeedModifier, AttributeModifier.Operation.ADDITION));
-        this.defaultModifiers = builder.build();
     }
+
 
     public boolean canAttackBlock(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer) {
         return !pPlayer.isCreative();
     }
 
-    public float getDamage() {
-        return this.attackDamage;
-    }
-
-    public boolean isCorrectToolForDrops(@NotNull BlockState blockIn) {
-        return false;
-    }
-
-    @Override
-    public @NotNull Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot pEquipmentSlot) {
-        return pEquipmentSlot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(pEquipmentSlot);
-    }
 
     public float getNockProgress(ItemStack stack, LivingEntity shooter)
     {
@@ -68,12 +46,12 @@ public class BattleBowItem extends RangedTieredItem implements Vanishable
     {
         if (pEntityLiving instanceof Player player)
         {
-            boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, pStack) > 0;
+            boolean flag = player.getAbilities().instabuild || EnchantmentHelper.getEnchantmentLevel(pLevel.registryAccess().holderOrThrow(Enchantments.INFINITY), pEntityLiving) > 0;
             ItemStack itemstack = player.getProjectile(pStack);
             int i = this.getUseDuration(pStack) - pTimeLeft;
-            i = ForgeEventFactory.onArrowLoose(pStack, pLevel, player, i, !itemstack.isEmpty() || flag);
-            if (i < 0)
-            {
+            ArrowLooseEvent event = new ArrowLooseEvent(player, pStack, pLevel, i, !itemstack.isEmpty() || flag);
+
+            if (NeoForge.EVENT_BUS.post(event).isCanceled()) {
                 return;
             }
 
@@ -84,40 +62,31 @@ public class BattleBowItem extends RangedTieredItem implements Vanishable
                     itemstack = new ItemStack(Items.ARROW);
                 }
 
-                float f = getPowerForTime(i);
+                float f = event.getCharge();
                 if (!((double) f < 0.1))
                 {
                     boolean flag1 = player.getAbilities().instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem) itemstack.getItem()).isInfinite(itemstack, pStack, player);
                     if (!pLevel.isClientSide)
                     {
                         ArrowItem arrowitem = (ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
-                        AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player);
+                        AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player, pStack);
                         abstractarrow = this.customArrow(abstractarrow);
                         abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);
-                        abstractarrow.setBaseDamage(this.getDamage());
+                        abstractarrow.setBaseDamage(pEntityLiving.getAttributeValue(Attributes.ATTACK_DAMAGE));
                         if (f == 1.0F)
                         {
                             abstractarrow.setCritArrow(true);
                         }
 
-                        int j = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, pStack);
+                        int j = EnchantmentHelper.getEnchantmentLevel(pLevel.registryAccess().holderOrThrow(Enchantments.POWER), pEntityLiving);
                         if (j > 0)
                         {
                             abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + j);
                         }
 
-                        int k = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, pStack);
-                        if (k > 0)
-                        {
-                            abstractarrow.setKnockback(k);
-                        }
+                        int k = EnchantmentHelper.getEnchantmentLevel(pLevel.registryAccess().holderOrThrow(Enchantments.POWER), pEntityLiving);
 
-                        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, pStack) > 0)
-                        {
-                            abstractarrow.setSecondsOnFire(100);
-                        }
-
-                        pStack.hurtAndBreak(1, player, (p_289501_) -> p_289501_.broadcastBreakEvent(player.getUsedItemHand()));
+                        pStack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                         if (flag1 || player.getAbilities().instabuild && (itemstack.is(Items.SPECTRAL_ARROW) || itemstack.is(Items.TIPPED_ARROW)))
                         {
                             abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
@@ -160,10 +129,10 @@ public class BattleBowItem extends RangedTieredItem implements Vanishable
         return UseAnim.BOW;
     }
 
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, Player pPlayer, @NotNull InteractionHand pHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pHand);
         boolean flag = !pPlayer.getProjectile(itemstack).isEmpty();
-        InteractionResultHolder<ItemStack> ret = ForgeEventFactory.onArrowNock(itemstack, pLevel, pPlayer, pHand, flag);
+        InteractionResultHolder<ItemStack> ret = EventHooks.onArrowNock(itemstack, pLevel, pPlayer, pHand, flag);
         if (ret != null) {
             return ret;
         } else if (!pPlayer.getAbilities().instabuild && !flag) {

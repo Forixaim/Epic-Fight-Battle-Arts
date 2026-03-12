@@ -13,8 +13,9 @@ import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
-import yesman.epicfight.gameasset.EpicFightSounds;
-import yesman.epicfight.particle.EpicFightParticles;
+
+import yesman.epicfight.registry.entries.EpicFightParticles;
+import yesman.epicfight.registry.entries.EpicFightSounds;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 
 public class RoninUchigatanaAnimations
@@ -28,9 +29,9 @@ public class RoninUchigatanaAnimations
     public static AnimationManager.AnimationAccessor<GuardAnimation> RONIN_UCHIGATANA_GUARD_PARRY_1;
     public static AnimationManager.AnimationAccessor<GuardAnimation> RONIN_UCHIGATANA_GUARD_PARRY_2;
     public static AnimationManager.AnimationAccessor<MovementAnimation> RONIN_UCHIGATANA_RUN;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RONIN_UCHIGATANA_AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RONIN_UCHIGATANA_AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RONIN_UCHIGATANA_AUTO3;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RONIN_UCHIGATANA_AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RONIN_UCHIGATANA_AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RONIN_UCHIGATANA_AUTO3;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> RONIN_UCHIGATANA_DASH;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> RONIN_UCHIGATANA_AIRSLASH;
     public static AnimationManager.AnimationAccessor<AttackAnimation> FLASH_CLEAVE;
@@ -40,8 +41,8 @@ public class RoninUchigatanaAnimations
     public static AnimationManager.AnimationAccessor<MovementAnimation> RONIN_UCHIGATANA_SHEATHE_RUN;
     public static AnimationManager.AnimationAccessor<ActionAnimation> RONIN_UCHIGATANA_SHEATHE;
     public static AnimationManager.AnimationAccessor<StaticAnimation> RONIN_UCHIGATANA_SHEATHE_IDLE;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RONIN_UCHIGATANA_SHEATHE_AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RONIN_UCHIGATANA_SHEATHE_AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RONIN_UCHIGATANA_SHEATHE_AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RONIN_UCHIGATANA_SHEATHE_AUTO2;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> RONIN_UCHIGATANA_SHEATHE_DASH;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> RONIN_UCHIGATANA_SHEATHE_AIRSLASH;
 
@@ -102,15 +103,15 @@ public class RoninUchigatanaAnimations
 
 
         RONIN_UCHIGATANA_AUTO1 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "auto1"),
-                accessor -> new BasicAttackAnimation(0.1f, 0.0f, 0.1f, 0.2f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.1f, 0.0f, 0.1f, 0.2f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> v * 0.44f));
         RONIN_UCHIGATANA_AUTO2 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "auto2"),
-                accessor -> new BasicAttackAnimation(0.1f, 0.0f, 0.3f, 0.4f, 0.6f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.1f, 0.0f, 0.3f, 0.4f, 0.6f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.44f));
         RONIN_UCHIGATANA_AUTO3 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "auto3"),
-                accessor -> new BasicAttackAnimation(0.2f, accessor, Armatures.BIPED,
+                accessor -> new ComboAttackAnimation(0.2f, accessor, Armatures.BIPED,
                         new AttackAnimation.Phase(0.0f, 0.0f, 0.2f, 0.35f, 0.8f, 0.8f,  Armatures.BIPED.get().toolR, null).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f)),
                         new AttackAnimation.Phase(0.8f, 0.0f, 0.9f, 1.0f, 3f, 3f,  Armatures.BIPED.get().toolR, null).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.6f)).addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.WHOOSH_ROD.get())
                 )
@@ -176,14 +177,14 @@ public class RoninUchigatanaAnimations
                         .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 2).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.4f).addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true));
 
         RONIN_UCHIGATANA_SHEATHE_AUTO1 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "sheathe_auto1"),
-                accessor -> new BasicAttackAnimation(0.2f, 0.0f, 0.25f, 0.4f, 0.5f, ColliderPreset.FIST, Armatures.BIPED.get().legR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.2f, 0.0f, 0.25f, 0.4f, 0.5f, ColliderPreset.FIST, Armatures.BIPED.get().legR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, EpicFightSounds.BLUNT_HIT.get())
                         .addProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER, ValueModifier.multiplier(1.2f))
                         .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.2f))
                         .addProperty(AnimationProperty.AttackPhaseProperty.PARTICLE, EpicFightParticles.HIT_BLUNT)
                         .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 2).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.1f));
         RONIN_UCHIGATANA_SHEATHE_AUTO2 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "sheathe_auto2"),
-                accessor -> new BasicAttackAnimation(0.2f, 0.0f, 0.45f, 0.5f, 0.75f, ColliderPreset.FIST, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.2f, 0.0f, 0.45f, 0.5f, 0.75f, ColliderPreset.FIST, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, EpicFightSounds.BLUNT_HIT.get())
                         .addProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER, ValueModifier.multiplier(1.2f))
                         .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.2f))

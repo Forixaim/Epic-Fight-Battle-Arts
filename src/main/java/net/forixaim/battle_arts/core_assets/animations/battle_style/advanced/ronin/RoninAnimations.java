@@ -1,6 +1,5 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin;
 
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.world.capabilities.item.WeaponCategory;
 

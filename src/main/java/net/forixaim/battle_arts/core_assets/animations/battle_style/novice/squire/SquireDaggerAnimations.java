@@ -5,15 +5,15 @@ import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
-import yesman.epicfight.gameasset.EpicFightSounds;
+import yesman.epicfight.registry.entries.EpicFightSounds;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 
 public class SquireDaggerAnimations
 {
     public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> SPIKE;
     public static AnimationManager.AnimationAccessor<AttackAnimation> DISEMBOWELMENT;
@@ -24,15 +24,15 @@ public class SquireDaggerAnimations
                 access -> new StaticAnimation(0.1f, true, access, Armatures.BIPED));
 
         AUTO1 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.DAGGER, "auto1"),
-                accessor -> new BasicAttackAnimation(0.1f, 0f, 0.35f, 0.5f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.1f, 0f, 0.35f, 0.5f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
 
         AUTO2 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.DAGGER, "auto2"),
-                accessor -> new BasicAttackAnimation(0.1f, 0f, 0.4f, 0.6f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.1f, 0f, 0.4f, 0.6f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
 
         AUTO3 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.DAGGER, "auto3"),
-                accessor -> new BasicAttackAnimation(0.1f, 0f, 0.4f, 0.5f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.1f, 0f, 0.4f, 0.5f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
 
         DASH = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.DAGGER, "dash"),

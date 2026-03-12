@@ -2,7 +2,6 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.du
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts_api.animations.ReusableEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
@@ -18,6 +17,12 @@ import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.gameasset.*;
+import yesman.epicfight.registry.entries.EpicFightSkillDataKeys;
+import yesman.epicfight.registry.entries.EpicFightSkills;
+import yesman.epicfight.registry.entries.EpicFightSounds;
+import yesman.epicfight.skill.SkillDataManager;
+import yesman.epicfight.skill.SkillSlots;
+import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.damagesource.StunType;
 
 public class DuelistSwordAnimations
@@ -26,14 +31,20 @@ public class DuelistSwordAnimations
     public static AnimationManager.AnimationAccessor<MovementAnimation> WALK;
     public static AnimationManager.AnimationAccessor<MovementAnimation> RUN;
     public static AnimationManager.AnimationAccessor<StaticAnimation> GUARD;
+    public static AnimationManager.AnimationAccessor<SelectiveAnimation> GUARD_SET;
+
+    public static AnimationManager.AnimationAccessor<StaticAnimation> PARRY_STANCE1;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> PARRY_STANCE2;
+
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_HIT;
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_1;
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIR_ATTACK;
+    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> KNEE_SMASH;
     public static AnimationManager.AnimationAccessor<AttackAnimation> QUAD_STING;
     public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> PIERCING_FALCON;
     public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> SHOOTING_STAR;
@@ -43,40 +54,56 @@ public class DuelistSwordAnimations
         IDLE = builder.nextAccessor("battle_style/advanced/duelist/sword/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
 
         GUARD = builder.nextAccessor("battle_style/advanced/duelist/sword/guard", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+        PARRY_STANCE1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry_stance1", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+        PARRY_STANCE2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry_stance2", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+        GUARD_SET = builder.nextAccessor("battle_style/advanced/duelist/sword/guard_set", access -> new SelectiveAnimation(
+                livingEntityPatch -> {
+                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch)
+                    {
+                        SkillDataManager dataManager = playerPatch.getSkill(SkillSlots.GUARD).getDataManager();
+                        if (playerPatch.getSkill(SkillSlots.GUARD).hasSkill(EpicFightSkills.PARRYING.get()) && dataManager.hasData(EpicFightSkillDataKeys.PARRY_MOTION_COUNTER))
+                        {
+                            return (dataManager.getDataValue(EpicFightSkillDataKeys.PARRY_MOTION_COUNTER) % 2) + 1;
+                        }
+                    }
+                    return 0;
+                }, access, GUARD, PARRY_STANCE2, PARRY_STANCE1
+        ));
 
         GUARD_HIT = builder.nextAccessor("battle_style/advanced/duelist/sword/guard_hit", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry1", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
 
-
         WALK = builder.nextAccessor("battle_style/advanced/duelist/sword/walk", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                        v * 1.3f)
-                .addEvents(
-                        AnimationEvent.InTimeEvent.create(0.0f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT),
-                        AnimationEvent.InTimeEvent.create(0.5f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT)
-                ));
+                        v * 1.3f));
 
         RUN = builder.nextAccessor("battle_style/advanced/duelist/sword/run", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                        v * 1.3f)
-                .addEvents(
-                        AnimationEvent.InTimeEvent.create(0.0f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT),
-                        AnimationEvent.InTimeEvent.create(0.3f, ReusableEvents.PLAY_STEP_SOUND, AnimationEvent.Side.CLIENT)
-                ));
+                        v * 1.3f));
 
+        KNEE_SMASH = builder.nextAccessor("battle_style/advanced/duelist/sword/knee_smash", access ->
+                new KnockbackAttackAnimation(0.05f, 0.0f, 0.0f, 0.1f, 0.9f, ColliderPreset.FIST, Armatures.BIPED.get().kneeR, access, Armatures.BIPED)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.0)
+                        .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 0.0)
+                        .addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, EpicFightSounds.BLUNT_HIT_HARD.get())
+                        .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.NEUTRALIZE)
+                        .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.2f))
+                        .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                                1));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto1", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.45f, 0.6f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.2f, 0.0f, 0.45f, 0.6f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
+
         AUTO2 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto2", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.55f, 0.7f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.2f, 0.0f, 0.55f, 0.7f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
         AUTO3 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto3", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
@@ -126,7 +153,7 @@ public class DuelistSwordAnimations
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
                         .addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, true)
                         .addProperty(AnimationProperty.ActionAnimationProperty.NO_GRAVITY_TIME, TimePairList.create(0.0f, 0.5f))
-                        .addState(EntityState.CAN_SKILL_EXECUTION, false)
+                        .addState(EntityState.SKILL_EXECUTABLE, false)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, speed, prevElapsedTime, elapsedTime) ->
                                 {
                                     if (elapsedTime >= 0.5F && elapsedTime < 0.6F) {

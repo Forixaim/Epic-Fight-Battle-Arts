@@ -2,8 +2,7 @@ package net.forixaim.battle_arts.core_assets.world.projectiles;
 
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
-import net.mehvahdjukaar.dummmmmmy.Dummmmmmy;
-import net.mehvahdjukaar.dummmmmmy.common.TargetDummyEntity;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -16,11 +15,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.fml.ModList;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import org.jetbrains.annotations.NotNull;
-import yesman.epicfight.gameasset.EpicFightSounds;
-import yesman.epicfight.particle.EpicFightParticles;
+import yesman.epicfight.registry.entries.EpicFightParticles;
+import yesman.epicfight.registry.entries.EpicFightSounds;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.damagesource.EpicFightDamageSource;
@@ -43,6 +42,11 @@ public class FlyingShockwaveProjectile extends Projectile
     }
 
     @Override
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+
+    }
+
+    @Override
     public void tick()
     {
         super.tick();
@@ -54,7 +58,7 @@ public class FlyingShockwaveProjectile extends Projectile
         }
 
         HitResult hitresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
-        if (hitresult.getType() != HitResult.Type.MISS && !ForgeEventFactory.onProjectileImpact(this, hitresult)) {
+        if (hitresult.getType() != HitResult.Type.MISS && !NeoForge.EVENT_BUS.post(new ProjectileImpactEvent(this, hitresult)).isCanceled()) {
             this.onHit(hitresult);
         }
 
@@ -124,7 +128,7 @@ public class FlyingShockwaveProjectile extends Projectile
             if (entity1 instanceof LivingEntity livingEntity && playerpatch != null)
             {
                 LogUtils.getLogger().debug("Check passed");
-                if (!(entity instanceof Enemy || (ModList.get().isLoaded(Dummmmmmy.MOD_ID) && (entity instanceof TargetDummyEntity)))) {
+                if (!(entity instanceof Enemy)) {
                     if (entity instanceof TamableAnimal pet) {
                         if (Objects.requireNonNull(pet.getOwner()).is(entity1) || pet.getOwner().getTeam() == entity1.getTeam() || (pet.getOwner().getTeam() != null && pet.getOwner().getTeam().isAlliedTo(entity1.getTeam()))) {
                             LogUtils.getLogger().debug("Pet");
@@ -149,11 +153,6 @@ public class FlyingShockwaveProjectile extends Projectile
                 entity.hurt(this.damageSources().magic(), 6.0F);
             }
         }
-    }
-    @Override
-    protected void defineSynchedData()
-    {
-
     }
 
     @Override

@@ -6,7 +6,6 @@ import net.forixaim.battle_arts.Config;
 import net.forixaim.battle_arts.core_assets.animations.other.DraconicInstinctAnimations;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.TagKey;
@@ -16,12 +15,13 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.types.ActionAnimation;
-import yesman.epicfight.api.utils.AttackResult;
+import yesman.epicfight.api.event.EntityEventListener;
+import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.dodge.DodgeSkill;
+import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
-import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.List;
 import java.util.UUID;
@@ -62,9 +62,8 @@ public class DraconicInstinct extends DodgeSkill
     public void drawOnGui(BattleModeGui gui, SkillContainer container, GuiGraphics guiGraphics, float x, float y, float pt) {
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
-        poseStack.translate(0, (float)gui.getSlidingProgression(), 0);
         guiGraphics.blit(getSkillTexture(), (int)x, (int)y, 24, 24, 0, 0, 1, 1, 1, 1);
-        Integer Heat = container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE.get());
+        Integer Heat = container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE);
         String HeatLevel = Heat.toString();
         guiGraphics.drawString(gui.getFont(), HeatLevel, x + 4, y + 16, 16777215, true);
         poseStack.popPose();
@@ -78,34 +77,31 @@ public class DraconicInstinct extends DodgeSkill
 
 
     @Override
-    public void onInitiate(SkillContainer container) {
-        super.onInitiate(container);
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID, event ->
-        {
-            if (!contains(event.getDamageSource()) && !event.getPlayerPatch().getOriginal().isUsingItem() && !event.getPlayerPatch().isHoldingAny())
+    public void onInitiate(SkillContainer container, EntityEventListener eventListener) {
+        super.onInitiate(container, eventListener);
+        eventListener.registerEvent(EpicFightEventHooks.Entity.TAKE_DAMAGE_PRE, event ->{
+            if (!contains(event.getDamageSource()) && !event.getEntityPatch().getOriginal().isUsingItem() && !(event.getEntityPatch() instanceof ServerPlayerPatch spp && spp.isHoldingAny()))
             {
-                if (container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE.get()) > 80 && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW.get()) <= 0)
+                if (container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE) > 80 && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW) <= 0)
                 {
-                    container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_GAUGE.get(), value ->
+                    container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_GAUGE, value ->
                     {
                         if (Config.ultraInstinct)
                             return value;
                         else
                             return value - 80;
                     });
-                    container.getDataManager().setDataSync(BattleArtsDataKeys.INSTINCT_WINDOW.get(), 20);
+                    container.getDataManager().setDataSync(BattleArtsDataKeys.INSTINCT_WINDOW, 20);
                 }
-                if (container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW.get()) > 0 && !event.getDamageSource().is(DamageTypes.FELL_OUT_OF_WORLD))
+                if (container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW) > 0 && !event.getDamageSource().is(DamageTypes.FELL_OUT_OF_WORLD))
                 {
                     RandomSource rng = container.getExecutor().getOriginal().getRandom();
-                    event.getPlayerPatch().playAnimationSynchronized(DODGES.get(rng.nextInt(0, 4)), 0);
-                    event.getPlayerPatch().onDodgeSuccess(event.getDamageSource(), event.getPlayerPatch().getOriginal().position());
-                    event.setCanceled(true);
-                    event.setResult(AttackResult.ResultType.MISSED);
+                    event.getEntityPatch().playAnimationSynchronized(DODGES.get(rng.nextInt(0, 4)), 0);
+                    event.getEntityPatch().onDodgeSuccess(event.getDamageSource(), event.getEntityPatch().getOriginal().position());
+                    event.cancel();
                 }
             }
-
-        });
+        }, this);
     }
 
     private static boolean contains(DamageSource source)
@@ -127,25 +123,19 @@ public class DraconicInstinct extends DodgeSkill
 
     @Override
     public void onRemoved(SkillContainer container) {
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID);
         super.onRemoved(container);
     }
 
     @Override
     public void updateContainer(SkillContainer container) {
         super.updateContainer(container);
-        if (!container.getExecutor().isLogicalClient() && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE.get()) < 640)
+        if (!container.getExecutor().isLogicalClient() && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_GAUGE) < 640)
         {
-            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_GAUGE.get(), value -> value + 1);
+            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_GAUGE, value -> value + 1);
         }
-        if (!container.getExecutor().isLogicalClient() && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW.get()) > 0)
+        if (!container.getExecutor().isLogicalClient() && container.getDataManager().getDataValue(BattleArtsDataKeys.INSTINCT_WINDOW) > 0)
         {
-            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_WINDOW.get(), value -> value - 1);
+            container.getDataManager().setDataSyncF(BattleArtsDataKeys.INSTINCT_WINDOW, value -> value - 1);
         }
-    }
-
-    //This does nothing
-    @Override
-    public void executeOnServer(SkillContainer skillContainer, FriendlyByteBuf args) {
     }
 }

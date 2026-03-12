@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.util;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.Holder;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -29,16 +30,16 @@ public class NetworkUtils
         }
     }
 
-    public static void changeSkill(PlayerPatch<? extends Player> playerPatch, SkillSlot slot, @Nullable Skill skill)
+    public static void changeSkill(PlayerPatch<? extends Player> playerPatch, SkillSlot slot, @Nullable Holder<Skill> skill)
     {
-        if (skill != null && slot.category() != skill.getCategory())
+        if (skill != null && slot.category() != skill.value().getCategory())
             return;
         EpicFightNetworkManager.PayloadBundleBuilder toLocal = EpicFightNetworkManager.PayloadBundleBuilder.create();
         EpicFightNetworkManager.PayloadBundleBuilder toRemote = EpicFightNetworkManager.PayloadBundleBuilder.create();
         toLocal.and(new SPChangeSkill(slot, playerPatch.getOriginal().getId(), skill));
-        toRemote.and(new SPSetRemotePlayerSkill(playerPatch.getOriginal().getId(), slot, skill));
+        toRemote.and(new SPSetRemotePlayerSkill(slot, playerPatch.getOriginal().getId(), skill));
         NetworkUtils.syncPlayer(playerPatch.getOriginal(), toLocal, toRemote);
-        playerPatch.getSkill(slot).setSkill(skill);
+        playerPatch.getSkill(slot).setSkill(skill != null ? skill.value() : Skill.EMPTY);
 
     }
 }

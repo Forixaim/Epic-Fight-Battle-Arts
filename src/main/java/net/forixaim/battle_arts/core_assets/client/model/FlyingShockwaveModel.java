@@ -10,8 +10,9 @@ import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.api.distmarker.OnlyIn;
+
 
 @OnlyIn(Dist.CLIENT)
 public class FlyingShockwaveModel<T extends FlyingShockwaveProjectile> extends EntityModel<T>
@@ -53,14 +54,12 @@ public class FlyingShockwaveModel<T extends FlyingShockwaveProjectile> extends E
 
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		bb_main.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
-	}
-
-
-	@Override
 	public void setupAnim(T t, float v, float v1, float v2, float v3, float v4)
 	{
-
 	}
+
+    @Override
+    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int i, int i1, int i2) {
+        bb_main.render(poseStack, vertexConsumer, i, i1, i2);
+    }
 }

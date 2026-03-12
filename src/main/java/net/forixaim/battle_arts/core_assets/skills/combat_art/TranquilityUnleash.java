@@ -5,11 +5,11 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ron
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
+import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
 import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.skill.SkillBuilder;
@@ -19,7 +19,7 @@ import yesman.epicfight.world.capabilities.item.Style;
 public class TranquilityUnleash extends CombatArt
 {
 
-    public TranquilityUnleash(SkillBuilder<? extends CombatArt> builder)
+    public TranquilityUnleash(SkillBuilder<?> builder)
     {
         super(builder);
     }
@@ -27,7 +27,7 @@ public class TranquilityUnleash extends CombatArt
     @Override
     public boolean canExecute(SkillContainer container)
     {
-        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(AdvancedBattleStyles.RONIN) &&
+        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(SkillRegistry.RONIN.get()) &&
                 (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA_SHEATHE ||
         container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA ||
                         container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_TACHI);
@@ -43,7 +43,6 @@ public class TranquilityUnleash extends CombatArt
     {
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
-        poseStack.translate(0, (float)gui.getSlidingProgression(), 0);
         guiGraphics.blit(getSkillTexture(), (int)x, (int)y, 24, 24, 0, 0, 1, 1, 1, 1);
         if (!container.isFull())
         {
@@ -56,7 +55,7 @@ public class TranquilityUnleash extends CombatArt
     }
 
     @Override
-    public void executeOnServer(SkillContainer container, FriendlyByteBuf args)
+    public void executeOnServer(SkillContainer container, CompoundTag args)
     {
         super.executeOnServer(container, args);
 
@@ -69,7 +68,7 @@ public class TranquilityUnleash extends CombatArt
         else if (weaponStyle == RoninStyles.RONIN_UCHIGATANA)
         {
             container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
-            container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), true);
+            container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH, true);
             container.getServerExecutor().modifyLivingMotionByCurrentItem();
         }
         else if (weaponStyle == RoninStyles.RONIN_TACHI)

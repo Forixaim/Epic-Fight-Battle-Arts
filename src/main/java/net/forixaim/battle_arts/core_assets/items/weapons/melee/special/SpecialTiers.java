@@ -1,28 +1,39 @@
 package net.forixaim.battle_arts.core_assets.items.weapons.melee.special;
 
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
 public enum SpecialTiers implements Tier
 {
-    LIU_ITEMS(4, 0, 9.0f, 1.0f, 0, () -> Ingredient.EMPTY);
-    private final int harvestLevel;
+
+    LIU_ITEMS(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 0, 9.0f, 1.0f, 0, () -> Ingredient.EMPTY),
+    STEEL(BlockTags.INCORRECT_FOR_IRON_TOOL, 250, 6.0F, 2.0F, 14, () -> Ingredient.of(new ItemLike[]{Items.IRON_INGOT}));
+    private final TagKey<Block> harvestLevel;
     private final int maxUses;
     private final float efficiency;
     private final float attackDamage;
     private final int enchantability;
-    private final LazyLoadedValue<Ingredient> repairMaterial;
+    private final Supplier<Ingredient> repairMaterial;
 
-    SpecialTiers(int harvestLevelIn, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
-        this.harvestLevel = harvestLevelIn;
+
+    SpecialTiers(TagKey<Block> level, int maxUsesIn, float efficiencyIn, float attackDamageIn, int enchantabilityIn, Supplier<Ingredient> repairMaterialIn) {
+        this.harvestLevel = level;
         this.maxUses = maxUsesIn;
         this.efficiency = efficiencyIn;
         this.attackDamage = attackDamageIn;
         this.enchantability = enchantabilityIn;
-        this.repairMaterial = new LazyLoadedValue<>(repairMaterialIn);
+        this.repairMaterial = repairMaterialIn;
     }
 
     @Override
@@ -44,8 +55,7 @@ public enum SpecialTiers implements Tier
     }
 
     @Override
-    public int getLevel()
-    {
+    public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
         return harvestLevel;
     }
 
@@ -56,8 +66,13 @@ public enum SpecialTiers implements Tier
     }
 
     @Override
-    public Ingredient getRepairIngredient()
+    public @NotNull Ingredient getRepairIngredient()
     {
         return repairMaterial.get();
+    }
+
+    @Override
+    public @NotNull Tool createToolProperties(@NotNull TagKey<Block> p_335416_) {
+        return Tier.super.createToolProperties(p_335416_);
     }
 }

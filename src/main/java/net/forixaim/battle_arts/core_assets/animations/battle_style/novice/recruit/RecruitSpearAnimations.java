@@ -1,20 +1,16 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.forixaim.battle_arts.core_assets.animations.types.KnockbackComboAttackAnimation;
 import yesman.epicfight.api.animation.AnimationManager;
-import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
-import yesman.epicfight.gameasset.EpicFightSkills;
-import yesman.epicfight.gameasset.EpicFightSounds;
-import yesman.epicfight.model.armature.HumanoidArmature;
-import yesman.epicfight.particle.EpicFightParticles;
+
+import yesman.epicfight.registry.entries.EpicFightParticles;
+import yesman.epicfight.registry.entries.EpicFightSounds;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
 
@@ -25,9 +21,9 @@ public class RecruitSpearAnimations
 	public static AnimationManager.AnimationAccessor<MovementAnimation> RECRUIT_SPEAR_WALK;
 	public static AnimationManager.AnimationAccessor<MovementAnimation> RECRUIT_SPEAR_RUN;
 	public static AnimationManager.AnimationAccessor<StaticAnimation> RECRUIT_SPEAR_CROUCH;
-	public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RECRUIT_SPEAR_STANDING_ATTACK;
-	public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RECRUIT_SPEAR_STANDING_ATTACK_2;
-	public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> RECRUIT_SPEAR_DASH_ATTACK;
+	public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RECRUIT_SPEAR_STANDING_ATTACK;
+	public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RECRUIT_SPEAR_STANDING_ATTACK_2;
+	public static AnimationManager.AnimationAccessor<KnockbackComboAttackAnimation> RECRUIT_SPEAR_DASH_ATTACK;
 	public static AnimationManager.AnimationAccessor<AirSlashAnimation> RECRUIT_SPEAR_AERIAL_POKE;
 	public static AnimationManager.AnimationAccessor<GuardAnimation> RECRUIT_SPEAR_GUARD_HIT;
 	public static AnimationManager.AnimationAccessor<GuardAnimation> RECRUIT_SPEAR_GUARD_PARRY;
@@ -37,9 +33,9 @@ public class RecruitSpearAnimations
 
 	public static AnimationManager.AnimationAccessor<MovementAnimation> RECRUIT_SPEAR_SHIELD_WALK;
 	public static AnimationManager.AnimationAccessor<MovementAnimation> RECRUIT_SPEAR_SHIELD_RUN;
-	public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RECRUIT_SPEAR_SHIELD_AUTO1;
-	public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RECRUIT_SPEAR_SHIELD_AUTO2;
-	public static AnimationManager.AnimationAccessor<BasicAttackAnimation> RECRUIT_SPEAR_SHIELD_AUTO3;
+	public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RECRUIT_SPEAR_SHIELD_AUTO1;
+	public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RECRUIT_SPEAR_SHIELD_AUTO2;
+	public static AnimationManager.AnimationAccessor<ComboAttackAnimation> RECRUIT_SPEAR_SHIELD_AUTO3;
 	public static AnimationManager.AnimationAccessor<DashAttackAnimation> RECRUIT_SPEAR_SHIELD_DASH;
 	public static AnimationManager.AnimationAccessor<AirSlashAnimation> RECRUIT_SPEAR_SHIELD_AIRSLASH;
 	public static AnimationManager.AnimationAccessor<AttackAnimation> RECRUIT_SPEAR_SHIELD_DUAL_PUNCTURE;
@@ -53,9 +49,9 @@ public class RecruitSpearAnimations
 		RECRUIT_SPEAR_WALK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "walk"), accessor -> new MovementAnimation(0.1f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_RUN = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "run"), accessor -> new MovementAnimation(0.1f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_CROUCH = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "crouch"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
-		RECRUIT_SPEAR_STANDING_ATTACK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "standing_attack"), accessor -> new BasicAttackAnimation(0.2f, 0.0f, 0.35f, 0.5f, 0.75f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
-		RECRUIT_SPEAR_STANDING_ATTACK_2 = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "standing_attack2"), accessor -> new BasicAttackAnimation(0.0f, 0.0f, 0.55f, 0.8f, 1.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
-		RECRUIT_SPEAR_DASH_ATTACK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "dash_attack"), accessor -> new KnockbackBasicAttackAnimation(0.0f, 0.0f, 0.7f, 0.8f, 1.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+		RECRUIT_SPEAR_STANDING_ATTACK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "standing_attack"), accessor -> new ComboAttackAnimation(0.2f, 0.0f, 0.35f, 0.5f, 0.75f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
+		RECRUIT_SPEAR_STANDING_ATTACK_2 = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "standing_attack2"), accessor -> new ComboAttackAnimation(0.0f, 0.0f, 0.55f, 0.8f, 1.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
+		RECRUIT_SPEAR_DASH_ATTACK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "dash_attack"), accessor -> new KnockbackComboAttackAnimation(0.0f, 0.0f, 0.7f, 0.8f, 1.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
 				.addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 45d)
 				.addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1d));
 		RECRUIT_SPEAR_AERIAL_POKE = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "aerial_poke"), accessor -> new AirSlashAnimation(0.0f, 0.0f, 0.7f, 0.8f, 1.7f, false, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED));
@@ -68,11 +64,11 @@ public class RecruitSpearAnimations
 		RECRUIT_SPEAR_SHIELD_WALK = event.nextAccessor("battle_style/novice/recruit/spear_shield/walk", accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED));
 		RECRUIT_SPEAR_SHIELD_RUN = event.nextAccessor("battle_style/novice/recruit/spear_shield/run", accessor -> new MovementAnimation(0.2f, true, accessor, Armatures.BIPED));
 
-		RECRUIT_SPEAR_SHIELD_AUTO1 = event.nextAccessor("battle_style/novice/recruit/spear_shield/auto1", accessor ->  new BasicAttackAnimation(0.2f, 0.0f, 0.35f, 0.5f, 0.75f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+		RECRUIT_SPEAR_SHIELD_AUTO1 = event.nextAccessor("battle_style/novice/recruit/spear_shield/auto1", accessor ->  new ComboAttackAnimation(0.2f, 0.0f, 0.35f, 0.5f, 0.75f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
 				.addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
-		RECRUIT_SPEAR_SHIELD_AUTO2 = event.nextAccessor("battle_style/novice/recruit/spear_shield/auto2", accessor ->  new BasicAttackAnimation(0.2f, 0.0f, 0.7f, 0.8f, 1f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+		RECRUIT_SPEAR_SHIELD_AUTO2 = event.nextAccessor("battle_style/novice/recruit/spear_shield/auto2", accessor ->  new ComboAttackAnimation(0.2f, 0.0f, 0.7f, 0.8f, 1f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
 				.addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
-		RECRUIT_SPEAR_SHIELD_AUTO3 = event.nextAccessor("battle_style/novice/recruit/spear_shield/auto3", accessor ->  new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+		RECRUIT_SPEAR_SHIELD_AUTO3 = event.nextAccessor("battle_style/novice/recruit/spear_shield/auto3", accessor ->  new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
 				.addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
 		RECRUIT_SPEAR_SHIELD_DASH = event.nextAccessor("battle_style/novice/recruit/spear_shield/dash", accessor ->  new DashAttackAnimation(0.2f, 0.0f, 0.2f, 0.3f, 1f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, accessor, Armatures.BIPED)
 				.addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)

@@ -8,24 +8,24 @@ import yesman.epicfight.gameasset.Armatures;
 public class JourneymanAxeAnims
 {
     public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIRSLASH;
-    public static AnimationManager.AnimationAccessor<AttackAnimation> INNATE;
+    public static AnimationManager.AnimationAccessor<AttackAnimation> RECURVE_AXE;
 
     public static void Build(AnimationManager.AnimationBuilder event)
     {
         IDLE = event.nextAccessor("battle_style/novice/journeyman/axe/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-        AUTO1 = event.nextAccessor("battle_style/novice/journeyman/axe/auto1", access -> new BasicAttackAnimation(0.2f, 0.0f, 0.7f, 0.8f, 1f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED));
-        AUTO2 = event.nextAccessor("battle_style/novice/journeyman/axe/auto2", access -> new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED));
-        AUTO3 = event.nextAccessor("battle_style/novice/journeyman/axe/auto3", access -> new BasicAttackAnimation(0.2f, 0.0f, 0.35f, 0.55f, 1.5f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+        AUTO1 = event.nextAccessor("battle_style/novice/journeyman/axe/auto1", access -> new ComboAttackAnimation(0.2f, 0.0f, 0.7f, 0.8f, 1f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED));
+        AUTO2 = event.nextAccessor("battle_style/novice/journeyman/axe/auto2", access -> new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED));
+        AUTO3 = event.nextAccessor("battle_style/novice/journeyman/axe/auto3", access -> new ComboAttackAnimation(0.2f, 0.0f, 0.35f, 0.55f, 1.5f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f));
         DASH = event.nextAccessor("battle_style/novice/journeyman/axe/dash", access -> new DashAttackAnimation(0.2f, 0.0f, 0.35f, 0.45f, 1.5f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED));
         AIRSLASH = event.nextAccessor("battle_style/novice/journeyman/axe/airslash", access -> new AirSlashAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1.5f, false, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, false));
-        INNATE = event.nextAccessor("battle_style/novice/journeyman/axe/innate", access -> new AttackAnimation(0.2f, 0.0f, 0.9f, 1.5f, 3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+        RECURVE_AXE = event.nextAccessor("battle_style/novice/journeyman/axe/innate", access -> new AttackAnimation(0.2f, 0.0f, 0.9f, 1.5f, 3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.25f));
 
     }

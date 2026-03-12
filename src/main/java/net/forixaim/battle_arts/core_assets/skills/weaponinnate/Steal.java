@@ -6,23 +6,20 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
+import yesman.epicfight.api.event.EntityEventListener;
+import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
-import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.UUID;
 
 public class Steal extends SimpleWeaponInnateSkill
 {
-
-    private static final UUID EVENT_UUID = UUID.fromString("e77d3d79-c569-4ad4-a4b2-d988c8305c60");
     public Steal(Builder builder) {
         super(builder);
     }
@@ -39,28 +36,27 @@ public class Steal extends SimpleWeaponInnateSkill
     }
 
     @Override
-    public void onInitiate(SkillContainer container) {
-        super.onInitiate(container);
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID, event -> {
+    public void onInitiate(SkillContainer container, EntityEventListener eventListener) {
+        super.onInitiate(container, eventListener);
+        eventListener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, event -> {
             if (event.getDamageSource().getAnimation() == this.attackAnimation)
-                if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(TagRegistry.STOLEN.toString()) && !isFront(event.getTarget(), event.getPlayerPatch().getOriginal().position())) {
+                if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(TagRegistry.STOLEN.toString()) && !isFront(event.getTarget(), event.getEntityPatch().getOriginal().position())) {
                     ItemEntity item = EntityType.ITEM.create(event.getTarget().level());
                     LogUtils.getLogger().debug("oof");
                     if (item != null)
                     {
-                        int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.MOB_LOOTING, container.getExecutor().getOriginal());
+                        int i = EnchantmentHelper.getEnchantmentLevel(event.getTarget().level().registryAccess().holderOrThrow(Enchantments.LOOTING), container.getExecutor().getOriginal());
                         item.setItem(new ItemStack(Items.EMERALD, 1 + i));
                         item.setPos(event.getTarget().position());
                         event.getTarget().level().addFreshEntity(item);
                     }
                     event.getTarget().addTag(TagRegistry.STOLEN.toString());
                 }
-        });
+        }, this);
     }
 
     @Override
     public void onRemoved(SkillContainer container) {
         super.onRemoved(container);
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID);
     }
 }

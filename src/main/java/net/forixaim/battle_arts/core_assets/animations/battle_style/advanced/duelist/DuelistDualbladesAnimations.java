@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.du
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.KnockbackComboAttackAnimation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.SwordItem;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -23,10 +23,10 @@ public class DuelistDualbladesAnimations
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_HIT;
     public static AnimationManager.AnimationAccessor<GuardAnimation> PARRY1;
     public static AnimationManager.AnimationAccessor<GuardAnimation> PARRY2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AIRSLAM;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<KnockbackComboAttackAnimation> AIRSLAM;
     public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> WHIRLEDGE;
 
 
@@ -53,7 +53,7 @@ public class DuelistDualbladesAnimations
                 new GuardAnimation(0.0f, access, biped));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/duelist/dualblades/auto1", access ->
-                new BasicAttackAnimation(0.2f, access, biped,
+                new ComboAttackAnimation(0.2f, access, biped,
                         new AttackAnimation.Phase(0.0f, 0.0f, 0.35f, 0.45f, 0.55f, 0.55f, InteractionHand.OFF_HAND, toolL, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f)),
@@ -63,7 +63,7 @@ public class DuelistDualbladesAnimations
                                 v * 0.7f));
 
         AUTO2 = builder.nextAccessor("battle_style/advanced/duelist/dualblades/auto2", access ->
-                new BasicAttackAnimation(0.2f, access, biped,
+                new ComboAttackAnimation(0.2f, access, biped,
                         new AttackAnimation.Phase(0.0f, 0.0f, 0.4f, 0.6f, 0.6f, 0.6f, InteractionHand.MAIN_HAND, toolR, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f)),
@@ -73,7 +73,7 @@ public class DuelistDualbladesAnimations
                                 v * 0.7f));
 
         AIRSLAM = builder.nextAccessor("battle_style/advanced/duelist/dualblades/airslam", access ->
-                new KnockbackBasicAttackAnimation(0.2f, access, biped,
+                new KnockbackComboAttackAnimation(0.2f, access, biped,
                         new AttackAnimation.Phase(0.0f, 0.0f, 0.4f, 0.5f, 0.6f, 0.6f, InteractionHand.MAIN_HAND, toolR, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.FALL)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f))
@@ -83,14 +83,14 @@ public class DuelistDualbladesAnimations
                         {
                             if (assetAccessor.get() instanceof AttackAnimation animation && livingEntityPatch.getOriginal().getOffhandItem().getItem() instanceof SwordItem swordItem)
                             {
-                                animation.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.adder(swordItem.getDamage()));
+                                animation.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.adder(swordItem.getDamage(livingEntityPatch.getOriginal().getOffhandItem())));
                             }
                         }, AnimationEvent.Side.SERVER))
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
         AUTO3 = builder.nextAccessor("battle_style/advanced/duelist/dualblades/auto3", access ->
-                new BasicAttackAnimation(0.2f, access, biped,
+                new ComboAttackAnimation(0.2f, access, biped,
                         new AttackAnimation.Phase(0.0f, 0.0f, 0.55f, 0.65f, 0.6f, 0.65f, InteractionHand.OFF_HAND, toolL, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.25f)),

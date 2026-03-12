@@ -1,32 +1,29 @@
 package net.forixaim.battle_arts.core_assets.items.weapons.melee;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
-import yesman.epicfight.world.item.WeaponItem;
+import yesman.epicfight.world.item.LongswordItem;
+import yesman.epicfight.world.item.TieredWeaponItem;
 
-import java.util.UUID;
-
-public class HalberdItem extends WeaponItem
+public class HalberdItem extends BattleArtsItem
 {
     private final float destroySpeed;
     public HalberdItem(Tier tier, Properties builder) {
-        super(tier, 6, -3.1f, builder.durability((int) (tier.getUses() * 1.3)).defaultDurability((int) (tier.getUses() * 1.3)));
+        super(tier, builder.durability(Math.round(tier.getUses() * 1.3f)).attributes(createAttributes(tier)));
         this.destroySpeed = tier.getSpeed();
     }
 
+    public static ItemAttributeModifiers createAttributes(Tier iter) {
+        return TieredWeaponItem.createAttributes(iter, 6, -3.1F, 0.0F);
+    }
+
     @Override
-    public boolean isCorrectToolForDrops(BlockState blockIn) {
-        return blockIn.is(BlockTags.MINEABLE_WITH_AXE);
+    public boolean isCorrectToolForDrops(@NotNull ItemStack stack, BlockState state) {
+        return state.is(BlockTags.MINEABLE_WITH_AXE);
     }
 
     @Override
@@ -34,24 +31,4 @@ public class HalberdItem extends WeaponItem
         return pState.is(BlockTags.MINEABLE_WITH_AXE) ? this.destroySpeed : 1.0F;
     }
 
-    @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack)
-    {
-        if (slot == EquipmentSlot.MAINHAND) {
-            ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-            builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("62865914-3b42-49ee-8a58-4867a2bdd2e1"), "Shield modifier", -0.01, AttributeModifier.Operation.ADDITION));
-            builder.putAll(super.getAttributeModifiers(slot, stack));
-            return builder.build();
-
-        }
-        else if (slot == EquipmentSlot.OFFHAND) {
-            ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-            builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("62865914-3b42-49ee-8a58-4867a2bdd2e1"), "Shield modifier", -0.01, AttributeModifier.Operation.ADDITION));
-            builder.putAll(super.getAttributeModifiers(slot, stack));
-            return builder.build();
-        }
-        else {
-            return super.getAttributeModifiers(slot, stack);
-        }
-    }
 }

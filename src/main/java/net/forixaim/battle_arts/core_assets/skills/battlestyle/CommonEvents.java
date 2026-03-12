@@ -6,46 +6,55 @@ import net.forixaim.battle_arts_api.battle_arts_skills.CoreAPIDataKeys;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
+import yesman.epicfight.api.client.event.types.control.MappedMovementInputUpdateEvent;
+import yesman.epicfight.api.client.input.InputManager;
+import yesman.epicfight.api.client.input.PlayerInputState;
+import yesman.epicfight.api.event.types.entity.DealDamageEvent;
+import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
 import yesman.epicfight.skill.guard.GuardSkill;
-import yesman.epicfight.world.entity.eventlistener.DealDamageEvent;
-import yesman.epicfight.world.entity.eventlistener.MovementInputEvent;
-
-import java.util.function.Consumer;
+import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 
 public class CommonEvents
 {
-    public static void BUILD_METER(DealDamageEvent.Hurt event) {
-        if (event.getPlayerPatch().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().hasData(CoreAPIDataKeys.METER_FILL.get()) && event.getPlayerPatch().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getSkill() instanceof BattleStyle battleStyle)
+    public static void BUILD_METER(DealDamageEvent.Post event) {
+        if (event.getEntityPatch() instanceof ServerPlayerPatch player) {
+            if (player.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().hasData(CoreAPIDataKeys.METER_FILL) && player.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getSkill() instanceof BattleStyle battleStyle)
+            {
+                float meterFill = (event.getDamageSource().calculateImpact() + event.getDamageSource().calculateDamageAgainst(player.getOriginal(), event.getTarget(), event.getModifiedDamage())) * (1 + Math.min(10, EnchantmentHelper.getEnchantmentLevel(player.getOriginal().level().registryAccess().holderOrThrow(Enchantments.SWEEPING_EDGE), player.getOriginal())) * 0.3f);
+                float maxMeter = battleStyle.getMaxMeter() * 100;
+                float currentMeter = player.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().getDataValue(CoreAPIDataKeys.METER_FILL);
+
+                meterFill += currentMeter;
+
+                final float finalMeterFill = Math.min(meterFill, maxMeter);
+
+                LogUtils.getLogger().debug("meterFill: {}", finalMeterFill);
+
+                player.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(CoreAPIDataKeys.METER_FILL, finalMeterFill);
+            }
+        }
+
+    }
+
+    public static void LOCK_MOVEMENT_USING_ITEM(MappedMovementInputUpdateEvent event) {
+        if (event.getEntityPatch().getOriginal().isUsingItem())
         {
-            float meterFill = (event.getDamageSource().calculateImpact() + event.getDamageSource().calculateDamageAgainst(event.getPlayerPatch().getOriginal(), event.getTarget(), event.getAttackDamage())) * (1 + Math.min(10, EnchantmentHelper.getEnchantmentLevel(Enchantments.SWEEPING_EDGE, event.getPlayerPatch().getOriginal())) * 0.3f);
-            float maxMeter = battleStyle.getMaxMeter() * 100;
-            float currentMeter = event.getPlayerPatch().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().getDataValue(CoreAPIDataKeys.METER_FILL.get());
-
-            meterFill += currentMeter;
-
-            final float finalMeterFill = Math.min(meterFill, maxMeter);
-
-            LogUtils.getLogger().debug("meterFill: {}", finalMeterFill);
-
-            event.getPlayerPatch().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(CoreAPIDataKeys.METER_FILL.get(), finalMeterFill);
+            lockMovement(event);
         }
     }
 
-    public static final Consumer<MovementInputEvent> LOCK_MOVEMENT_USING_ITEM = event -> {
-        if (event.getPlayerPatch().getOriginal().isUsingItem())
-        {
-            event.getMovementInput().forwardImpulse = 0;
-            event.getMovementInput().leftImpulse = 0;
-            event.getMovementInput().jumping = false;
-        }
-    };
+    private static void lockMovement(MappedMovementInputUpdateEvent event) {
+        PlayerInputState state = event.getInputState().withForwardImpulse(0).withLeftImpulse(0).withJumping(false);
+        InputManager.setInputState(state);
+    }
 
-    public static final Consumer<MovementInputEvent> LOCK_MOVEMENT_GUARDING = event -> {
-        if (event.getPlayerPatch().getHoldingSkill() instanceof GuardSkill)
+    public static void LOCK_MOVEMENT_GUARDING(MappedMovementInputUpdateEvent event) {
+        if (event.getEntityPatch() instanceof LocalPlayerPatch playerPatch)
         {
-            event.getMovementInput().forwardImpulse = 0;
-            event.getMovementInput().leftImpulse = 0;
-            event.getMovementInput().jumping = false;
+            if (playerPatch.getHoldingSkill() instanceof GuardSkill)
+            {
+                lockMovement(event);
+            }
         }
-    };
+    }
 }

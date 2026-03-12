@@ -12,7 +12,7 @@ import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Armatures;
-import yesman.epicfight.gameasset.EpicFightSounds;
+import yesman.epicfight.registry.entries.EpicFightSounds;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
 
@@ -25,9 +25,9 @@ public class RoninTachiAnimations
     public static AnimationManager.AnimationAccessor<GuardAnimation> TACHI_PARRY_2;
     public static AnimationManager.AnimationAccessor<MovementAnimation> WALK;
     public static AnimationManager.AnimationAccessor<MovementAnimation> RUN;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIRSLASH;
     public static AnimationManager.AnimationAccessor<RoninInnateAnimation> BLOSSOM_SLASH;
@@ -59,7 +59,7 @@ public class RoninTachiAnimations
                 true, access, Armatures.BIPED
         ));
         AUTO1 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.TACHI, "auto1"), access ->
-                new BasicAttackAnimation(0.1f, 0.0f, 0.6f, 0.75f, 1f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.1f, 0.0f, 0.6f, 0.75f, 1f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, speed, prevElapsedTime, elapsedTime) ->
                         {
@@ -69,7 +69,7 @@ public class RoninTachiAnimations
                                 return speed;
                         }));
         AUTO2 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.TACHI, "auto2"), access ->
-                new BasicAttackAnimation(0.1f, 0.0f, 0.9f, 1f, 1.3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.1f, 0.0f, 0.9f, 1f, 1.3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, speed, prevElapsedTime, elapsedTime) ->
                         {
@@ -79,7 +79,7 @@ public class RoninTachiAnimations
                                 return speed;
                         }));
         AUTO3 = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.TACHI, "auto3"), access ->
-                new BasicAttackAnimation(0.1f, 0.0f, 1.1f, 1.35f, 1.6f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.1f, 0.0f, 1.1f, 1.35f, 1.6f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.5f)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, speed, prevElapsedTime, elapsedTime) ->
                         {

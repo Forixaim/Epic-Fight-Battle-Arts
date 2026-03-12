@@ -3,71 +3,56 @@ package net.forixaim.battle_arts.core_assets.skills.weaponinnate;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireBowAnimations;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
-import yesman.epicfight.client.events.engine.ControlEngine;
+import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
+import yesman.epicfight.api.client.input.InputManager;
+import yesman.epicfight.api.client.input.PlayerInputState;
+import yesman.epicfight.api.event.EntityEventListener;
+import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.client.input.EpicFightKeyMappings;
-import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
-import yesman.epicfight.network.server.SPSkillExecutionFeedback;
-import yesman.epicfight.skill.SkillBuilder;
-import yesman.epicfight.skill.SkillCategories;
+import yesman.epicfight.network.server.SPSkillFeedback;
 import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.skill.guard.GuardSkill;
 import yesman.epicfight.skill.modules.ChargeableSkill;
 import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
-import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
-import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
-import java.util.UUID;
-
-@SuppressWarnings("unchecked")
 public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
 {
-    private static final UUID EVENT_UUID = UUID.fromString("8e362474-0233-4827-930b-63c0920c1878");
-    public HeavyDraw(SkillBuilder<? extends WeaponInnateSkill> builder)
+    public HeavyDraw(WeaponInnateSkill.Builder<?> builder)
     {
         super(builder);
     }
 
     @Override
-    public void onInitiate(SkillContainer container)
+    public void onInitiate(SkillContainer container, EntityEventListener eventListener)
     {
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.SERVER_ITEM_USE_EVENT, EVENT_UUID, event ->
-        {
-            if (container.getDataManager().getDataValue(BattleArtsDataKeys.CHARGING.get()))
+        eventListener.registerEvent(EpicFightEventHooks.Player.USE_ITEM, event -> {
+            if (container.getDataManager().getDataValue(BattleArtsDataKeys.CHARGING))
             {
-                event.setCanceled(true);
+                event.cancel();
             }
-        });
+        }, this);
 
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
-        {
-            if (event.getPlayerPatch().isStunned()) {
-                container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
-                container.getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), false);
-                container.getDataManager().setDataSync(BattleArtsDataKeys.PULL_LEVEL.get(), 0.0f);
+        eventListener.registerEvent(EpicFightEventHooks.Entity.TAKE_DAMAGE_POST, event -> {
+            if (event.getEntityPatch().isStunned()) {
+                container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING, false);
+                container.getDataManager().setDataSync(BattleArtsDataKeys.PULLING, false);
+                container.getDataManager().setDataSync(BattleArtsDataKeys.PULL_LEVEL, 0.0f);
             }
-        });
+        }, this);
 
-        container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID, event ->
-        {
-            if (container.getDataManager().getDataValue(BattleArtsDataKeys.CHARGING.get()))
+        eventListener.registerEvent(EpicFightClientEventHooks.Control.MAPPED_MOVEMENT_INPUT_UPDATE, event -> {
+            if (container.getDataManager().getDataValue(BattleArtsDataKeys.CHARGING))
             {
-                event.getMovementInput().jumping = false;
-                event.getMovementInput().leftImpulse = 0;
-                event.getMovementInput().forwardImpulse = 0;
+                PlayerInputState modified = event.getInputState().withLeftImpulse(0).withLeftImpulse(0).withJumping(false);
+                InputManager.setInputState(modified);
             }
-        });
-        super.onInitiate(container);
+        }, this);
+        super.onInitiate(container, eventListener);
     }
 
     @Override
     public void onRemoved(SkillContainer container)
     {
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_HURT, EVENT_UUID);
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.SERVER_ITEM_USE_EVENT, EVENT_UUID);
-        container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, EVENT_UUID);
         super.onRemoved(container);
     }
 
@@ -76,7 +61,7 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     {
         if (!container.getExecutor().isLogicalClient())
         {
-            container.getExecutor().getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), true);
+            container.getExecutor().getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING, true);
         }
         container.getExecutor().playAnimationSynchronized(SquireBowAnimations.POWER_DRAW_START, 0);
     }
@@ -87,7 +72,7 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
         PlayerPatch<?> playerPatch = container.getExecutor();
         if (!playerPatch.isLogicalClient())
         {
-            playerPatch.getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
+            playerPatch.getSkill(this).getDataManager().setDataSync(BattleArtsDataKeys.CHARGING, false);
             playerPatch.stopPlaying(SquireBowAnimations.POWER_DRAW_HOLD);
             playerPatch.stopPlaying(SquireBowAnimations.POWER_DRAW_START);
         }
@@ -118,10 +103,10 @@ public class HeavyDraw extends WeaponInnateSkill implements ChargeableSkill
     }
 
     @Override
-    public void onStopHolding(SkillContainer container, SPSkillExecutionFeedback feedbackPacket)
+    public void onStopHolding(SkillContainer container,  SPSkillFeedback feedbackPacket)
     {
-        container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING.get(), false);
-        container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGE_POWER.get(), ((float)container.getServerExecutor().getChargingAmount() / 20f));
+        container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGING, false);
+        container.getDataManager().setDataSync(BattleArtsDataKeys.CHARGE_POWER, ((float)container.getServerExecutor().getChargingTicks() / 20f));
         container.getServerExecutor().getAnimator().stopPlaying(SquireBowAnimations.POWER_DRAW_HOLD);
         container.getServerExecutor().getAnimator().stopPlaying(SquireBowAnimations.POWER_DRAW_START);
         container.getServerExecutor().playAnimationSynchronized(SquireBowAnimations.POWER_DRAW_FIRE, 0);

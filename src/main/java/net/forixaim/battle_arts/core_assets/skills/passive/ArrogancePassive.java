@@ -3,85 +3,73 @@ package net.forixaim.battle_arts.core_assets.skills.passive;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.server.level.ServerPlayer;
+import yesman.epicfight.api.event.EntityEventListener;
+import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.client.gui.BattleModeGui;
-import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.skill.passive.BerserkerSkill;
 import yesman.epicfight.skill.passive.PassiveSkill;
-import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
-
-import java.util.UUID;
 
 public class ArrogancePassive extends PassiveSkill
 {
-	private static final UUID EVENT_UUID = UUID.fromString("ab53525f-0b2f-447a-87d0-7d39c5a56086");
-
-	public ArrogancePassive(SkillBuilder<? extends PassiveSkill> builder)
+	public ArrogancePassive(SkillBuilder<?> builder)
 	{
 		super(builder);
 	}
 
 	@Override
-	public void onInitiate(SkillContainer container)
+	public void onInitiate(SkillContainer container, EntityEventListener listener)
 	{
-		super.onInitiate(container);
+		super.onInitiate(container, listener);
 
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.ANIMATION_BEGIN_EVENT, EVENT_UUID, event ->
-		{
-			if (!event.getPlayerPatch().isLogicalClient())
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID.get(), false);
-		});
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID, event ->
-		{
-			if (!container.getDataManager().getDataValue(BattleArtsDataKeys.ANIM_ID.get()))
-			{
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID.get(), true);
-				if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) < 10)
-					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 1);
-			}
-		});
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID, event ->
-		{
-			int stack = (int) (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 0.95f);
-			float attackSpdBonus = 0.05f * stack;
-			event.setAttackSpeed(event.getAttackSpeed() * (1 + attackSpdBonus));
-		});
+        listener.registerEvent(EpicFightEventHooks.Animation.BEGIN, event -> {
+            if (!event.getEntityPatch().isLogicalClient())
+                container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID, false);
+        }, this);
 
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID, event->
-		{
-			int stack = (int) (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 0.95f);
-			float attackSpdBonus = 0.01f * stack;
-			if (event.isParried())
-			{
-				if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) < 10)
-				{
-					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) + 1);
-				}
-			}
-			else if (event.getResult() == AttackResult.ResultType.BLOCKED)
-			{
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 2);
-				if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) < 0)
-					container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), 0f);
+        listener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, event -> {
+            if (!container.getDataManager().getDataValue(BattleArtsDataKeys.ANIM_ID))
+            {
+                container.getDataManager().setDataSync(BattleArtsDataKeys.ANIM_ID, true);
+                if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK) < 10)
+                    container.getDataManager().setDataSyncF(BattleArtsDataKeys.ARROGANCE_STACK, data -> data + 1);
+            }
+        }, this);
 
-			}
-			else if (event.getResult() == AttackResult.ResultType.SUCCESS)
-			{
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), 0f);
-			}
-		});
+        listener.registerEvent(EpicFightEventHooks.Entity.MODIFY_ATTACK_SPEED, event -> {
+            int stack = (int) (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK) + 0.95f);
+            float attackSpdBonus = 0.05f * stack;
+            event.setAttackSpeed(event.getAttackSpeed() * (1 + attackSpdBonus));
+        }, this);
+
+        listener.registerEvent(EpicFightEventHooks.Entity.TAKE_DAMAGE_INCOME, event -> {
+            int stack = (int) (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK) + 0.95f);
+            if (event.isParried())
+            {
+                if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK) < 10)
+                {
+                    container.getDataManager().setDataSyncF(BattleArtsDataKeys.ARROGANCE_STACK, data -> data + 1);
+                }
+            }
+            else if (event.getResult() == AttackResult.ResultType.BLOCKED)
+            {
+                container.getDataManager().setDataSyncF(BattleArtsDataKeys.ARROGANCE_STACK, data -> data - 2);
+                if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK) < 0)
+                    container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK, 0f);
+
+            }
+            else if (event.getResult() == AttackResult.ResultType.SUCCESS)
+            {
+                container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK, 0f);
+            }
+        }, this);
 	}
 
 	@Override
 	public void onRemoved(SkillContainer container)
 	{
 		super.onRemoved(container);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.DEAL_DAMAGE_EVENT_HURT, EVENT_UUID);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MODIFY_ATTACK_SPEED_EVENT, EVENT_UUID);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, EVENT_UUID);
 	}
 
 	@Override
@@ -95,9 +83,8 @@ public class ArrogancePassive extends PassiveSkill
 	{
 		PoseStack poseStack = guiGraphics.pose();
 		poseStack.pushPose();
-		poseStack.translate(0, (float)gui.getSlidingProgression(), 0);
 		guiGraphics.blit(getSkillTexture(), (int)x-4, (int)y-4, 36, 36, 0, 0, 1, 1, 1, 1);
-		Float Heat = container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get());
+		Float Heat = container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK);
 		String Heat_Level = String.format("%.0f", Heat);
 		guiGraphics.drawString(gui.getFont(), Heat_Level, x + 4, y + 6, 16777215, true);
 		poseStack.popPose();
@@ -109,8 +96,8 @@ public class ArrogancePassive extends PassiveSkill
 		super.updateContainer(container);
 		if (!container.getExecutor().isLogicalClient())
 		{
-			if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) > 0)
-				container.getDataManager().setDataSync(BattleArtsDataKeys.ARROGANCE_STACK.get(), container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK.get()) - 0.01f);
+			if (container.getDataManager().getDataValue(BattleArtsDataKeys.ARROGANCE_STACK) > 0)
+				container.getDataManager().setDataSyncF(BattleArtsDataKeys.ARROGANCE_STACK, data -> data - 0.01f);
 
 		}
 	}

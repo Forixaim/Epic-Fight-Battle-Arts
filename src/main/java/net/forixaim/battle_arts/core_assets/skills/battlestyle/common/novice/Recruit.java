@@ -2,100 +2,91 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RecruitWieldStyles;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.IronFortress;
+import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import yesman.epicfight.api.animation.LivingMotions;
-import yesman.epicfight.api.forgeevent.SkillBuildEvent;
+import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
+import yesman.epicfight.api.client.input.InputManager;
+import yesman.epicfight.api.client.input.PlayerInputState;
+import yesman.epicfight.api.event.EntityEventListener;
+import yesman.epicfight.api.event.EpicFightEventHooks;
+import yesman.epicfight.api.event.types.entity.TakeDamageEvent;
 import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.skill.Skill;
+import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.skill.SkillDataKey;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
+import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
-import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
-import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.capabilities.item.Style;
 
 import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
-import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
-import yesman.epicfight.world.entity.eventlistener.TakeDamageEvent;
 
 import java.util.UUID;
 
 public class Recruit extends BattleStyle
 {
-	public static Skill IRON_FORTRESS;
-	public static Skill PUNCTURE_SWIPE;
+
 
 	private static final UUID ID = UUID.fromString("ef4b6082-30a8-49cc-9a86-fa53e811210e");
 
-    public Recruit(Builder<?> builder)
+    public Recruit(SkillBuilder<?> builder)
 	{
 		super(builder);
-		innateInactiveColor = new float[]{0.271f, 0.212f, 0.133f};
-		innateSkillColor = new float[]{1f, 0.561f, 0f};
-	}
-
-
-	public static void RegisterInnates(SkillBuildEvent.ModRegistryWorker worker)
-	{
-		PUNCTURE_SWIPE = worker.build("puncture_swipe", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(RecruitSpearAnimations.RECRUIT_SPEAR_SHIELD_DUAL_PUNCTURE)).newProperty();
-		IRON_FORTRESS = worker.build("iron_fortress", IronFortress::new, IronFortress.createWeaponInnateBuilder().setActivateType(ActivateType.DURATION)).newProperty();
 	}
 
 
 	@Override
-	public void onInitiate(SkillContainer container)
+	public void onInitiate(SkillContainer container, EntityEventListener eventListener)
 	{
-		super.onInitiate(container);
+		super.onInitiate(container, eventListener);
 
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, ID, (event) ->
-		{
-			if (container.getExecutor().getOriginal().isShiftKeyDown())
-			{
-				Style wieldStyle = event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch());
-				if (wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR || wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR_SHIELD)
-				{
-					event.getMovementInput().forwardImpulse = 0;
-					event.getMovementInput().leftImpulse = 0;
-					event.getMovementInput().jumping = false;
-				}
-			}
-		});
+        eventListener.registerEvent(EpicFightClientEventHooks.Control.MAPPED_MOVEMENT_INPUT_UPDATE, event -> {
+            if (container.getExecutor().getOriginal().isShiftKeyDown())
+            {
+                Style wieldStyle = event.getEntityPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getEntityPatch());
+                if (wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR || wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR_SHIELD)
+                {
+                    PlayerInputState modified = event.getInputState().withForwardImpulse(0).withLeftImpulse(0).withJumping(false);
+                    InputManager.setInputState(modified);
+                }
+            }
+        }, this);
 
-		container.getExecutor().getEventListener().addEventListener(PlayerEventListener.EventType.TAKE_DAMAGE_EVENT_ATTACK, ID, event ->
-		{
-			DamageSource damageSource = event.getDamageSource();
-			boolean isFront = false;
-			Vec3 sourceLocation = damageSource.getSourcePosition();
-			if (sourceLocation != null) {
-				Vec3 viewVector = event.getPlayerPatch().getOriginal().getViewVector(1.0F);
-				viewVector = viewVector.subtract(0.0F, viewVector.y, 0.0F).normalize();
-				Vec3 toSourceLocation = sourceLocation.subtract(event.getPlayerPatch().getOriginal().position()).normalize();
-				if (toSourceLocation.dot(viewVector) > (double)0.0F) {
-					isFront = true;
-				}
-			}
-			if (event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch()) != RecruitWieldStyles.RECRUIT_SPEAR_SHIELD)
-			{
-				return;
-			}
-			if (isFront && isBlockableState(event.getPlayerPatch()))
-			{
-				this.guard(event, false);
-			}
-		}, 1);
+        eventListener.registerEvent(EpicFightEventHooks.Entity.TAKE_DAMAGE_INCOME, event -> {
+            DamageSource damageSource = event.getDamageSource();
+            boolean isFront = false;
+            Vec3 sourceLocation = damageSource.getSourcePosition();
+            if (sourceLocation != null) {
+                Vec3 viewVector = event.getEntityPatch().getOriginal().getViewVector(1.0F);
+                viewVector = viewVector.subtract(0.0F, viewVector.y, 0.0F).normalize();
+                Vec3 toSourceLocation = sourceLocation.subtract(event.getEntityPatch().getOriginal().position()).normalize();
+                if (toSourceLocation.dot(viewVector) > (double)0.0F) {
+                    isFront = true;
+                }
+            }
+            if (event.getEntityPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getEntityPatch()) != RecruitWieldStyles.RECRUIT_SPEAR_SHIELD)
+            {
+                return;
+            }
+            if (isFront && isBlockableState(event.getEntityPatch()))
+            {
+                this.guard(event, false);
+            }
+        }, this);
 	}
 
-	private boolean isBlockableState(ServerPlayerPatch playerPatch)
+	private boolean isBlockableState(LivingEntityPatch<?> playerPatch)
 	{
 		return (playerPatch.getCurrentLivingMotion().isSame(LivingMotions.IDLE) || playerPatch.getCurrentLivingMotion().isSame(LivingMotions.WALK) || playerPatch.getCurrentLivingMotion().isSame(LivingMotions.KNEEL) || playerPatch.getCurrentLivingMotion().isSame(LivingMotions.SNEAK)) && playerPatch.getOriginal().onGround() && !playerPatch.getOriginal().isSprinting() && !playerPatch.getEntityState().attacking();
 	}
@@ -108,34 +99,33 @@ public class Recruit extends BattleStyle
 
 	}
 
-	public void guard(TakeDamageEvent.Attack event, boolean advanced)
+	public void guard(TakeDamageEvent.Income event, boolean advanced)
 	{
 		DamageSource damageSource = event.getDamageSource();
 		if (this.isBlockableSource(damageSource, advanced))
 		{
-			event.getPlayerPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
-			event.getPlayerPatch().getOriginal().getOffhandItem().hurtAndBreak(1, event.getPlayerPatch().getOriginal(), serverPlayer -> serverPlayer.broadcastBreakEvent(InteractionHand.OFF_HAND));
-			this.dealEvent(event.getPlayerPatch(), event);
+			event.getEntityPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
+			event.getEntityPatch().getOriginal().getOffhandItem().hurtAndBreak(1, event.getEntityPatch().getOriginal(), EquipmentSlot.OFFHAND);
+			this.dealEvent(event.getEntityPatch(), event);
 		}
-		else if (event.getPlayerPatch().getOriginal().isShiftKeyDown() && event.getPlayerPatch().getOriginal().onGround() && this.isBlockableSourceCrouching(damageSource, advanced))
+		else if (event.getEntityPatch().getOriginal().isShiftKeyDown() && event.getEntityPatch().getOriginal().onGround() && this.isBlockableSourceCrouching(damageSource, advanced))
 		{
-			event.getPlayerPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
-			event.getPlayerPatch().getOriginal().getOffhandItem().hurtAndBreak(3, event.getPlayerPatch().getOriginal(), serverPlayer -> serverPlayer.broadcastBreakEvent(InteractionHand.OFF_HAND));
-			this.dealEvent(event.getPlayerPatch(), event);
+			event.getEntityPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
+			event.getEntityPatch().getOriginal().getOffhandItem().hurtAndBreak(3, event.getEntityPatch().getOriginal(), EquipmentSlot.OFFHAND);
+			this.dealEvent(event.getEntityPatch(), event);
 		}
 
 	}
 
-	public void dealEvent(PlayerPatch<?> playerpatch, TakeDamageEvent.Attack event) {
-		event.setCanceled(true);
+	public void dealEvent(LivingEntityPatch<?> entityPatch, TakeDamageEvent.Income event) {
+		event.cancel();
 		event.setResult(AttackResult.ResultType.BLOCKED);
-		EpicFightCapabilities.getUnparameterizedEntityPatch(event.getDamageSource().getEntity(), LivingEntityPatch.class).ifPresent((attackerPatch) -> attackerPatch.setLastAttackEntity(playerpatch.getOriginal()));
+		EpicFightCapabilities.getUnparameterizedEntityPatch(event.getDamageSource().getEntity(), LivingEntityPatch.class).ifPresent((attackerPatch) -> attackerPatch.setLastAttackEntity(entityPatch.getOriginal()));
 	}
 
 	@Override
 	public void onRemoved(SkillContainer container)
 	{
 		super.onRemoved(container);
-		container.getExecutor().getEventListener().removeListener(PlayerEventListener.EventType.MOVEMENT_INPUT_EVENT, ID);
 	}
 }

@@ -4,15 +4,21 @@ import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
-import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.neoforged.fml.loading.FMLEnvironment;
+import yesman.epicfight.world.item.TieredWeaponItem;
 
 public class LongbowItem extends BattleBowItem
 {
     public LongbowItem(Tier pTier, Properties pProperties)
     {
-        super(pTier, 1, -3f, pProperties.defaultDurability(LongbowItem.bowDurabilityCalculation(pTier)).durability(LongbowItem.bowDurabilityCalculation(pTier)));
+        super(pTier, pProperties.durability(LongbowItem.bowDurabilityCalculation(pTier)).attributes(createAttributes(pTier)));
         if(FMLEnvironment.dist.isClient())
             OverrideHelper.registerLongbowPropertyOverrides(this);
+    }
+
+    public static ItemAttributeModifiers createAttributes(Tier iter) {
+        return TieredWeaponItem.createAttributes(iter, 1, -3F, 0.0F);
     }
 
     @Override

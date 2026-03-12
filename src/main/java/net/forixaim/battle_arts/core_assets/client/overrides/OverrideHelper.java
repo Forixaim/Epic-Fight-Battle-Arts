@@ -1,19 +1,15 @@
 package net.forixaim.battle_arts.core_assets.client.overrides;
 
 import com.google.common.collect.Lists;
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.AdaptiveGloveItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.ex_cap.capabilities.ExCapCategories;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 
-import net.minecraft.world.InteractionHand;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import yesman.epicfight.skill.SkillSlots;
 import yesman.epicfight.skill.modules.ChargeableSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -23,12 +19,11 @@ import yesman.epicfight.world.capabilities.item.Style;
 
 import java.util.List;
 
-@OnlyIn(Dist.CLIENT)
 public class OverrideHelper
 {
-    public static final ResourceLocation PULLING = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "pulling");
-    public static final ResourceLocation PULL = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "pull");
-    public static final ResourceLocation WIDE_SLIM = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "wide_slim");
+    public static final ResourceLocation PULLING = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "pulling");
+    public static final ResourceLocation PULL = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "pull");
+    public static final ResourceLocation WIDE_SLIM = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "wide_slim");
 
     public static final List<Style> UchigatanaOverrides = Lists.newArrayList(
     RoninStyles.RONIN_UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE);
@@ -36,7 +31,12 @@ public class OverrideHelper
     public static void registerGloveOverrides(AdaptiveGloveItem gloveItem)
     {
         ItemProperties.register(gloveItem, WIDE_SLIM, ((itemStack, clientLevel, livingEntity, i) ->
-                (livingEntity instanceof AbstractClientPlayer acp && acp.getModelName().equals("slim")) ? 1.0f : 0.0f));
+        {
+            if (livingEntity instanceof AbstractClientPlayer acp) {
+                acp.getSkin();
+            }
+            return 0.0f;
+        }));
     }
 
     public static void registerLongbowPropertyOverrides(LongbowItem longbow)
@@ -45,11 +45,11 @@ public class OverrideHelper
                 {
                     LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(living, LivingEntityPatch.class);
 
-                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == ExCapCategories.BOW && !living.isUsingItem())
+                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && !living.isUsingItem())
                     {
-                        if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get()) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()))
+                        if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING))
                         {
-                            return playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()) ? 1.0f : 0.0f;
+                            return playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING) ? 1.0f : 0.0f;
                         }
                         return playerPatch.isHoldingAny() ? 1.0f : 0.0f;
                     }
@@ -59,11 +59,11 @@ public class OverrideHelper
         ItemProperties.register(longbow, PULL, (stack, world, shooter, value) ->
                 {
                     LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(shooter, LivingEntityPatch.class);
-                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == ExCapCategories.BOW && playerPatch.isHoldingAny() && !shooter.isUsingItem())
+                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.isHoldingAny() && !shooter.isUsingItem())
                     {
-                        if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get()) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()))
+                        if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING))
                         {
-                            return playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULL_LEVEL.get());
+                            return playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULL_LEVEL);
                         }
                         if (playerPatch.getHoldingSkill() instanceof ChargeableSkill cs)
                         {

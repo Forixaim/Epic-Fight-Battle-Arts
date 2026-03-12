@@ -17,17 +17,17 @@ import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
+import yesman.epicfight.registry.entries.EpicFightAttributes;
 import yesman.epicfight.skill.SkillSlots;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
 import yesman.epicfight.world.damagesource.StunType;
-import yesman.epicfight.world.entity.ai.attribute.EpicFightAttributes;
 
 public class SquireBowAnimations
 {
     public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIRSLASH;
     public static AnimationManager.AnimationAccessor<PowerDrawStartAnimation> POWER_DRAW_START;
@@ -37,16 +37,16 @@ public class SquireBowAnimations
     public static void Build(AnimationManager.AnimationBuilder event)
     {
         IDLE = event.nextAccessor("battle_style/novice/squire/bow/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-        AUTO1 = event.nextAccessor("battle_style/novice/squire/bow/auto1", access -> new BasicAttackAnimation(0.1f, 0.5f, 0.5f, 0.5f, 0.7f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+        AUTO1 = event.nextAccessor("battle_style/novice/squire/bow/auto1", access -> new ComboAttackAnimation(0.1f, 0.5f, 0.5f, 0.5f, 0.7f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.5 &&
-                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
-                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get()))
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING)
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL))
                     {
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true);
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.25f);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING, true);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL, data -> data + 0.25f);
                     }
                     //Eventual Battle Bow Setup for dedicated damage.
                     if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
@@ -55,16 +55,16 @@ public class SquireBowAnimations
                 })
                 .addEvents(AnimationEvent.InTimeEvent.create(0.5f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0d, 1.2f)));
 
-        AUTO2 = event.nextAccessor("battle_style/novice/squire/bow/auto2", access -> new BasicAttackAnimation(0.2f, 0.25f, 0.25f, 0.3f, 1f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+        AUTO2 = event.nextAccessor("battle_style/novice/squire/bow/auto2", access -> new ComboAttackAnimation(0.2f, 0.25f, 0.25f, 0.3f, 1f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.25 &&
-                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
-                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get()))
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING)
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL))
                     {
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true);
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.7f);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING, true);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL, data -> data + 0.7f);
                     }
                     //Eventual Battle Bow Setup for dedicated damage.
                     if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
@@ -79,12 +79,12 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.65 && v2 > 0.3 &&
-                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
-                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get())
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING)
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL)
                     )
                     {
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true);
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.7f);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING, true);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL, data -> data + 0.7f);
                     }
                     //Eventual Battle Bow Setup for dedicated damage.
                     if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
@@ -98,11 +98,11 @@ public class SquireBowAnimations
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                 {
                     if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && v2 < 0.25 &&
-                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get())
-                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL.get()))
+                            playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING)
+                            && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULL_LEVEL))
                     {
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), true);
-                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> data + 0.7f);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING, true);
+                        playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL, data -> data + 0.7f);
                     }
                     //Eventual Battle Bow Setup for dedicated damage.
                     if (livingEntityPatch.getOriginal().getMainHandItem().getItem() instanceof BattleBowItem)
@@ -139,7 +139,7 @@ public class SquireBowAnimations
             float ang = (float) ((livingEntityPatch.getYRot()+90)/180 * Math.PI);
             Vec3 shootVec = new Vec3(Math.cos(ang), animationParameters.first() , Math.sin(ang));
             Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z).add(0, 1.5, 0);
-            double velocity = livingEntityPatch.getOriginal().getAttributeValue(EpicFightAttributes.IMPACT.get());
+            double velocity = livingEntityPatch.getOriginal().getAttributeValue(EpicFightAttributes.IMPACT);
             float multiplier = 1;
 
             if (animationParameters.second() != null)
@@ -149,15 +149,15 @@ public class SquireBowAnimations
 
             FixedArrow projectile = BattleArtsProjectiles.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());
 
-            if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get()))
+            if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING))
             {
-                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), false);
-                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> 0.0f);
+                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING, false);
+                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL, data -> 0.0f);
             }
 
             if (projectile != null)
             {
-                if (assetAccessor.get().isBasicAttackAnimation()) {
+                if (assetAccessor.get().isComboAttackAnimation()) {
                     projectile.setAttack((AnimationManager.AnimationAccessor<? extends AttackAnimation>) assetAccessor);
                     AttackAnimation.Phase faze = ((AttackAnimation)assetAccessor.get()).phases[0];
                     projectile.setPhase(faze);
@@ -183,14 +183,14 @@ public class SquireBowAnimations
 
             if (livingEntityPatch instanceof ServerPlayerPatch playerPatch)
             {
-                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING.get(), false);
-                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL.get(), data -> 0.0f);
+                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING, false);
+                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL, data -> 0.0f);
             }
 
-            if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.CHARGE_POWER.get()))
+            if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.CHARGE_POWER))
             {
-                pierceLevel = playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.CHARGE_POWER.get()).byteValue();
-                chargePower = playerPatch.getChargingAmount() / 20f;
+                pierceLevel = playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.CHARGE_POWER).byteValue();
+                chargePower = playerPatch.getChargingTicks() / 20f;
             }
 
             Arrow projectile = EntityType.ARROW.create(livingEntityPatch.getOriginal().level());
@@ -202,7 +202,6 @@ public class SquireBowAnimations
                 projectile.pickup = AbstractArrow.Pickup.DISALLOWED;
                 projectile.setCritArrow(true);
                 projectile.setBaseDamage((float) livingEntityPatch.getOriginal().getAttributeValue(Attributes.ATTACK_DAMAGE) * 0.5f);
-                projectile.setPierceLevel(pierceLevel);
                 projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), 5.5f + chargePower, 0);
                 livingEntityPatch.getOriginal().level().addFreshEntity(projectile);
             }

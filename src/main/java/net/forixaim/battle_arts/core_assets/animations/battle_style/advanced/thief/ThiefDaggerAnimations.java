@@ -13,9 +13,9 @@ public class ThiefDaggerAnimations
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_HIT;
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_1;
     public static AnimationManager.AnimationAccessor<GuardAnimation> GUARD_PARRY_2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+    public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> AIRSLASH;
     public static AnimationManager.AnimationAccessor<AttackAnimation> STEAL;
@@ -35,15 +35,15 @@ public class ThiefDaggerAnimations
         GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/thief/dagger/guard_parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/thief/dagger/auto1",
-                accessor -> new BasicAttackAnimation(0.2f, 0f, 0.2f, 0.35f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.2f, 0f, 0.2f, 0.35f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.5f));
         AUTO2 = builder.nextAccessor("battle_style/advanced/thief/dagger/auto2",
-                accessor -> new BasicAttackAnimation(0.2f, 0f, 0.3f, 0.45f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.2f, 0f, 0.3f, 0.45f, 0.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.5f));
         AUTO3 = builder.nextAccessor("battle_style/advanced/thief/dagger/auto3",
-                accessor -> new BasicAttackAnimation(0.2f, 0f, 0.55f, 0.65f, 1.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+                accessor -> new ComboAttackAnimation(0.2f, 0f, 0.55f, 0.65f, 1.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.5f));
 
@@ -68,6 +68,6 @@ public class ThiefDaggerAnimations
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.5f)
-                        .addState(EntityState.CAN_SKILL_EXECUTION, false));
+                        .addState(EntityState.SKILL_EXECUTABLE, false));
     }
 }
