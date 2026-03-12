@@ -1,0 +1,30 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "battle_arts:item/taijian",
+    "textures": {
+      "layer0": "battle_arts:item/steel_taijian"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/steel_taijian_gui"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/steel_taijian_gui"
+      }
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/steel_taijian_gui"
+      }
+    }
+  }
+}
