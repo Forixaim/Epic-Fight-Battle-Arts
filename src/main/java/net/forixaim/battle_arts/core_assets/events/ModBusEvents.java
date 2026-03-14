@@ -18,7 +18,7 @@ public class ModBusEvents
     public static void registerParticle(RegisterParticleProvidersEvent event)
     {
         event.registerSpriteSet(ParticleRegistry.SPECIAL_RING.get(), SpecialMoveParticle.Provider::new);
-        event.registerSpecial(ParticleRegistry.PROJECTILE_TRAIL.get(), BattleArtsProjectileTrailParticle.createRecord());
+        //event.registerSpecial(ParticleRegistry.PROJECTILE_TRAIL.get(), BattleArtsProjectileTrailParticle.createRecord());
     }
 
 }

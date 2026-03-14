@@ -22,8 +22,7 @@ public class LongbowItem extends BattleBowItem
     }
 
     @Override
-    public float getPowerForTime(int pCharge)
-    {
+    public float getBattleArtsPowerForTime(int pCharge) {
         float f = (float) pCharge / 40.0F;
         f = (f * f + f * 2.0F) / 3.0F;
         if (f > 1.0F)
@@ -33,6 +32,7 @@ public class LongbowItem extends BattleBowItem
 
         return f;
     }
+
 
     public float getNockProgress(ItemStack stack, LivingEntity shooter)
     {
@@ -45,6 +45,6 @@ public class LongbowItem extends BattleBowItem
         {
             return Math.round(384f * ((pTier.getUses()/200f)+1));
         }
-        return (int)Math.round(pTier.getUses() * 1.5);
+        return Math.round(pTier.getUses() * 1.5f);
     }
 }

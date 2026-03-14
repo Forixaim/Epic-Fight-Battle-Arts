@@ -1,0 +1,12 @@
+{
+  "animation": "battle_arts:battle_style/advanced/duelist/sword/brandish",
+  "title": "emote.battle_arts.brandish",
+  "snapshot_time_stamp": 0.0,
+  "preview_camera_transform": {
+    "x_translation": 0.0,
+    "y_translation": 0.0,
+    "x_rotation": 0.0,
+    "y_rotation": -200.0,
+    "zoom": -3.0
+  }
+}

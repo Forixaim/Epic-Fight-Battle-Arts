@@ -53,7 +53,7 @@ public class SquireBowAnimations
                         return v;
                     return 3f;
                 })
-                .addEvents(AnimationEvent.InTimeEvent.create(0.5f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0d, 1.2f)));
+                .addEvents(AnimationEvent.InTimeEvent.create(0.5f, ReusableSources.FIRE_ARROW_COMBO, AnimationEvent.Side.SERVER).params(1.2f)));
 
         AUTO2 = event.nextAccessor("battle_style/novice/squire/bow/auto2", access -> new ComboAttackAnimation(0.2f, 0.25f, 0.25f, 0.3f, 1f, null, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, SoundEvents.ARROW_SHOOT)
@@ -71,7 +71,7 @@ public class SquireBowAnimations
                         return v;
                     return 2f;
                 })
-                .addEvents(AnimationEvent.InTimeEvent.create(0.25f, ReusableSources.FIRE_ARROW, AnimationEvent.Side.SERVER).params(0d, 1.5f)));
+                .addEvents(AnimationEvent.InTimeEvent.create(0.25f, ReusableSources.FIRE_ARROW_COMBO, AnimationEvent.Side.SERVER).params(1.5f)));
 
         DASH = event.nextAccessor("battle_style/novice/squire/bow/dash", access -> new DashAttackAnimation(0.1f, 0f, 0.05f, 0.35f, 1.5f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.LONG)
@@ -145,6 +145,45 @@ public class SquireBowAnimations
             if (animationParameters.second() != null)
             {
                 multiplier = animationParameters.second();
+            }
+
+            FixedArrow projectile = BattleArtsProjectiles.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());
+
+            if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING))
+            {
+                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync(BattleArtsDataKeys.PULLING, false);
+                playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSyncF(BattleArtsDataKeys.PULL_LEVEL, data -> 0.0f);
+            }
+
+            if (projectile != null)
+            {
+                if (assetAccessor.get().isComboAttackAnimation()) {
+                    projectile.setAttack((AnimationManager.AnimationAccessor<? extends AttackAnimation>) assetAccessor);
+                    AttackAnimation.Phase faze = ((AttackAnimation)assetAccessor.get()).phases[0];
+                    projectile.setPhase(faze);
+                }
+
+                projectile.setPos(shootPos);
+                projectile.setFixedDamage((float) livingEntityPatch.getOriginal().getAttributeValue(Attributes.ATTACK_DAMAGE) * multiplier);
+                projectile.setOwner(livingEntityPatch.getOriginal());
+                projectile.pickup = AbstractArrow.Pickup.DISALLOWED;
+                projectile.shoot(shootVec.x(), shootVec.y(), shootVec.z(), 2f + (float)velocity, 0);
+                livingEntityPatch.getOriginal().level().addFreshEntity(projectile);
+            }
+        };
+
+        public static AnimationEvent.E1<Float> FIRE_ARROW_COMBO = (livingEntityPatch, assetAccessor, animationParameters) ->
+        {
+            float ang = (float) ((livingEntityPatch.getYRot()+90)/180 * Math.PI);
+            double vert = livingEntityPatch.getOriginal().getLookAngle().normalize().y();
+            Vec3 shootVec = new Vec3(Math.cos(ang), vert , Math.sin(ang));
+            Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z).add(0, 1.5, 0);
+            double velocity = livingEntityPatch.getOriginal().getAttributeValue(EpicFightAttributes.IMPACT);
+            float multiplier = 1;
+
+            if (animationParameters.first() != null)
+            {
+                multiplier = animationParameters.first();
             }
 
             FixedArrow projectile = BattleArtsProjectiles.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());

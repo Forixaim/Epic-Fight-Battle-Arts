@@ -31,6 +31,8 @@ public class DuelistSwordAnimations
     public static AnimationManager.AnimationAccessor<MovementAnimation> WALK;
     public static AnimationManager.AnimationAccessor<MovementAnimation> RUN;
     public static AnimationManager.AnimationAccessor<StaticAnimation> GUARD;
+    public static AnimationManager.AnimationAccessor<EmoteAnimation> BRANDISH;
+
     public static AnimationManager.AnimationAccessor<SelectiveAnimation> GUARD_SET;
 
     public static AnimationManager.AnimationAccessor<StaticAnimation> PARRY_STANCE1;
@@ -52,7 +54,7 @@ public class DuelistSwordAnimations
     public static void build(AnimationManager.AnimationBuilder builder)
     {
         IDLE = builder.nextAccessor("battle_style/advanced/duelist/sword/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-
+        BRANDISH = builder.nextAccessor("battle_style/advanced/duelist/sword/brandish", access -> new EmoteAnimation(0.2f, true, access, Armatures.BIPED));
         GUARD = builder.nextAccessor("battle_style/advanced/duelist/sword/guard", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
         PARRY_STANCE1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry_stance1", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
         PARRY_STANCE2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry_stance2", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));

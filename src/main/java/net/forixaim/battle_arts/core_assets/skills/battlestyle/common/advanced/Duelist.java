@@ -37,7 +37,6 @@ public class Duelist extends BattleStyle
 		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, SkillRegistry.SKY_STRIKER);
 
         eventListener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, CommonEvents::BUILD_METER, this);
-
         eventListener.registerEvent(EpicFightEventHooks.Player.CAST_SKILL, event -> {if (event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch()) == DuelistStyles.DUELIST_SWORD && event.getSkillContainer().getSkill().getCategory() == SkillCategories.BASIC_ATTACK && container.getDataManager().getDataValue(BattleArtsDataKeys.COUNTER_WINDOW) > 0f)
         {
             event.getPlayerPatch().playAnimationSynchronized(DuelistSwordAnimations.DASH_ATTACK, 0);

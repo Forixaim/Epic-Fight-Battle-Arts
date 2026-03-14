@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.fighter.FighterAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.lancer.LancerAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary.MercenaryAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninAnimations;
@@ -16,6 +17,7 @@ public class BattleStyleRegistry
 {
 	public static void Listen(AnimationManager.AnimationBuilder event)
 	{
+        FighterAnimations.listen(event);
 		DraconicInstinctAnimations.build(event);
 		JourneymanAnimations.listenAnims(event);
 		RecruitAnimations.Build(event);

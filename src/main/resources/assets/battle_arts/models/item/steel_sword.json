@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "battle_arts:item/steel_sword"
+  }
+}

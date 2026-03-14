@@ -2,13 +2,13 @@ package net.forixaim.battle_arts.core_assets.client.particle;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import org.jetbrains.annotations.NotNull;
 import yesman.epicfight.api.client.animation.property.TrailInfo;
 
-public class TrailParticleType extends ParticleType<TrailParticleType> implements ParticleOptions {
+public class TrailParticleType extends SimpleParticleType {
     private final TrailInfo entityId;
     private final TrailParticleType type;
 
@@ -20,7 +20,7 @@ public class TrailParticleType extends ParticleType<TrailParticleType> implement
     }
 
     @Override
-    public @NotNull MapCodec<TrailParticleType> codec() {
+    public @NotNull MapCodec<SimpleParticleType> codec() {
         return MapCodec.unit(this::getType);
     }
 
@@ -32,7 +32,7 @@ public class TrailParticleType extends ParticleType<TrailParticleType> implement
 
 
     @Override
-    public @NotNull StreamCodec<? super RegistryFriendlyByteBuf, TrailParticleType> streamCodec() {
+    public @NotNull StreamCodec<RegistryFriendlyByteBuf, SimpleParticleType> streamCodec() {
         return StreamCodec.unit(this);
     }
 

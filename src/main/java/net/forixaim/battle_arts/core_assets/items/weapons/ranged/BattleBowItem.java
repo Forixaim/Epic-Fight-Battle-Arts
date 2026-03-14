@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.items.weapons.ranged;
 
-import net.forixaim.battle_arts.core_assets.items.types.RangedTieredItem;
+import net.forixaim.battle_arts.core_assets.items.weapons.melee.special.SpecialTiers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -21,14 +21,36 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class BattleBowItem extends RangedTieredItem
+public class BattleBowItem extends BowItem
 {
+    private final Tier tier;
+    public Tier getTier() {
+        return this.tier;
+    }
+
+    public int getEnchantmentValue() {
+        return this.tier.getEnchantmentValue();
+    }
+
+    public boolean isValidRepairItem(@NotNull ItemStack ingredient, @NotNull ItemStack self) {
+        return this.tier.getRepairIngredient().test(self) || super.isValidRepairItem(ingredient, self);
+    }
+
     public BattleBowItem(Tier pTier, Properties pProperties)
     {
-        super(pTier, pProperties);
+        super(pProperties);
+        this.tier = pTier;
+
+    }
+
+    @Override
+    public <T extends LivingEntity> int damageItem(@NotNull ItemStack stack, int amount, @Nullable T entity, @NotNull Consumer<Item> onBroken) {
+        return getTier() != SpecialTiers.STEEL ? 0 : amount;
     }
 
 
@@ -42,6 +64,7 @@ public class BattleBowItem extends RangedTieredItem
         return shooter.getTicksUsingItem() / (20.0F * 1);
     }
 
+    @Override
     public void releaseUsing(@NotNull ItemStack pStack, @NotNull Level pLevel, @NotNull LivingEntity pEntityLiving, int pTimeLeft)
     {
         if (pEntityLiving instanceof Player player)
@@ -62,7 +85,7 @@ public class BattleBowItem extends RangedTieredItem
                     itemstack = new ItemStack(Items.ARROW);
                 }
 
-                float f = event.getCharge();
+                float f = getBattleArtsPowerForTime(event.getCharge());
                 if (!((double) f < 0.1))
                 {
                     boolean flag1 = player.getAbilities().instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem) itemstack.getItem()).isInfinite(itemstack, pStack, player);
@@ -111,7 +134,7 @@ public class BattleBowItem extends RangedTieredItem
         }
     }
 
-    public float getPowerForTime(int pCharge) {
+    public float getBattleArtsPowerForTime(int pCharge) {
         float f = (float)pCharge / 20.0F;
         f = (f * f + f * 2.0F) / 3.0F;
         if (f > 1.0F) {
@@ -135,7 +158,7 @@ public class BattleBowItem extends RangedTieredItem
         InteractionResultHolder<ItemStack> ret = EventHooks.onArrowNock(itemstack, pLevel, pPlayer, pHand, flag);
         if (ret != null) {
             return ret;
-        } else if (!pPlayer.getAbilities().instabuild && !flag) {
+        } else if (!pPlayer.hasInfiniteMaterials() && !flag) {
             return InteractionResultHolder.fail(itemstack);
         } else {
             pPlayer.startUsingItem(pHand);

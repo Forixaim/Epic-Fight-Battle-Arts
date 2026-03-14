@@ -51,6 +51,7 @@ public class SkillRegistry
     public static final DeferredHolder<Skill, Duelist> DUELIST = SKILLS.register("duelist", key -> BattleStyle.createBattleStyle(Duelist::new).build(key));
     public static final DeferredHolder<Skill, Mercenary> MERCENARY = SKILLS.register("mercenary", key -> BattleStyle.createBattleStyle(Mercenary::new).build(key));
     public static final DeferredHolder<Skill, Lancer> LANCER = SKILLS.register("lancer", key -> BattleStyle.createBattleStyle(Lancer::new).build(key));
+    public static final DeferredHolder<Skill, Fighter> FIGHTER = SKILLS.register("fighter", key -> BattleStyle.createBattleStyle(Fighter::new).build(key));
 
     //Innates
     public static final DeferredHolder<Skill, SimpleWeaponInnateSkill> HEAVY_BLOW = SKILLS.register("heavy_blow", key -> SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(SquireSwordAnimations.SQUIRE_SWORD_HEAVY_BLOW).newProperty().build(key));

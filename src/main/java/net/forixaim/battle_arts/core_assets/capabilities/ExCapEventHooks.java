@@ -34,6 +34,7 @@ public class ExCapEventHooks
     public static void onRegisterProvider(ConditionalRegistryEvent event)
     {
         event.addConditional(
+                FighterProviders.FIGHTER_DEFAULT,
                 JourneymanProviders.JOURNEYMAN_DEFAULT,
                 SquireProviders.SQUIRE_DEFAULT,
                 RecruitProviders.RECRUIT_DEFAULT,
@@ -62,7 +63,8 @@ public class ExCapEventHooks
                 DuelistMoveSets.DUELIST_DUALBLADES, DuelistMoveSets.DUELIST_SWORD,
                 LancerMoveSets.LANCER_HEAVY_SPEAR, LancerMoveSets.LANCER_SPEAR,
                 ThiefMoveSets.THIEF_DAGGER,
-                MercenaryMoveSets.MERCENARY_GREATSWORD
+                MercenaryMoveSets.MERCENARY_GREATSWORD,
+                FighterMovesets.FIGHTER_BATTLE_AXE
         );
     }
 

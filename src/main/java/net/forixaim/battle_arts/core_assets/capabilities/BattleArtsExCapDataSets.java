@@ -64,8 +64,9 @@ public class BattleArtsExCapDataSets
             );
 
     public static ExCapDataEntry BATTLE_AXE = new ExCapDataEntry(BattleArts.identifier("battle_axe"), ExCapData.builder()
-            .addConditional(JourneymanProviders.JOURNEYMAN_DEFAULT.id())
+            .addConditional(JourneymanProviders.JOURNEYMAN_DEFAULT.id(), FighterProviders.FIGHTER_DEFAULT.id())
             .addMoveset(JourmeymanStyles.JMAN_BAXE, JourneymanMoveSets.JOURNEYMAN_BATTLE_AXE.id())
+            .addMoveset(FighterStyles.FIGHTER_WEAPON_ART, FighterMovesets.FIGHTER_BATTLE_AXE.id())
             );
 
     public static ExCapDataEntry SPEAR = new ExCapDataEntry(BattleArts.identifier("spear"), ExCapData.builder()

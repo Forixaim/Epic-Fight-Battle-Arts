@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import yesman.epicfight.world.item.*;
 
 
 public class ItemRegistry
@@ -95,6 +96,8 @@ public class ItemRegistry
 	public static final DeferredHolder<Item, Item> PARALLEL_FALCHION = ITEMS.register("parallel_falchion", ParallelFalchionItem::new);
 	public static final DeferredHolder<Item, Item> YLISSEAN_FALCHION = ITEMS.register("ylissean_falchion", ValentianFalchionItem::new);
 	public static final DeferredHolder<Item, Item> BINDING_BLADE = ITEMS.register("binding_blade", BindingBladeItem::new);
+    public static final DeferredHolder<Item, Item> SILVER_HALBERD = ITEMS.register("the_silver_halberd", TheSilverHalberdItem::new);
+
 
 	//Naginatas
 	public static final DeferredHolder<Item, Item> WOODEN_NAGINATA = ITEMS.register("wooden_naginata", () -> new NaginataItem(Tiers.WOOD, new Item.Properties()));
@@ -131,7 +134,30 @@ public class ItemRegistry
 	//Gloves and Gauntlets
 	public static final DeferredHolder<Item, Item> LIU_GLOVE = ITEMS.register("liu_glove", LiuGloveItem::new);
 
-	//Misc
+    //Steel weapons for PvP
+    public static final DeferredHolder<Item, Item> STEEL_SWORD = ITEMS.register("steel_sword", () -> new SteelWeaponItem(new Item.Properties().attributes(SteelWeaponItem.createSwordAttributes())));
+    public static final DeferredHolder<Item, Item> STEEL_AXE = ITEMS.register("steel_axe", () -> new SteelWeaponItem(new Item.Properties().attributes(SteelWeaponItem.createAxeAttributes())));
+    public static final DeferredHolder<Item, Item> STEEL_LONGBOW = ITEMS.register("steel_longbow", () -> new LongbowItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_PIKE = ITEMS.register("steel_pike", () -> new PikeItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_BATTLEAXE = ITEMS.register("steel_battleaxe", () -> new BattleaxeItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_HALBERD = ITEMS.register("steel_halberd", () -> new HalberdItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_NAGINATA = ITEMS.register("steel_naginata", () -> new NaginataItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_DORY = ITEMS.register("steel_dory", () -> new DoryItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_VIKING_AXE = ITEMS.register("steel_viking_axe", () -> new VikingAxeItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_RAPIER = ITEMS.register("steel_rapier", () -> new RapierItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_TAIJIAN = ITEMS.register("steel_taijian", () -> new TaijianItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_GUANDAO = ITEMS.register("steel_guandao", () -> new GuandaoItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_CLAYMORE = ITEMS.register("steel_claymore", () -> new ClaymoreItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_SABRE = ITEMS.register("steel_sabre", () -> new SabreItem(SpecialTiers.STEEL, new Item.Properties()));
+    public static final DeferredHolder<Item, Item> STEEL_DAGGER = ITEMS.register("steel_dagger", () -> new DaggerItem(SpecialTiers.STEEL, new Item.Properties().attributes(DaggerItem.createDaggerAttributes(SpecialTiers.STEEL))));
+    public static final DeferredHolder<Item, Item> STEEL_LONGSWORD = ITEMS.register("steel_longsword", () -> new LongswordItem(SpecialTiers.STEEL, new Item.Properties().attributes(LongswordItem.createLongswordAttributes(SpecialTiers.STEEL))));
+    public static final DeferredHolder<Item, Item> STEEL_GREATSWORD = ITEMS.register("steel_greatsword", () -> new GreatswordItem(SpecialTiers.STEEL, new Item.Properties().attributes(GreatswordItem.createGreatswordAttributes(SpecialTiers.STEEL))));
+    public static final DeferredHolder<Item, Item> STEEL_SPEAR = ITEMS.register("steel_spear", () -> new SpearItem(SpecialTiers.STEEL, new Item.Properties().attributes(SpearItem.createSpearAttributes(SpecialTiers.STEEL))));
+    public static final DeferredHolder<Item, Item> STEEL_TACHI = ITEMS.register("steel_tachi", () -> new TachiItem(SpecialTiers.STEEL, new Item.Properties().attributes(TachiItem.createTachiAttributes(SpecialTiers.STEEL))));
+
+
+
+    //Misc
 	public static final DeferredHolder<Item, Item> TACHI_SHEATH = ITEMS.register("tachi_sheath", () -> new Item(new Item.Properties()));
     public static final DeferredHolder<Item, Item> DOGEY = ITEMS.register("dogey", () -> new DogeyItem(BlockRegistry.DOGEY.get(),  new Item.Properties().fireResistant()));
 }

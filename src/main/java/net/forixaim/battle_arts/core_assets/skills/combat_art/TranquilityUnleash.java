@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.combat_art;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninTachiAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
@@ -61,19 +62,17 @@ public class TranquilityUnleash extends CombatArt
 
         Style weaponStyle = container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor());
 
-        if (weaponStyle == RoninStyles.RONIN_UCHIGATANA_SHEATHE)
-        {
-            container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLYING_SHOCKWAVE, 0);
-        }
-        else if (weaponStyle == RoninStyles.RONIN_UCHIGATANA)
-        {
-            container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
-            container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH, true);
-            container.getServerExecutor().modifyLivingMotionByCurrentItem();
-        }
-        else if (weaponStyle == RoninStyles.RONIN_TACHI)
-        {
-            container.getExecutor().playAnimationSynchronized(RoninTachiAnimations.FLYING_SHOCKWAVE, 0);
+        switch (weaponStyle) {
+            case RoninStyles.RONIN_UCHIGATANA_SHEATHE ->
+                    container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLYING_SHOCKWAVE, 0);
+            case RoninStyles.RONIN_UCHIGATANA -> {
+                container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
+                container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH, true);
+                container.getServerExecutor().modifyLivingMotionByCurrentItem();
+            }
+            case RoninStyles.RONIN_TACHI ->
+                    container.getExecutor().playAnimationSynchronized(RoninTachiAnimations.FLYING_SHOCKWAVE, 0);
+            default -> BattleArts.LOGGER.debug("nope");
         }
     }
 }

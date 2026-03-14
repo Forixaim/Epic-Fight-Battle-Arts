@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.UsesUchigatana;
 import net.forixaim.battle_arts.core_assets.skills.combat_art.TranquilityUnleash;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.Tranquility;
@@ -34,6 +35,7 @@ public class Ronin extends BattleStyle implements UsesUchigatana
 	public void onInitiate(SkillContainer container, EntityEventListener listener) {
 		super.onInitiate(container, listener);
 		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, SkillRegistry.TRANQUILITY_UNLEASH);
+        listener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, CommonEvents::BUILD_METER, this);
 
         listener.registerEvent(EpicFightEventHooks.Entity.MODIFY_ATTACK_SPEED, event -> {
             if (event.getItemCapability().getWeaponCategory() == CapabilityItem.WeaponCategories.TACHI)
