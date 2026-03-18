@@ -18,8 +18,10 @@ public class RoninMoveSets
             MoveSet.builder()
                     .addLivingMotionsRecursive(
                             RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_IDLE,
-                            LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.JUMP, LivingMotions.CHASE, LivingMotions.SWIM
+                            LivingMotions.IDLE, LivingMotions.JUMP, LivingMotions.CHASE, LivingMotions.SWIM
                     )
+                    .addLivingMotionModifier(LivingMotions.WALK, RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_WALK)
+
                     .addLivingMotionModifier(LivingMotions.RUN, RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_RUN)
                     .addLivingMotionModifier(LivingMotions.BLOCK, RoninUchigatanaAnimations.RONIN_UCHIGATANA_SHEATHE_GUARD)
                     .addComboAttacks(

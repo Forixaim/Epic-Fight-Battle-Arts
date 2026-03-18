@@ -10,7 +10,11 @@
     "subtitle": "sounds.battle_arts.entity.combat.unsheathe",
     "sounds":[{"name":"battle_arts:entity/combat/unsheathe", "stream":false}]
   },
-
+  "entity.combat.heavy_slash": {
+    "category": "player",
+    "subtitle": "sounds.battle_arts.entity.combat.heavy_slash",
+    "sounds":[{"name":"battle_arts:entity/combat/heavy_slash", "stream":false}]
+  },
   "entity.combat.sheathe": {
     "category": "player",
     "subtitle": "sounds.battle_arts.entity.combat.sheathe",

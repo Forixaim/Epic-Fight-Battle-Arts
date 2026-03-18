@@ -120,34 +120,12 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 
 dependencies {
-    // Example mod dependency with JEI
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
-    // compileOnly "mezz.jei:jei-${mc_version}-forge-api:${jei_version}"
-    // runtimeOnly "mezz.jei:jei-${mc_version}-forge:${jei_version}"
 
-    // Example mod dependency using a mod jar from ./libs with a flat dir repository
-    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
-    // The group id is ignored when searching -- in this case, it is "blank"
-    // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
+    runtimeOnly("maven.modrinth:ldlib:mc1.21.1-2.2.4.a-neoforge")
     implementation("libs:epicfight:excap")
     implementation("maven.modrinth:battle-arts-api:21.15.8.2a")
     implementation("maven.modrinth:epic-fight-skill-tree:${epicskills_version}")
-    //implementation("libs:epicfight:20.12.9")
-    // KubeJS compatibility
-//    compileOnly("dev.latvian.mods:kubejs-neoforge:${kubejs_version}")
-//    compileOnly("dev.latvian.mods:rhino-neoforge:${rhino_version}")
-//    compileOnly("io.redspace:irons_spellbooks:${irons_spells_version}")
-
-    // Example mod dependency using a file as dependency
-    // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
-
-    // Example project dependency using a sister or child project:
-    // implementation project(":myproject")
-
-    // For more info:
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    implementation("maven.modrinth:photon-editor:mc1.21.1-2.1.4-neoforge")
 }
 
 
