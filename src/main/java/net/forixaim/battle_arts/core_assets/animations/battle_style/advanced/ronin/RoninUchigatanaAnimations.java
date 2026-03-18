@@ -101,9 +101,9 @@ public class RoninUchigatanaAnimations
                         .addProperty(AnimationProperty.StaticAnimationProperty.FIXED_HEAD_ROTATION, false)
                         .addEvents(AnimationEvent.InTimeEvent.create(0.4f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundRegistry.SHEATHE.get())));
         RONIN_UCHIGATANA_UNSHEATHE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "unsheathe"), access ->
-                new ActionAnimation(0.1f, access, Armatures.BIPED)
+                new ActionAnimation(0.0f, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.FIXED_HEAD_ROTATION, false)
-                        .addEvents(AnimationEvent.InTimeEvent.create(0.9f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundRegistry.UNSHEATHE.get())));
+                        .addEvents(AnimationEvent.InTimeEvent.create(0.2f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundRegistry.UNSHEATHE.get())));
 
         RONIN_UCHIGATANA_AIRSLASH = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "airslash"),
                 access -> new AirSlashAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1f, true, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
