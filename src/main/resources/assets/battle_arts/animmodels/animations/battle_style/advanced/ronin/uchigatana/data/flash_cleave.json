@@ -5,7 +5,7 @@
       "begin_pos": [0.1, -0.2, -0.2],
       "end_pos": [0.1, -1.2, -2.0],
       "start_time": 0.4,
-      "end_time": 0.6,
+      "end_time": 0.7,
       "fade_time": 0.95,
       "interpolations": 10,
       "lifetime": 6,

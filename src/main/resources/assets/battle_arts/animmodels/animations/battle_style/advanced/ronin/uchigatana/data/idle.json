@@ -8,6 +8,10 @@
       "type":"arms"
     },
     {
+      "livingmotion":"RUN",
+      "type":"tools"
+    },
+    {
       "livingmotion":"IDLE",
       "type":"none"
     }

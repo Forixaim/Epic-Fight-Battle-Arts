@@ -11,34 +11,34 @@
         "rotation": [
           0,
           -90,
-          45
+          55
         ],
         "translation": [
-          -1,
-          10,
-          -3.5
+          0,
+          13,
+          -1.5
         ],
         "scale": [
           1.7,
           1.7,
-          1
+          0.85
         ]
       },
       "thirdperson_lefthand": {
         "rotation": [
           0,
           90,
-          -45
+          -55
         ],
         "translation": [
           0,
-          10,
-          -3.5
+          13.25,
+          -1.75
         ],
         "scale": [
           1.7,
           1.7,
-          1
+          0.85
         ]
       },
       "firstperson_righthand": {
@@ -73,6 +73,18 @@
           1.7,
           1.7,
           0.85
+        ]
+      },
+      "head": {
+        "rotation": [
+          0,
+          180,
+          0
+        ],
+        "translation": [
+          0,
+          13,
+          7
         ]
       }
     }
@@ -110,5 +122,13 @@
         "layer0": "epicfight:item/uchigatana_gui"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "battle_arts:uchigatana_override": 1
+      },
+      "model": "battle_arts:item/uchigatana_battle_arts"
+    }
+  ]
 }

@@ -130,6 +130,7 @@ public class BattleArts
 		public static void onClientSetup(FMLClientSetupEvent event)
 		{
 			event.enqueueWork(OverrideHelper::registerUchigatanaOverrides);
+            event.enqueueWork(OverrideHelper::registerUchigatanaSayaOverrides);
 		}
 
 		@SubscribeEvent

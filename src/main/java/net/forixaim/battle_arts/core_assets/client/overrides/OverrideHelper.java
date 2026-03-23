@@ -6,10 +6,15 @@ import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.Ron
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.AdaptiveGloveItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.UsesUchigatana;
+import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.client.resources.PlayerSkin;
 import net.minecraft.resources.ResourceLocation;
 
+import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
+import yesman.epicfight.registry.entries.EpicFightItems;
 import yesman.epicfight.skill.SkillSlots;
 import yesman.epicfight.skill.modules.ChargeableSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
@@ -24,6 +29,7 @@ public class OverrideHelper
     public static final ResourceLocation PULLING = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "pulling");
     public static final ResourceLocation PULL = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "pull");
     public static final ResourceLocation WIDE_SLIM = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "wide_slim");
+    public static final ResourceLocation UCHIGATANA_OVERRIDE = BattleArts.identifier("uchigatana_override");
 
     public static final List<Style> UchigatanaOverrides = Lists.newArrayList(
     RoninStyles.RONIN_UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE);
@@ -33,7 +39,37 @@ public class OverrideHelper
         ItemProperties.register(gloveItem, WIDE_SLIM, ((itemStack, clientLevel, livingEntity, i) ->
         {
             if (livingEntity instanceof AbstractClientPlayer acp) {
-                acp.getSkin();
+                return (acp.getSkin().model().equals(PlayerSkin.Model.SLIM)) ? 1 : 0;
+            }
+            return 0.0f;
+        }));
+    }
+
+    public static void registerUchigatanaOverrides()
+    {
+        ItemProperties.register(EpicFightItems.UCHIGATANA.get(), UCHIGATANA_OVERRIDE, ((itemStack, clientLevel, livingEntity, i) ->
+        {
+            if (EpicFightCapabilities.getEntityPatch(livingEntity, LivingEntityPatch.class) instanceof LocalPlayerPatch playerPatch)
+            {
+                if (playerPatch.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getSkill() instanceof UsesUchigatana)
+                {
+                    return 1.0f;
+                }
+            }
+            return 0.0f;
+        }));
+    }
+
+    public static void registerUchigatanaSayaOverrides()
+    {
+        ItemProperties.register(EpicFightItems.UCHIGATANA_SHEATH.get(), UCHIGATANA_OVERRIDE, ((itemStack, clientLevel, livingEntity, i) ->
+        {
+            if (EpicFightCapabilities.getEntityPatch(livingEntity, LivingEntityPatch.class) instanceof LocalPlayerPatch playerPatch)
+            {
+                if (playerPatch.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getSkill() instanceof UsesUchigatana)
+                {
+                    return 1.0f;
+                }
             }
             return 0.0f;
         }));
@@ -73,11 +109,6 @@ public class OverrideHelper
                     }
                     return shooter != null && shooter.getUseItem() == stack ? longbow.getNockProgress(stack, shooter) : 0.0f;
                 });
-
-    }
-
-    public static void registerUchigatanaOverrides()
-    {
 
     }
 }
