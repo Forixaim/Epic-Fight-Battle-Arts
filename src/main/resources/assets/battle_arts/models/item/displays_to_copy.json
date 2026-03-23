@@ -1,0 +1,240 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"1": "epicfight:item/uchigatana_sheath",
+		"particle": "epicfight:item/uchigatana"
+	},
+	"elements": [
+		{
+			"name": "uchigatana_sheath_0",
+			"from": [10.5, 10.5, 7.75],
+			"to": [11, 13, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [12, 3, 11.5, 5.5], "texture": "#1"},
+				"east": {"uv": [11.5, 3, 12, 5.5], "texture": "#1"},
+				"south": {"uv": [11.5, 3, 12, 5.5], "texture": "#1"},
+				"west": {"uv": [11.5, 3, 12, 5.5], "texture": "#1"},
+				"up": {"uv": [11.5, 3, 12, 3.5], "texture": "#1"},
+				"down": {"uv": [11.5, 5, 12, 5.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_1",
+			"from": [10, 10, 7.75],
+			"to": [10.5, 12.5, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [11.5, 3.5, 11, 6], "texture": "#1"},
+				"east": {"uv": [11, 3.5, 11.5, 6], "texture": "#1"},
+				"south": {"uv": [11, 3.5, 11.5, 6], "texture": "#1"},
+				"west": {"uv": [11, 3.5, 11.5, 6], "texture": "#1"},
+				"up": {"uv": [11, 3.5, 11.5, 4], "texture": "#1"},
+				"down": {"uv": [11, 5.5, 11.5, 6], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_2",
+			"from": [11, 11, 7.75],
+			"to": [11.5, 12.5, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [12.5, 3.5, 12, 5], "texture": "#1"},
+				"east": {"uv": [12, 3.5, 12.5, 5], "texture": "#1"},
+				"south": {"uv": [12, 3.5, 12.5, 5], "texture": "#1"},
+				"west": {"uv": [12, 3.5, 12.5, 5], "texture": "#1"},
+				"up": {"uv": [12, 3.5, 12.5, 4], "texture": "#1"},
+				"down": {"uv": [12, 4.5, 12.5, 5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_3",
+			"from": [9.5, 9.5, 7.75],
+			"to": [10, 12, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [11, 4, 10.5, 6.5], "texture": "#1"},
+				"east": {"uv": [10.5, 4, 11, 6.5], "texture": "#1"},
+				"south": {"uv": [10.5, 4, 11, 6.5], "texture": "#1"},
+				"west": {"uv": [10.5, 4, 11, 6.5], "texture": "#1"},
+				"up": {"uv": [10.5, 4, 11, 4.5], "texture": "#1"},
+				"down": {"uv": [10.5, 6, 11, 6.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_4",
+			"from": [11.5, 11.5, 7.75],
+			"to": [12, 12, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [13, 4, 12.5, 4.5], "texture": "#1"},
+				"east": {"uv": [12.5, 4, 13, 4.5], "texture": "#1"},
+				"south": {"uv": [12.5, 4, 13, 4.5], "texture": "#1"},
+				"west": {"uv": [12.5, 4, 13, 4.5], "texture": "#1"},
+				"up": {"uv": [12.5, 4, 13, 4.5], "texture": "#1"},
+				"down": {"uv": [12.5, 4, 13, 4.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_5",
+			"from": [9, 9, 7.75],
+			"to": [9.5, 11.5, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [10.5, 4.5, 10, 7], "texture": "#1"},
+				"east": {"uv": [10, 4.5, 10.5, 7], "texture": "#1"},
+				"south": {"uv": [10, 4.5, 10.5, 7], "texture": "#1"},
+				"west": {"uv": [10, 4.5, 10.5, 7], "texture": "#1"},
+				"up": {"uv": [10, 4.5, 10.5, 5], "texture": "#1"},
+				"down": {"uv": [10, 6.5, 10.5, 7], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_6",
+			"from": [8.5, 8.5, 7.75],
+			"to": [9, 11, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [10, 5, 9.5, 7.5], "texture": "#1"},
+				"east": {"uv": [9.5, 5, 10, 7.5], "texture": "#1"},
+				"south": {"uv": [9.5, 5, 10, 7.5], "texture": "#1"},
+				"west": {"uv": [9.5, 5, 10, 7.5], "texture": "#1"},
+				"up": {"uv": [9.5, 5, 10, 5.5], "texture": "#1"},
+				"down": {"uv": [9.5, 7, 10, 7.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_7",
+			"from": [8, 8, 7.75],
+			"to": [8.5, 10.5, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [9.5, 5.5, 9, 8], "texture": "#1"},
+				"east": {"uv": [9, 5.5, 9.5, 8], "texture": "#1"},
+				"south": {"uv": [9, 5.5, 9.5, 8], "texture": "#1"},
+				"west": {"uv": [9, 5.5, 9.5, 8], "texture": "#1"},
+				"up": {"uv": [9, 5.5, 9.5, 6], "texture": "#1"},
+				"down": {"uv": [9, 7.5, 9.5, 8], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_8",
+			"from": [7.5, 7.5, 7.75],
+			"to": [8, 10, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [9, 6, 8.5, 8.5], "texture": "#1"},
+				"east": {"uv": [8.5, 6, 9, 8.5], "texture": "#1"},
+				"south": {"uv": [8.5, 6, 9, 8.5], "texture": "#1"},
+				"west": {"uv": [8.5, 6, 9, 8.5], "texture": "#1"},
+				"up": {"uv": [8.5, 6, 9, 6.5], "texture": "#1"},
+				"down": {"uv": [8.5, 8, 9, 8.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_9",
+			"from": [7, 7, 7.75],
+			"to": [7.5, 9.5, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [8.5, 6.5, 8, 9], "texture": "#1"},
+				"east": {"uv": [8, 6.5, 8.5, 9], "texture": "#1"},
+				"south": {"uv": [8, 6.5, 8.5, 9], "texture": "#1"},
+				"west": {"uv": [8, 6.5, 8.5, 9], "texture": "#1"},
+				"up": {"uv": [8, 6.5, 8.5, 7], "texture": "#1"},
+				"down": {"uv": [8, 8.5, 8.5, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_10",
+			"from": [6.5, 6.5, 7.75],
+			"to": [7, 9, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [8, 7, 7.5, 9.5], "texture": "#1"},
+				"east": {"uv": [7.5, 7, 8, 9.5], "texture": "#1"},
+				"south": {"uv": [7.5, 7, 8, 9.5], "texture": "#1"},
+				"west": {"uv": [7.5, 7, 8, 9.5], "texture": "#1"},
+				"up": {"uv": [7.5, 7, 8, 7.5], "texture": "#1"},
+				"down": {"uv": [7.5, 9, 8, 9.5], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_11",
+			"from": [6, 6, 7.75],
+			"to": [6.5, 8.5, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [7.5, 7.5, 7, 10], "texture": "#1"},
+				"east": {"uv": [7, 7.5, 7.5, 10], "texture": "#1"},
+				"south": {"uv": [7, 7.5, 7.5, 10], "texture": "#1"},
+				"west": {"uv": [7, 7.5, 7.5, 10], "texture": "#1"},
+				"up": {"uv": [7, 7.5, 7.5, 8], "texture": "#1"},
+				"down": {"uv": [7, 9.5, 7.5, 10], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_12",
+			"from": [5, 6, 7.75],
+			"to": [6, 8, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [7, 8, 6, 10], "texture": "#1"},
+				"east": {"uv": [6.5, 8, 7, 10], "texture": "#1"},
+				"south": {"uv": [6, 8, 7, 10], "texture": "#1"},
+				"west": {"uv": [6, 8, 6.5, 10], "texture": "#1"},
+				"up": {"uv": [6, 8, 7, 8.5], "texture": "#1"},
+				"down": {"uv": [6, 9.5, 7, 10], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_13",
+			"from": [4.5, 6, 7.75],
+			"to": [5, 7.5, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [6, 8.5, 5.5, 10], "texture": "#1"},
+				"east": {"uv": [5.5, 8.5, 6, 10], "texture": "#1"},
+				"south": {"uv": [5.5, 8.5, 6, 10], "texture": "#1"},
+				"west": {"uv": [5.5, 8.5, 6, 10], "texture": "#1"},
+				"up": {"uv": [5.5, 8.5, 6, 9], "texture": "#1"},
+				"down": {"uv": [5.5, 9.5, 6, 10], "texture": "#1"}
+			}
+		},
+		{
+			"name": "uchigatana_sheath_14",
+			"from": [4, 6.5, 7.75],
+			"to": [4.5, 7, 8.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, 7.75]},
+			"faces": {
+				"north": {"uv": [5.5, 9, 5, 9.5], "texture": "#1"},
+				"east": {"uv": [5, 9, 5.5, 9.5], "texture": "#1"},
+				"south": {"uv": [5, 9, 5.5, 9.5], "texture": "#1"},
+				"west": {"uv": [5, 9, 5.5, 9.5], "texture": "#1"},
+				"up": {"uv": [5, 9, 5.5, 9.5], "texture": "#1"},
+				"down": {"uv": [5, 9, 5.5, 9.5], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 90, 55],
+			"translation": [-0.5, -9, -1],
+			"scale": [1.7, 1.7, 1.2]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [55, -90, 0],
+			"translation": [-0.5, -9.5, -1],
+			"scale": [1.7, 1.7, 1.2]
+		}
+	},
+	"groups": [
+		{
+			"name": "uchigatana_sheath",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+		}
+	]
+}
