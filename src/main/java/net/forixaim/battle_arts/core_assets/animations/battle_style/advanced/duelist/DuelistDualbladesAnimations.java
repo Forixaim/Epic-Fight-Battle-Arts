@@ -1,8 +1,8 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist;
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackComboAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.SwordItem;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -26,8 +26,8 @@ public class DuelistDualbladesAnimations
     public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
     public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
     public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
-    public static AnimationManager.AnimationAccessor<KnockbackComboAttackAnimation> AIRSLAM;
-    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> WHIRLEDGE;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AIRSLAM;
+    public static AnimationManager.AnimationAccessor<BattleArtsAttackAnimation> WHIRLEDGE;
 
 
     public static void build(AnimationManager.AnimationBuilder builder)
@@ -73,7 +73,7 @@ public class DuelistDualbladesAnimations
                                 v * 0.7f));
 
         AIRSLAM = builder.nextAccessor("battle_style/advanced/duelist/dualblades/airslam", access ->
-                new KnockbackComboAttackAnimation(0.2f, access, biped,
+                new BattleArtsComboAttackAnimation(0.2f, access, biped,
                         new AttackAnimation.Phase(0.0f, 0.0f, 0.4f, 0.5f, 0.6f, 0.6f, InteractionHand.MAIN_HAND, toolR, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.FALL)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f))
@@ -107,7 +107,7 @@ public class DuelistDualbladesAnimations
                                 v * 0.3f));
 
         WHIRLEDGE = builder.nextAccessor("battle_style/advanced/duelist/dualblades/whirledge", access ->
-                new KnockbackAttackAnimation(0.2f, access, biped,
+                new BattleArtsAttackAnimation(0.2f, access, biped,
                         new AttackAnimation.Phase(0.0f, 0.3f, 0.3f, 0.4f, 0.4f, 0.4f, InteractionHand.MAIN_HAND, toolR, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.1f)),

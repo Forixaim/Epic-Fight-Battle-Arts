@@ -32,7 +32,6 @@
 
   "item.battle_arts.the_silver_halberd": "The Silver Halberd",
 
-
   "item.battle_arts.wooden_claymore": "Wooden Claymore",
   "item.battle_arts.stone_claymore": "Stone Claymore",
   "item.battle_arts.iron_claymore": "Iron Claymore",
@@ -73,6 +72,11 @@
   "item.battle_arts.golden_dory": "Golden Dory",
   "item.battle_arts.diamond_dory": "Diamond Dory",
   "item.battle_arts.netherite_dory": "Netherite Dory",
+
+
+  "item.battle_arts.erdricks_sword": "Erdrick's Sword",
+  "item.battle_arts.erdricks_shield": "Erdrick's Shield",
+
 
   "item.battle_arts.exalted_falchion": "Exalted Falchion",
   "item.battle_arts.valentian_falchion": "Valentian Falchion",
@@ -204,5 +208,7 @@
   "text.battle_arts.distort": "You should distort NOW!",
   "death.player.battle_arts.distortion": "%1$s lost themselves to the distortion phenomenon.",
   "item.battle_arts.viking_axe.tooltip": "FOR VALHALLA!!!",
-  "item.dogey.tooltip": "Rest in peace, dear friend."
+  "item.dogey.tooltip": "Rest in peace, dear friend.",
+  "item.battle_arts.erdricks_sword.tooltip": "Valid argument, but... You die at 0% to whack.",
+  "item.battle_arts.binding_blade.tooltip": "A rather hot blade. Gotta be real close to your opponent to actually hurt."
 }

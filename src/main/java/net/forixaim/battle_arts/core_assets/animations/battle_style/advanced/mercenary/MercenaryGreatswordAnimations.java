@@ -1,8 +1,8 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary;
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackComboAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
@@ -27,9 +27,9 @@ public class MercenaryGreatswordAnimations
     public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO3;
     public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO4;
     public static AnimationManager.AnimationAccessor<DashAttackAnimation> DASH_ATTACK;
-    public static AnimationManager.AnimationAccessor<KnockbackComboAttackAnimation> AIRSLAM;
-    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> FIERCE_UPPER;
-    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> POWER_GEYSER;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AIRSLAM;
+    public static AnimationManager.AnimationAccessor<BattleArtsAttackAnimation> FIERCE_UPPER;
+    public static AnimationManager.AnimationAccessor<BattleArtsAttackAnimation> POWER_GEYSER;
 
 
 
@@ -72,14 +72,14 @@ public class MercenaryGreatswordAnimations
                         .addEvents(AnimationEvent.InTimeEvent.create(0.7f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.SERVER).params(new Vec3f(0.0F, -0.24F, -2.0F), Armatures.BIPED.get().toolR, 1.1, 0.55F)));
 
         FIERCE_UPPER = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/fierce_upper", access ->
-                new KnockbackAttackAnimation(0.2f, 0.0f, 0.5f, 0.7f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BattleArtsAttackAnimation(0.2f, 0.0f, 0.5f, 0.7f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.0)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 75d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
         POWER_GEYSER = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/power_geyser", access ->
-                new KnockbackAttackAnimation(0.2f, 0.0f, 0.8f, 0.9f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BattleArtsAttackAnimation(0.2f, 0.0f, 0.8f, 0.9f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(2.1f))
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 3.0)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 75d)
@@ -88,7 +88,7 @@ public class MercenaryGreatswordAnimations
                         .addEvents(AnimationEvent.InTimeEvent.create(0.9f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.SERVER).params(new Vec3f(0.0F, -0.3F, -5.0F), Armatures.BIPED.get().toolR, 1.1, 1.55F)));
 
         AIRSLAM = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/airslam", access ->
-                new KnockbackComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BattleArtsComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 30d)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.0)
                         .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(1.3f))

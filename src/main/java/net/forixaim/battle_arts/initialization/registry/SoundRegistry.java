@@ -18,6 +18,7 @@ public class SoundRegistry
     public static final DeferredHolder<SoundEvent, SoundEvent> SPIKE = registerSound("entity.combat.spike");
     public static final DeferredHolder<SoundEvent, SoundEvent> SPECIAL_MOVE = registerSound("entity.combat.special_move");
     public static final DeferredHolder<SoundEvent, SoundEvent> HEAVY_SLASH = registerSound("entity.combat.heavy_slash");
+    public static final DeferredHolder<SoundEvent, SoundEvent> CRITICAL_HIT = registerSound("entity.combat.critical_hit");
 
 
 

@@ -9,6 +9,6 @@ import static yesman.epicfight.gameasset.ColliderPreset.registerCollider;
 
 public class JourneymanHitboxes
 {
-    public static final Collider SEISMIC_IMPACT = registerCollider(ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "seismic_impact"), new OBBCollider(3, 0.5, 3, 0.0F, -0F, 0));
+    public static final Collider SEISMIC_IMPACT = registerCollider(BattleArts.identifier("seismic_impact"), new OBBCollider(3, 0.5, 3, 0.0F, -0F, 0));
 
 }

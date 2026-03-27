@@ -123,7 +123,7 @@ dependencies {
 
     runtimeOnly("maven.modrinth:ldlib:mc1.21.1-2.2.4.a-neoforge")
     implementation("libs:epicfight:excap")
-    implementation("maven.modrinth:battle-arts-api:21.15.8.2a")
+    implementation("maven.modrinth:battle-arts-api:21.15.8.3a")
     implementation("maven.modrinth:epic-fight-skill-tree:${epicskills_version}")
     implementation("maven.modrinth:photon-editor:mc1.21.1-2.1.4-neoforge")
 }

@@ -84,7 +84,8 @@ public class BattleArtsExCapDataSets
             );
 
     public static ExCapDataEntry GREATSWORD = new ExCapDataEntry(BattleArts.identifier("greatsword"), ExCapData.builder()
-            .addConditional(MercenaryProviders.MERCENARY_DEFAULT.id())
+            .addConditional(MercenaryProviders.MERCENARY_DEFAULT.id(), SquireProviders.SQUIRE_DEFAULT.id())
+            .addMoveset(SquireWieldStyles.SQUIRE_SWORD, SquireMoveSets.SQUIRE_SWORD.id())
             .addMoveset(MercenaryStyles.MERCENARY_WEAPON_ART, MercenaryMoveSets.MERCENARY_GREATSWORD.id())
             );
 

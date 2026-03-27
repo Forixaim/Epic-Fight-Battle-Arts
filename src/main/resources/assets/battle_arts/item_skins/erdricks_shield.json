@@ -1,0 +1,29 @@
+{
+    "renderer": "minecraft:shield",
+    "transforms": {
+    	"mainhand": {
+    		"Tool_R": {
+	    		"translation": [0.0, -0.1, -0.13],
+	    		"rotation": [-90.0, 0.0, 0.0],
+	    		"scale": [1, 1, 1]
+	    	},
+	    	"Chest": {
+	    		"translation": [0.2, 0.1, 0.1],
+	    		"rotation": [70.0, -70.0, -110.0],
+	    		"scale": [1, 1, 1]
+	    	}
+    	},
+    	"offhand": {
+    		"Tool_L": {
+	    		"translation": [0.0, -0.1, -0.13],
+	    		"rotation": [-90.0, 0.0, 0.0],
+	    		"scale": [1, 1, 1]
+	    	},
+	    	"Chest": {
+	    		"translation": [-0.2, 0.1, 0.1],
+	    		"rotation": [70.0, 70.0, 110.0],
+	    		"scale": [1, 1, 1]
+	    	}
+    	}
+    }
+}

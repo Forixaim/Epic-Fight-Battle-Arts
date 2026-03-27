@@ -1,6 +1,9 @@
 package net.forixaim.battle_arts.core_assets.animations.types;
 
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
+import net.forixaim.battle_arts_api.battle_arts_skills.CoreAPIDataKeys;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -29,6 +32,7 @@ import yesman.epicfight.api.utils.HitEntityList;
 import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.registry.entries.EpicFightMobEffects;
+import yesman.epicfight.skill.SkillDataManager;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.HurtableEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
@@ -40,10 +44,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class KnockbackAttackAnimation extends AttackAnimation
+public class BattleArtsAttackAnimation extends AttackAnimation
 {
-
-    public KnockbackAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
+    public BattleArtsAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
         super(transitionTime, antic, preDelay, contact, recovery, collider, colliderJoint, accessor, armature);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.FALL);
@@ -75,7 +78,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
+    public BattleArtsAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
         super(transitionTime, antic, preDelay, contact, recovery, hand, collider, colliderJoint, accessor, armature);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -106,7 +109,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float transitionTime, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature, Phase... phases) {
+    public BattleArtsAttackAnimation(float transitionTime, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature, Phase... phases) {
         super(transitionTime, accessor, armature, phases);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -137,7 +140,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float convertTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, String path, AssetAccessor<? extends Armature> armature) {
+    public BattleArtsAttackAnimation(float convertTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, String path, AssetAccessor<? extends Armature> armature) {
         super(convertTime, antic, preDelay, contact, recovery, hand, collider, colliderJoint, path, armature);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -168,7 +171,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float convertTime, String path, AssetAccessor<? extends Armature> armature, Phase... phases) {
+    public BattleArtsAttackAnimation(float convertTime, String path, AssetAccessor<? extends Armature> armature, Phase... phases) {
         super(convertTime, path, armature, phases);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -197,6 +200,25 @@ public class KnockbackAttackAnimation extends AttackAnimation
             }
 
         });
+    }
+
+    @Override
+    protected void attackTick(LivingEntityPatch<?> entitypatch, AssetAccessor<? extends DynamicAnimation> animation) {
+        super.attackTick(entitypatch, animation);
+
+    }
+
+    @Override
+    public float getPlaySpeed(LivingEntityPatch<?> entitypatch, DynamicAnimation animation) {
+        if (entitypatch instanceof PlayerPatch<?> playerPatch)
+        {
+            if (playerPatch.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().hasData(CoreAPIDataKeys.HIT_STOP_TICKS) &&
+            playerPatch.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().getDataValue(CoreAPIDataKeys.HIT_STOP_TICKS) > 0)
+            {
+                return 0;
+            }
+        }
+        return super.getPlaySpeed(entitypatch, animation);
     }
 
     @Override
@@ -286,13 +308,15 @@ public class KnockbackAttackAnimation extends AttackAnimation
                                                 trueEntity.removeEffect(MobEffects.SLOW_FALLING);
                                             }
                                         }
-                                    });                                }
+                                    });
+                                }
                             }
                         }
                     }
 
                     entitypatch.getCurrentlyAttackTriedEntities().add(trueEntity);
                     if (attackResult.resultType.shouldCount()) {
+
                         entitypatch.getCurrentlyActuallyHitEntities().add(trueEntity);
                     }
                 }

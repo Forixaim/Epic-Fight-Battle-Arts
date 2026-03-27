@@ -97,9 +97,12 @@ public class ItemRegistry
 	public static final DeferredHolder<Item, Item> YLISSEAN_FALCHION = ITEMS.register("ylissean_falchion", ValentianFalchionItem::new);
 	public static final DeferredHolder<Item, Item> BINDING_BLADE = ITEMS.register("binding_blade", BindingBladeItem::new);
     public static final DeferredHolder<Item, Item> SILVER_HALBERD = ITEMS.register("the_silver_halberd", TheSilverHalberdItem::new);
+    public static final DeferredHolder<Item, Item> ERDRICKS_SWORD = ITEMS.register("erdricks_sword", ErdricksSwordItem::new);
+    public static final DeferredHolder<Item, Item> ERDRICKS_SHIELD = ITEMS.register("erdricks_shield", ErdricksShieldItem::new);
 
 
-	//Naginatas
+
+    //Naginatas
 	public static final DeferredHolder<Item, Item> WOODEN_NAGINATA = ITEMS.register("wooden_naginata", () -> new NaginataItem(Tiers.WOOD, new Item.Properties()));
 	public static final DeferredHolder<Item, Item> STONE_NAGINATA = ITEMS.register("stone_naginata", () -> new NaginataItem(Tiers.STONE, new Item.Properties()));
 	public static final DeferredHolder<Item, Item> IRON_NAGINATA = ITEMS.register("iron_naginata", () -> new NaginataItem(Tiers.IRON, new Item.Properties()));

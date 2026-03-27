@@ -28,6 +28,7 @@ import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
+import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.item.Style;
 
 import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
@@ -106,13 +107,17 @@ public class Recruit extends BattleStyle
 		{
 			event.getEntityPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
 			event.getEntityPatch().getOriginal().getOffhandItem().hurtAndBreak(1, event.getEntityPatch().getOriginal(), EquipmentSlot.OFFHAND);
-			this.dealEvent(event.getEntityPatch(), event);
+			if (!event.getEntityPatch().getOriginal().getOffhandItem().isDamageableItem() && event.getEntityPatch() instanceof PlayerPatch<?> playerPatch)
+                playerPatch.consumeForSkill(this, Resource.STAMINA, 0.1f);
+            this.dealEvent(event.getEntityPatch(), event);
 		}
 		else if (event.getEntityPatch().getOriginal().isShiftKeyDown() && event.getEntityPatch().getOriginal().onGround() && this.isBlockableSourceCrouching(damageSource, advanced))
 		{
 			event.getEntityPatch().playSound(SoundEvents.SHIELD_BLOCK, -0.05F, 0.1F);
 			event.getEntityPatch().getOriginal().getOffhandItem().hurtAndBreak(3, event.getEntityPatch().getOriginal(), EquipmentSlot.OFFHAND);
-			this.dealEvent(event.getEntityPatch(), event);
+            if (!event.getEntityPatch().getOriginal().getOffhandItem().isDamageableItem() && event.getEntityPatch() instanceof PlayerPatch<?> playerPatch)
+                playerPatch.consumeForSkill(this, Resource.STAMINA, 1f);
+            this.dealEvent(event.getEntityPatch(), event);
 		}
 
 	}

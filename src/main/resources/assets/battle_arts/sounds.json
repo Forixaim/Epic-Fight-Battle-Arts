@@ -4,7 +4,11 @@
     "subtitle": "sounds.battle_arts.entity.combat.jump",
     "sounds":[{"name":"battle_arts:entity/combat/jump", "stream":false}]
   },
-
+  "entity.combat.critical_hit": {
+    "category": "player",
+    "subtitle": "sounds.battle_arts.entity.combat.critical_hit",
+    "sounds":[{"name":"battle_arts:entity/combat/critical_hit", "stream":false}]
+  },
   "entity.combat.unsheathe": {
     "category": "player",
     "subtitle": "sounds.battle_arts.entity.combat.unsheathe",
