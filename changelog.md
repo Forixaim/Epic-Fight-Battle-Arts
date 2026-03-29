@@ -1,5 +1,8 @@
 # Battle Arts - Changelog
 
-## January 27th, 2026
+## March 28, 2026
 
-- Registered all the Style Enums to the Style ExtendableEnum class. That way bugs will be minimal.
+### 1.21.1 Beta Port
+- Update to Epic Fight 21.16.x
+- Update to Minecraft 1.21.1
+
