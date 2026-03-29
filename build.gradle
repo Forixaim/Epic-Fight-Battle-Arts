@@ -172,7 +172,7 @@ publishing {
 
 publishMods {
     file = tasks.named("jar").flatMap { it.archiveFile }
-    changelog.set(file("CHANGELOG.md").getText())
+    changelog.set(file("changelog.md").getText())
     type = BETA
     modLoaders.add("neoforge")
 
