@@ -123,7 +123,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
 
     runtimeOnly("maven.modrinth:ldlib:mc1.21.1-2.2.4.a-neoforge")
-    implementation("libs:epicfight:excap")
+    implementation("maven.modrinth:epic-fight:${epicfight_version}")
     implementation("maven.modrinth:battle-arts-api:21.15.8.3a")
     implementation("maven.modrinth:epic-fight-skill-tree:${epicskills_version}")
     implementation("maven.modrinth:photon-editor:mc1.21.1-2.1.4-neoforge")
@@ -178,17 +178,28 @@ publishMods {
 
     curseforge {
         projectId = "933502"
-        projectSlug = "battle-arts" // Required for discord webhook
+        projectSlug = "battle-arts"
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
-        minecraftVersions.add("1.21.1")
+        minecraftVersions.add(minecraft_version)
+
+        javaVersions.add(JavaVersion.VERSION_21)
+
+        clientRequired = true
+        serverRequired = true
+
     }
     modrinth {
         projectId = "Dd6vT4jF"
         accessToken = providers.environmentVariable("MODRINTH_TOKEN")
-        minecraftVersions.add("1.21.1")
+        minecraftVersions.add(minecraft_version)
+        requires("epic-fight")
+
     }
     discord {
-        webhookUrl = providers.environmentVariable("DISCORD_BATTLE_ARTS_WEBHOOK")
+        username = "Battle Artist"
+        webhookUrl = providers.environmentVariable("BATTLE_ARTS_DISCORD_URL")
+        avatarUrl = "https://cdn.discordapp.com/attachments/1404959979496013894/1487715037689810945/Acid.png?ex=69ca2619&is=69c8d499&hm=22ccf65d8fee84a316d829f1f063cb45c1f53918f1b4b2fda653c3ab7203d094&"
+
     }
 }
 
