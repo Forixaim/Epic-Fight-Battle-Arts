@@ -209,6 +209,9 @@
   "death.player.battle_arts.distortion": "%1$s lost themselves to the distortion phenomenon.",
   "item.battle_arts.viking_axe.tooltip": "FOR VALHALLA!!!",
   "item.dogey.tooltip": "Rest in peace, dear friend.",
+  "item.battle_arts.dragovian_king_sword": "Dragovian King's Sword",
+  "sounds.battle_arts.entity.combat.critical_hit": "Critical Hit!",
+
   "item.battle_arts.erdricks_sword.tooltip": "Valid argument, but... You die at 0% to whack.",
   "item.battle_arts.binding_blade.tooltip": "A rather hot blade. Gotta be real close to your opponent to actually hurt."
 }

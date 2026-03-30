@@ -10,6 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import yesman.epicfight.world.damagesource.EpicFightDamageSource;
 
 
 @EventBusSubscriber(modid = BattleArts.MOD_ID)
@@ -21,16 +22,6 @@ public class RegistryEvent
         if (event.getEntity() instanceof ThrownTrident)
         {
             event.getEntity().addTag(BattleArtsEntityTags.PUNCTURE_LEVEL_1.toString());
-        }
-    }
-
-    @SubscribeEvent
-    public static void onHit(LivingDamageEvent.Pre event)
-    {
-        if (event.getEntity().getRandom().nextIntBetweenInclusive(1, 100) <= 20 && event.getSource().getWeaponItem() != null && event.getSource().getWeaponItem().is(ItemRegistry.ERDRICKS_SWORD))
-        {
-            event.getEntity().playSound(SoundRegistry.CRITICAL_HIT.get());
-            event.setNewDamage(event.getOriginalDamage() * 2f);
         }
     }
 }

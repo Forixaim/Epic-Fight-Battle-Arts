@@ -1,0 +1,64 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "item/generated",
+    "display": {
+      "thirdperson_righthand": {
+        "rotation": [0, -90, 45],
+        "translation": [0, 11, 1.25],
+        "scale": [1.8, 1.8, 1]
+      },
+      "thirdperson_lefthand": {
+        "rotation": [-45, 90, 0],
+        "translation": [-0.5, 11, 1.25],
+        "scale": [1.8, 1.8, 1]
+      },
+      "firstperson_righthand": {
+        "rotation": [0, -90, 25],
+        "translation": [1.13, 3.2, 1.13],
+        "scale": [1.5, 1.5, 0.85]
+      },
+      "firstperson_lefthand": {
+        "rotation": [0, 90, -25],
+        "translation": [1.13, 3.2, 1.13],
+        "scale": [1.5, 1.5, 0.85]
+      },
+      "ground": {
+        "translation": [0, 5, 0],
+        "scale": [1, 1, 1]
+      },
+      "head": {
+        "rotation": [0, 180, 0],
+        "translation": [0, 13, 7]
+      },
+      "fixed": {
+        "translation": [2, 2.25, 0],
+        "scale": [1.51, 1.51, 0.87]
+      }
+    },
+    "textures": {
+      "layer0": "battle_arts:item/dragovian_king_sword"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/dragovian_king_sword_gui"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/dragovian_king_sword_gui"
+      }
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/dragovian_king_sword_gui"
+      }
+    }
+  }
+}

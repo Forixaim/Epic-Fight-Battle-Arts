@@ -9,6 +9,11 @@
     "subtitle": "sounds.battle_arts.entity.combat.critical_hit",
     "sounds":[{"name":"battle_arts:entity/combat/critical_hit", "stream":false}]
   },
+  "entity.combat.critical_hit_8": {
+    "category": "player",
+    "subtitle": "sounds.battle_arts.entity.combat.critical_hit",
+    "sounds":[{"name":"battle_arts:entity/combat/critical_hit_8", "stream":false}]
+  },
   "entity.combat.unsheathe": {
     "category": "player",
     "subtitle": "sounds.battle_arts.entity.combat.unsheathe",

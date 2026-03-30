@@ -1,5 +1,6 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire;
 
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -8,13 +9,18 @@ import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.Armatures;
-import yesman.epicfight.gameasset.ColliderPreset;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
 
 public class SquireSwordAnimations
 {
-	public static AnimationManager.AnimationAccessor<StaticAnimation> SQUIRE_SWORD_IDLE;
+	public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
+	public static AnimationManager.AnimationAccessor<SelectiveAnimation> IDLE_SET;
+	public static AnimationManager.AnimationAccessor<StaticAnimation> AIR_IDLE;
+
+	public static AnimationManager.AnimationAccessor<StaticAnimation> FALL;
+
+	public static AnimationManager.AnimationAccessor<ActionAnimation> JUMP;
 	public static AnimationManager.AnimationAccessor<MovementAnimation> SQUIRE_SWORD_WALK;
 	public static AnimationManager.AnimationAccessor<MovementAnimation> SQUIRE_SWORD_RUN;
 	public static AnimationManager.AnimationAccessor<StaticAnimation> SQUIRE_SWORD_GUARD;
@@ -34,14 +40,32 @@ public class SquireSwordAnimations
 	public static void Build(AnimationManager.AnimationBuilder event)
 	{
 
-		SQUIRE_SWORD_IDLE = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "idle"),
+		IDLE = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "idle"),
 				accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
+
+		AIR_IDLE = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "air_idle"),
+				accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
+
+		FALL = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "fall"),
+				accessor -> new StaticAnimation(true, accessor, Armatures.BIPED));
+
+		IDLE_SET = event.nextAccessor("battle_style/novice/squire/sword/idle_set_identifier", accessor -> new SelectiveAnimation(
+				livingEntityPatch -> livingEntityPatch.getOriginal().onGround() ? 0 : 1, accessor,
+				new DirectStaticAnimation(0.1f, true, BattleArts.identifier("battle_style/novice/squire/sword/idle_set/idle"), Armatures.BIPED), new DirectStaticAnimation(0.1f, true, BattleArts.identifier("battle_style/novice/squire/sword/idle_set/air_idle"), Armatures.BIPED)));
+
+
+		JUMP = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "jump"),
+				accessor -> new ActionAnimation(0.1f, accessor, Armatures.BIPED)
+						.addStateRemoveOld(EntityState.MOVEMENT_LOCKED, false)
+						.addStateRemoveOld(EntityState.COMBO_ATTACKS_DOABLE, true)
+						.addStateRemoveOld(EntityState.SKILL_EXECUTABLE, true));
 
 		SQUIRE_SWORD_WALK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "walk"),
 				accessor -> new MovementAnimation(true, accessor, Armatures.BIPED));
 
 		SQUIRE_SWORD_RUN = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "run"),
 				accessor -> new MovementAnimation(true, accessor, Armatures.BIPED));
+
 
 		SQUIRE_SWORD_CROUCH = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "crouch"), accessor -> new StaticAnimation(true, accessor, Armatures.BIPED)
 				.addState(EntityState.MOVEMENT_LOCKED, true));
@@ -62,8 +86,10 @@ public class SquireSwordAnimations
 				new AttackAnimation.Phase(0.0f, 0.0f, 0.2f, 0.3f, 0.5f, 1.0f, Armatures.BIPED.get().toolR, null)
 						.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(1.2f))));
 
-		SQUIRE_SWORD_HOP_ATTACK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "hop_attack"), accessor -> new AirSlashAnimation(0.1f, 0f, 0.5f, 0.65f, 2f, false, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-				.addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, false));
+		SQUIRE_SWORD_HOP_ATTACK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "hop_attack"), accessor ->
+				new AirSlashAnimation(0.1f, 0f, 0.2f, 0.35f, 2f, false, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+				.addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, false)
+						.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		SQUIRE_SWORD_HEAVY_BLOW = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "heavy_blow"), accessor -> new BattleArtsAttackAnimation(0.1f, 0f, 0.7f, 0.8f, 1.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
 				.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(2f))
