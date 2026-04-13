@@ -69,7 +69,7 @@ public class TranquilityUnleash extends CombatArt
         else if (weaponStyle == RoninStyles.RONIN_UCHIGATANA)
         {
             container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
-            container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), true);
+            container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH.get(), true);
             container.getServerExecutor().modifyLivingMotionByCurrentItem();
         }
         else if (weaponStyle == RoninStyles.RONIN_TACHI)

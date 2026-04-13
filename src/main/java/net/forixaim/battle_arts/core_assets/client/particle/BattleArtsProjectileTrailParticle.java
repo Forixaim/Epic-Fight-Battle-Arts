@@ -5,6 +5,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -17,6 +18,7 @@ import yesman.epicfight.api.utils.math.MathUtils;
 import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.client.particle.AbstractTrailParticle;
+import yesman.epicfight.client.particle.ProjectileTrailParticle;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.projectile.ProjectilePatch;
 
@@ -104,6 +106,11 @@ public class BattleArtsProjectileTrailParticle extends AbstractTrailParticle<Pro
             this.lastXRot = xRot;
             this.lastYRot = yRot;
         }
+    }
+
+    @Override
+    public @NotNull ParticleRenderType getRenderType() {
+        return ParticleRenderType.CUSTOM;
     }
 
     public static class Provider implements ParticleProvider<TrailParticleType> {

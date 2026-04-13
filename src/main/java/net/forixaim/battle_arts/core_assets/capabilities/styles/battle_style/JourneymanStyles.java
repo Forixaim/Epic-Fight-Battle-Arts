@@ -2,14 +2,14 @@ package net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style;
 
 import yesman.epicfight.world.capabilities.item.Style;
 
-public enum JManStyles implements Style
+public enum JourneymanStyles implements Style
 {
-    JMAN_BAXE(false);
+    JOURNEYMAN_WEAPON_ART(false);
 
     final boolean OffHandUse;
     final int id;
 
-    JManStyles(boolean OffHandUse)
+    JourneymanStyles(boolean OffHandUse)
     {
         this.id = ENUM_MANAGER.assign(this);
         this.OffHandUse = OffHandUse;

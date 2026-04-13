@@ -70,14 +70,14 @@ public class Ronin extends BattleStyle implements UsesUchigatana
 	public void executeOnServer(SkillContainer container, FriendlyByteBuf args)
 	{
 		super.executeOnServer(container, args);
-		if (container.getDataManager().getDataValue(BattleArtsDataKeys.BATTO_SHEATH.get()))
+		if (container.getDataManager().getDataValue(BattleArtsDataKeys.TRANQUILITY_SHEATH.get()))
 		{
-			container.getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), false);
+			container.getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH.get(), false);
 			container.getServerExecutor().modifyLivingMotionByCurrentItem(true);
 		}
 		else
 		{
-			container.getDataManager().setDataSync(BattleArtsDataKeys.BATTO_SHEATH.get(), true);
+			container.getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH.get(), true);
 			container.getServerExecutor().modifyLivingMotionByCurrentItem(true);
 		}
 	}

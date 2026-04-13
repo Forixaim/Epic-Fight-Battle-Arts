@@ -37,10 +37,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class KnockbackBasicAttackAnimation extends BasicAttackAnimation
+public class BattleArtsComboAttackAnimation extends BasicAttackAnimation
 {
 
-    public KnockbackBasicAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
+    public BattleArtsComboAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
         super(transitionTime, antic, preDelay, contact, recovery, collider, colliderJoint, accessor, armature);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.FALL);
@@ -72,7 +72,7 @@ public class KnockbackBasicAttackAnimation extends BasicAttackAnimation
         });
     }
 
-    public KnockbackBasicAttackAnimation(float transitionTime, AnimationManager.AnimationAccessor<? extends BasicAttackAnimation> accessor, AssetAccessor<? extends Armature> armature, Phase... phases) {
+    public BattleArtsComboAttackAnimation(float transitionTime, AnimationManager.AnimationAccessor<? extends BasicAttackAnimation> accessor, AssetAccessor<? extends Armature> armature, Phase... phases) {
         super(transitionTime, accessor, armature, phases);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -102,7 +102,7 @@ public class KnockbackBasicAttackAnimation extends BasicAttackAnimation
 
         });
     }
-    public KnockbackBasicAttackAnimation(float convertTime, String path, AssetAccessor<? extends Armature> armature, Phase... phases) {
+    public BattleArtsComboAttackAnimation(float convertTime, String path, AssetAccessor<? extends Armature> armature, Phase... phases) {
         super(convertTime, path, armature, phases);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);

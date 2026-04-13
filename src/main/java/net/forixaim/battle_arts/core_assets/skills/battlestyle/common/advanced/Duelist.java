@@ -26,7 +26,7 @@ import java.util.UUID;
 public class Duelist extends BattleStyle
 {
 	public static Skill QUAD_STING;
-	public static Skill WHIRLEDGE;
+	public static Skill RELENTLESS_PUNCTURE;
 	public static Skill SKY_STRIKER;
 
 	private static final UUID EVENT_UUID = UUID.fromString("af0bfde5-2535-4ef6-b709-9277b17d2a1a");
@@ -81,7 +81,7 @@ public class Duelist extends BattleStyle
 	public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker)
 	{
 		QUAD_STING = worker.build("quad_sting", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistSwordAnimations.QUAD_STING)).newProperty();
-		WHIRLEDGE = worker.build("whirledge", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistDualbladesAnimations.WHIRLEDGE)).newProperty();
+		RELENTLESS_PUNCTURE = worker.build("whirledge", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(DuelistDualbladesAnimations.WHIRLEDGE)).newProperty();
 		SKY_STRIKER = worker.build("sky_striker", SkyStriker::new, SkyStriker.createCombatArt().setResource(Resource.NONE));
 	}
 

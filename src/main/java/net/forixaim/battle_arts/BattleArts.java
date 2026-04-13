@@ -2,7 +2,6 @@ package net.forixaim.battle_arts;
 
 
 import com.mojang.logging.LogUtils;
-import net.forixaim.battle_arts.core_assets.capabilities.BattleArtsWeapons;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.*;
 import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
@@ -71,7 +70,7 @@ public class BattleArts
         registerStyle(DuelistStyles.class);
         registerStyle(FencerStyles.class);
         registerStyle(IronLotusStyles.class);
-        registerStyle(JManStyles.class);
+        registerStyle(JourneymanStyles.class);
         registerStyle(LancerStyles.class);
         registerStyle(MercenaryStyles.class);
         registerStyle(RecruitWieldStyles.class);
@@ -99,12 +98,6 @@ public class BattleArts
 		public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event)
 		{
 			event.registerLayerDefinition(ModelLayers.FLYING_SHOCKWAVE, FlyingShockwaveModel::createBodyLayer);
-		}
-
-		@SubscribeEvent
-		public static void onClientSetup(FMLClientSetupEvent event)
-		{
-			event.enqueueWork(OverrideHelper::registerUchigatanaOverrides);
 		}
 
 		@SubscribeEvent

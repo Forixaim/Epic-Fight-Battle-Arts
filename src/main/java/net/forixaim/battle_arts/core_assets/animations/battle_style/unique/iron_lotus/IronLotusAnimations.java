@@ -2,9 +2,8 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.unique.iron
 
 import net.forixaim.battle_arts.core_assets.animations.BattleArtsEntityStates;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.level.block.Blocks;
@@ -28,9 +27,9 @@ public class IronLotusAnimations
     public static AnimationManager.AnimationAccessor<ActionAnimation> DASH;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AUTO3;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> DASH_ATTACK;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AXE_DIVE;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> DASH_ATTACK;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AXE_DIVE;
 
 
 
@@ -57,19 +56,19 @@ public class IronLotusAnimations
                         .addProperty(AnimationProperty.AttackAnimationProperty.BASIS_ATTACK_SPEED, 3.2F));
 
         AUTO3 = builder.nextAccessor("battle_style/unique/iron_lotus/fist/auto3", access ->
-                new KnockbackBasicAttackAnimation(0.1f, 0.0f, 0.1f, 0.2f, 1.0f, null, Armatures.BIPED.get().legR, access, Armatures.BIPED)
+                new BattleArtsComboAttackAnimation(0.1f, 0.0f, 0.1f, 0.2f, 1.0f, null, Armatures.BIPED.get().legR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 0.0)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.5)
                         .addProperty(AnimationProperty.AttackAnimationProperty.BASIS_ATTACK_SPEED, 3.2F));
 
         DASH_ATTACK = builder.nextAccessor("battle_style/unique/iron_lotus/fist/dash_attack", access ->
-                new KnockbackBasicAttackAnimation(0.1f, 0.0f, 0.2f, 0.4f, 1.0f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+                new BattleArtsComboAttackAnimation(0.1f, 0.0f, 0.2f, 0.4f, 1.0f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 15.0)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.5)
                         .addProperty(AnimationProperty.AttackAnimationProperty.BASIS_ATTACK_SPEED, 5.0F));
 
         AXE_DIVE = builder.nextAccessor("battle_style/unique/iron_lotus/fist/axe_dive", access ->
-                new KnockbackBasicAttackAnimation(0.1f, 0.0f, 0.2f, 0.25f, 1.0f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
+                new BattleArtsComboAttackAnimation(0.1f, 0.0f, 0.2f, 0.25f, 1.0f, ColliderPreset.BATTOJUTSU_DASH, Armatures.BIPED.get().rootJoint, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, -90.0)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.5)
                         .addProperty(AnimationProperty.AttackAnimationProperty.BASIS_ATTACK_SPEED, 5.0F)

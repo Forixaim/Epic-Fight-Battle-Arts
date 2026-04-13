@@ -6,12 +6,10 @@ import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.Ron
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.AdaptiveGloveItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.ex_cap.capabilities.ExCapCategories;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 
-import net.minecraft.world.InteractionHand;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import yesman.epicfight.skill.SkillSlots;
@@ -45,7 +43,7 @@ public class OverrideHelper
                 {
                     LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(living, LivingEntityPatch.class);
 
-                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == ExCapCategories.BOW && !living.isUsingItem())
+                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && !living.isUsingItem())
                     {
                         if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get()) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()))
                         {
@@ -59,7 +57,7 @@ public class OverrideHelper
         ItemProperties.register(longbow, PULL, (stack, world, shooter, value) ->
                 {
                     LivingEntityPatch<?> livingEntityPatch = EpicFightCapabilities.getEntityPatch(shooter, LivingEntityPatch.class);
-                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == ExCapCategories.BOW && playerPatch.isHoldingAny() && !shooter.isUsingItem())
+                    if (livingEntityPatch instanceof PlayerPatch<?> playerPatch && playerPatch.isHoldingAny() && !shooter.isUsingItem())
                     {
                         if (playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING.get()) && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().getDataValue(BattleArtsDataKeys.PULLING.get()))
                         {
@@ -73,11 +71,6 @@ public class OverrideHelper
                     }
                     return shooter != null && shooter.getUseItem() == stack ? longbow.getNockProgress(stack, shooter) : 0.0f;
                 });
-
-    }
-
-    public static void registerUchigatanaOverrides()
-    {
 
     }
 }

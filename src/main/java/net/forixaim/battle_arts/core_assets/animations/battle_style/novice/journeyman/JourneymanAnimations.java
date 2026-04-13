@@ -1,12 +1,10 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman;
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
-import yesman.epicfight.api.collider.Collider;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
@@ -21,7 +19,7 @@ public class JourneymanAnimations
     public static AnimationManager.AnimationAccessor<GuardAnimation> JMAN_UNARMED_GUARD_HIT;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> JMAN_UNARMED_AUTO1;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> JMAN_UNARMED_AUTO2;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> JMAN_UNARMED_DASH;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> JMAN_UNARMED_DASH;
     public static AnimationManager.AnimationAccessor<AirSlashAnimation> JMAN_SLEDGEHAMMER;
     public static AnimationManager.AnimationAccessor<AttackAnimation> JMAN_SUPPRESSING_BLOW;
 
@@ -44,7 +42,7 @@ public class JourneymanAnimations
 
         JMAN_UNARMED_AUTO1 = event.nextAccessor("battle_style/novice/journeyman/auto1", access -> new BasicAttackAnimation(0.2f, 0.0f, 0.05f, 0.15f, 0.5f, ColliderPreset.FIST, Armatures.BIPED.get().handR, access, Armatures.BIPED).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 2f));
         JMAN_UNARMED_AUTO2 = event.nextAccessor("battle_style/novice/journeyman/auto2", access -> new BasicAttackAnimation(0.3f, 0.0f, 0.05f, 0.15f, 0.5f, ColliderPreset.FIST, Armatures.BIPED.get().handL, access, Armatures.BIPED).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 2f));
-        JMAN_UNARMED_DASH = event.nextAccessor("battle_style/novice/journeyman/dash", access -> new KnockbackBasicAttackAnimation(0.3f, 0.0f, 0.1f, 0.3f, 2.4f, ColliderPreset.FIST, Armatures.BIPED.get().handR, access, Armatures.BIPED)
+        JMAN_UNARMED_DASH = event.nextAccessor("battle_style/novice/journeyman/dash", access -> new BattleArtsComboAttackAnimation(0.3f, 0.0f, 0.1f, 0.3f, 2.4f, ColliderPreset.FIST, Armatures.BIPED.get().handR, access, Armatures.BIPED)
                 .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 70.0)
                 .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.0)
                 .addProperty(AnimationProperty.AttackAnimationProperty.BASIS_ATTACK_SPEED, 4.0f));

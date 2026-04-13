@@ -40,10 +40,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class KnockbackAttackAnimation extends AttackAnimation
+public class BattleArtsAttackAnimation extends AttackAnimation
 {
 
-    public KnockbackAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
+    public BattleArtsAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
         super(transitionTime, antic, preDelay, contact, recovery, collider, colliderJoint, accessor, armature);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.FALL);
@@ -75,7 +75,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
+    public BattleArtsAttackAnimation(float transitionTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature) {
         super(transitionTime, antic, preDelay, contact, recovery, hand, collider, colliderJoint, accessor, armature);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -106,7 +106,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float transitionTime, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature, Phase... phases) {
+    public BattleArtsAttackAnimation(float transitionTime, AnimationManager.AnimationAccessor<? extends AttackAnimation> accessor, AssetAccessor<? extends Armature> armature, Phase... phases) {
         super(transitionTime, accessor, armature, phases);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -137,7 +137,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float convertTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, String path, AssetAccessor<? extends Armature> armature) {
+    public BattleArtsAttackAnimation(float convertTime, float antic, float preDelay, float contact, float recovery, InteractionHand hand, @Nullable Collider collider, Joint colliderJoint, String path, AssetAccessor<? extends Armature> armature) {
         super(convertTime, antic, preDelay, contact, recovery, hand, collider, colliderJoint, path, armature);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);
@@ -168,7 +168,7 @@ public class KnockbackAttackAnimation extends AttackAnimation
         });
     }
 
-    public KnockbackAttackAnimation(float convertTime, String path, AssetAccessor<? extends Armature> armature, Phase... phases) {
+    public BattleArtsAttackAnimation(float convertTime, String path, AssetAccessor<? extends Armature> armature, Phase... phases) {
         super(convertTime, path, armature, phases);
         this.newTimePair(0.0F, Float.MAX_VALUE);
         this.addProperty(AnimationProperty.ActionAnimationProperty.COORD_SET_BEGIN, MoveCoordFunctions.TRACE_TARGET_DISTANCE);

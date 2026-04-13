@@ -1,8 +1,8 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.lancer;
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -25,10 +25,10 @@ public class LancerSpearAnimations
     public static AnimationManager.AnimationAccessor<MovementAnimation> WALK_BACKWARD;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO1;
     public static AnimationManager.AnimationAccessor<BasicAttackAnimation> AUTO2;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AUTO3;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> DASH;
-    public static AnimationManager.AnimationAccessor<KnockbackBasicAttackAnimation> AIRSLASH;
-    public static AnimationManager.AnimationAccessor<KnockbackAttackAnimation> DASHING_IMPALE;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AUTO3;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> DASH;
+    public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AIRSLASH;
+    public static AnimationManager.AnimationAccessor<BattleArtsAttackAnimation> DASHING_IMPALE;
 
 
 
@@ -74,7 +74,7 @@ public class LancerSpearAnimations
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v));
         AUTO3 = builder.nextAccessor("battle_style/advanced/lancer/spear/auto3", access ->
-                new KnockbackBasicAttackAnimation(0.2f, 0.0f, 0.75f, 0.9f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BattleArtsComboAttackAnimation(0.2f, 0.0f, 0.75f, 0.9f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 30d)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
@@ -82,21 +82,21 @@ public class LancerSpearAnimations
                         .addEvents(AnimationEvent.InTimeEvent.create(0.2f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(EpicFightSounds.WHOOSH_ROD.get()), AnimationEvent.InTimeEvent.create(0.35f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(EpicFightSounds.WHOOSH_ROD.get())));
 
         DASH = builder.nextAccessor("battle_style/advanced/lancer/spear/dash", access ->
-                new KnockbackBasicAttackAnimation(0.2f, 0.0f, 0.2f, 0.3f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BattleArtsComboAttackAnimation(0.2f, 0.0f, 0.2f, 0.3f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 15d)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.3d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 0.7f));
 
         AIRSLASH = builder.nextAccessor("battle_style/advanced/lancer/spear/airslash", access ->
-                new KnockbackBasicAttackAnimation(0.1f, 0.0f, 0.1f, 0.4f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BattleArtsComboAttackAnimation(0.1f, 0.0f, 0.1f, 0.4f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 70d)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.2d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
                                 v * 1.2f));
 
         DASHING_IMPALE = builder.nextAccessor("battle_style/advanced/lancer/spear/dashing_impale", access ->
-                new KnockbackAttackAnimation(0.1f, 0.0f, 0.3f, 0.4f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BattleArtsAttackAnimation(0.1f, 0.0f, 0.3f, 0.4f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 30d)
                         .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.2d)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->

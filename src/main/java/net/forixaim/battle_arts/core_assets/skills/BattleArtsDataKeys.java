@@ -16,7 +16,7 @@ import yesman.epicfight.skill.SkillDataKey;
 public class BattleArtsDataKeys
 {
     public static final DeferredRegister<SkillDataKey<?>> DATA_KEYS = DeferredRegister.create(ResourceLocation.fromNamespaceAndPath("epicfight", "skill_data_keys"), BattleArts.MOD_ID);
-    public static final RegistryObject<SkillDataKey<Boolean>> BATTO_SHEATH;
+    public static final RegistryObject<SkillDataKey<Boolean>> TRANQUILITY_SHEATH;
     public static final RegistryObject<SkillDataKey<Float>> ARROGANCE_STACK;
 
     public static final RegistryObject<SkillDataKey<Boolean>> PULLING = DATA_KEYS.register("pulling", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, HeavyDraw.class));
@@ -34,7 +34,7 @@ public class BattleArtsDataKeys
     static
     {
         ANIM_ID = DATA_KEYS.register("prev_anim", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, false, ArrogancePassive.class));
-        BATTO_SHEATH = DATA_KEYS.register("batto_sheath", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, Ronin.class));
+        TRANQUILITY_SHEATH = DATA_KEYS.register("batto_sheath", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.BOOLEAN, false, true, Ronin.class));
         ARROGANCE_STACK = DATA_KEYS.register("arrogance_stack", () -> SkillDataKey.createSkillDataKey(PacketBufferCodec.FLOAT, 0.0f, true, ArrogancePassive.class));
     }
 
