@@ -17,6 +17,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+' apply false
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'kotlin'
@@ -112,9 +113,6 @@ repositories {
     maven { url 'https://maven.covers1624.net/' }
 
     mavenCentral()
-
-
-
 }
 
 
@@ -123,13 +121,10 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
-    runtimeOnly fg.deobf("curse.maven:skinrestorer-443823:6015917")
     compileOnly fg.deobf("curse.maven:jingames-family-c-remastered-949739:4956361")
     implementation fg.deobf("curse.maven:official-epic-fight-x-parcool-1259252:6870242")
     implementation fg.deobf("curse.maven:parcool-482378:6652972")
-    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7476040")
     implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:7345465")
-    implementation fg.deobf("curse.maven:ex-cap-1074178:7325889")
     implementation fg.deobf("curse.maven:battle-arts-api-1091499:7325885")
     runtimeOnly fg.deobf("curse.maven:sound-physics-remastered-535489:5991549")
     implementation fg.deobf("curse.maven:epicfight-resurrection-1151542:6931390")
@@ -142,6 +137,7 @@ dependencies {
     compileOnly fg.deobf("curse.maven:draconic-evolution-223565:5524457")
     compileOnly fg.deobf("curse.maven:projecte-226410:4901949")
     runtimeOnly fg.deobf("curse.maven:selene-499980:5546852")
+    implementation("maven.modrinth:epic-fight:${epicfight_version}")
     implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:5319203")
 }
 
@@ -178,8 +174,6 @@ tasks.named('jar', Jar).configure {
     }
     finalizedBy 'reobfJar'
 }
-
-
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
