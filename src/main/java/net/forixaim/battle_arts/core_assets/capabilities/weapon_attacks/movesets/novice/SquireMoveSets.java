@@ -6,7 +6,6 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squir
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireMountAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Squire;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import net.minecraft.world.item.UseAnim;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.api.ex_cap.core.data.MoveSet;
@@ -21,12 +20,12 @@ public class SquireMoveSets
             MoveSet.builder()
                     .addLivingMotionModifier(LivingMotions.MOUNT, SquireMountAnimations.IDLE)
                     .addLivingMotionModifier(LivingMotions.IDLE, SquireSwordAnimations.IDLE)
-                    .addLivingMotionModifier(LivingMotions.WALK, SquireSwordAnimations.SQUIRE_SWORD_WALK)
-                    .addLivingMotionModifier(LivingMotions.RUN, SquireSwordAnimations.SQUIRE_SWORD_RUN)
+                    .addLivingMotionModifier(LivingMotions.WALK, SquireSwordAnimations.WALK)
+                    .addLivingMotionModifier(LivingMotions.RUN, SquireSwordAnimations.RUN)
                     .addLivingMotionModifier(LivingMotions.JUMP, SquireSwordAnimations.JUMP)
                     .addLivingMotionModifier(LivingMotions.KNEEL, SquireSwordAnimations.SQUIRE_SWORD_CROUCH)
                     .addLivingMotionModifier(LivingMotions.SNEAK, SquireSwordAnimations.SQUIRE_SWORD_CROUCH_WALK)
-                    .addLivingMotionModifier(LivingMotions.BLOCK, SquireSwordAnimations.SQUIRE_SWORD_GUARD)
+                    .addLivingMotionModifier(LivingMotions.BLOCK, SquireSwordAnimations.GUARD)
 
                     .addGuardAnimations(
                             GuardSkill.BlockType.GUARD,

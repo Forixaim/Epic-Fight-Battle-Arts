@@ -87,6 +87,6 @@ public class RoninMoveSets
                             RoninTachiAnimations.TACHI_PARRY_2
                     )
                     .shouldRenderSheath(livingEntityPatch -> true)
-                    .addInnateSkill((itemStack, playerPatch) -> SkillRegistry.BLOSSOM_SLASH.get())
+                    .addInnateSkill((itemStack, playerPatch) -> Ronin.BLOSSOM_SLASH)
     );
 }

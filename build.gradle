@@ -15,29 +15,23 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
-    id 'org.spongepowered.mixin' version '0.7.+' apply false
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-
+    id "me.modmuss50.mod-publish-plugin" version "1.1.0"
 }
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'kotlin'
-apply plugin: 'org.spongepowered.mixin'
-group = mod_version
-version = mod_group_id
 
+group = mod_group_id
+version = mod_version
+
+def modPascalCase = mod_id.split('_').collect { it.capitalize() }.join('')
 base {
-    archivesName = mod_id
+    archivesName = modPascalCase
+    version = getFullModVersion()
 }
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
-jarJar.enable()
-
-tasks.named('jarJar') {
-
-}
-
 
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
@@ -56,23 +50,16 @@ minecraft {
             }
         }
 
-        clientJarJar {
-            property 'forge.enabledGameTestNamespaces', mod_id
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            args '-mixin.config=mixins.battle_arts.json', '--username', 'Forixaim'
-        }
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            args '-mixin.config=mixins.battle_arts.json', '--username', 'Forixaim'
+            args'--username', 'Forixaim'
         }
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            args '-mixin.config=mixins.battle_arts.json'
         }
         gameTestServer {
             property 'forge.enabledGameTestNamespaces', mod_id
@@ -115,36 +102,23 @@ repositories {
     mavenCentral()
 }
 
+def getFullModVersion() {
+    return "${mod_version}"
+}
 
 dependencies {
 
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
-    compileOnly fg.deobf("curse.maven:jingames-family-c-remastered-949739:4956361")
-    implementation fg.deobf("curse.maven:official-epic-fight-x-parcool-1259252:6870242")
-    implementation fg.deobf("curse.maven:parcool-482378:6652972")
-    implementation fg.deobf("curse.maven:epic-fight-skill-tree-1295882:7345465")
     implementation fg.deobf("curse.maven:battle-arts-api-1091499:7325885")
-    runtimeOnly fg.deobf("curse.maven:sound-physics-remastered-535489:5991549")
-    implementation fg.deobf("curse.maven:epicfight-resurrection-1151542:6931390")
-    implementation fg.deobf("curse.maven:jei-238222:6075247")
-    implementation fg.deobf("curse.maven:epic-fight-mod-rapier-moveset-addon-1036425:6854856")
-    compileOnly fg.deobf("curse.maven:epicfight-light-trail-1283295:6646966")
-    implementation fg.deobf("curse.maven:explosive-enhancement-reforged-1036246:5423875")
-    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
     compileOnly fg.deobf("curse.maven:mekanism-268560:5395221")
     compileOnly fg.deobf("curse.maven:draconic-evolution-223565:5524457")
     compileOnly fg.deobf("curse.maven:projecte-226410:4901949")
-    runtimeOnly fg.deobf("curse.maven:selene-499980:5546852")
-    implementation("maven.modrinth:epic-fight:${epicfight_version}")
-    implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:5319203")
+    //runtimeOnly fg.deobf("curse.maven:selene-499980:5546852")
+    implementation fg.deobf("maven.modrinth:epic-fight:${epicfight_version}")
+    compileOnly fg.deobf("curse.maven:mmmmmmmmmmmm-225738:5319203")
 }
 
-mixin {
-    add sourceSets.main, "mixins.${mod_id}.refmap.json"
-    config "mixins.${mod_id}.json"
-}
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [
             minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
@@ -176,11 +150,40 @@ tasks.named('jar', Jar).configure {
     finalizedBy 'reobfJar'
 }
 
+publishMods {
+    file = tasks.named("jar").flatMap { it.archiveFile }
+    changelog.set(file("changelog.md").getText())
+    type = BETA
+    modLoaders.add("forge")
+
+    curseforge {
+        projectId = "933502"
+        projectSlug = "battle-arts"
+        accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
+        minecraftVersions.add(minecraft_version)
+
+        javaVersions.add(JavaVersion.VERSION_17)
+
+        clientRequired = true
+        serverRequired = true
+
+    }
+    modrinth {
+        projectId = "Dd6vT4jF"
+        accessToken = providers.environmentVariable("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        requires("epic-fight")
+
+    }
+    discord {
+        username = "Battle Artist"
+        webhookUrl = providers.environmentVariable("BATTLE_ARTS_DISCORD_URL")
+        avatarUrl = "https://cdn.discordapp.com/attachments/1404959979496013894/1487715037689810945/Acid.png?ex=69ca2619&is=69c8d499&hm=22ccf65d8fee84a316d829f1f063cb45c1f53918f1b4b2fda653c3ab7203d094&"
+
+    }
+}
 
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-}
-kotlin {
-    jvmToolchain(17)
 }
