@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.initialization.registry;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.AdvancedBattleStyles;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.NoviceBattleStyles;
@@ -18,7 +18,7 @@ import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.dodge.DodgeSkill;
 import yesman.epicfight.skill.passive.PassiveSkill;
 
-@Mod.EventBusSubscriber(modid = EpicFightBattleArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = BattleArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SkillRegistry
 {
 	public static Skill ARROGANCE;
@@ -31,7 +31,7 @@ public class SkillRegistry
 	@SubscribeEvent
 	public static void BuildSkillEvent(SkillBuildEvent OnBuild)
 	{
-		SkillBuildEvent.ModRegistryWorker registryWorker = OnBuild.createRegistryWorker(EpicFightBattleArts.MOD_ID);
+		SkillBuildEvent.ModRegistryWorker registryWorker = OnBuild.createRegistryWorker(BattleArts.MOD_ID);
 		ARROGANCE = registryWorker.build("arrogance", ArrogancePassive::new, PassiveSkill.createPassiveBuilder().setResource(Skill.Resource.NONE));
 		VOICE_OF_DISTORTION = registryWorker.build("voice_of_distortion", VoiceOfDistortion::new, Skill.createIdentityBuilder().setResource(Skill.Resource.NONE).setActivateType(Skill.ActivateType.DURATION_INFINITE));
 		DRACONIC_INSTINCT = registryWorker.build("draconic_instinct", DraconicInstinct::new, DodgeSkill.createDodgeBuilder().setResource(Skill.Resource.NONE));

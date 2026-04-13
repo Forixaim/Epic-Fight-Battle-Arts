@@ -3,7 +3,7 @@ package net.forixaim.battle_arts.core_assets.client.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.client.model.FlyingShockwaveModel;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
@@ -43,6 +43,6 @@ public class FlyingShockwaveRenderer extends EntityRenderer<FlyingShockwaveProje
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull FlyingShockwaveProjectile flyingShockwaveProjectile)
     {
-        return ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "textures/projectiles/flying_shockwave.png");
+        return ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "textures/projectiles/flying_shockwave.png");
     }
 }

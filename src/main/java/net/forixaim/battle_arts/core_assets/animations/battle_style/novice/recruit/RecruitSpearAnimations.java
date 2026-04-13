@@ -1,19 +1,14 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.KnockbackBasicAttackAnimation;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import yesman.epicfight.api.animation.AnimationManager;
-import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
-import yesman.epicfight.gameasset.EpicFightSkills;
 import yesman.epicfight.gameasset.EpicFightSounds;
-import yesman.epicfight.model.armature.HumanoidArmature;
 import yesman.epicfight.particle.EpicFightParticles;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;

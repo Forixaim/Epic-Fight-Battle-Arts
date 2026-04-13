@@ -18,4 +18,4 @@ plugins {
 
 }
 
-rootProject.name = 'Epic Fight - Battle Arts'
+rootProject.name = 'Battle Arts'

@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.skills;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Duelist;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Ronin;
 import net.forixaim.battle_arts.core_assets.skills.dodge.DraconicInstinct;
@@ -15,7 +15,7 @@ import yesman.epicfight.skill.SkillDataKey;
 
 public class BattleArtsDataKeys
 {
-    public static final DeferredRegister<SkillDataKey<?>> DATA_KEYS = DeferredRegister.create(ResourceLocation.fromNamespaceAndPath("epicfight", "skill_data_keys"), EpicFightBattleArts.MOD_ID);
+    public static final DeferredRegister<SkillDataKey<?>> DATA_KEYS = DeferredRegister.create(ResourceLocation.fromNamespaceAndPath("epicfight", "skill_data_keys"), BattleArts.MOD_ID);
     public static final RegistryObject<SkillDataKey<Boolean>> BATTO_SHEATH;
     public static final RegistryObject<SkillDataKey<Float>> ARROGANCE_STACK;
 

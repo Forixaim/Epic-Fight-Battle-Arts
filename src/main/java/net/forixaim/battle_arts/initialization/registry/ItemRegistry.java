@@ -1,11 +1,10 @@
 package net.forixaim.battle_arts.initialization.registry;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.items.DogeyItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.*;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.special.*;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;
 import net.minecraftforge.registries.DeferredRegister;
@@ -14,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ItemRegistry
 {
-	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, EpicFightBattleArts.MOD_ID);
+	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BattleArts.MOD_ID);
 
 	//Sabres
 	public static final RegistryObject<Item> WOODEN_SABRE = ITEMS.register("wooden_sabre", () -> new SabreItem(Tiers.WOOD, new Item.Properties()));

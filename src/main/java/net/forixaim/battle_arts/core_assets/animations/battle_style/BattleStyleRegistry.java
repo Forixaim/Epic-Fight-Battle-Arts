@@ -1,6 +1,5 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.lancer.LancerAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary.MercenaryAnimations;
@@ -9,11 +8,8 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thi
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireAnimations;
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.unique.iron_lotus.IronLotusAnimations;
 import net.forixaim.battle_arts.core_assets.animations.other.DraconicInstinctAnimations;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import yesman.epicfight.api.animation.AnimationManager;
 
 public class BattleStyleRegistry

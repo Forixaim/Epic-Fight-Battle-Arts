@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.initialization.registry;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -12,7 +12,7 @@ import yesman.epicfight.api.forgeevent.SkillLootTableRegistryEvent;
 import yesman.epicfight.data.loot.function.SetSkillFunction;
 import yesman.epicfight.world.item.EpicFightItems;
 
-@Mod.EventBusSubscriber(modid = EpicFightBattleArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = BattleArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class LootTableModifiers
 {
     @SubscribeEvent

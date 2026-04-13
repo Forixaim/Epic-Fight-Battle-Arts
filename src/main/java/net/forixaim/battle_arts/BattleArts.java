@@ -14,6 +14,7 @@ import net.forixaim.battle_arts.core_assets.client.renderer.FlyingShockwaveRende
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
 import net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,15 +37,19 @@ import static net.forixaim.battle_arts.initialization.registry.CreativeTabRegist
 import static net.forixaim.battle_arts.initialization.registry.ItemRegistry.ITEMS;
 import static net.forixaim.battle_arts.initialization.registry.ParticleRegistry.PARTICLES;
 
-@Mod(EpicFightBattleArts.MOD_ID)
-public class EpicFightBattleArts
+@Mod(BattleArts.MOD_ID)
+public class BattleArts
 {
 
 	public static final String MOD_ID = "battle_arts";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    public static ResourceLocation identifier(String name)
+    {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+    }
 
-	public EpicFightBattleArts(FMLJavaModLoadingContext context)
+	public BattleArts(FMLJavaModLoadingContext context)
 	{
 		IEventBus modEventBus = context.getModEventBus();
 		WeaponCategory.ENUM_MANAGER.registerEnumCls(MOD_ID, BattleStyleCategories.class);
@@ -52,7 +57,6 @@ public class EpicFightBattleArts
 		BLOCKS.register(modEventBus);
 		ITEMS.register(modEventBus);
 		PARTICLES.register(modEventBus);
-        BattleArtsWeapons.EX_CAP_WEAPONS.register(modEventBus);
 		BattleArtsProjectiles.ENTITIES.register(modEventBus);
 		SoundRegistry.SOUNDS.register(modEventBus);
 		CREATIVE_MODE_TABS.register(modEventBus);

@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.ui;
 
 import com.google.common.collect.Maps;
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -20,13 +20,13 @@ import java.util.Map;
  */
 public class BattleStyleClassSelection extends Screen
 {
-    private static final ResourceLocation BATTLE_STYLE_CLASS_SELECTION = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "textures/gui/battle_style_class_selection.png");
+    private static final ResourceLocation BATTLE_STYLE_CLASS_SELECTION = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "textures/gui/battle_style_class_selection.png");
     private final Player player;
     private final CapabilitySkill skill;
     //
     private final Map<Skill, Button> slotButtons = Maps.newHashMap();
     protected BattleStyleClassSelection(Player player, CapabilitySkill skill) {
-        super(Component.translatable("gui." + EpicFightBattleArts.MOD_ID + ".battle_style_class_selection"));
+        super(Component.translatable("gui." + BattleArts.MOD_ID + ".battle_style_class_selection"));
         this.player = player;
         this.skill = skill;
     }

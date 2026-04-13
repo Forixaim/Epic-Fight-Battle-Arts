@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.defaults;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.LancerMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.advanced.RoninMoveSets;
 import net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.movesets.novice.JManMoveSets;
@@ -15,7 +15,7 @@ import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.EpicFightSkills;
 
 @SuppressWarnings("unchecked")
-@Mod.EventBusSubscriber(modid = EpicFightBattleArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = BattleArts.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DefaultMovesets
 {
 
@@ -26,7 +26,7 @@ public class DefaultMovesets
     @SubscribeEvent
     public static void registerMovesets(MoveSetDefinitionRegistryEvent event)
     {
-        event.getMoveSets().put(EpicFightBattleArts.MOD_ID, DefaultMovesets::build);
+        event.getMoveSets().put(BattleArts.MOD_ID, DefaultMovesets::build);
     }
 
     public static void build()

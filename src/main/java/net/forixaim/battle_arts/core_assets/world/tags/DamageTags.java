@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.world.tags;
 
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -15,6 +15,6 @@ public class DamageTags
 
     private static TagKey<DamageType> create(String id)
     {
-        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, id));
+        return TagKey.create(Registries.DAMAGE_TYPE, ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, id));
     }
 }

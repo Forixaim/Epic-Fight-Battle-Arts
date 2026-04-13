@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.client.overrides;
 
 import com.google.common.collect.Lists;
-import net.forixaim.battle_arts.EpicFightBattleArts;
+import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.AdaptiveGloveItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
@@ -26,9 +26,9 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class OverrideHelper
 {
-    public static final ResourceLocation PULLING = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "pulling");
-    public static final ResourceLocation PULL = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "pull");
-    public static final ResourceLocation WIDE_SLIM = ResourceLocation.fromNamespaceAndPath(EpicFightBattleArts.MOD_ID, "wide_slim");
+    public static final ResourceLocation PULLING = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "pulling");
+    public static final ResourceLocation PULL = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "pull");
+    public static final ResourceLocation WIDE_SLIM = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, "wide_slim");
 
     public static final List<Style> UchigatanaOverrides = Lists.newArrayList(
     RoninStyles.RONIN_UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE);
