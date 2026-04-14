@@ -50,12 +50,23 @@ minecraft {
             }
         }
 
+
+
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
             args'--username', 'Forixaim'
         }
+
+        clientAuth {
+            property 'forge.enabledGameTestNamespaces', mod_id
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+            mainClass = 'net.covers1624.devlogin.DevLogin'
+            args '--launch_target', 'net.minecraftforge.bootstrap.ForgeBootstrap'
+        }
+
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
             property 'mixin.env.remapRefMap', 'true'
@@ -95,6 +106,7 @@ repositories {
     flatDir {
          dir './libs'
     }
+    maven { url 'https://maven.covers1624.net/' }
     maven { url 'https://maven.theillusivec4.top/' }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url 'https://maven.covers1624.net/' }
@@ -107,7 +119,7 @@ def getFullModVersion() {
 }
 
 dependencies {
-
+    runtimeOnly 'net.covers1624:DevLogin:0.1.0.5'
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
     implementation fg.deobf("curse.maven:battle-arts-api-1091499:7325885")
