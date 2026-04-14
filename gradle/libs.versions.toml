@@ -6,11 +6,11 @@ epic-fight = "20.14.16-mc1.20.1-forge"
 
 # Version tags on Modrinth (usually the actual version number or a specific ID)
 embeddium = "0.3.31+mc1.20.1"
-mekanism = "10.4.8.43"
-draconic-evolution = "3.1.0.518"
-projecte = "1.0.2"
-mmmmmmmmmmmm = "1.20.1-1.2.3"
-battle-arts-api = "1.0.0"
+mekanism = "10.4.16.80"
+draconic-evolution = "3.1.2.621"
+projecte = "4901949"
+mmmmmmmmmmmm = "1.20-2.0.9"
+battle-arts-api = "20.14.16.1-mc1.20.1-forge"
 forge = "47.4.4"
 
 mcSafeResources = "0.0.2"
@@ -21,12 +21,12 @@ minecraft_range = "[1.20.1]"
 [libraries]
 
 embeddium = { module = "maven.modrinth:embeddium", version.ref = "embeddium" }
-battle-arts-api = { module = "maven.modrinth:battle-arts-api", version.ref = "battle-arts-api" }
+battleArtsAPI = { module = "maven.modrinth:battle-arts-api", version.ref = "battle-arts-api" }
 mekanism = { module = "maven.modrinth:mekanism", version.ref = "mekanism" }
-draconic-evolution = { module = "maven.modrinth:draconic-evolution", version.ref = "draconic-evolution" }
-projecte = { module = "maven.modrinth:projecte", version.ref = "projecte" }
-mmmmmmmmmmmm = { module = "maven.modrinth:dummmmmy", version.ref = "mmmmmmmmmmmm" }
-epic-fight = { module = "maven.modrinth:epic-fight", version.ref = "epic-fight" }
+draconicEvolution = { module = "maven.modrinth:draconic-evolution", version.ref = "draconic-evolution" }
+projecte = { module = "curse.maven:projecte-226410", version.ref = "projecte" }
+mmmmmmmmmmmm = { module = "maven.modrinth:mmmmmmmmmmmm", version.ref = "mmmmmmmmmmmm" }
+epicFight = { module = "maven.modrinth:epic-fight", version.ref = "epic-fight" }
 
 [plugins]
 # Environment Specific

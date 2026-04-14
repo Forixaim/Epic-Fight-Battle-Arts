@@ -110,20 +110,18 @@ repositories {
 
 dependencies {
     //Highly recommend a version catalog
-    runtimeOnly(libs.embeddium)
-    "modImplementation"("curse.maven:battle-arts-api-1091499:7325885")
-
-    "modCompileOnly"("curse.maven:mekanism-268560:5395221")
-    "modCompileOnly"("curse.maven:draconic-evolution-223565:5524457")
-    "modCompileOnly"("curse.maven:projecte-226410:4901949")
-
-    "modImplementation"("maven.modrinth:epic-fight:$epicfight_version")
-    "modCompileOnly"("curse.maven:mmmmmmmmmmmm-225738:5319203")
+    modRuntimeOnly(libs.embeddium)
+    modImplementation(libs.battleArtsAPI)
+    modCompileOnly(libs.mekanism)
+    modCompileOnly(libs.draconicEvolution)
+    modCompileOnly(libs.projecte)
+    modImplementation(libs.epicFight)
+    modCompileOnly(libs.mmmmmmmmmmmm)
 }
 
 tasks.named<ProcessResources>("processResources").configure {
     val replaceProperties = mapOf(
-            "minecraft_version" to libs.versions.minecraft,
+            "minecraft_version" to minecraft_version,
             "minecraft_version_range" to minecraft_version_range,
             "forge_version" to forge_version,
             "forge_version_range" to forge_version_range,
