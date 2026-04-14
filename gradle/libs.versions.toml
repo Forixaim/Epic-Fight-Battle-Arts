@@ -1,104 +1,40 @@
 [versions]
-mod = "20.14.16.1"
-java = "17"
 
-# Minecraft
 minecraft = "1.20.1"
-parchmentMappings = "2024.11.17"
+moddevgradle = "2.0.141"
+epic-fight = "20.14.16-mc1.20.1-forge"
 
-# NeoForge
-neoforge = "21.1.219"
-neoforgeRange = "[21,)"
-moddevgradle = "2.0.134"
-# https://projects.neoforged.net/neoforged/neoform
-neoform = "1.21.1-20240808.144430"
+# Version tags on Modrinth (usually the actual version number or a specific ID)
+embeddium = "0.3.31+mc1.20.1"
+mekanism = "10.4.8.43"
+draconic-evolution = "3.1.0.518"
+projecte = "1.0.2"
+mmmmmmmmmmmm = "1.20.1-1.2.3"
+battle-arts-api = "1.0.0"
+forge = "47.4.4"
 
-# Fabric
-fabric-loader = "0.18.2"
-fabric-api = "0.116.7+1.21.1"
-fabric-loom = "1.14-SNAPSHOT"
-modmenu-fabric = "11.0.3"
-
-# SpongePowered Mixin
-mixin = "0.8.7"
-
-# Third-party mods
-forgeconfigapiport = "21.1.6"
-jei = "19.21.2.313"
-kubejs = "2101.7.1-build.181"
-rhino = "2006.2.4-build.17"
-architectury = "13.0.8"
-controlify = "2.5.0+1.21.1-neoforge"
-azurelib = "2.3.28"
-azurelib-armor = "2.3.15"
-geckolib = "4.8.3"
-sodium = "mc1.21.1-0.6.13-neoforge"
-iris = "1.8.12+1.21.1-neoforge"
-werewolves = "1.21-2.0.2.5"
-vampirism = "1.21-1.10.7"
-curios = "9.5.1+1.21.1"
-playerAnimator = "2.0.4+1.21.1"
-skinlayers = "nVJQQoQ0" # 1.10.1
-firstPersonModel = "L1VcMGVt" # 2.6.1
-shoulderSurfing = "1.21.1-4.18.1+neoforge"
-creativecore = "2.13.35"
-playerrevive = "2.1.0"
-fgm = "3.2.2"
-
-# Helper Gradle-plugins
 mcSafeResources = "0.0.2"
 modPublish = "1.1.0"
 
+minecraft_range = "[1.20.1]"
+
 [libraries]
-# Fabric
-fabric-loader = { module = "net.fabricmc:fabric-loader", version.ref = "fabric-loader" }
-fabric-minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
-fabric-api = { module = "net.fabricmc.fabric-api:fabric-api", version.ref = "fabric-api" }
-modmenu-fabric = { module = "com.terraformersmc:modmenu", version.ref = "modmenu-fabric" }
 
-mixin = { module = "org.spongepowered:mixin", version.ref = "mixin" }
-
-forgeconfigapiport-common = { module = "fuzs.forgeconfigapiport:forgeconfigapiport-common-neoforgeapi", version.ref = "forgeconfigapiport" }
-forgeconfigapiport-fabric = { module = "fuzs.forgeconfigapiport:forgeconfigapiport-fabric", version.ref = "forgeconfigapiport" }
-
-jei-common-api = { module = "mezz.jei:jei-1.21.1-common-api", version.ref = "jei" }
-jei-neoforge-api = { module = "mezz.jei:jei-1.21.1-neoforge-api", version.ref = "jei" }
-jei-neoforge = { module = "mezz.jei:jei-1.21.1-neoforge", version.ref = "jei" }
-
-azurelib = { module = "mod.azure.azurelib:azurelib-neo-1.21.1", version.ref = "azurelib" }
-azurelib-armor = { module = "mod.azure.azurelibarmor:azurelibarmor-common-1.21.1", version.ref = "azurelib-armor" }
-geckolib = { module = "software.bernie.geckolib:geckolib-neoforge-1.21.1", version.ref = "geckolib" }
-
-sodium = { module = "maven.modrinth:sodium", version.ref = "sodium" }
-iris = { module = "maven.modrinth:iris", version.ref = "iris" }
-werewolves = { module = "maven.modrinth:werewolves", version.ref = "werewolves" }
-vampirism = { module = "maven.modrinth:vampirism", version.ref = "vampirism" }
-
-curios = { module = "top.theillusivec4.curios:curios-neoforge", version.ref = "curios" }
-playerAnimator = { module = "dev.kosmx.player-anim:player-animation-lib-forge", version.ref = "playerAnimator" }
-
-kubejs = { module = "dev.latvian.mods:kubejs-neoforge", version.ref = "kubejs" }
-rhino = { module = "dev.latvian.mods:rhino-neoforge", version.ref = "rhino" }
-architectury = { module = "dev.architectury:architectury-neoforge", version.ref = "architectury" }
-
-skinlayers = { module = "maven.modrinth:3dskinlayers", version.ref = "skinlayers" }
-firstPersonModel = { module = "maven.modrinth:first-person-model", version.ref = "firstPersonModel" }
-shoulderSurfing = { module = "maven.modrinth:shoulder-surfing-reloaded", version.ref = "shoulderSurfing" }
-
-controlify = { module = "dev.isxander:controlify", version.ref = "controlify" }
-
-creativeCore = { module = "maven.modrinth:creativecore", version.ref = "creativecore" }
-playerRevive = { module = "maven.modrinth:playerrevive", version.ref = "playerrevive" }
-
-fgm = {module = "maven.modrinth:female-gender", version.ref = "fgm"}
-
-# Declared only in libraries[], not plugins[], as it's used only by Gradle convention plugins.
-modPublish-gradle-plugin = { module = "me.modmuss50.mod-publish-plugin:me.modmuss50.mod-publish-plugin.gradle.plugin", version.ref = "modPublish" }
+embeddium = { module = "maven.modrinth:embeddium", version.ref = "embeddium" }
+battle-arts-api = { module = "maven.modrinth:battle-arts-api", version.ref = "battle-arts-api" }
+mekanism = { module = "maven.modrinth:mekanism", version.ref = "mekanism" }
+draconic-evolution = { module = "maven.modrinth:draconic-evolution", version.ref = "draconic-evolution" }
+projecte = { module = "maven.modrinth:projecte", version.ref = "projecte" }
+mmmmmmmmmmmm = { module = "maven.modrinth:dummmmmy", version.ref = "mmmmmmmmmmmm" }
+epic-fight = { module = "maven.modrinth:epic-fight", version.ref = "epic-fight" }
 
 [plugins]
-# Mod-loader plugins
-moddevgradle = { id = "net.neoforged.moddev", version.ref = "moddevgradle" }
-fabric-loom = { id = "net.fabricmc.fabric-loom-remap", version.ref = "fabric-loom" }
+# Environment Specific
+eclipse = { id = "eclipse"}
+idea = { id = "idea"}
 
-# Helper plugins
+#Core Gradle Stuff
+moddevgradle = { id = "net.neoforged.moddev.legacyforge", version.ref = "moddevgradle" }
+publisher = { id = "me.modmuss50.mod-publish-plugin", version.ref = "modPublish"}
+
 mcSafeResources = { id = "dev.echoellet.mc-safe-resources", version.ref = "mcSafeResources" }
