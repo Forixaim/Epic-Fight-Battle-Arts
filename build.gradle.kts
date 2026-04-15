@@ -22,6 +22,8 @@ val mod_license: String by project
 val mod_authors: String by project
 val mod_description: String by project
 
+val modPascalCase: String = mod_id.split('_').joinToString("") { it.replaceFirstChar { char -> char.uppercase() } }
+
 
 repositories {
     fun RepositoryHandler.strictMaven(url: String, repoName: String? = null, vararg groups: String) {
