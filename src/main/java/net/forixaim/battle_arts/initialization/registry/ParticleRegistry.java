@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.initialization.registry;
 
 import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.client.particle.TrailParticleType;
+=
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.Registries;

@@ -1,6 +1,6 @@
 # Battle Arts - Changelog
 
-## April 13, 2026
+Adjusted the claymore size to be larger and pixel consistent with Minecraft's Sword
 
-Update to Epic Fight 20.14.16 and discarding ExCap
+- Fixed Version Mismatch
 

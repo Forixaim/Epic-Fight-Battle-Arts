@@ -25,18 +25,11 @@ public class Journeyman extends BattleStyle
 
     public Journeyman(Builder<?> builder) {
         super(builder);
-        innateInactiveColor = new float[]{0.271f, 0.212f, 0.133f};
-        innateSkillColor = new float[]{1f, 0.561f, 0f};
     }
     public static void buildSkills(SkillBuildEvent.ModRegistryWorker worker) {
         RECURVE_AXE = worker.build("recurve_axe", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(JourneymanAxeAnims.INNATE)).newProperty();
         SUPPRESSING_BLOW = worker.build("suppressing_blow", SimpleWeaponInnateSkill::new, ((SimpleWeaponInnateSkill.Builder)SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setResource(Resource.COOLDOWN)).setAnimations(JourneymanAnimations.JMAN_SUPPRESSING_BLOW)).newProperty();
         SEISMIC_IMPACT = worker.build("seismic_impact", SimpleWeaponInnateSkill::new, SimpleWeaponInnateSkill.createSimpleWeaponInnateBuilder().setAnimations(JourneymanBattleAxeAnims.SEISMIC_IMPACT)).newProperty();
-    }
-
-    @Override
-    public boolean unarmedMoveset() {
-        return false;
     }
 
     @Override

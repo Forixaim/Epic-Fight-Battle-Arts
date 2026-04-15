@@ -37,9 +37,9 @@ public class SkillRegistry
 		DRACONIC_INSTINCT = registryWorker.build("draconic_instinct", DraconicInstinct::new, DodgeSkill.createDodgeBuilder().setResource(Skill.Resource.NONE));
 		if (ModList.get().isLoaded("refm"))
 		{
-			FENCER = registryWorker.build("fencer", Fencer::new, BattleStyle.CreateBattleStyle());
+			FENCER = registryWorker.build("fencer", Fencer::new, BattleStyle.createBattleStyleBuilder());
 		}
-		IRON_LOTUS = registryWorker.build("iron_lotus", IronLotus::new, BattleStyle.CreateBattleStyle());
+		IRON_LOTUS = registryWorker.build("iron_lotus", IronLotus::new, BattleStyle.createBattleStyleBuilder());
 
 		NoviceBattleStyles.register(registryWorker);
 		AdvancedBattleStyles.register(registryWorker);

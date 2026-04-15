@@ -19,11 +19,11 @@ public class AdvancedBattleStyles
         Duelist.buildSkills(worker);
         Mercenary.buildSkills(worker);
         Lancer.buildSkill(worker);
-        THIEF = worker.build("thief", Thief::new, BattleStyle.CreateBattleStyle());
-        LANCER = worker.build("lancer", Lancer::new, BattleStyle.CreateBattleStyle());
-        RONIN = worker.build("ronin", Ronin::new, BattleStyle.CreateBattleStyle());
-        DUELIST = worker.build("duelist", Duelist::new, BattleStyle.CreateBattleStyle());
-        MERCENARY = worker.build("mercenary", Mercenary::new, BattleStyle.CreateBattleStyle());
+        THIEF = worker.build("thief", Thief::new, BattleStyle.createBattleStyleBuilder());
+        LANCER = worker.build("lancer", Lancer::new, BattleStyle.createBattleStyleBuilder());
+        RONIN = worker.build("ronin", Ronin::new, BattleStyle.createBattleStyleBuilder());
+        DUELIST = worker.build("duelist", Duelist::new, BattleStyle.createBattleStyleBuilder());
+        MERCENARY = worker.build("mercenary", Mercenary::new, BattleStyle.createBattleStyleBuilder());
 
     }
 }

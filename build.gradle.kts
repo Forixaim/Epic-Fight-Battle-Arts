@@ -147,7 +147,7 @@ val TaskContainer.jar: TaskProvider<Jar>
 publishMods {
     file.set(tasks.named<Jar>("jar").flatMap { it.archiveFile })
     changelog.set(file("changelog.md").readText())
-    type.set(me.modmuss50.mpp.ReleaseType.BETA)
+    type.set(me.modmuss50.mpp.ReleaseType.STABLE)
     modLoaders.add("forge")
 
     curseforge {
