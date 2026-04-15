@@ -1,0 +1,21 @@
+[versions]
+
+moddevgradle = "2.0.134"
+epic-fight = "21.16.1-mc1.21.1-neoforge"
+epicskills = "21.3.1-1.21.1"
+modPublish = "1.1.0"
+battleArtsAPI = "21.15.8.3a"
+
+[libraries]
+
+epicFight = { module = "maven.modrinth:epic-fight", version.ref = "epic-fight" }
+epicskills = { module = "maven.modrinth:epic-fight-skill-tree", version.ref = "epicskills"}
+battleArtsAPI = { module = "maven.modrinth:battle-arts-api", version.ref = "battleArtsAPI"}
+
+[plugins]
+eclipse = { id = "eclipse"}
+idea = { id = "idea"}
+javalib = { id = "java-library"}
+#Core Gradle Stuff
+moddevgradle = { id = "net.neoforged.moddev", version.ref = "moddevgradle" }
+publisher = { id = "me.modmuss50.mod-publish-plugin", version.ref = "modPublish"}
