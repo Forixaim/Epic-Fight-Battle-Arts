@@ -1,6 +1,14 @@
 pluginManagement {
+    fun RepositoryHandler.strictMaven(url: String, vararg groups: String) {
+        exclusiveContent {
+            forRepository { maven(url) }
+            filter {
+                groups.forEach { includeGroupAndSubgroups(it) }
+            }
+        }
+    }
     repositories {
-        maven("https://maven.neoforged.net/releases")
+        strictMaven("https://maven.neoforged.net/releases", "net.neoforged")
         gradlePluginPortal()
     }
 }

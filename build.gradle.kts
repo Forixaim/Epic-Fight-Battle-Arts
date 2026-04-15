@@ -11,6 +11,7 @@ val mod_id: String by project
 val minecraft_version: String by project
 val forge_version: String by project
 val epicfight_version: String by project
+val parchment_version: String by project
 
 val minecraft_version_range: String by project
 val forge_version_range: String by project
@@ -36,6 +37,11 @@ java {
 legacyForge {
     version = ("$minecraft_version-$forge_version")
     accessTransformers.from(file("src/main/resources/META-INF/accesstransformer.cfg"))
+
+    parchment {
+        mappingsVersion.set(parchment_version)
+        minecraftVersion.set(minecraft_version)
+    }
 
     runs {
         configureEach {
@@ -77,22 +83,16 @@ sourceSets.main {
 }
 
 repositories {
-    maven {
-        url = uri("https://cursemaven.com")
-        content {
-            includeGroup("curse.maven")
-        }
-    }
-
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "Modrinth"
-                url = uri("https://api.modrinth.com/maven")
+    fun RepositoryHandler.strictMaven(url: String, vararg groups: String) {
+        exclusiveContent {
+            forRepository { maven(url) }
+            filter {
+                groups.forEach { includeGroupAndSubgroups(it) }
             }
         }
-        filter { includeGroup("maven.modrinth") }
     }
+    strictMaven("https://cursemaven.com", "curse.maven")
+    strictMaven("https://api.modrinth.com/maven", "maven.modrinth")
 
     maven {
         name = "Iron's Maven - Release"
