@@ -1,3 +1,3 @@
 # Battle Arts - Changelog
 
-Removed the incompatibility dependency
+## Fixed auto publish not using reobfJar

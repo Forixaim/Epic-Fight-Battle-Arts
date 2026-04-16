@@ -155,7 +155,7 @@ val TaskContainer.jar: TaskProvider<Jar>
     get() = named<Jar>("jar")
 
 publishMods {
-    file.set(tasks.named<Jar>("jar").flatMap { it.archiveFile })
+    file.set(tasks.named<Jar>("reobfJar").flatMap { it.archiveFile })
     changelog.set(file("changelog.md").readText())
     type.set(me.modmuss50.mpp.ReleaseType.STABLE)
     modLoaders.add("forge")
