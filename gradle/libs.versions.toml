@@ -2,7 +2,9 @@
 
 minecraft = "1.20.1"
 moddevgradle = "2.0.141"
-epic-fight = "20.14.16-mc1.20.1-forge"
+epic-fight = "ExCap"
+epic-fight-extra = "1.1.9"
+invincible = "20.14.8.2-mc1.20.1-forge"
 
 # Version tags on Modrinth (usually the actual version number or a specific ID)
 embeddium = "0.3.31+mc1.20.1"
@@ -15,6 +17,7 @@ forge = "47.4.4"
 
 mcSafeResources = "0.0.2"
 modPublish = "1.1.0"
+exCapExtra = "20.14.16.0"
 
 minecraft_range = "[1.20.1]"
 
@@ -26,7 +29,10 @@ mekanism = { module = "maven.modrinth:mekanism", version.ref = "mekanism" }
 draconicEvolution = { module = "maven.modrinth:draconic-evolution", version.ref = "draconic-evolution" }
 projecte = { module = "curse.maven:projecte-226410", version.ref = "projecte" }
 mmmmmmmmmmmm = { module = "maven.modrinth:mmmmmmmmmmmm", version.ref = "mmmmmmmmmmmm" }
-epicFight = { module = "maven.modrinth:epic-fight", version.ref = "epic-fight" }
+epicFight = { group = "libs", name = "epicfight", version.ref = "epic-fight" }
+exCapExtra = { module = "libs:excapextra", version.ref = "exCapExtra"}
+epicFightExtra = { module = "maven.modrinth:epicfight-extra", version.ref = "epic-fight-extra"}
+invincible = {module = "maven.modrinth:epic-fight-invincible-lib", version.ref = "invincible"}
 
 [plugins]
 # Environment Specific

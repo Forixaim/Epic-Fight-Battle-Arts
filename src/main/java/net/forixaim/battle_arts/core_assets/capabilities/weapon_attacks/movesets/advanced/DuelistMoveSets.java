@@ -18,7 +18,6 @@ public class DuelistMoveSets
             .addLivingMotionsRecursive(DuelistSwordAnimations.WALK, LivingMotions.WALK)
             .addLivingMotionsRecursive(DuelistSwordAnimations.RUN, LivingMotions.RUN)
             .addLivingMotionModifier(LivingMotions.BLOCK, DuelistSwordAnimations.GUARD_SET)
-            .guardSpecificHold(EpicFightSkills.PARRYING, DuelistSwordAnimations.PARRY_STANCE1, DuelistSwordAnimations.PARRY_STANCE2)
             .addGuardAnimations(GuardSkill.BlockType.GUARD, DuelistSwordAnimations.GUARD_HIT)
             .addGuardAnimations(GuardSkill.BlockType.ADVANCED_GUARD, DuelistSwordAnimations.GUARD_PARRY_1)
             .addGuardAnimations(GuardSkill.BlockType.ADVANCED_GUARD, DuelistSwordAnimations.GUARD_PARRY_2)

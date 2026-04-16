@@ -123,6 +123,9 @@ dependencies {
     modCompileOnly(libs.projecte)
     modImplementation(libs.epicFight)
     modCompileOnly(libs.mmmmmmmmmmmm)
+    modRuntimeOnly(libs.epicFightExtra)
+    modRuntimeOnly(libs.invincible)
+    modImplementation(libs.exCapExtra)
 }
 
 tasks.named<ProcessResources>("processResources").configure {

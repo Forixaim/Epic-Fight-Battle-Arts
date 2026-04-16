@@ -2,12 +2,12 @@
   "parent": "item/generated",
   "display": {
     "thirdperson_righthand": {
-      "rotation": [0, -90, 40],
+      "rotation": [0, -90, 45],
       "translation": [0, 12.0, 2.0],
       "scale": [2, 2, 1]
     },
     "thirdperson_lefthand": {
-      "rotation": [0, 90, -40],
+      "rotation": [0, 90, -45],
       "translation": [0, 12.0, 2.0],
       "scale": [2, 2, 1]
     },

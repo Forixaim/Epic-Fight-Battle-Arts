@@ -5,14 +5,14 @@
     "thirdperson_righthand":
     {
       "scale": [1, 1, 1.0],
-      "translation": [0.0, 3.5, 0.2],
-      "rotation": [0, -90, 35]
+      "translation": [0.0, 4, 0.2],
+      "rotation": [0, -90, 45]
     },
     "thirdperson_lefthand":
     {
       "scale": [1, 1, 1.0],
-      "translation": [0.0, 3.5, 0.2],
-      "rotation": [0, 90, -35]
+      "translation": [0.0, 4, 0.2],
+      "rotation": [0, 90, -45]
     },
     "firstperson_lefthand":
     {

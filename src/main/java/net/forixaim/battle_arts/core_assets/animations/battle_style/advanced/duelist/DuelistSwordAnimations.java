@@ -18,6 +18,11 @@ import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.gameasset.*;
+import yesman.epicfight.skill.SkillDataKeys;
+import yesman.epicfight.skill.SkillDataManager;
+import yesman.epicfight.skill.SkillSlots;
+import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
+import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.damagesource.StunType;
 
 public class DuelistSwordAnimations
@@ -43,15 +48,33 @@ public class DuelistSwordAnimations
     public static AnimationManager.AnimationAccessor<BattleArtsAttackAnimation> PIERCING_FALCON;
     public static AnimationManager.AnimationAccessor<BattleArtsAttackAnimation> SHOOTING_STAR;
 
+    public static Integer parrySelect(LivingEntityPatch<?> patch)
+    {
+        if (patch instanceof PlayerPatch<?> playerPatch)
+        {
+            SkillDataManager dataManager = playerPatch.getSkill(SkillSlots.GUARD).getDataManager();
+            if (playerPatch.getSkill(SkillSlots.GUARD).hasSkill(EpicFightSkills.PARRYING) && dataManager.hasData(SkillDataKeys.PARRY_MOTION_COUNTER.get()))
+            {
+                return (dataManager.getDataValue(SkillDataKeys.PARRY_MOTION_COUNTER.get()) % 2) + 1;
+            }
+        }
+        return 0;
+    }
+
     public static void build(AnimationManager.AnimationBuilder builder)
     {
         IDLE = builder.nextAccessor("battle_style/advanced/duelist/sword/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
 
         GUARD = builder.nextAccessor("battle_style/advanced/duelist/sword/guard", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-
+        PARRY_STANCE1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry_stance1", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+        PARRY_STANCE2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry_stance2", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
         GUARD_HIT = builder.nextAccessor("battle_style/advanced/duelist/sword/guard_hit", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry1", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
+
+        GUARD_SET = builder.nextAccessor("battle_style/advanced/duelist/sword/guard_set", access -> new SelectiveAnimation(
+                DuelistSwordAnimations::parrySelect, access, GUARD, PARRY_STANCE2, PARRY_STANCE1
+        ));
 
         KNEE_SMASH = builder.nextAccessor("battle_style/advanced/duelist/sword/knee_smash", access ->
                 new BattleArtsAttackAnimation(0.05f, 0.0f, 0.0f, 0.1f, 0.9f, ColliderPreset.FIST, Armatures.BIPED.get().kneeR, access, Armatures.BIPED)
