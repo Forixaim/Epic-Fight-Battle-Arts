@@ -27,19 +27,7 @@ public class FlyingShockwavePatch extends ProjectilePatch<FlyingShockwaveProject
     public void onAddedToWorld() {
         LogUtils.getLogger().debug("onAddedToWorld");
         if (this.getOriginal().level().isClientSide()) {
-            double entityId = Double.longBitsToDouble(this.getOriginal().getId());
-            this.getOriginal().level().addParticle(new TrailParticleType(TrailInfo.builder()
-                    .type(EpicFightParticles.PROJECTILE_TRAIL.get())
-                    .r(0.859f)
-                    .g(0.996f)
-                    .b(1)
-                    .startPos(new Vec3(1.5D, -0D, -0.0D))
-                    .endPos(new Vec3(-1.0D, 3.7D, 0.0D))
-                    .interpolations(4)
-                    .lifetime(20)
-                    .updateInterval(1)
-                    .texture(ResourceLocation.fromNamespaceAndPath(EpicFightMod.MODID, "textures/particle/projectile_trail.png"))
-                    .create(), ParticleRegistry.PROJECTILE_TRAIL.get()), entityId, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+
         }
 
     }
