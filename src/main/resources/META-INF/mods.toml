@@ -39,4 +39,11 @@ description='''${mod_description}'''
    ordering="AFTER"
    side="BOTH"
 
+[[dependencies."${mod_id}"]]
+   modId = "epicfightx"
+   mandatory = false
+   versionRange = "INCOMPATIBLE"
+   ordering = "NONE"
+   side = "BOTH"
+
 

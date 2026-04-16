@@ -10,7 +10,6 @@ val mod_version: String by project
 val mod_id: String by project
 val minecraft_version: String by project
 val forge_version: String by project
-val epicfight_version: String by project
 val parchment_version: String by project
 
 val minecraft_version_range: String by project
@@ -44,26 +43,41 @@ legacyForge {
     }
 
     runs {
-        configureEach {
+
+        create("clientProduction")
+        {
+            client()
+            systemProperty("net.minecraftforge.gradle.GradleStart.srg.srg-mcp", "false")
+            devLogin.set(true)
+        }
+
+        create("client") {
+            client()
+            devLogin.set(true)
             systemProperty("forge.logging.markers", "REGISTRIES")
             systemProperty("forge.logging.console.level", "debug")
             systemProperty("forge.enabledGameTestNamespaces", mod_id)
         }
-        create("client") {
-            client()
-            devLogin.set(true)
-        }
 
         create("clientNoAuth") {
             client()
+            systemProperty("forge.logging.markers", "REGISTRIES")
+            systemProperty("forge.logging.console.level", "debug")
+            systemProperty("forge.enabledGameTestNamespaces", mod_id)
         }
 
         create("server") {
             server()
+            systemProperty("forge.logging.markers", "REGISTRIES")
+            systemProperty("forge.logging.console.level", "debug")
+            systemProperty("forge.enabledGameTestNamespaces", mod_id)
         }
 
         create("data") {
             data()
+            systemProperty("forge.logging.markers", "REGISTRIES")
+            systemProperty("forge.logging.console.level", "debug")
+            systemProperty("forge.enabledGameTestNamespaces", mod_id)
         }
     }
 
@@ -94,17 +108,9 @@ repositories {
     strictMaven("https://cursemaven.com", "curse.maven")
     strictMaven("https://api.modrinth.com/maven", "maven.modrinth")
 
-    maven {
-        name = "Iron's Maven - Release"
-        url = uri("https://code.redspace.io/releases")
-    }
     flatDir {
         dir("./libs")
     }
-    maven("https://maven.covers1624.net/")
-    maven("https://maven.theillusivec4.top/")
-    maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
-
     mavenCentral()
 }
 
@@ -139,6 +145,10 @@ tasks.named<ProcessResources>("processResources").configure {
     filesMatching(listOf("META-INF/mods.toml", "pack.mcmeta")) {
         expand(replaceProperties + mapOf("project" to project))
     }
+}
+
+tasks.named<Jar>("jar").configure {
+    finalizedBy(tasks.named("reobfJar"))
 }
 
 val TaskContainer.jar: TaskProvider<Jar>

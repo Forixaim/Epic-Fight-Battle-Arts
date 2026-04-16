@@ -1,9 +1,3 @@
 # Battle Arts - Changelog
 
-Adjusted the claymore size to be larger and pixel consistent with Minecraft's Sword
-
-- Fixed Version Mismatch
-- Fixed Particle Type not Typing
-- Fixed Particle Type not using the ForgeRegistry and using Minecraft Registry
-- Fixed mappings error
-
+Removed the incompatibility dependency

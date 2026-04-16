@@ -4,7 +4,6 @@ package net.forixaim.battle_arts;
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.*;
-import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
 import net.forixaim.battle_arts.core_assets.client.renderer.FixedArrowRenderer;
 import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
@@ -20,9 +19,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 import yesman.epicfight.api.utils.ExtendableEnum;
@@ -48,8 +47,14 @@ public class BattleArts
         return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
     }
 
+	public static boolean efExtra()
+	{
+		return ModList.get().isLoaded("epicfightx") && !ModList.get().isLoaded("excapextra");
+	}
+
 	public BattleArts(FMLJavaModLoadingContext context)
 	{
+
 		IEventBus modEventBus = context.getModEventBus();
 		WeaponCategory.ENUM_MANAGER.registerEnumCls(MOD_ID, BattleStyleCategories.class);
         registerStyles();
