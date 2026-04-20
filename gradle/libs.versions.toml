@@ -13,13 +13,11 @@ draconic-evolution = "3.1.2.621"
 projecte = "4901949"
 mmmmmmmmmmmm = "1.20-2.0.9"
 battle-arts-api = "20.14.16.2"
-forge = "47.4.4"
 
 mcSafeResources = "0.0.2"
 modPublish = "1.1.0"
-exCapExtra = "20.14.16.0"
+exCapExtra = "20.14.16.1"
 
-minecraft_range = "[1.20.1]"
 
 [libraries]
 

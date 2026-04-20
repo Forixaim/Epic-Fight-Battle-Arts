@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.idea)
     alias(libs.plugins.moddevgradle)
     alias(libs.plugins.publisher)
+    alias(libs.plugins.mcSafeResources)
 }
 
 val mod_group_id: String by project
@@ -149,6 +150,8 @@ tasks.named<ProcessResources>("processResources").configure {
         expand(replaceProperties + mapOf("project" to project))
     }
 }
+
+
 
 tasks.named<Jar>("jar").configure {
     finalizedBy(tasks.named("reobfJar"))

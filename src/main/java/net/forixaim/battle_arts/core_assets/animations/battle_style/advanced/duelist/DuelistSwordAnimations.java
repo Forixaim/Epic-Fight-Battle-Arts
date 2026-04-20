@@ -104,19 +104,22 @@ public class DuelistSwordAnimations
 
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto1", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.45f, 0.6f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BasicAttackAnimation(0.05f, 0.0f, 0.1f, 0.2f, 0.3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 4)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
+                                1));
         AUTO2 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto2", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.55f, 0.7f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BasicAttackAnimation(0.05f, 0.0f, 0.1f, 0.2f, 0.3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 4)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
+                                1));
 
         AUTO3 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto3", access ->
-                new BasicAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new BasicAttackAnimation(0.05f, 0.0f, 0.1f, 0.2f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
+                                1));
 
         DASH_ATTACK = builder.nextAccessor("battle_style/advanced/duelist/sword/dash_attack", access ->
                 new DashAttackAnimation(0.2f, 0.0f, 0.3f, 0.45f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)

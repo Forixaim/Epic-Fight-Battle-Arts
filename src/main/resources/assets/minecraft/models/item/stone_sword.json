@@ -1,0 +1,30 @@
+{
+  "loader": "forge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "battle_arts:item/shortsword",
+    "textures": {
+      "layer0": "battle_arts:item/stone_shortsword"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "minecraft:item/stone_sword"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "minecraft:item/stone_sword"
+      }
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "minecraft:item/stone_sword"
+      }
+    }
+  }
+}
