@@ -1,6 +1,7 @@
 package net.forixaim.battle_arts.core_assets.animations.types;
 
 import com.mojang.serialization.Codec;
+import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 
 public class BattleArtsAttackPhaseProperties

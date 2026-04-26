@@ -1,16 +1,22 @@
 [versions]
 
 moddevgradle = "2.0.134"
-epic-fight = "21.16.1-mc1.21.1-neoforge"
+epic-fight = "21.16.4-mc1.21.1-neoforge"
 epicskills = "21.3.1-1.21.1"
 modPublish = "1.1.0"
 battleArtsAPI = "21.15.8.3a"
+epicFightLocal = "ExCapTest"
+dummy = "1.21-2.0.12-neoforge"
+moonlight = "1.21-2.29.33-neoforge"
 
 [libraries]
 
 epicFight = { module = "maven.modrinth:epic-fight", version.ref = "epic-fight" }
 epicskills = { module = "maven.modrinth:epic-fight-skill-tree", version.ref = "epicskills"}
 battleArtsAPI = { module = "maven.modrinth:battle-arts-api", version.ref = "battleArtsAPI"}
+epicFightTest = { group = "libs", name = "epicfight", version.ref = "epicFightLocal"}
+dummy = { group = "maven.modrinth", name = "mmmmmmmmmmmm", version.ref = "dummy"}
+moonlight = { group = "maven.modrinth", name = "moonlight", version.ref = "moonlight"}
 
 [plugins]
 eclipse = { id = "eclipse"}

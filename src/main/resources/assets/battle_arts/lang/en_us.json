@@ -139,8 +139,8 @@
   "item.battle_arts.battleaxe.tooltip": "Powerful and slow, these axes are meant for battle and can do insane burst damage in a short amount of time.",
   "skill.battle_arts.squire": "Squire",
   "skill.battle_arts.squire.tooltip": "A trainee of the swords, bows, daggers, and horseback riding. Quite a versatile class.",
-  "skill.battle_arts.squire_heavy_blow": "Leaping Whirlwind",
-  "skill.battle_arts.squire_heavy_blow.tooltip": "After a small wind up, leap forward with incredible speed, cleaving through anyone who gets caught.",
+  "skill.battle_arts.heavy_blow": "Heavy Slam",
+  "skill.battle_arts.heavy_blow.tooltip": "After a small wind up, slam your weapon down, cleaving anyone who gets caught.",
   "skill.battle_arts.power_draw": "Power Draw",
   "skill.battle_arts.power_draw.tooltip": "Pull back the bow to great lengths before releasing a powerful arrow that can pierce multiple foes.",
   "skill.battle_arts.mercenary": "Mercenary",
@@ -162,8 +162,8 @@
   "skill.battle_arts.quad_sting.tooltip": "Thrust your sword in 4 rapid strikes with incredible speed that can leave an opponent barely breathing.",
   "skill.battle_arts.recurve_axe": "Recurve Axe",
   "skill.battle_arts.recurve_axe.tooltip": "Throw the axe a fair distance in front of you before curving it back.",
-  "skill.battle_arts.disembowelment": "Disembowelment",
-  "skill.battle_arts.disembowelment.tooltip": "Thrust the dagger inside the opponent before cleanly tearing it out. Faster than eviscerate and second hit will always hit.",
+  "skill.battle_arts.hard_thrust": "Hard Thrust",
+  "skill.battle_arts.hard_thrust.tooltip": "Thrust the dagger after a short windup, ignores 50% of defense.",
   "skill.battle_arts.puncture_swipe": "Puncture Swipe",
   "skill.battle_arts.puncture_swipe.tooltip": "Quickly thrust the spear before a quick swipe from the left to right, doing serious damage.",
   "skill.battle_arts.journeyman": "Journeyman",
@@ -213,5 +213,6 @@
   "sounds.battle_arts.entity.combat.critical_hit": "Critical Hit!",
 
   "item.battle_arts.erdricks_sword.tooltip": "Valid argument, but... You die at 0% to whack.",
-  "item.battle_arts.binding_blade.tooltip": "A rather hot blade. Gotta be real close to your opponent to actually hurt."
+  "item.battle_arts.binding_blade.tooltip": "A rather hot blade. Gotta be real close to your opponent to actually hurt.",
+  "damage_source.battle_arts.fall_distance": "Distance Fell"
 }

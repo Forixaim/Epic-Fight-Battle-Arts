@@ -1,0 +1,11 @@
+{
+  "values": [
+    "battle_arts:wooden_longbow",
+    "battle_arts:stone_longbow",
+    "battle_arts:iron_longbow",
+    "battle_arts:golden_longbow",
+    "battle_arts:diamond_longbow",
+    "battle_arts:netherite_longbow",
+    "battle_arts:steel_longbow"
+  ]
+}

@@ -2,7 +2,6 @@ package net.forixaim.battle_arts.core_assets.capabilities.weapon_attacks.moveset
 
 import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
-import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice.Recruit;
 import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.api.ex_cap.modules.core.data.MoveSet;
@@ -14,16 +13,16 @@ public class RecruitMoveSets
     public static final MoveSetEntry RECRUIT_MOVESET = new MoveSetEntry(
             BattleArts.identifier("recruit_moveset"),
             MoveSet.builder()
-                    .addLivingMotionModifier(LivingMotions.IDLE, RecruitSpearAnimations.RECRUIT_SPEAR_IDLE)
-                    .addLivingMotionModifier(LivingMotions.WALK, RecruitSpearAnimations.RECRUIT_SPEAR_WALK)
-                    .addLivingMotionModifier(LivingMotions.RUN, RecruitSpearAnimations.RECRUIT_SPEAR_RUN)
-                    .addLivingMotionModifier(LivingMotions.KNEEL, RecruitSpearAnimations.RECRUIT_SPEAR_CROUCH)
-                    .addLivingMotionModifier(LivingMotions.BLOCK, RecruitSpearAnimations.RECRUIT_SPEAR_GUARD)
+                    .addLivingMotionModifier(LivingMotions.IDLE, RecruitSpearAnimations.IDLE)
+                    .addLivingMotionModifier(LivingMotions.WALK, RecruitSpearAnimations.WALK)
+                    .addLivingMotionModifier(LivingMotions.RUN, RecruitSpearAnimations.RUN)
+                    .addLivingMotionModifier(LivingMotions.KNEEL, RecruitSpearAnimations.CROUCH)
+                    .addLivingMotionModifier(LivingMotions.BLOCK, RecruitSpearAnimations.GUARD)
                     .addComboAttacks(
-                            RecruitSpearAnimations.RECRUIT_SPEAR_STANDING_ATTACK,
-                            RecruitSpearAnimations.RECRUIT_SPEAR_STANDING_ATTACK_2,
-                            RecruitSpearAnimations.RECRUIT_SPEAR_DASH_ATTACK,
-                            RecruitSpearAnimations.RECRUIT_SPEAR_AERIAL_POKE
+                            RecruitSpearAnimations.AUTO1,
+                            RecruitSpearAnimations.AUTO2,
+                            RecruitSpearAnimations.DASH_ATTACK,
+                            RecruitSpearAnimations.JUMP_ATTACK
                     )
                     .addGuardAnimations(
                             GuardSkill.BlockType.GUARD,

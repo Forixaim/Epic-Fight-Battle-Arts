@@ -4,13 +4,17 @@ import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
 import yesman.epicfight.api.animation.AnimationManager;
+import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
 import yesman.epicfight.api.utils.math.ValueModifier;
 import yesman.epicfight.gameasset.Animations;
 import yesman.epicfight.gameasset.Armatures;
+import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
+
+import java.util.List;
 
 public class SquireSwordAnimations
 {
@@ -80,7 +84,7 @@ public class SquireSwordAnimations
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		SQUIRE_SWORD_AUTO_3 = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto3"), accessor -> new BattleArtsComboAttackAnimation(0.2f, 0f, 0.2f, 0.35f, 2.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-                .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
+				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		SQUIRE_SWORD_DASH_ATTACK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "dash_attack"), accessor -> new BattleArtsComboAttackAnimation(0.2f, accessor, Armatures.BIPED,
 				new AttackAnimation.Phase(0.0f, 0.0f, 0.2f, 0.3f, 0.5f, 1.0f, Armatures.BIPED.get().toolR, null)
@@ -88,8 +92,32 @@ public class SquireSwordAnimations
 
 		SQUIRE_SWORD_HOP_ATTACK = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "hop_attack"), accessor ->
 				new AirSlashAnimation(0.1f, 0f, 0.2f, 0.35f, 2f, false, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-				.addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, false)
-						.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
+
+						.addProperty(AnimationProperty.StaticAnimationProperty.ON_BEGIN_EVENTS, List.of(
+								AnimationEvent.SimpleEvent.create((livingEntityPatch, assetAccessor, animationParameters) ->
+
+										{
+											livingEntityPatch.getOriginal().setDeltaMovement(livingEntityPatch.getOriginal().getDeltaMovement().subtract(0, livingEntityPatch.getOriginal().getDeltaMovement().y, 0));
+											if (livingEntityPatch instanceof PlayerPatch<?> patch && patch.getOriginal().getAbilities().flying)
+											{
+												patch.getOriginal().getAbilities().flying = false;
+											}
+										}
+										, AnimationEvent.Side.BOTH)
+						))
+						.addProperty(AnimationProperty.ActionAnimationProperty.MOVE_VERTICAL, false)
+						.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+						{
+							if (v2 >= 0.25f && v2 < 0.3f && !livingEntityPatch.getOriginal().onGround())
+							{
+								return 0.01f;
+							}
+							else if (v2 >= 0.3f && v2 < 0.35f && !livingEntityPatch.getOriginal().onGround())
+							{
+								return 0;
+							}
+							return 1;
+						}));
 
 		SQUIRE_SWORD_HEAVY_BLOW = event.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "heavy_blow"), accessor -> new BattleArtsAttackAnimation(0.1f, 0f, 0.7f, 0.8f, 1.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
 				.addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(2f))

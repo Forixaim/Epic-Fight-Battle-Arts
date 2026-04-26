@@ -99,8 +99,12 @@ public class SquireMoveSets
                     .addLivingMotionModifier(LivingMotions.BLOCK, Animations.SWORD_GUARD)
                     .addLivingMotionsRecursive(
                             SquireDaggerAnimations.IDLE,
-                            LivingMotions.IDLE, LivingMotions.WALK, LivingMotions.RUN, LivingMotions.JUMP
+                            LivingMotions.IDLE, LivingMotions.JUMP
                     )
+                    .addLivingMotionModifier(LivingMotions.WALK, SquireDaggerAnimations.WALK)
+                    .addLivingMotionModifier(LivingMotions.RUN, SquireDaggerAnimations.RUN)
+                    .addLivingMotionModifier(LivingMotions.KNEEL, SquireDaggerAnimations.CROUCH)
+                    .addLivingMotionModifier(LivingMotions.SNEAK, SquireDaggerAnimations.CROUCH_WALK)
                     .addComboAttacks(
                             SquireDaggerAnimations.AUTO1,
                             SquireDaggerAnimations.AUTO2,
@@ -108,6 +112,6 @@ public class SquireMoveSets
                             SquireDaggerAnimations.DASH,
                             SquireDaggerAnimations.SPIKE
                     )
-                    .addInnateSkill((itemStack, playerPatch) -> SkillRegistry.DISEMBOWELMENT.get())
+                    .addInnateSkill((itemStack, playerPatch) -> SkillRegistry.HARD_THRUST.get())
     );
 }

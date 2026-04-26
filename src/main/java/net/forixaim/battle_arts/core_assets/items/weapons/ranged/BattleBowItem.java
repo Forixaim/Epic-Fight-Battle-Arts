@@ -1,6 +1,9 @@
 package net.forixaim.battle_arts.core_assets.items.weapons.ranged;
 
+import net.forixaim.battle_arts.core_assets.animations.battle_style.BattleStyleRegistry;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.special.SpecialTiers;
+import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
+import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -22,6 +25,12 @@ import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.event.entity.player.ArrowLooseEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import yesman.epicfight.api.animation.Joint;
+import yesman.epicfight.api.animation.property.AnimationProperty;
+import yesman.epicfight.api.animation.types.AttackAnimation;
+import yesman.epicfight.api.utils.math.ValueModifier;
+import yesman.epicfight.gameasset.ColliderPreset;
+import yesman.epicfight.world.damagesource.StunType;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -91,31 +100,31 @@ public class BattleBowItem extends BowItem
                     boolean flag1 = player.getAbilities().instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem) itemstack.getItem()).isInfinite(itemstack, pStack, player);
                     if (!pLevel.isClientSide)
                     {
-                        ArrowItem arrowitem = (ArrowItem) (itemstack.getItem() instanceof ArrowItem ? itemstack.getItem() : Items.ARROW);
-                        AbstractArrow abstractarrow = arrowitem.createArrow(pLevel, itemstack, player, pStack);
-                        abstractarrow = this.customArrow(abstractarrow);
-                        abstractarrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);
-                        abstractarrow.setBaseDamage(pEntityLiving.getAttributeValue(Attributes.ATTACK_DAMAGE));
+                        FixedArrow fixedArrow = BattleArtsProjectiles.FIXED_ARROW.get().create(pLevel);
+                        fixedArrow.setAttack(BattleStyleRegistry.BOW_BASE_DAMAGE);
+                        fixedArrow.setPos(player.position().add(0, 1.5, 0));
+                        fixedArrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);
+                        fixedArrow.setPhase(new AttackAnimation.Phase(InteractionHand.MAIN_HAND, Joint.EMPTY, ColliderPreset.BIPED_BODY_COLLIDER)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.setter((float) player.getAttributeValue(Attributes.ATTACK_DAMAGE)))
+                                .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.NEUTRALIZE));
                         if (f == 1.0F)
                         {
-                            abstractarrow.setCritArrow(true);
+                            fixedArrow.setCritArrow(true);
                         }
 
                         int j = EnchantmentHelper.getEnchantmentLevel(pLevel.registryAccess().holderOrThrow(Enchantments.POWER), pEntityLiving);
                         if (j > 0)
                         {
-                            abstractarrow.setBaseDamage(abstractarrow.getBaseDamage() + j);
+                            fixedArrow.setBaseDamage(fixedArrow.getBaseDamage() + j);
                         }
-
-                        int k = EnchantmentHelper.getEnchantmentLevel(pLevel.registryAccess().holderOrThrow(Enchantments.POWER), pEntityLiving);
 
                         pStack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND);
                         if (flag1 || player.getAbilities().instabuild && (itemstack.is(Items.SPECTRAL_ARROW) || itemstack.is(Items.TIPPED_ARROW)))
                         {
-                            abstractarrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
+                            fixedArrow.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                         }
 
-                        pLevel.addFreshEntity(abstractarrow);
+                        pLevel.addFreshEntity(fixedArrow);
                     }
 
                     pLevel.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.0F, 1.0F / (pLevel.getRandom().nextFloat() * 0.4F + 1.2F) + f * 0.5F);
@@ -166,12 +175,8 @@ public class BattleBowItem extends BowItem
         }
     }
 
-    public Predicate<ItemStack> getAllSupportedProjectiles() {
+    public @NotNull Predicate<ItemStack> getAllSupportedProjectiles() {
         return ARROW_ONLY;
-    }
-
-    public AbstractArrow customArrow(AbstractArrow arrow) {
-        return arrow;
     }
 
     public int getDefaultProjectileRange() {

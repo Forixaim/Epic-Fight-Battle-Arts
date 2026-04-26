@@ -8,5 +8,18 @@
       "impact":0.7
     }
   },
+  "collider": {
+    "number": 3,
+    "size": [
+      0.4,
+      0.4,
+      0.6
+    ],
+    "center": [
+      0.0,
+      0.0,
+      -0.4
+    ]
+  },
   "type":"epicfight:dagger"
 }

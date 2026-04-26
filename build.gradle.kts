@@ -1,3 +1,10 @@
+import java.awt.GraphicsEnvironment
+import javax.swing.ImageIcon
+import javax.swing.JOptionPane
+import javax.swing.JPasswordField
+import javax.swing.SwingUtilities
+import javax.swing.UIManager
+
 plugins {
     alias(libs.plugins.javalib)
     alias(libs.plugins.eclipse)
@@ -52,6 +59,7 @@ repositories {
 
 base {
     archivesName = mod_id
+    version = mod_version
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -95,12 +103,88 @@ sourceSets.main {
 
 dependencies {
     runtimeOnly("maven.modrinth:ldlib:mc1.21.1-2.2.4.a-neoforge")
-    implementation(libs.epicFight)
+    implementation(libs.epicFightTest)
+    runtimeOnly(libs.moonlight)
+    runtimeOnly(libs.dummy)
     implementation(libs.epicskills)
     implementation(libs.battleArtsAPI)
     implementation("maven.modrinth:photon-editor:mc1.21.1-2.1.4-neoforge")
 }
 
+///Advanced
+tasks.register<Jar>("signJar") {
+    group = "build"
+    description = "Signs the mod JAR securely using a YubiKey GUI prompt."
+
+    val jarTask = tasks.named<Jar>("jar")
+    dependsOn(jarTask)
+
+    val jarFileProvider = jarTask.flatMap { it.archiveFile }
+
+    val configPath = layout.projectDirectory.file("yubikey.conf").asFile.absolutePath
+    val aliasName = project.findProperty("yubiAlias")?.toString() ?: "X.509 Certificate for Digital Signature"
+
+    doLast {
+        val jarFile = jarFileProvider.get().asFile
+
+        if (GraphicsEnvironment.isHeadless()) {
+            throw GradleException("Headless environment detected. A GUI is required to prompt for the PIN.")
+        }
+
+        val pf = JPasswordField()
+        var result = JOptionPane.CANCEL_OPTION
+
+        SwingUtilities.invokeAndWait {
+
+            val iconFile = layout.projectDirectory.file("icon.png").asFile
+            val customIcon = if (iconFile.exists()) ImageIcon(iconFile.absolutePath) else null
+
+            val pane = JOptionPane(pf, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION)
+            val dialog = pane.createDialog("Enter YubiKey PIN")
+
+            if (customIcon != null) dialog.setIconImage(customIcon.image)
+
+            dialog.isAlwaysOnTop = true
+            dialog.isVisible = true
+            result = (pane.value as? Int) ?: JOptionPane.CANCEL_OPTION
+        }
+
+        if (result != JOptionPane.OK_OPTION) {
+            println("JAR signing skipped")
+        }
+        else
+        {
+            val pin = String(pf.password)
+            if (pin.isEmpty()) {
+                throw GradleException("PIN cannot be empty.")
+            }
+
+            println("--------------------------------------------------")
+            println("Signing JAR: ${jarFile.name}")
+            println("Please TOUCH the gold contact when your YubiKey flashes.")
+            println("--------------------------------------------------")
+
+            val process = ProcessBuilder(
+                "jarsigner",
+                "-keystore", "NONE",
+                "-storetype", "PKCS11",
+                "-providerClass", "sun.security.pkcs11.SunPKCS11",
+                "-providerArg", configPath,
+                "-storepass", pin,
+                "-tsa", "http://timestamp.digicert.com",
+                jarFile.absolutePath,
+                aliasName
+            ).inheritIO().start()
+
+            val exitCode = process.waitFor()
+            if (exitCode != 0) {
+                throw GradleException("jarsigner failed with exit code $exitCode")
+            }
+
+            println("Success! JAR signed.")
+        }
+    }
+}
 
 val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {
     val replaceProperties = mapOf(
@@ -129,13 +213,19 @@ sourceSets.main.get().resources.srcDir(generateModMetadata)
 val TaskContainer.jar: TaskProvider<Jar>
     get() = named<Jar>("jar")
 
+tasks.named("publishMods") {
+    dependsOn(tasks.named("signJar"))
+}
+
 publishMods {
-    file.set(tasks.named<Jar>("jar").flatMap { it.archiveFile })
+
+    file.set(tasks.named<Jar>("signJar").flatMap { it.archiveFile })
     changelog.set(file("changelog.md").readText())
-    type.set(me.modmuss50.mpp.ReleaseType.BETA)
+    type.set(me.modmuss50.mpp.ReleaseType.ALPHA)
     modLoaders.add("neoforge")
 
     curseforge {
+
         projectId.set("933502")
         projectSlug.set("battle-arts")
         accessToken.set(providers.environmentVariable("CURSEFORGE_TOKEN"))

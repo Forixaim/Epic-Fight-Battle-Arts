@@ -24,4 +24,5 @@ public class RegistryEvent
             event.getEntity().addTag(BattleArtsEntityTags.PUNCTURE_LEVEL_1.toString());
         }
     }
+
 }

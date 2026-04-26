@@ -1,7 +1,9 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist;
 
+import it.unimi.dsi.fastutil.ints.IntIntPair;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsWalkAnimation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
@@ -12,6 +14,8 @@ import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
+import yesman.epicfight.api.animation.types.procedural.HumanoidWalkAnimation;
+import yesman.epicfight.api.physics.ik.InverseKinematicsSimulator;
 import yesman.epicfight.api.utils.TimePairList;
 import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.ValueModifier;
@@ -24,6 +28,8 @@ import yesman.epicfight.skill.SkillDataManager;
 import yesman.epicfight.skill.SkillSlots;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
 import yesman.epicfight.world.damagesource.StunType;
+
+import java.util.List;
 
 public class DuelistSwordAnimations
 {
@@ -77,8 +83,12 @@ public class DuelistSwordAnimations
         GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/duelist/sword/parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
 
         WALK = builder.nextAccessor("battle_style/advanced/duelist/sword/walk", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
+                .addProperty(AnimationProperty.StaticAnimationProperty.IK_DEFINITION, List.of(
+                        InverseKinematicsSimulator.InverseKinematicsDefinition.create(Armatures.BIPED.get().thighL, Armatures.BIPED.get().legL, Armatures.BIPED.get().legR, IntIntPair.of(0, 2), 0.05f, 0, new boolean[]{true, true}),
+                        InverseKinematicsSimulator.InverseKinematicsDefinition.create(Armatures.BIPED.get().thighR, Armatures.BIPED.get().legR, Armatures.BIPED.get().legL, IntIntPair.of(0, 2), 0.05f, 0, new boolean[]{true, true})
+                ))
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                        v * 1.3f));
+                        v * 2f));
 
         RUN = builder.nextAccessor("battle_style/advanced/duelist/sword/run", access -> new MovementAnimation(0.2f, true, access, Armatures.BIPED)
                 .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
@@ -95,20 +105,22 @@ public class DuelistSwordAnimations
                                 1));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto1", access ->
-                new ComboAttackAnimation(0.2f, 0.0f, 0.45f, 0.6f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.05f, 0.0f, 0.1f, 0.2f, 0.3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 4)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
-
+                                1));
         AUTO2 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto2", access ->
-                new ComboAttackAnimation(0.2f, 0.0f, 0.55f, 0.7f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.05f, 0.0f, 0.1f, 0.2f, 0.3f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 4)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
+                                1));
 
         AUTO3 = builder.nextAccessor("battle_style/advanced/duelist/sword/auto3", access ->
-                new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.6f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.05f, 0.0f, 0.1f, 0.2f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
+                        .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
+                                1));
 
         DASH_ATTACK = builder.nextAccessor("battle_style/advanced/duelist/sword/dash_attack", access ->
                 new DashAttackAnimation(0.2f, 0.0f, 0.3f, 0.45f, 1.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)

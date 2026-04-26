@@ -12,11 +12,18 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squir
 import net.forixaim.battle_arts.core_assets.animations.battle_style.unique.iron_lotus.IronLotusAnimations;
 import net.forixaim.battle_arts.core_assets.animations.other.DraconicInstinctAnimations;
 import yesman.epicfight.api.animation.AnimationManager;
+import yesman.epicfight.api.animation.Joint;
+import yesman.epicfight.api.animation.types.AttackAnimation;
+import yesman.epicfight.gameasset.Animations;
+import yesman.epicfight.gameasset.Armatures;
 
 public class BattleStyleRegistry
 {
+	///Do not use
+	public static AnimationManager.AnimationAccessor<AttackAnimation> BOW_BASE_DAMAGE;
 	public static void Listen(AnimationManager.AnimationBuilder event)
 	{
+		build(event);
         FighterAnimations.listen(event);
 		DraconicInstinctAnimations.build(event);
 		JourneymanAnimations.listenAnims(event);
@@ -28,5 +35,10 @@ public class BattleStyleRegistry
 		IronLotusAnimations.Build(event);
 		MercenaryAnimations.listen(event);
 		LancerAnimations.listen(event);
+	}
+
+	public static void build(AnimationManager.AnimationBuilder builder)
+	{
+		BOW_BASE_DAMAGE = builder.nextAccessor("bow_damage_dummy", access -> new AttackAnimation(0, 0, 0, 0, 0, null, Joint.EMPTY, access, Armatures.BIPED));
 	}
 }

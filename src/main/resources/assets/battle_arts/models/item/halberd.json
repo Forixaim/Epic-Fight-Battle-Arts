@@ -4,15 +4,15 @@
   {
     "thirdperson_righthand":
     {
-      "scale": [3, 3, 1.4],
+      "scale": [2.625, 2.625, 1.0],
       "translation": [0.0, 5.5, 1.8],
-      "rotation": [0, -90, 35]
+      "rotation": [0, -90, 45]
     },
     "thirdperson_lefthand":
     {
-      "scale": [3, 3, 1.4],
+      "scale": [2.625, 2.625, 1.0],
       "translation": [0.0, 5.5, 1.8],
-      "rotation": [0, 90, -35]
+      "rotation": [0, 90, -45]
     },
     "firstperson_lefthand":
     {

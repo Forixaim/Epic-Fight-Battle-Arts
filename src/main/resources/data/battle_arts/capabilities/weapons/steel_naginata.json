@@ -7,5 +7,18 @@
       "max_strikes":1
     }
   },
+  "collider": {
+    "number": 3,
+    "size": [
+      0.4,
+      0.4,
+      0.9
+    ],
+    "center": [
+      0.0,
+      0.0,
+      -1.2
+    ]
+  },
   "type":"epicfight:spear"
 }
