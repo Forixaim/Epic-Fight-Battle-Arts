@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RecruitWieldStyles;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.IronFortress;
 import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
@@ -52,17 +53,7 @@ public class Recruit extends BattleStyle
 	{
 		super.onInitiate(container, eventListener);
 
-        eventListener.registerEvent(EpicFightClientEventHooks.Control.MAPPED_MOVEMENT_INPUT_UPDATE, event -> {
-            if (container.getExecutor().getOriginal().isShiftKeyDown())
-            {
-                Style wieldStyle = event.getEntityPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getEntityPatch());
-                if (wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR || wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR_SHIELD)
-                {
-                    PlayerInputState modified = event.getInputState().withForwardImpulse(0).withLeftImpulse(0).withJumping(false);
-                    InputManager.setInputState(modified);
-                }
-            }
-        }, this);
+        eventListener.registerEvent(EpicFightClientEventHooks.Control.MAPPED_MOVEMENT_INPUT_UPDATE, CommonEvents::LOCK_MOVEMENT_CROUCHING, this);
 
         eventListener.registerEvent(EpicFightEventHooks.Entity.TAKE_DAMAGE_INCOME, event -> {
             DamageSource damageSource = event.getDamageSource();

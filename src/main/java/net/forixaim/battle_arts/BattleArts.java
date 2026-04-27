@@ -97,12 +97,12 @@ public class BattleArts
 
     private void registerCapabilities()
     {
-        EpicFightEventHooks.Registry.ENTITY_PATCH.registerEvent(CommonModBusEvent::registerEntityPatch);
-        EpicFightEventHooks.Registry.EX_CAP_CONDITIONAL_REGISTRATION.registerEvent(ExCapEventHooks::onRegisterProvider);
-        EpicFightEventHooks.Registry.EX_CAP_BUILDER_CREATION.registerEvent(ExCapEventHooks::onRegisterWeaponBuilder);
-        EpicFightEventHooks.Registry.EX_CAP_DATA_CREATION.registerEvent(ExCapEventHooks::onRegisterDataSet);
-        EpicFightEventHooks.Registry.EX_CAP_MOVESET_REGISTRY.registerEvent(ExCapEventHooks::onRegisterMoveset);
-        EpicFightEventHooks.Registry.EX_CAP_DATA_POPULATION.registerEvent(ExCapEventHooks::onPopulateData);
+        EpicFightEventHooks.Registry.ENTITY_PATCH.registerEvent(CommonModBusEvent::registerEntityPatch, 1);
+        EpicFightEventHooks.Registry.EX_CAP_CONDITIONAL_REGISTRATION.registerEvent(ExCapEventHooks::onRegisterProvider, 1);
+        EpicFightEventHooks.Registry.EX_CAP_BUILDER_CREATION.registerEvent(ExCapEventHooks::onRegisterWeaponBuilder, 1);
+        EpicFightEventHooks.Registry.EX_CAP_DATA_CREATION.registerEvent(ExCapEventHooks::onRegisterDataSet, 1);
+        EpicFightEventHooks.Registry.EX_CAP_MOVESET_REGISTRY.registerEvent(ExCapEventHooks::onRegisterMoveset, 1);
+        EpicFightEventHooks.Registry.EX_CAP_DATA_POPULATION.registerEvent(ExCapEventHooks::onPopulateData, 1);
     }
 
     private void registerStyle(Class<? extends ExtensibleEnum> enumClass)

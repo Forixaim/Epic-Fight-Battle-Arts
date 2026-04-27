@@ -1,0 +1,65 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "item/generated",
+    "display": {
+      "thirdperson_righthand": {
+        "rotation": [0, -90, 45],
+        "translation": [0.25, 12.25, 0.25],
+        "scale": [2, 2, 1]
+      },
+      "thirdperson_lefthand": {
+        "rotation": [0, 90, -45],
+        "translation": [-0.25, 12.25, 0.25],
+        "scale": [2, 2, 1]
+      },
+      "firstperson_righthand": {
+        "rotation": [0, -90, 35],
+        "translation": [0, 12, 1.5],
+        "scale": [2, 2, 1]
+      },
+      "firstperson_lefthand": {
+        "rotation": [0, 90, -35],
+        "translation": [0, 12, 1.5],
+        "scale": [2, 2, 1]
+      },
+      "head": {
+        "rotation": [0, 90, 45],
+        "translation": [0, 18.75, 0],
+        "scale": [2, 2, 1]
+      },
+      "ground": {
+        "translation": [0, 5, 0],
+        "scale": [1, 1, 1]
+      },
+      "fixed": {
+        "translation": [2, 2.25, 0],
+        "scale": [1.51, 1.51, 0.87]
+      }
+    },
+    "textures": {
+      "layer0": "battle_arts:item/enki"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/enki_gui"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/enki_gui"
+      }
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "battle_arts:item/enki_gui"
+      }
+    }
+  }
+}

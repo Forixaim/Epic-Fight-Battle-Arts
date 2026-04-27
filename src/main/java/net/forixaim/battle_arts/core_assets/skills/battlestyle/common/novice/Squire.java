@@ -1,11 +1,13 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.MountedMoveset;
 import net.forixaim.battle_arts.initialization.registry.ItemRegistry;
 import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
 import net.forixaim.battle_arts_api.battle_arts_skills.CoreAPIDataKeys;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
+import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
 import yesman.epicfight.api.event.EntityEventListener;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.skill.SkillBuilder;
@@ -19,6 +21,7 @@ public class Squire extends BattleStyle implements MountedMoveset
     @Override
     public void onInitiate(SkillContainer container, EntityEventListener eventListener) {
         super.onInitiate(container, eventListener);
+        eventListener.registerEvent(EpicFightClientEventHooks.Control.MAPPED_MOVEMENT_INPUT_UPDATE, CommonEvents::LOCK_MOVEMENT_CROUCHING, this);
         eventListener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, event ->
         {
             container.getDataManager().setDataSync(CoreAPIDataKeys.HIT_STOP_TICKS, Math.round(event.getDamageSource().getBaseImpact()));

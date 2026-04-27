@@ -1,9 +1,11 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle;
 
 import com.mojang.logging.LogUtils;
+import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RecruitWieldStyles;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.CoreAPIDataKeys;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import yesman.epicfight.api.client.event.types.control.MappedMovementInputUpdateEvent;
@@ -13,6 +15,7 @@ import yesman.epicfight.api.event.types.entity.DealDamageEvent;
 import yesman.epicfight.client.world.capabilites.entitypatch.player.LocalPlayerPatch;
 import yesman.epicfight.skill.guard.GuardSkill;
 import yesman.epicfight.world.capabilities.entitypatch.player.ServerPlayerPatch;
+import yesman.epicfight.world.capabilities.item.Style;
 
 public class CommonEvents
 {
@@ -33,7 +36,19 @@ public class CommonEvents
                 player.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(CoreAPIDataKeys.METER_FILL, finalMeterFill);
             }
         }
+    }
 
+    public static void LOCK_MOVEMENT_CROUCHING(MappedMovementInputUpdateEvent event)
+    {
+        if (event.getEntityPatch().getOriginal().isShiftKeyDown())
+        {
+            Style wieldStyle = event.getEntityPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getEntityPatch());
+            if (wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR || wieldStyle == RecruitWieldStyles.RECRUIT_SPEAR_SHIELD)
+            {
+                PlayerInputState modified = event.getInputState().withForwardImpulse(0).withLeftImpulse(0).withJumping(false);
+                InputManager.setInputState(modified);
+            }
+        }
     }
 
     public static void LOCK_MOVEMENT_USING_ITEM(MappedMovementInputUpdateEvent event) {

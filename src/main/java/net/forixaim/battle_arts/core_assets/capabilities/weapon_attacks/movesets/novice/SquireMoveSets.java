@@ -25,11 +25,11 @@ public class SquireMoveSets
                     .addLivingMotionModifier(LivingMotions.JUMP, SquireSwordAnimations.JUMP)
                     .addLivingMotionModifier(LivingMotions.KNEEL, SquireSwordAnimations.SQUIRE_SWORD_CROUCH)
                     .addLivingMotionModifier(LivingMotions.SNEAK, SquireSwordAnimations.SQUIRE_SWORD_CROUCH_WALK)
-                    .addLivingMotionModifier(LivingMotions.BLOCK, SquireSwordAnimations.SQUIRE_SWORD_GUARD)
+                    .addLivingMotionModifier(LivingMotions.BLOCK, SquireSwordAnimations.GUARD_SET)
 
                     .addGuardAnimations(
                             GuardSkill.BlockType.GUARD,
-                            SquireSwordAnimations.SQUIRE_SWORD_GUARD_HIT
+                            SquireSwordAnimations.GUARD_HIT
                     )
                     .addGuardAnimations(
                             GuardSkill.BlockType.GUARD_BREAK,
@@ -37,8 +37,8 @@ public class SquireMoveSets
                     )
                     .addGuardAnimations(
                             GuardSkill.BlockType.ADVANCED_GUARD,
-                            SquireSwordAnimations.SQUIRE_SWORD_GUARD_PARRY_1,
-                            SquireSwordAnimations.SQUIRE_SWORD_GUARD_PARRY_2
+                            SquireSwordAnimations.PARRY_1,
+                            SquireSwordAnimations.PARRY_2
                     )
 
                     .addComboAttacks(

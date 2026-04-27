@@ -98,9 +98,9 @@ public class ItemRegistry
 	public static final DeferredHolder<Item, Item> BINDING_BLADE = ITEMS.register("binding_blade", BindingBladeItem::new);
     public static final DeferredHolder<Item, Item> SILVER_HALBERD = ITEMS.register("the_silver_halberd", TheSilverHalberdItem::new);
     public static final DeferredHolder<Item, Item> ERDRICKS_SWORD = ITEMS.register("erdricks_sword", ErdricksSwordItem::new);
-	public static final DeferredHolder<Item, Item> DRAGOVIAN_KING_SWORD = ITEMS.register("dragovian_king_sword", ErdricksSwordItem::new);
-
 	public static final DeferredHolder<Item, Item> ERDRICKS_SHIELD = ITEMS.register("erdricks_shield", ErdricksShieldItem::new);
+	public static final DeferredHolder<Item, Item> DRAGOVIAN_KING_SWORD = ITEMS.register("dragovian_king_sword", ErdricksSwordItem::new);
+	public static final DeferredHolder<Item, Enki> ENKI = ITEMS.register("enki", Enki::new);
 
 
 
