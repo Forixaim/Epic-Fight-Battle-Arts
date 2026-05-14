@@ -1,4 +1,4 @@
-package net.forixaim.battle_arts.core_assets.world;
+package net.forixaim.battle_arts.initialization.registry;
 
 import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
@@ -10,15 +10,15 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 
-public class BattleArtsProjectiles
+public final class BattleArtsProjectiles
 {
-    public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, BattleArts.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, BattleArts.MOD_ID);
 
-    public static final DeferredHolder<EntityType<?>, EntityType<FlyingShockwaveProjectile>> FLYING_SHOCKWAVE = ENTITIES.register(
+    public static final DeferredHolder<EntityType<?>, EntityType<FlyingShockwaveProjectile>> FLYING_SHOCKWAVE = REGISTRY.register(
             "flying_shockwave", () -> EntityType.Builder.of(FlyingShockwaveProjectile::new, MobCategory.MISC).sized(1.5f, 3f).clientTrackingRange(12).build("flying_shockwave")
     );
 
-    public static final DeferredHolder<EntityType<?>, EntityType<FixedArrow>> FIXED_ARROW = ENTITIES.register(
+    public static final DeferredHolder<EntityType<?>, EntityType<FixedArrow>> FIXED_ARROW = REGISTRY.register(
             "fixed_arrow", () -> EntityType.Builder.<FixedArrow>of(FixedArrow::new, MobCategory.MISC).sized(0.5f, 0.5f).clientTrackingRange(4).updateInterval(20).build("fixed_arrow")
     );
 }

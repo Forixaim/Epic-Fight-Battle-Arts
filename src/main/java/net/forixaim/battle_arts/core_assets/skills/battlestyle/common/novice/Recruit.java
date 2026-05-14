@@ -1,10 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.novice;
 
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RecruitWieldStyles;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
-import net.forixaim.battle_arts.core_assets.skills.weaponinnate.IronFortress;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.DamageTypeTags;
@@ -13,24 +10,17 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
-import yesman.epicfight.api.client.input.InputManager;
-import yesman.epicfight.api.client.input.PlayerInputState;
 import yesman.epicfight.api.event.EntityEventListener;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.event.types.entity.TakeDamageEvent;
 import yesman.epicfight.api.utils.AttackResult;
-import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
-import yesman.epicfight.skill.weaponinnate.WeaponInnateSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.player.PlayerPatch;
-import yesman.epicfight.world.capabilities.item.Style;
 
 import yesman.epicfight.world.damagesource.EpicFightDamageTypeTags;
 

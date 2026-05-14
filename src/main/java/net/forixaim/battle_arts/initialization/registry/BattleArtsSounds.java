@@ -8,9 +8,9 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 
-public class SoundRegistry
+public final class BattleArtsSounds
 {
-    public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, BattleArts.MOD_ID);
+    public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, BattleArts.MOD_ID);
 
     public static final DeferredHolder<SoundEvent, SoundEvent> JUMP = registerSound("entity.combat.jump");
     public static final DeferredHolder<SoundEvent, SoundEvent> UNSHEATHE = registerSound("entity.combat.unsheathe");
@@ -26,6 +26,6 @@ public class SoundRegistry
 
     private static DeferredHolder<SoundEvent, SoundEvent> registerSound(String name) {
         ResourceLocation res = ResourceLocation.fromNamespaceAndPath(BattleArts.MOD_ID, name);
-        return SOUNDS.register(name, () -> SoundEvent.createVariableRangeEvent(res));
+        return REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(res));
     }
 }

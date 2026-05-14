@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.weaponinnate;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireBowAnimations;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
 import net.minecraft.client.KeyMapping;
 import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
 import yesman.epicfight.api.client.input.InputManager;

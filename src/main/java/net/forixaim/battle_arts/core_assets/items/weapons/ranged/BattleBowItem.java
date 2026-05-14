@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.items.weapons.ranged;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.BattleStyleRegistry;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.special.SpecialTiers;
-import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;

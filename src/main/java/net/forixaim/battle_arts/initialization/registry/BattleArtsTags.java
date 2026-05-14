@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 
-public class TagRegistry
+public final class BattleArtsTags
 {
     public static final TagKey<EntityType<?>> STOLEN = create("stolen");
 

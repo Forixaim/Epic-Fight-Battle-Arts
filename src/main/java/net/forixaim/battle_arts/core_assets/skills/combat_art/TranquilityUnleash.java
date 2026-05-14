@@ -5,8 +5,8 @@ import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninTachiAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSkills;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,6 +15,7 @@ import net.minecraft.world.InteractionHand;
 import yesman.epicfight.client.gui.BattleModeGui;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
+import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.capabilities.item.Style;
 
 public class TranquilityUnleash extends CombatArt
@@ -28,10 +29,9 @@ public class TranquilityUnleash extends CombatArt
     @Override
     public boolean canExecute(SkillContainer container)
     {
-        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(SkillRegistry.RONIN.get()) &&
-                (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA_SHEATHE ||
-        container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_UCHIGATANA ||
-                        container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.RONIN_TACHI);
+        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(BattleArtsSkills.RONIN.get()) &&
+                (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.SCATTER_STATE ||
+        container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == RoninStyles.TRANQUIL_STATE);
     }
 
     @Override
@@ -63,15 +63,20 @@ public class TranquilityUnleash extends CombatArt
         Style weaponStyle = container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor());
 
         switch (weaponStyle) {
-            case RoninStyles.RONIN_UCHIGATANA_SHEATHE ->
+            case RoninStyles.SCATTER_STATE ->
                     container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLYING_SHOCKWAVE, 0);
-            case RoninStyles.RONIN_UCHIGATANA -> {
-                container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
-                container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH, true);
-                container.getServerExecutor().modifyLivingMotionByCurrentItem();
+            case RoninStyles.TRANQUIL_STATE -> {
+                if (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getWeaponCategory() == CapabilityItem.WeaponCategories.TACHI)
+                {
+                    container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLYING_SHOCKWAVE, 0);
+                }
+                else
+                {
+                    container.getExecutor().playAnimationSynchronized(RoninUchigatanaAnimations.FLASH_CLEAVE, 0);
+                    container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().setDataSync(BattleArtsDataKeys.TRANQUILITY_SHEATH, true);
+                    container.getServerExecutor().modifyLivingMotionByCurrentItem();
+                }
             }
-            case RoninStyles.RONIN_TACHI ->
-                    container.getExecutor().playAnimationSynchronized(RoninTachiAnimations.FLYING_SHOCKWAVE, 0);
             default -> BattleArts.LOGGER.debug("nope");
         }
     }

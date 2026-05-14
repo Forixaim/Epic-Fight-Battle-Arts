@@ -9,10 +9,10 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 
-public class BlockRegistry
+public final class BattleArtsBlocks
 {
-	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, BattleArts.MOD_ID);
+	public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(BuiltInRegistries.BLOCK, BattleArts.MOD_ID);
 
-    public static final DeferredHolder<Block, Block> DOGEY = BLOCKS.register("dogey", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).noOcclusion()));
+    public static final DeferredHolder<Block, Block> DOGEY = REGISTRY.register("dogey", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.STONE).noOcclusion()));
 
 }

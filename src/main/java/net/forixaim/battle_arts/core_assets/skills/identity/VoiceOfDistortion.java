@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.skills.identity;
 
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.stats.DistortionDamageSource;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -10,8 +10,6 @@ import yesman.epicfight.api.event.EntityEventListener;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
-
-import java.util.UUID;
 
 public class VoiceOfDistortion extends Skill
 {

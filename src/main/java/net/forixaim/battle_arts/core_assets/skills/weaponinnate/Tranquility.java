@@ -2,8 +2,8 @@ package net.forixaim.battle_arts.core_assets.skills.weaponinnate;
 
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.RoninUchigatanaAnimations;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSkills;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.InteractionHand;
@@ -21,7 +21,7 @@ public class Tranquility extends WeaponInnateSkill
     @Override
     public boolean canExecute(SkillContainer container)
     {
-        return super.canExecute(container) && container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(SkillRegistry.RONIN.get());
+        return super.canExecute(container) && container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(BattleArtsSkills.RONIN.get());
     }
 
     @Override

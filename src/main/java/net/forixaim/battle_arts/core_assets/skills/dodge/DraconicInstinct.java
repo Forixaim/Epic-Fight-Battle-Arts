@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.Config;
 import net.forixaim.battle_arts.core_assets.animations.other.DraconicInstinctAnimations;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.DamageTypeTags;

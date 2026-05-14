@@ -1,26 +1,20 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
-import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistDualbladesAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.DuelistStyles;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
-import net.forixaim.battle_arts.core_assets.skills.combat_art.SkyStriker;
 import net.forixaim.battle_arts.core_assets.util.NetworkUtils;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSkills;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
-import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.world.InteractionHand;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
 import yesman.epicfight.api.event.EntityEventListener;
 import yesman.epicfight.api.event.EpicFightEventHooks;
-import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillCategories;
 import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.EntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
@@ -34,7 +28,7 @@ public class Duelist extends BattleStyle
 	public void onInitiate(SkillContainer container, EntityEventListener eventListener)
 	{
 		super.onInitiate(container, eventListener);
-		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, SkillRegistry.SKY_STRIKER);
+		NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, BattleArtsSkills.SKY_STRIKER);
 
         eventListener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, CommonEvents::BUILD_METER, this);
         eventListener.registerEvent(EpicFightEventHooks.Player.CAST_SKILL, event -> {if (event.getPlayerPatch().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(event.getPlayerPatch()) == DuelistStyles.DUELIST_SWORD && event.getSkillContainer().getSkill().getCategory() == SkillCategories.BASIC_ATTACK && container.getDataManager().getDataValue(BattleArtsDataKeys.COUNTER_WINDOW) > 0f)

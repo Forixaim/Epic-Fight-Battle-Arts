@@ -1,9 +1,8 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin;
 
-import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.hitboxes.RoninHitboxes;
-import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
-import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSounds;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -99,11 +98,11 @@ public class RoninUchigatanaAnimations
         RONIN_UCHIGATANA_SHEATHE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "sheathe"), access ->
                 new ActionAnimation(0.05f, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.FIXED_HEAD_ROTATION, true)
-                        .addEvents(AnimationEvent.InTimeEvent.create(0.4f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundRegistry.SHEATHE.get())));
+                        .addEvents(AnimationEvent.InTimeEvent.create(0.4f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(BattleArtsSounds.SHEATHE.get())));
         RONIN_UCHIGATANA_UNSHEATHE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "unsheathe"), access ->
                 new ActionAnimation(0.05f, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.FIXED_HEAD_ROTATION, true)
-                        .addEvents(AnimationEvent.InTimeEvent.create(0.2f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundRegistry.UNSHEATHE.get())));
+                        .addEvents(AnimationEvent.InTimeEvent.create(0.2f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(BattleArtsSounds.UNSHEATHE.get())));
 
         RONIN_UCHIGATANA_AIRSLASH = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "airslash"),
                 access -> new AirSlashAnimation(0.2f, 0.0f, 0.5f, 0.65f, 1f, true, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
@@ -128,7 +127,7 @@ public class RoninUchigatanaAnimations
         RONIN_UCHIGATANA_DASH = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "dash_attack"),
             accessor -> new DashAttackAnimation(0.2f, 0.0f, 0.7f, 0.8f, 2.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
                     .addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EpicFightSounds.WHOOSH_SHARP.get()).addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 2).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.2f).addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
-                    .addEvents(AnimationEvent.InTimeEvent.create(0.25f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundRegistry.JUMP.get())));
+                    .addEvents(AnimationEvent.InTimeEvent.create(0.25f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(BattleArtsSounds.JUMP.get())));
 
         RONIN_UCHIGATANA_SHEATHE_AIRSLASH = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "sheathe_air_attack"),
                 access -> new AirSlashAnimation(0.0f, 0.0f, 0.05f, 0.15f, 0.75f, true, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
@@ -150,7 +149,7 @@ public class RoninUchigatanaAnimations
                         .addProperty(AnimationProperty.AttackAnimationProperty.EXTRA_COLLIDERS, 1).addProperty(AnimationProperty.AttackAnimationProperty.ATTACK_SPEED_FACTOR, 0.0f)
                         .addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE)
-                        .addEvents(AnimationEvent.InTimeEvent.create(0.5f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.SERVER).params(SoundRegistry.HEAVY_SLASH.get())));
+                        .addEvents(AnimationEvent.InTimeEvent.create(0.5f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.SERVER).params(BattleArtsSounds.HEAVY_SLASH.get())));
 
         FLYING_SHOCKWAVE = event.nextAccessor(RoninAnimations.roninAnimationPath(CapabilityItem.WeaponCategories.UCHIGATANA, "flying_shockwave"),
                 accessor -> new AttackAnimation(0.05f, 0.0f, 0.4f, 5f, 2.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)

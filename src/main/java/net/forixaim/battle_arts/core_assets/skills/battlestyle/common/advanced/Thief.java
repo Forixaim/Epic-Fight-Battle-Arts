@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
 import net.forixaim.battle_arts.core_assets.util.NetworkUtils;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSkills;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import yesman.epicfight.api.event.EntityEventListener;
@@ -17,7 +17,7 @@ public class Thief extends BattleStyle
     @Override
     public void onInitiate(SkillContainer container, EntityEventListener eventListener) {
         super.onInitiate(container,  eventListener);
-        NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, SkillRegistry.MUG);
+        NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, BattleArtsSkills.MUG);
     }
 
     @Override

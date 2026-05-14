@@ -3,7 +3,6 @@ import javax.swing.ImageIcon
 import javax.swing.JOptionPane
 import javax.swing.JPasswordField
 import javax.swing.SwingUtilities
-import javax.swing.UIManager
 
 plugins {
     alias(libs.plugins.javalib)
@@ -11,6 +10,7 @@ plugins {
     alias(libs.plugins.idea)
     alias(libs.plugins.moddevgradle)
     alias(libs.plugins.publisher)
+    alias(libs.plugins.mcSafeResources)
 }
 
 val mod_version: String by project
@@ -57,10 +57,21 @@ repositories {
     mavenCentral()
 }
 
+mcSafeResources {
+    namespace.set(mod_id)
+    outputPackage.set("yesman.${mod_id}.generated")
+}
+
 base {
     archivesName = mod_id
     version = mod_version
 }
+
+java.sourceSets.main.get().java.srcDirs(
+    tasks.generateLangKeys.map { it.outputs.files.singleFile },
+    tasks.generateSoundKeys.map { it.outputs.files.singleFile }
+)
+
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 

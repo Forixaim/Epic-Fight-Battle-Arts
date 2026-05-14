@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced;
 
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.CommonEvents;
 import net.forixaim.battle_arts.core_assets.util.NetworkUtils;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSkills;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
@@ -26,7 +26,7 @@ public class Mercenary extends BattleStyle
     public void onInitiate(SkillContainer container, EntityEventListener listener)
     {
         super.onInitiate(container, listener);
-        NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, SkillRegistry.POWER_GEYSER);
+        NetworkUtils.changeSkill(container.getExecutor(), BattleArtsSkillSlots.COMBAT_ART, BattleArtsSkills.POWER_GEYSER);
 
         listener.registerEvent(EpicFightClientEventHooks.Control.MAPPED_MOVEMENT_INPUT_UPDATE, CommonEvents::LOCK_MOVEMENT_GUARDING, this);
 

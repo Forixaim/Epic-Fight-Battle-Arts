@@ -3,9 +3,9 @@ package net.forixaim.battle_arts.core_assets.skills.combat_art;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.DuelistStyles;
-import net.forixaim.battle_arts.initialization.registry.ParticleRegistry;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
-import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsParticles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSkills;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSounds;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
@@ -32,7 +32,7 @@ public class SkyStriker extends CombatArt {
     @Override
     public boolean canExecute(SkillContainer container)
     {
-        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(SkillRegistry.DUELIST.get()) &&
+        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(BattleArtsSkills.DUELIST.get()) &&
                 (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == DuelistStyles.DUELIST_SWORD) && super.canExecute(container);
     }
 
@@ -59,9 +59,9 @@ public class SkyStriker extends CombatArt {
 
     @Override
     public void executeOnServer(SkillContainer container, CompoundTag args) {
-        container.getExecutor().playSound(SoundRegistry.SPECIAL_MOVE.get(),  1, 1);
+        container.getExecutor().playSound(BattleArtsSounds.SPECIAL_MOVE.get(),  1, 1);
         double yPos = OpenMatrix4f.transform(((HumanoidArmature)container.getExecutor().getArmature()).chest.getToOrigin(), container.getExecutor().getOriginal().position()).y() + 0.25;
-        ((ServerLevel)container.getServerExecutor().getOriginal().level()).sendParticles(ParticleRegistry.SPECIAL_RING.get(), container.getExecutor().getOriginal().getX(), yPos, container.getExecutor().getOriginal().getZ(), 1, 0, 0, 0, 0.0f);
+        ((ServerLevel)container.getServerExecutor().getOriginal().level()).sendParticles(BattleArtsParticles.SPECIAL_RING.get(), container.getExecutor().getOriginal().getX(), yPos, container.getExecutor().getOriginal().getZ(), 1, 0, 0, 0, 0.0f);
         if (container.getExecutor().getOriginal().onGround())
         {
             container.getExecutor().playAnimationSynchronized(DuelistSwordAnimations.PIERCING_FALCON, 0);

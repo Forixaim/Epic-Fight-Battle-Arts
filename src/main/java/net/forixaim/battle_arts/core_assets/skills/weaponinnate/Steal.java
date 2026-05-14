@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.weaponinnate;
 
 import com.mojang.logging.LogUtils;
-import net.forixaim.battle_arts.initialization.registry.TagRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -15,8 +15,6 @@ import yesman.epicfight.api.event.EntityEventListener;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.skill.SkillContainer;
 import yesman.epicfight.skill.weaponinnate.SimpleWeaponInnateSkill;
-
-import java.util.UUID;
 
 public class Steal extends SimpleWeaponInnateSkill
 {
@@ -40,7 +38,7 @@ public class Steal extends SimpleWeaponInnateSkill
         super.onInitiate(container, eventListener);
         eventListener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, event -> {
             if (event.getDamageSource().getAnimation() == this.attackAnimation)
-                if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(TagRegistry.STOLEN.toString()) && !isFront(event.getTarget(), event.getEntityPatch().getOriginal().position())) {
+                if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(BattleArtsTags.STOLEN.toString()) && !isFront(event.getTarget(), event.getEntityPatch().getOriginal().position())) {
                     ItemEntity item = EntityType.ITEM.create(event.getTarget().level());
                     LogUtils.getLogger().debug("oof");
                     if (item != null)
@@ -50,7 +48,7 @@ public class Steal extends SimpleWeaponInnateSkill
                         item.setPos(event.getTarget().position());
                         event.getTarget().level().addFreshEntity(item);
                     }
-                    event.getTarget().addTag(TagRegistry.STOLEN.toString());
+                    event.getTarget().addTag(BattleArtsTags.STOLEN.toString());
                 }
         }, this);
     }

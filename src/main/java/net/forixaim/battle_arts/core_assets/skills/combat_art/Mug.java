@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.thief.ThiefDaggerAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.ThiefStyles;
-import net.forixaim.battle_arts.initialization.registry.TagRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsTags;
 import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.nbt.CompoundTag;
@@ -40,7 +40,7 @@ public class Mug extends CombatArt
         entityListener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, event ->
         {
             if (event.getDamageSource().getAnimation() == ThiefDaggerAnimations.MUG)
-                if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(TagRegistry.STOLEN.toString())) {
+                if (event.getTarget() instanceof Enemy && !event.getTarget().getTags().contains(BattleArtsTags.STOLEN.toString())) {
                     ItemEntity item = EntityType.ITEM.create(event.getTarget().level());
                     LogUtils.getLogger().debug("oof");
                     if (item != null)
@@ -50,7 +50,7 @@ public class Mug extends CombatArt
                         item.setPos(event.getTarget().position());
                         event.getTarget().level().addFreshEntity(item);
                     }
-                    event.getTarget().addTag(TagRegistry.STOLEN.toString());
+                    event.getTarget().addTag(BattleArtsTags.STOLEN.toString());
                 }
         }, this);
     }

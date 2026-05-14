@@ -4,7 +4,7 @@ import yesman.epicfight.world.capabilities.item.Style;
 
 public enum JourmeymanStyles implements Style
 {
-    JMAN_BAXE(false);
+    JOURNEYMAN_PRIMARY(false);
 
     final boolean OffHandUse;
     final int id;

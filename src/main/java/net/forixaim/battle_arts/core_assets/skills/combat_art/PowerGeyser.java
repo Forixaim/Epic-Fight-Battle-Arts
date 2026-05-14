@@ -3,7 +3,7 @@ package net.forixaim.battle_arts.core_assets.skills.combat_art;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.mercenary.MercenaryGreatswordAnimations;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.MercenaryStyles;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSkills;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.active.combat_arts.CombatArt;
 import net.minecraft.client.gui.GuiGraphics;
@@ -39,7 +39,7 @@ public class PowerGeyser extends CombatArt
     @Override
     public boolean canExecute(SkillContainer container)
     {
-        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(SkillRegistry.MERCENARY.get()) &&
+        return container.getExecutor().getSkill(BattleArtsSkillSlots.BATTLE_STYLE).hasSkill(BattleArtsSkills.MERCENARY.get()) &&
                 (container.getExecutor().getHoldingItemCapability(InteractionHand.MAIN_HAND).getStyle(container.getExecutor()) == MercenaryStyles.MERCENARY_WEAPON_ART);
     }
 

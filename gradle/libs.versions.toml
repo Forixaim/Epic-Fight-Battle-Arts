@@ -1,13 +1,15 @@
 [versions]
 
 moddevgradle = "2.0.134"
-epic-fight = "21.16.4-mc1.21.1-neoforge"
+epic-fight = "21.17.2-mc1.21.1-neoforge"
 epicskills = "21.3.1-1.21.1"
 modPublish = "1.1.0"
-battleArtsAPI = "21.15.8.3a"
-epicFightLocal = "ExCapTest"
+battleArtsAPI = "21.17.2-mc1.21.1-neoforge"
+epicFightLocal = "21.17.2"
 dummy = "1.21-2.0.12-neoforge"
 moonlight = "1.21-2.29.33-neoforge"
+
+mcSafeResources = "0.0.2"
 
 [libraries]
 
@@ -22,6 +24,8 @@ moonlight = { group = "maven.modrinth", name = "moonlight", version.ref = "moonl
 eclipse = { id = "eclipse"}
 idea = { id = "idea"}
 javalib = { id = "java-library"}
+mcSafeResources = { id = "dev.echoellet.mc-safe-resources", version.ref = "mcSafeResources" }
+
 #Core Gradle Stuff
 moddevgradle = { id = "net.neoforged.moddev", version.ref = "moddevgradle" }
 publisher = { id = "me.modmuss50.mod-publish-plugin", version.ref = "modPublish"}

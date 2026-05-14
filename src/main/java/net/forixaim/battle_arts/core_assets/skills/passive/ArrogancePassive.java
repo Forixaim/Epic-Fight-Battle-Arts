@@ -1,7 +1,7 @@
 package net.forixaim.battle_arts.core_assets.skills.passive;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
 import net.minecraft.client.gui.GuiGraphics;
 import yesman.epicfight.api.event.EntityEventListener;
 import yesman.epicfight.api.event.EpicFightEventHooks;

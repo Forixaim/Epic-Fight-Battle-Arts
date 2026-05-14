@@ -3,22 +3,17 @@ package net.forixaim.battle_arts;
 
 import com.mojang.logging.LogUtils;
 import net.forixaim.battle_arts.core_assets.animations.BattleAnimations;
-import net.forixaim.battle_arts.core_assets.capabilities.BattleArtsWeapons;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
-import net.forixaim.battle_arts.core_assets.capabilities.ExCapEventHooks;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.*;
 import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
 import net.forixaim.battle_arts.core_assets.client.renderer.FixedArrowRenderer;
 import net.forixaim.battle_arts.core_assets.events.CommonModBusEvent;
-import net.forixaim.battle_arts.core_assets.events.RegistryEvent;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.client.model.FlyingShockwaveModel;
 import net.forixaim.battle_arts.core_assets.client.renderer.FlyingShockwaveRenderer;
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
-import net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry;
-import net.forixaim.battle_arts.initialization.registry.SkillRegistry;
-import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.forixaim.battle_arts.initialization.BattleArtsInit;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsCreativeTabs;
 
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
@@ -39,12 +34,6 @@ import yesman.epicfight.main.EpicFightExtensions;
 import yesman.epicfight.world.capabilities.item.Style;
 import yesman.epicfight.world.capabilities.item.WeaponCategory;
 
-
-import static net.forixaim.battle_arts.initialization.registry.BlockRegistry.BLOCKS;
-import static net.forixaim.battle_arts.initialization.registry.CreativeTabRegistry.CREATIVE_MODE_TABS;
-import static net.forixaim.battle_arts.initialization.registry.ItemRegistry.ITEMS;
-import static net.forixaim.battle_arts.initialization.registry.ParticleRegistry.PARTICLES;
-
 @Mod(BattleArts.MOD_ID)
 public class BattleArts
 {
@@ -61,19 +50,12 @@ public class BattleArts
 	{
 		WeaponCategory.ENUM_MANAGER.registerEnumCls(MOD_ID, BattleStyleCategories.class);
         registerStyles();
-		BLOCKS.register(bus);
-		ITEMS.register(bus);
-		PARTICLES.register(bus);
+        BattleArtsInit.REGISTERS.forEach( deferredRegister -> deferredRegister.register(bus));
         bus.addListener(BattleAnimations::Listen);
-        SkillRegistry.SKILLS.register(bus);
-		BattleArtsProjectiles.ENTITIES.register(bus);
-		SoundRegistry.SOUNDS.register(bus);
-		CREATIVE_MODE_TABS.register(bus);
         bus.addListener(this::onCommonSetup);
-		BattleArtsDataKeys.DATA_KEYS.register(bus);
 		NeoForge.EVENT_BUS.register(this);
 		container.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
-		container.registerExtensionPoint(EpicFightExtensions.class, new EpicFightExtensions(CreativeTabRegistry.MAIN_ITEMS));
+		container.registerExtensionPoint(EpicFightExtensions.class, new EpicFightExtensions(BattleArtsCreativeTabs.MAIN_ITEMS));
 	}
 
     private void registerStyles()
@@ -98,11 +80,6 @@ public class BattleArts
     private void registerCapabilities()
     {
         EpicFightEventHooks.Registry.ENTITY_PATCH.registerEvent(CommonModBusEvent::registerEntityPatch, 1);
-        EpicFightEventHooks.Registry.EX_CAP_CONDITIONAL_REGISTRATION.registerEvent(ExCapEventHooks::onRegisterProvider, 1);
-        EpicFightEventHooks.Registry.EX_CAP_BUILDER_CREATION.registerEvent(ExCapEventHooks::onRegisterWeaponBuilder, 1);
-        EpicFightEventHooks.Registry.EX_CAP_DATA_CREATION.registerEvent(ExCapEventHooks::onRegisterDataSet, 1);
-        EpicFightEventHooks.Registry.EX_CAP_MOVESET_REGISTRY.registerEvent(ExCapEventHooks::onRegisterMoveset, 1);
-        EpicFightEventHooks.Registry.EX_CAP_DATA_POPULATION.registerEvent(ExCapEventHooks::onPopulateData, 1);
     }
 
     private void registerStyle(Class<? extends ExtensibleEnum> enumClass)

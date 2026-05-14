@@ -2,8 +2,8 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squi
 
 import net.forixaim.battle_arts.core_assets.animations.types.PowerDrawStartAnimation;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.BattleBowItem;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
-import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;

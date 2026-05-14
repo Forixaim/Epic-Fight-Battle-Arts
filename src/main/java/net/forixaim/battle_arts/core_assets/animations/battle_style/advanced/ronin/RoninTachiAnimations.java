@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ro
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.hitboxes.RoninHitboxes;
 import net.forixaim.battle_arts.core_assets.animations.types.RoninInnateAnimation;
-import net.forixaim.battle_arts.core_assets.world.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;

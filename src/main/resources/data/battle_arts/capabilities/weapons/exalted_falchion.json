@@ -7,5 +7,21 @@
 			"max_strikes":2
 		}
 	},
+	"custom_data":
+	{
+		"battle_arts:tipper_hitbox": {
+			"number": 3,
+			"size": [
+				0.4,
+				0.4,
+				0.2
+			],
+			"center": [
+				0.0,
+				0.0,
+				-1.0
+			]
+		}
+	},
 	"type": "epicfight:longsword"
 }

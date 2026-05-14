@@ -3,7 +3,6 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.du
 import it.unimi.dsi.fastutil.ints.IntIntPair;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
-import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsWalkAnimation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
@@ -14,7 +13,6 @@ import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
 import yesman.epicfight.api.animation.types.*;
-import yesman.epicfight.api.animation.types.procedural.HumanoidWalkAnimation;
 import yesman.epicfight.api.physics.ik.InverseKinematicsSimulator;
 import yesman.epicfight.api.utils.TimePairList;
 import yesman.epicfight.api.utils.math.OpenMatrix4f;

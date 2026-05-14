@@ -5,7 +5,7 @@ import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.RoninStyles;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.AdaptiveGloveItem;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.LongbowItem;
-import net.forixaim.battle_arts.core_assets.skills.BattleArtsDataKeys;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.UsesUchigatana;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -32,7 +32,7 @@ public class OverrideHelper
     public static final ResourceLocation UCHIGATANA_OVERRIDE = BattleArts.identifier("uchigatana_override");
 
     public static final List<Style> UchigatanaOverrides = Lists.newArrayList(
-    RoninStyles.RONIN_UCHIGATANA, RoninStyles.RONIN_UCHIGATANA_SHEATHE);
+    RoninStyles.TRANQUIL_STATE, RoninStyles.SCATTER_STATE);
 
     public static void registerGloveOverrides(AdaptiveGloveItem gloveItem)
     {

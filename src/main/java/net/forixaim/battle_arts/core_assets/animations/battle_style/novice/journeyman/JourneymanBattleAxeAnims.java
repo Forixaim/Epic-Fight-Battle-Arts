@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.jour
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.hitboxes.JourneymanHitboxes;
 import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
-import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSounds;
 import net.minecraft.sounds.SoundEvents;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
@@ -79,7 +79,7 @@ public class JourneymanBattleAxeAnims
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER,
                                 (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1.2f)
                         .addEvents(
-                                AnimationEvent.InTimeEvent.create(0.45f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(SoundRegistry.JUMP.get()),
+                                AnimationEvent.InTimeEvent.create(0.45f, Animations.ReusableSources.PLAY_SOUND, AnimationEvent.Side.CLIENT).params(BattleArtsSounds.JUMP.get()),
                                 AnimationEvent.InTimeEvent.create(1.5f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE,
                                 AnimationEvent.Side.CLIENT)
                                 .params(new Vec3f(0.0F, -0.24F, -2.0F), Armatures.BIPED.get().toolR, 3.0, 2F

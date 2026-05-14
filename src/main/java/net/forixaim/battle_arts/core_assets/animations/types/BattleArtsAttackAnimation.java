@@ -1,7 +1,6 @@
 package net.forixaim.battle_arts.core_assets.animations.types;
 
-import net.forixaim.battle_arts.BattleArts;
-import net.forixaim.battle_arts.initialization.registry.SoundRegistry;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsSounds;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.CoreAPIDataKeys;
 import net.minecraft.server.level.ServerLevel;
@@ -32,7 +31,6 @@ import yesman.epicfight.api.utils.HitEntityList;
 import yesman.epicfight.api.utils.math.OpenMatrix4f;
 import yesman.epicfight.api.utils.math.Vec3f;
 import yesman.epicfight.registry.entries.EpicFightMobEffects;
-import yesman.epicfight.skill.SkillDataManager;
 import yesman.epicfight.world.capabilities.EpicFightCapabilities;
 import yesman.epicfight.world.capabilities.entitypatch.HurtableEntityPatch;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
@@ -283,7 +281,7 @@ public class BattleArtsAttackAnimation extends AttackAnimation
                                     if (power.get() > 0.0) {
                                         phase.getProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE).ifPresent(angle -> {
                                             if (angle <= -40d) {
-                                                hitHurtableEntityPatch.playSound(SoundRegistry.SPIKE, 1, 1);
+                                                hitHurtableEntityPatch.playSound(BattleArtsSounds.SPIKE, 1, 1);
                                             }
                                         });
                                         target.hasImpulse = true;
