@@ -21,5 +21,12 @@
       -1.0
     ]
   },
+  "custom_data": {
+    "battle_arts_api:damage_attribute_modifier": {
+      "slash": 1.2,
+      "puncture": 1.1,
+      "impact": 1.0
+    }
+  },
   "type":"battle_arts:heavy_spear"
 }

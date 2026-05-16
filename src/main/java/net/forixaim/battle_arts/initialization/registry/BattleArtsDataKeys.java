@@ -2,11 +2,13 @@ package net.forixaim.battle_arts.initialization.registry;
 
 import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Duelist;
+import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Mercenary;
 import net.forixaim.battle_arts.core_assets.skills.battlestyle.common.advanced.Ronin;
 import net.forixaim.battle_arts.core_assets.skills.dodge.DraconicInstinct;
 import net.forixaim.battle_arts.core_assets.skills.identity.VoiceOfDistortion;
 import net.forixaim.battle_arts.core_assets.skills.passive.ArrogancePassive;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.HeavyDraw;
+import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -18,6 +20,8 @@ public final class BattleArtsDataKeys
     public static final DeferredRegister<SkillDataKey<?>> REGISTRY = DeferredRegister.create(EpicFightRegistries.SKILL_DATA_KEY, BattleArts.MOD_ID);
     public static final DeferredHolder<SkillDataKey<?>, SkillDataKey<Boolean>> TRANQUILITY_SHEATH;
     public static final DeferredHolder<SkillDataKey<?>, SkillDataKey<Float>> ARROGANCE_STACK;
+    public static final DeferredHolder<SkillDataKey<?>, SkillDataKey<Integer>> IDLE_TIMER = REGISTRY.register("idle_timer", () -> SkillDataKey.createSkillDataKey(ByteBufCodecs.INT, 0, true, Mercenary.class));
+    public static final DeferredHolder<SkillDataKey<?>, SkillDataKey<Integer>> RANDOM_FLAUNT = REGISTRY.register("random_flaunt", () -> SkillDataKey.createSkillDataKey(ByteBufCodecs.INT, 0, true, Mercenary.class));
 
     public static final DeferredHolder<SkillDataKey<?>, SkillDataKey<Boolean>> PULLING = REGISTRY.register("pulling", () -> SkillDataKey.createSkillDataKey(ByteBufCodecs.BOOL, false, true, HeavyDraw.class));
     public static final DeferredHolder<SkillDataKey<?>, SkillDataKey<Float>> PULL_LEVEL = REGISTRY.register("pull_level", () -> SkillDataKey.createSkillDataKey(ByteBufCodecs.FLOAT, 0.0f, true, HeavyDraw.class));

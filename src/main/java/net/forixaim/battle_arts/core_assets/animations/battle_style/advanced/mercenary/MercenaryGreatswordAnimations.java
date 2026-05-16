@@ -3,6 +3,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.me
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
+import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsIdleAnimation;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
@@ -15,7 +16,11 @@ import yesman.epicfight.gameasset.Armatures;
 
 public class MercenaryGreatswordAnimations
 {
-    public static AnimationManager.AnimationAccessor<StaticAnimation> IDLE;
+    public static AnimationManager.AnimationAccessor<BattleArtsIdleAnimation> IDLE;
+    public static AnimationManager.AnimationAccessor<StaticAnimation> FLAUNT;
+    public static AnimationManager.AnimationAccessor<MovementAnimation> WALK;
+    public static AnimationManager.AnimationAccessor<MovementAnimation> RUN;
+    public static AnimationManager.AnimationAccessor<MovementAnimation> SPRINT;
     public static AnimationManager.AnimationAccessor<StaticAnimation> CROUCH;
 
     public static AnimationManager.AnimationAccessor<StaticAnimation> GUARD;
@@ -35,12 +40,15 @@ public class MercenaryGreatswordAnimations
 
     public static void build(AnimationManager.AnimationBuilder builder)
     {
-        IDLE = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/idle", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
+        IDLE = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/idle", access -> new BattleArtsIdleAnimation(0.2f, access, Armatures.BIPED));
         CROUCH = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/crouch", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-
-
+        WALK = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/walk", access -> new MovementAnimation(0.1f, true, access, Armatures.BIPED)
+                .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
+                        v * 1.5f));
+        RUN = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/run", access -> new MovementAnimation(0.1f, true, access, Armatures.BIPED));
+        SPRINT = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/sprint", access -> new MovementAnimation(0.1f, true, access, Armatures.BIPED));
         GUARD = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-
+        FLAUNT = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/flair", access -> new StaticAnimation(0.2f, false, access, Armatures.BIPED));
         GUARD_HIT = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard_hit", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard_parry1", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard_parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));

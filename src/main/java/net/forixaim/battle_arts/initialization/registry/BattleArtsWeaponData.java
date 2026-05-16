@@ -13,11 +13,13 @@ public final class BattleArtsWeaponData
 {
     public static final CustomDataRegister REGISTRY = CustomDataRegister.createWeapon(BattleArts.MOD_ID);
 
-    public static final DeferredCustomData<CustomData<Collider>> TIPPER_HITBOX = REGISTRY.registerCustomData("tipper_hitbox", () -> CustomData.createDeserializable(SpecialHitboxes.NO_TIPPER, tag -> {
-        if (tag instanceof CompoundTag compoundTag)
-        {
-            return ColliderPreset.deserializeSimpleCollider(compoundTag);
-        }
-        return SpecialHitboxes.NO_TIPPER;
-    }));
+    public static final DeferredCustomData<CustomData<Collider>> TIPPER_HITBOX =
+            REGISTRY.registerCustomData("tipper_hitbox",
+                    () -> CustomData.createDeserializable(SpecialHitboxes.NO_TIPPER, tag -> {
+                        if (tag instanceof CompoundTag compoundTag)
+                        {
+                            return ColliderPreset.deserializeSimpleCollider(compoundTag);
+                        }
+                        return SpecialHitboxes.NO_TIPPER;
+                    }));
 }

@@ -5,6 +5,8 @@ import net.forixaim.battle_arts.core_assets.capabilities.BattleStyleCategories;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.FighterStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.JourmeymanStyles;
 import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.LancerStyles;
+import net.forixaim.battle_arts_api.data.DamageAttribute;
+import net.forixaim.battle_arts_api.registry.BattleArtsCustomData;
 import yesman.epicfight.registry.deferred.ItemPresetRegister;
 import yesman.epicfight.registry.deferred.holders.DeferredWeapon;
 import yesman.epicfight.registry.entries.*;
@@ -25,7 +27,9 @@ public final class BattleArtsItemCapabilityPresets
             .addMoveset(JourmeymanStyles.JOURNEYMAN_PRIMARY, BattleArtsMovesets.Journeyman.JOURNEYMAN_BATTLE_AXE)
             .addMoveset(FighterStyles.FIGHTER_WEAPON_ART, BattleArtsMovesets.Fighter.FIGHTER_BATTLE_AXE));
 
-    public static final DeferredWeapon RAPIER = REGISTRY.registerWeapon("rapier", () -> )
+    public static final DeferredWeapon RAPIER = REGISTRY.registerWeapon("rapier", () -> WeaponCapability.builder()
+            .parent(EpicFightItemCapabilityPresets.LONGSWORD)
+            .setCustomData(BattleArtsCustomData.DAMAGE_ATTRIBUTE_MODIFIER, new DamageAttribute(0.7f, 1.4f, 0.2f)));
 
     public static final DeferredWeapon HEAVY_SPEAR = REGISTRY.registerWeapon("heavy_spear", () -> WeaponCapability.builder()
             .parent(EpicFightItemCapabilityPresets.SPEAR)

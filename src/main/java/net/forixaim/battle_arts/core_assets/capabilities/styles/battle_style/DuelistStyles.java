@@ -5,7 +5,7 @@ import yesman.epicfight.world.capabilities.item.Style;
 public enum DuelistStyles implements Style
 {
 	DUELIST_SWORD(true),
-	DUELIST_DUAL_SWORD(false);
+	DUELIST_DUAL_SWORD(true);
 
 	final boolean OffHandUse;
 	final int id;

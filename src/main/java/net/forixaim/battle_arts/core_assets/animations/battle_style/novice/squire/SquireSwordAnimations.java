@@ -3,6 +3,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squi
 import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
+import net.forixaim.battle_arts_api.animation_types.AnimationTags;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
 import yesman.epicfight.api.animation.property.AnimationProperty;
@@ -20,6 +21,7 @@ import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
 
 import java.util.List;
+import java.util.Set;
 
 public class SquireSwordAnimations
 {
@@ -88,13 +90,16 @@ public class SquireSwordAnimations
 				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) -> 1f));
 
 		SQUIRE_SWORD_AUTO_1 = builder.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto1"), accessor -> new BattleArtsComboAttackAnimation(0.1f, 0f, 0.2f, 0.35f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-                .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
+				.addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.SLASH))
+				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		SQUIRE_SWORD_AUTO_2 = builder.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto2"), accessor -> new BattleArtsComboAttackAnimation(0.2f, 0f, 0.2f, 0.35f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-                .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
+				.addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.SLASH))
+				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		SQUIRE_SWORD_AUTO_3 = builder.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "auto3"), accessor -> new BattleArtsComboAttackAnimation(0.2f, 0f, 0.2f, 0.35f, 2.0f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-                .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
+				.addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
+				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		SQUIRE_SWORD_DASH_ATTACK = builder.nextAccessor(SquireAnimations.squireAnimationPath(CapabilityItem.WeaponCategories.SWORD, "dash_attack"), accessor -> new BattleArtsComboAttackAnimation(0.2f, accessor, Armatures.BIPED,
 				new AttackAnimation.Phase(0.0f, 0.0f, 0.2f, 0.3f, 0.5f, 1.0f, Armatures.BIPED.get().toolR, null)

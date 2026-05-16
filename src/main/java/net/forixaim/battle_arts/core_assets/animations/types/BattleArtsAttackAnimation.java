@@ -4,6 +4,7 @@ import net.forixaim.battle_arts.initialization.registry.BattleArtsSounds;
 import net.forixaim.battle_arts_api.battle_arts_skills.BattleArtsSkillSlots;
 import net.forixaim.battle_arts_api.battle_arts_skills.CoreAPIDataKeys;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -208,15 +209,12 @@ public class BattleArtsAttackAnimation extends AttackAnimation
 
     @Override
     public float getPlaySpeed(LivingEntityPatch<?> entitypatch, DynamicAnimation animation) {
-        if (entitypatch instanceof PlayerPatch<?> playerPatch)
-        {
-            if (playerPatch.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().hasData(CoreAPIDataKeys.HIT_STOP_TICKS) &&
-            playerPatch.getSkill(BattleArtsSkillSlots.BATTLE_STYLE).getDataManager().getDataValue(CoreAPIDataKeys.HIT_STOP_TICKS) > 0)
-            {
-                return 0;
-            }
-        }
         return super.getPlaySpeed(entitypatch, animation);
+    }
+
+    @Override
+    protected SoundEvent getHitSound(LivingEntityPatch<?> entitypatch, Phase phase) {
+        return super.getHitSound(entitypatch, phase);
     }
 
     @Override

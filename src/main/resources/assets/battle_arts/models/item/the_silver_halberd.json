@@ -2,7 +2,7 @@
   "loader": "neoforge:separate_transforms",
   "gui_light": "front",
   "base": {
-    "parent": "battle_arts:item/silver_halberd",
+    "parent": "battle_arts:item/halberd",
     "textures": {
       "layer0": "battle_arts:item/the_silver_halberd"
     }

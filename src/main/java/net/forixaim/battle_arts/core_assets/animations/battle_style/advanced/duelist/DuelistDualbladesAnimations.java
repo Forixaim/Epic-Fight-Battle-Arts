@@ -3,6 +3,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.du
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackAnimation;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
+import net.forixaim.battle_arts_api.animation_types.AnimationTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.SwordItem;
 import yesman.epicfight.api.animation.AnimationManager;
@@ -15,6 +16,8 @@ import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.gameasset.ColliderPreset;
 import yesman.epicfight.model.armature.HumanoidArmature;
 import yesman.epicfight.world.damagesource.StunType;
+
+import java.util.Set;
 
 public class DuelistDualbladesAnimations
 {
@@ -110,26 +113,33 @@ public class DuelistDualbladesAnimations
                 new BattleArtsAttackAnimation(0.2f, access, biped,
                         new AttackAnimation.Phase(0.0f, 0.3f, 0.3f, 0.4f, 0.4f, 0.4f, InteractionHand.MAIN_HAND, toolR, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.1f)),
                         new AttackAnimation.Phase(0.4f, 0.0f, 0.4f, 0.5f, 0.5f, 0.5f, InteractionHand.OFF_HAND, toolL, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.15f)),
                         new AttackAnimation.Phase(0.5f, 0.0f, 0.5f, 0.6f, 0.6f, 0.6f, InteractionHand.MAIN_HAND,  toolR, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.2f)),
                         new AttackAnimation.Phase(0.6f, 0.0f, 0.6f, 0.7f, 0.7f, 0.7f, InteractionHand.OFF_HAND,  toolL, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.25f)),
                         new AttackAnimation.Phase(0.7f, 0.0f, 0.7f, 0.8f, 0.8f, 0.8f, InteractionHand.MAIN_HAND,  toolR, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.3f)),
                         new AttackAnimation.Phase(0.8f, 0.0f, 0.8f, 0.9f, 0.9f, 0.9f, InteractionHand.OFF_HAND,  toolL, null)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.HOLD)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.35f)),
                         new AttackAnimation.Phase(0.9f, 0.0f, 1.25f, 1.35f, 2f, 2f, InteractionHand.MAIN_HAND,  root, ColliderPreset.BATTOJUTSU_DASH)
                                 .addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.FALL)
                                 .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1.0)
                                 .addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 45.0)
+                                .addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
                                 .addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(0.5f))
                 )
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->

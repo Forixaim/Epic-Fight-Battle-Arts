@@ -2,6 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recr
 
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsAttackPhaseProperties;
 import net.forixaim.battle_arts.core_assets.animations.types.BattleArtsComboAttackAnimation;
+import net.forixaim.battle_arts_api.animation_types.AnimationTags;
 import net.minecraft.world.InteractionHand;
 import yesman.epicfight.api.animation.AnimationManager;
 import yesman.epicfight.api.animation.property.AnimationEvent;
@@ -18,6 +19,7 @@ import yesman.epicfight.world.capabilities.item.CapabilityItem;
 import yesman.epicfight.world.damagesource.StunType;
 
 import java.util.List;
+import java.util.Set;
 
 public class RecruitSpearAnimations
 {
@@ -26,8 +28,8 @@ public class RecruitSpearAnimations
 	public static AnimationManager.AnimationAccessor<MovementAnimation> WALK;
 	public static AnimationManager.AnimationAccessor<MovementAnimation> RUN;
 	public static AnimationManager.AnimationAccessor<StaticAnimation> CROUCH;
-	public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO1;
-	public static AnimationManager.AnimationAccessor<ComboAttackAnimation> AUTO2;
+	public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AUTO1;
+	public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> AUTO2;
 	public static AnimationManager.AnimationAccessor<BattleArtsComboAttackAnimation> DASH_ATTACK;
 	public static AnimationManager.AnimationAccessor<AirSlashAnimation> JUMP_ATTACK;
 	public static AnimationManager.AnimationAccessor<GuardAnimation> RECRUIT_SPEAR_GUARD_HIT;
@@ -58,15 +60,20 @@ public class RecruitSpearAnimations
 		CROUCH = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "crouch"), accessor -> new StaticAnimation(0.1f, true, accessor, Armatures.BIPED));
 
 		AUTO1 = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "standing_attack"), accessor ->
-				new ComboAttackAnimation(0.2f, 0.0f, 0.2f, 0.35f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
-				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
+				new BattleArtsComboAttackAnimation(0.2f, 0.0f, 0.2f, 0.35f, 0.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+
+						.addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.SLASH))
+						.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 		AUTO2 = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "standing_attack2"), accessor -> new
-				ComboAttackAnimation(0.1f, 0.0f, 0.2f, 0.35f, 1.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+				BattleArtsComboAttackAnimation(0.1f, 0.0f, 0.2f, 0.35f, 1.5f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
+				.addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
 				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		DASH_ATTACK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "dash_attack"), accessor -> new BattleArtsComboAttackAnimation(0.1f, 0.0f, 0.2f, 0.35f, 1.7f, null, Armatures.BIPED.get().toolR, accessor, Armatures.BIPED)
 				.addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_ANGLE, 45d)
 				.addProperty(BattleArtsAttackPhaseProperties.KNOCKBACK_POWER, 1d)
+				.addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(AnimationTags.PUNCTURE))
+
 				.addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, Animations.ReusableSources.CONSTANT_ONE));
 
 		JUMP_ATTACK = event.nextAccessor(RecruitAnimations.recruitAnimationPath(CapabilityItem.WeaponCategories.SPEAR, "aerial_poke"),

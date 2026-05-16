@@ -8,7 +8,6 @@ import yesman.epicfight.api.model.Armature;
 import yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch;
 
 public class BattleArtsIdleAnimation extends StaticAnimation {
-
     public BattleArtsIdleAnimation(AnimationManager.AnimationAccessor<? extends StaticAnimation> accessor, AssetAccessor<? extends Armature> armature) {
         super(true, accessor, armature);
     }

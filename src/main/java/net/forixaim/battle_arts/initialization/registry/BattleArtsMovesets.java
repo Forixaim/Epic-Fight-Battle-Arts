@@ -1,5 +1,6 @@
 package net.forixaim.battle_arts.initialization.registry;
 
+import com.yesman.epicparcool.ParcoolLivingMotions;
 import net.forixaim.battle_arts.BattleArts;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistDualbladesAnimations;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.duelist.DuelistSwordAnimations;
@@ -331,11 +332,12 @@ public final class BattleArtsMovesets
                         )
                         .addLivingMotionModifier(LivingMotions.KNEEL, MercenaryGreatswordAnimations.CROUCH)
                         .addLivingMotionsRecursive(
-                                MercenaryGreatswordAnimations.IDLE,
+                                MercenaryGreatswordAnimations.WALK,
                                 LivingMotions.WALK, LivingMotions.CHASE
                         )
-                        .addLivingMotionModifier(LivingMotions.RUN, MercenaryGreatswordAnimations.IDLE)
+                        .addLivingMotionModifier(LivingMotions.RUN, MercenaryGreatswordAnimations.RUN)
                         .addLivingMotionModifier(LivingMotions.BLOCK, MercenaryGreatswordAnimations.GUARD)
+                        .addLivingMotionModifier(ParcoolLivingMotions.FAST_RUN, MercenaryGreatswordAnimations.SPRINT)
                         .addGuardAnimations(GuardSkill.BlockType.GUARD, MercenaryGreatswordAnimations.GUARD_HIT)
                         .addGuardAnimations(
                                 GuardSkill.BlockType.ADVANCED_GUARD,

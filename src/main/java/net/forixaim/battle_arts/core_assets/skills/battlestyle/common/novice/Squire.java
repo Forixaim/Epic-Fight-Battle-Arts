@@ -24,7 +24,6 @@ public class Squire extends BattleStyle implements MountedMoveset
         eventListener.registerEvent(EpicFightClientEventHooks.Control.MAPPED_MOVEMENT_INPUT_UPDATE, CommonEvents::LOCK_MOVEMENT_CROUCHING, this);
         eventListener.registerEvent(EpicFightEventHooks.Entity.DELIVER_DAMAGE_POST, event ->
         {
-            container.getDataManager().setDataSync(CoreAPIDataKeys.HIT_STOP_TICKS, Math.round(event.getDamageSource().getBaseImpact()));
             if (event.getDamageSource().getAnimation() == SquireSwordAnimations.SQUIRE_SWORD_HEAVY_BLOW)
             {
                 if (event.getEntityPatch().getOriginal().getMainHandItem().is(BattleArtsItems.ERDRICKS_SWORD))

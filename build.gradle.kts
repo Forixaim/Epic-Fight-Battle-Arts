@@ -114,11 +114,11 @@ sourceSets.main {
 
 dependencies {
     runtimeOnly("maven.modrinth:ldlib:mc1.21.1-2.2.4.a-neoforge")
-    implementation(libs.epicFightTest)
     runtimeOnly(libs.moonlight)
+    runtimeOnly(libs.bundles.simplyswords)
     runtimeOnly(libs.dummy)
-    implementation(libs.epicskills)
-    implementation(libs.battleArtsAPI)
+    implementation(libs.bundles.epicfight)
+    implementation(libs.bundles.parcool)
     implementation("maven.modrinth:photon-editor:mc1.21.1-2.1.4-neoforge")
 }
 
