@@ -15,6 +15,7 @@ public class SquireAnimations
 	{
 		SquireSwordAnimations.Build(animationBuilder);
 		SquireBowAnimations.Build(animationBuilder);
+		SquireGreatswordAnimations.build(animationBuilder);
 		SquireDaggerAnimations.Build(animationBuilder);
 		SquireMountAnimations.build(animationBuilder);
 	}

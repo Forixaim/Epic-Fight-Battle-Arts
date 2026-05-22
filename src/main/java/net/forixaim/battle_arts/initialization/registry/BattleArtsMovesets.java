@@ -15,10 +15,7 @@ import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journ
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanAxeAnims;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.journeyman.JourneymanBattleAxeAnims;
 import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.recruit.RecruitSpearAnimations;
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireBowAnimations;
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireDaggerAnimations;
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireMountAnimations;
-import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.SquireSwordAnimations;
+import net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squire.*;
 import net.minecraft.world.item.UseAnim;
 import yesman.epicfight.api.animation.LivingMotions;
 import yesman.epicfight.api.ex_cap.data.Moveset;
@@ -91,6 +88,13 @@ public final class BattleArtsMovesets
                         )
                         .addInnateSkill((itemStack, playerPatch) -> BattleArtsSkills.POWER_DRAW.get())
         );
+
+        public static final DeferredMoveset SQUIRE_GREATSWORD = REGISTRY.registerMoveset("squire_greatsword", () -> Moveset.builder()
+                .addLivingMotionModifier(LivingMotions.IDLE, SquireGreatswordAnimations.IDLE)
+                .addLivingMotionModifier(LivingMotions.WALK, SquireGreatswordAnimations.WALK)
+                .addLivingMotionModifier(LivingMotions.RUN, SquireGreatswordAnimations.RUN)
+                .addLivingMotionModifier(LivingMotions.KNEEL, SquireGreatswordAnimations.CROUCH)
+                .addLivingMotionModifier(LivingMotions.SNEAK, SquireGreatswordAnimations.CROUCH_WALK));
 
         public static final DeferredMoveset SQUIRE_DAGGER = REGISTRY.registerMoveset("squire_dagger",
                 () -> Moveset.builder()

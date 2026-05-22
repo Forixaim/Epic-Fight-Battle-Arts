@@ -37,7 +37,7 @@ public final class BattleArtsWeaponModifiers
     public static final DeferredModifier GREATSWORD = REGISTRY.registerModifier("greatsword", () -> WeaponModifier.builder()
             .target(EpicFightItemCapabilityPresets.GREATSWORD)
             .addConditionalModifier(BattleArtsConditionals.SQUIRE_DEFAULT, BattleArtsConditionals.MERCENARY_DEFAULT)
-            .addMovesetModifier(SquireWieldStyles.SQUIRE_SWORD, BattleArtsMovesets.Squire.SQUIRE_SWORD)
+            .addMovesetModifier(SquireWieldStyles.SQUIRE_SWORD, BattleArtsMovesets.Squire.SQUIRE_GREATSWORD)
             .addMovesetModifier(MercenaryStyles.MERCENARY_WEAPON_ART, BattleArtsMovesets.Mercenary.MERCENARY_GREATSWORD));
 
     public static final DeferredModifier BOW = REGISTRY.registerModifier("bow", () -> WeaponModifier.builder()

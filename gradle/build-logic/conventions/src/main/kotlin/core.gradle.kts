@@ -1,13 +1,7 @@
-// Configures shared Gradle setup for all Gradle projects.
-// This plugin is meant to be applied to every project, including ":common", ":neoforge" and ":fabric".
-//
-// Consumers of this Gradle plugin are expected to manually call the following methods:
-//
-// * configureBaseArchive: with the Gradle project name to produce unique JAR file names.
-
 plugins {
     `java-library`
     idea
+    id("me.modmuss50.mod-publish-plugin")
 }
 
 version = modVersion
@@ -25,13 +19,6 @@ java {
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
     options.release.set(javaVersion)
-}
-
-idea {
-    module {
-        isDownloadSources = true
-        isDownloadJavadoc = true
-    }
 }
 
 repositories {
@@ -77,7 +64,9 @@ repositories {
     strictMaven("playerAnimator", "https://maven.kosmx.dev", "dev.kosmx.player-anim")
 }
 
-tasks.jar {
+val jar = tasks.named<Jar>("jar")
+
+jar {
     from(rootProject.file("LICENSE"))
     from(rootProject.file("LICENSE-ASSETS"))
     from(rootProject.file("LICENSE-ASSETS")) { into("assets/$modId") }

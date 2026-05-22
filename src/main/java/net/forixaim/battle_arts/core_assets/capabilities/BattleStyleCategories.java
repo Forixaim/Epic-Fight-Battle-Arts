@@ -10,7 +10,7 @@ public enum BattleStyleCategories implements WeaponCategory
 {
 	CHAKRAM,
 	SABRE(CapabilityItem.WeaponCategories.LONGSWORD),
-	RAPIER(CapabilityItem.WeaponCategories.LONGSWORD),
+	BATTLE_ARTS_RAPIER(CapabilityItem.WeaponCategories.LONGSWORD),
 	CLAYMORE(CapabilityItem.WeaponCategories.GREATSWORD),
 	HAND_AXE,
 	BATTLE_AXE;

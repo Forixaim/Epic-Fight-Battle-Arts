@@ -48,20 +48,20 @@ public class MercenaryGreatswordAnimations
         RUN = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/run", access -> new MovementAnimation(0.1f, true, access, Armatures.BIPED));
         SPRINT = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/sprint", access -> new MovementAnimation(0.1f, true, access, Armatures.BIPED));
         GUARD = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard", access -> new StaticAnimation(0.2f, true, access, Armatures.BIPED));
-        FLAUNT = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/flair", access -> new StaticAnimation(0.2f, false, access, Armatures.BIPED));
+        FLAUNT = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/flair", access -> new StaticAnimation(0.5f, false, access, Armatures.BIPED));
         GUARD_HIT = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard_hit", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_1 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard_parry1", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
         GUARD_PARRY_2 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/guard_parry2", access -> new GuardAnimation(0.0f, access, Armatures.BIPED));
 
         AUTO1 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/auto1", access ->
-                new ComboAttackAnimation(0.4f, 0.0f, 0.3f, 0.5f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.1f, 0.0f, 0.2f, 0.35f, 0.6f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
+                                1));
 
         AUTO2 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/auto2", access ->
-                new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new ComboAttackAnimation(0.2f, 0.0f, 0.2f, 0.35f, 0.7f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f));
+                                1));
 
         AUTO3 = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/auto3", access ->
                 new ComboAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 0.9f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
@@ -74,10 +74,11 @@ public class MercenaryGreatswordAnimations
                                 v * 0.7f));
 
         DASH_ATTACK = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/dash_attack", access ->
-                new DashAttackAnimation(0.2f, 0.0f, 0.5f, 0.65f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
+                new DashAttackAnimation(0.1f, 0.0f, 0.3f, 0.35f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
                         .addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, (dynamicAnimation, livingEntityPatch, v, v1, v2) ->
-                                v * 0.7f)
-                        .addEvents(AnimationEvent.InTimeEvent.create(0.7f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.SERVER).params(new Vec3f(0.0F, -0.24F, -2.0F), Armatures.BIPED.get().toolR, 1.1, 0.55F)));
+                                1)
+                        .addProperty(AnimationProperty.StaticAnimationProperty.POSE_MODIFIER, null)
+                        .addEvents(AnimationEvent.InTimeEvent.create(0.4f, Animations.ReusableSources.FRACTURE_GROUND_SIMPLE, AnimationEvent.Side.SERVER).params(new Vec3f(0.0F, -0.24F, -4.0F), Armatures.BIPED.get().toolR, 1.1, 2F)));
 
         FIERCE_UPPER = builder.nextAccessor("battle_style/advanced/mercenary/greatsword/fierce_upper", access ->
                 new BattleArtsAttackAnimation(0.2f, 0.0f, 0.5f, 0.7f, 2f, null, Armatures.BIPED.get().toolR, access, Armatures.BIPED)
