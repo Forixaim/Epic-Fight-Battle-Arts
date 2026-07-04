@@ -8,13 +8,14 @@ import net.forixaim.battle_arts.core_assets.capabilities.styles.battle_style.*;
 import net.forixaim.battle_arts.core_assets.client.overrides.OverrideHelper;
 import net.forixaim.battle_arts.core_assets.client.renderer.FixedArrowRenderer;
 import net.forixaim.battle_arts.core_assets.events.CommonModBusEvent;
-import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsEntities;
 import net.forixaim.battle_arts.core_assets.client.model.FlyingShockwaveModel;
 import net.forixaim.battle_arts.core_assets.client.renderer.FlyingShockwaveRenderer;
 import net.forixaim.battle_arts.core_assets.world.ModelLayers;
 import net.forixaim.battle_arts.initialization.BattleArtsInit;
 import net.forixaim.battle_arts.initialization.registry.BattleArtsCreativeTabs;
 
+import net.minecraft.client.renderer.entity.HuskRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -28,8 +29,10 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
+import yesman.epicfight.api.client.event.EpicFightClientEventHooks;
 import yesman.epicfight.api.event.EpicFightEventHooks;
 import yesman.epicfight.api.utils.ExtensibleEnum;
+import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.main.EpicFightExtensions;
 import yesman.epicfight.world.capabilities.item.Style;
 import yesman.epicfight.world.capabilities.item.WeaponCategory;
@@ -53,6 +56,8 @@ public class BattleArts
         BattleArtsInit.REGISTERS.forEach( deferredRegister -> deferredRegister.register(bus));
         bus.addListener(BattleAnimations::Listen);
         bus.addListener(this::onCommonSetup);
+        bus.addListener(CommonModBusEvent::onInitAttributes);
+        this.registerCapabilities();
 		NeoForge.EVENT_BUS.register(this);
 		container.registerConfig(ModConfig.Type.SERVER, Config.SPEC);
 		container.registerExtensionPoint(EpicFightExtensions.class, new EpicFightExtensions(BattleArtsCreativeTabs.MAIN_ITEMS));
@@ -74,12 +79,19 @@ public class BattleArts
 
     private void onCommonSetup(FMLCommonSetupEvent event)
     {
-        event.enqueueWork(this::registerCapabilities);
+        event.enqueueWork(this::registerStaticCapabilities);
+    }
+
+    private void registerStaticCapabilities()
+    {
+        Armatures.registerEntityTypeArmature(BattleArtsEntities.TEST_EUCLIDIA.get(), Armatures.BIPED);
     }
 
     private void registerCapabilities()
     {
         EpicFightEventHooks.Registry.ENTITY_PATCH.registerEvent(CommonModBusEvent::registerEntityPatch, 1);
+        EpicFightClientEventHooks.Registry.ADD_PATCHED_ENTITY.registerEvent(CommonModBusEvent::registerPatchedRenderer);
+
     }
 
     private void registerStyle(Class<? extends ExtensibleEnum> enumClass)
@@ -113,8 +125,9 @@ public class BattleArts
 		@SubscribeEvent
 		public static void registerRenderersEvent(EntityRenderersEvent.RegisterRenderers event)
 		{
-			event.registerEntityRenderer(BattleArtsProjectiles.FIXED_ARROW.get(), FixedArrowRenderer::new);
-			event.registerEntityRenderer(BattleArtsProjectiles.FLYING_SHOCKWAVE.get(), FlyingShockwaveRenderer::new);
+			event.registerEntityRenderer(BattleArtsEntities.FIXED_ARROW.get(), FixedArrowRenderer::new);
+			event.registerEntityRenderer(BattleArtsEntities.FLYING_SHOCKWAVE.get(), FlyingShockwaveRenderer::new);
+            event.registerEntityRenderer(BattleArtsEntities.TEST_EUCLIDIA.get(), HuskRenderer::new);
 		}
 	}
 }

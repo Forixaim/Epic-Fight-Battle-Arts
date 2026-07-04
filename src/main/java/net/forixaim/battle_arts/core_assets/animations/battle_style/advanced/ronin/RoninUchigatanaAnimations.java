@@ -1,6 +1,6 @@
 package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin;
 
-import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsEntities;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
 import net.forixaim.battle_arts.initialization.registry.BattleArtsSounds;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -165,7 +165,7 @@ public class RoninUchigatanaAnimations
                             Vec3 shootVec = new Vec3(Math.cos(ang), 0 , Math.sin(ang));
                             Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z);
 
-                            FlyingShockwaveProjectile projectile = BattleArtsProjectiles.FLYING_SHOCKWAVE.get().create(livingEntityPatch.getOriginal().level());
+                            FlyingShockwaveProjectile projectile = BattleArtsEntities.FLYING_SHOCKWAVE.get().create(livingEntityPatch.getOriginal().level());
 
                             if (projectile != null)
                             {

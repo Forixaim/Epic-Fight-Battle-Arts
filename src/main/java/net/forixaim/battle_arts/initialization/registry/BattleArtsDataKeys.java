@@ -8,7 +8,6 @@ import net.forixaim.battle_arts.core_assets.skills.dodge.DraconicInstinct;
 import net.forixaim.battle_arts.core_assets.skills.identity.VoiceOfDistortion;
 import net.forixaim.battle_arts.core_assets.skills.passive.ArrogancePassive;
 import net.forixaim.battle_arts.core_assets.skills.weaponinnate.HeavyDraw;
-import net.forixaim.battle_arts_api.battle_arts_skills.battle_style.BattleStyle;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;

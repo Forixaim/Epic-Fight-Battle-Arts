@@ -24,10 +24,11 @@ mcSafeResources = "0.0.2"
 # Dependencies
 
 ## Epic Fight
-epic-fight = "21.17.2-mc1.21.1-neoforge"
+epic-fight = "21.17.3.1-mc1.21.1-neoforge"
 epicskills = "21.3.1-1.21.1"
 battleArtsAPI = "21.17.7-mc1.21.1-neoforge"
 epicFightLocal = "21.17.2"
+euclidia = "test"
 
 ## Dummy Mod
 dummy = "1.21-2.0.12-neoforge"
@@ -52,6 +53,8 @@ epicFight = { module = "maven.modrinth:epic-fight", version.ref = "epic-fight" }
 epicskills = { module = "maven.modrinth:epic-fight-skill-tree", version.ref = "epicskills"}
 battleArtsAPI = { module = "maven.modrinth:battle-arts-api", version.ref = "battleArtsAPI"}
 epicFightTest = { group = "libs", name = "epicfight", version.ref = "epicFightLocal"}
+euclidia = { group = "libs", name = "euclidia", version.ref = "euclidia"}
+
 dummy = { group = "maven.modrinth", name = "mmmmmmmmmmmm", version.ref = "dummy"}
 moonlight = { group = "maven.modrinth", name = "moonlight", version.ref = "moonlight"}
 simplyswords = { group = "maven.modrinth", name = "simply-swords", version.ref = "simplyswords"}
@@ -74,6 +77,6 @@ moddevgradle = { id = "net.neoforged.moddev", version.ref = "moddevgradle" }
 [bundles]
 
 simplyswords = ["simplyswords", "simplytooltips", "architectury", "kotlin", "fzzy"]
-epicfight = ["epicFightTest", "battleArtsAPI", "epicskills"]
+epicfight = ["epicFight", "battleArtsAPI", "epicskills", "euclidia"]
 parcool = ["parcool", "epicparcool"]
 

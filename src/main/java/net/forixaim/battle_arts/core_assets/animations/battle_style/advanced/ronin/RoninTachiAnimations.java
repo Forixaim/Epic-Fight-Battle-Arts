@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ro
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.advanced.ronin.hitboxes.RoninHitboxes;
 import net.forixaim.battle_arts.core_assets.animations.types.RoninInnateAnimation;
-import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsEntities;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FlyingShockwaveProjectile;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
@@ -153,7 +153,7 @@ public class RoninTachiAnimations
                             Vec3 shootVec = new Vec3(Math.cos(ang), 0 , Math.sin(ang));
                             Vec3 shootPos = livingEntityPatch.getOriginal().position().add(shootVec.x, 0, shootVec.z);
 
-                            FlyingShockwaveProjectile projectile = BattleArtsProjectiles.FLYING_SHOCKWAVE.get().create(livingEntityPatch.getOriginal().level());
+                            FlyingShockwaveProjectile projectile = BattleArtsEntities.FLYING_SHOCKWAVE.get().create(livingEntityPatch.getOriginal().level());
 
                             float multiplier = 1.5f;
 

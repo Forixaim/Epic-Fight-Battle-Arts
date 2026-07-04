@@ -84,7 +84,7 @@ fun Project.configureBaseArchive(variant: String) {
         // to keep the JAR file name consistent with the mod project slug URL,
         // and therefore Modrinth will automatically download the sources JAR file: https://support.modrinth.com/en/articles/8801191-modrinth-maven#h_1b24106498
         // This workaround is not needed if the mod ID matches the project slug.
-        archivesName.set("epic-fight")
+        archivesName.set("battle-arts")
         version = getFullModVersion(variant)
     }
 }

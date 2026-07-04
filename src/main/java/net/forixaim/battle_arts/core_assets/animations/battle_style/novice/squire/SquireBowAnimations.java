@@ -3,7 +3,7 @@ package net.forixaim.battle_arts.core_assets.animations.battle_style.novice.squi
 import net.forixaim.battle_arts.core_assets.animations.types.PowerDrawStartAnimation;
 import net.forixaim.battle_arts.core_assets.items.weapons.ranged.BattleBowItem;
 import net.forixaim.battle_arts.initialization.registry.BattleArtsDataKeys;
-import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsEntities;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
@@ -147,7 +147,7 @@ public class SquireBowAnimations
                 multiplier = animationParameters.second();
             }
 
-            FixedArrow projectile = BattleArtsProjectiles.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());
+            FixedArrow projectile = BattleArtsEntities.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());
 
             if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING))
             {
@@ -186,7 +186,7 @@ public class SquireBowAnimations
                 multiplier = animationParameters.first();
             }
 
-            FixedArrow projectile = BattleArtsProjectiles.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());
+            FixedArrow projectile = BattleArtsEntities.FIXED_ARROW.get().create(livingEntityPatch.getOriginal().level());
 
             if (livingEntityPatch instanceof ServerPlayerPatch playerPatch && playerPatch.getSkill(SkillSlots.WEAPON_INNATE).getDataManager().hasData(BattleArtsDataKeys.PULLING))
             {

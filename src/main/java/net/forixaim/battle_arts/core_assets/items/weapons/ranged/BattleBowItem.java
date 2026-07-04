@@ -2,7 +2,7 @@ package net.forixaim.battle_arts.core_assets.items.weapons.ranged;
 
 import net.forixaim.battle_arts.core_assets.animations.battle_style.BattleStyleRegistry;
 import net.forixaim.battle_arts.core_assets.items.weapons.melee.special.SpecialTiers;
-import net.forixaim.battle_arts.initialization.registry.BattleArtsProjectiles;
+import net.forixaim.battle_arts.initialization.registry.BattleArtsEntities;
 import net.forixaim.battle_arts.core_assets.world.projectiles.FixedArrow;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -100,7 +100,7 @@ public class BattleBowItem extends BowItem
                     boolean flag1 = player.getAbilities().instabuild || itemstack.getItem() instanceof ArrowItem && ((ArrowItem) itemstack.getItem()).isInfinite(itemstack, pStack, player);
                     if (!pLevel.isClientSide)
                     {
-                        FixedArrow fixedArrow = BattleArtsProjectiles.FIXED_ARROW.get().create(pLevel);
+                        FixedArrow fixedArrow = BattleArtsEntities.FIXED_ARROW.get().create(pLevel);
                         fixedArrow.setAttack(BattleStyleRegistry.BOW_BASE_DAMAGE);
                         fixedArrow.setPos(player.position().add(0, 1.5, 0));
                         fixedArrow.shootFromRotation(player, player.getXRot(), player.getYRot(), 0.0F, f * 3.0F, 1.0F);

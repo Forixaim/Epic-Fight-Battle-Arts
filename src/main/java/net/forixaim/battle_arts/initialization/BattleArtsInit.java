@@ -20,8 +20,9 @@ public class BattleArtsInit
             BattleArtsSkills.REGISTRY,
             BattleArtsParticles.REGISTRY,
             BattleArtsDataKeys.REGISTRY,
-            BattleArtsProjectiles.REGISTRY,
-            BattleArtsWeaponData.REGISTRY
+            BattleArtsEntities.REGISTRY,
+            BattleArtsWeaponData.REGISTRY,
+            BattleArtsActions.REGISTRY
     );
 
 

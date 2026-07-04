@@ -20,4 +20,6 @@ public class ModBusEvents
         //event.registerSpecial(ParticleRegistry.PROJECTILE_TRAIL.get(), BattleArtsProjectileTrailParticle.createRecord());
     }
 
+
+
 }
